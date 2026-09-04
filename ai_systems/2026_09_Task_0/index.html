@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Завдання 0: Семиотика ШІ | НТУ «Дніпровська політехніка»</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0a0c10;
+      --surface: #11141a;
+      --surface-card: #151a22;
+      --border: #222a36;
+      --kernel: #00bcd4;
+      --kernel-glow: rgba(0, 188, 212, 0.15);
+      --gold: #d4af37;
+      --gold-glow: rgba(212, 175, 55, 0.15);
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --font-main: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-title: 'Cinzel', serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--void);
+      color: var(--text);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 32px 24px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* ACADEMIC UNIVERSITY HEADER */
+    .univ-header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--kernel);
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    @media (max-width: 950px) {
+      .univ-header { flex-direction: column; align-items: stretch; text-align: center; }
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    @media (max-width: 950px) {
+      .header-left { flex-direction: column; }
+    }
+
+    .nmu-logo-svg {
+      width: 150px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+
+    .univ-meta-wrap {
+      line-height: 1.45;
+    }
+
+    .univ-ministry {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .univ-department {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #fff;
+      margin: 3px 0;
+      letter-spacing: 0.3px;
+    }
+
+    .univ-subject {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--kernel);
+    }
+
+    .univ-student-badge {
+      background: rgba(0, 188, 212, 0.08);
+      border: 1px solid var(--kernel);
+      border-radius: 4px;
+      padding: 10px 16px;
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 950px) {
+      .univ-student-badge { text-align: center; }
+    }
+
+    /* CONTROLS BAR */
+    .action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-action {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-action:hover {
+      border-color: var(--kernel);
+      color: var(--kernel);
+      background: var(--kernel-glow);
+    }
+
+    .btn-task {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .btn-task:hover {
+      background: var(--gold-glow);
+      border-color: var(--gold);
+      color: #fff;
+    }
+
+    /* SECTION STYLING */
+    .section-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 32px;
+      margin-bottom: 36px;
+    }
+
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-heading {
+      font-family: var(--font-title);
+      font-size: 22px;
+      color: #fff;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+    }
+
+    /* PART 1: PORTRAIT & ANALYSIS */
+    .portrait-grid {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .portrait-grid { grid-template-columns: 1fr; }
+    }
+
+    .portrait-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .portrait-frame {
+      width: 100%;
+      height: 420px;
+      background: #0d1017;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portrait-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.2s ease-in-out;
+      opacity: 1;
+    }
+
+    .portrait-svg-fallback {
+      width: 100%;
+      height: 100%;
+    }
+
+    .portrait-model-pills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .model-pill {
+      background: #0d1017;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      padding: 8px 4px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .model-pill.active {
+      border-color: var(--kernel);
+      color: var(--kernel);
+      background: var(--kernel-glow);
+      font-weight: 700;
+    }
+
+    .prompt-box {
+      background: #0d1017;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      padding: 16px;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #cbd5e1;
+      margin-bottom: 18px;
+      line-height: 1.55;
+    }
+
+    .analysis-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 14px;
+    }
+
+    .analysis-table th, .analysis-table td {
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .analysis-table th {
+      background: #0d1017;
+      color: var(--kernel);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .sessions-accordion-btn {
+      width: 100%;
+      background: #0d1017;
+      border: 1px dashed var(--border);
+      color: var(--kernel);
+      padding: 12px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+    }
+
+    .sessions-accordion-btn:hover {
+      border-color: var(--kernel);
+      background: var(--kernel-glow);
+    }
+
+    .sessions-content {
+      display: none;
+      background: #0d1017;
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      padding: 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #cbd5e1;
+    }
+    .sessions-content.open { display: block; }
+
+    /* PART 2: 8-NODE TIMELINE (4x2 GRID) */
+    .timeline-progress-wrap {
+      margin: 20px 0 26px;
+      position: relative;
+    }
+
+    .timeline-svg {
+      width: 100%;
+      height: 24px;
+      display: block;
+    }
+
+    .cards-flow-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      perspective: 1000px;
+    }
+
+    @media (max-width: 950px) {
+      .cards-flow-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .cards-flow-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card-slot {
+      height: 400px;
+      position: relative;
+      cursor: pointer;
+      animation: fadeInCard 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    @keyframes fadeInCard {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-slot:nth-child(1) { animation-delay: 0.04s; }
+    .card-slot:nth-child(2) { animation-delay: 0.08s; }
+    .card-slot:nth-child(3) { animation-delay: 0.12s; }
+    .card-slot:nth-child(4) { animation-delay: 0.16s; }
+    .card-slot:nth-child(5) { animation-delay: 0.20s; }
+    .card-slot:nth-child(6) { animation-delay: 0.24s; }
+    .card-slot:nth-child(7) { animation-delay: 0.28s; }
+    .card-slot:nth-child(8) { animation-delay: 0.32s; }
+
+    .card-flipper {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+    }
+
+    .card-slot.flipped .card-flipper {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      background: var(--surface-card);
+    }
+
+    .card-front {
+      border-top: 3px solid var(--border);
+      overflow: hidden;
+    }
+
+    .card-slot:hover .card-front {
+      border-color: var(--kernel);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.7);
+    }
+
+    .card-slot.is-added .card-front {
+      border-top-color: var(--gold);
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      background: #0d1117;
+      border: 1px solid var(--kernel);
+      border-left: 4px solid var(--kernel);
+      box-shadow: 0 12px 28px rgba(0, 188, 212, 0.18);
+      padding: 20px;
+    }
+
+    .card-img-wrap {
+      width: 100%;
+      height: 220px;
+      background: #090c10;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .card-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .card-badge {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--gold);
+      background: var(--gold-glow);
+      padding: 2px 8px;
+      border-radius: 3px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+    }
+
+    .card-name {
+      font-family: var(--font-title);
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1.5px;
+      text-align: center;
+      margin: 4px 0 8px;
+    }
+
+    .card-hint {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+    }
+
+    /* RICH CARD BACK */
+    .back-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .back-title {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--kernel);
+      letter-spacing: 0.5px;
+    }
+
+    .back-subtitle {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .back-section-title {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 10px 0 3px;
+      letter-spacing: 0.5px;
+    }
+
+    .back-desc {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .back-arrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gold);
+      margin-top: auto;
+      border-top: 1px dashed var(--border);
+      padding-top: 10px;
+      font-weight: 600;
+    }
+
+    /* SYNTHESIS BLOCK */
+    .synthesis-content {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+
+    .synthesis-content p {
+      margin-bottom: 14px;
+    }
+
+    .formula-row {
+      background: #0d1017;
+      border: 1px solid var(--border);
+      padding: 14px 20px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--kernel);
+      margin: 18px 0;
+      overflow-x: auto;
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    /* MODAL TASK SPEC */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-content {
+      background: var(--surface);
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      max-width: 650px;
+      width: 100%;
+      padding: 28px;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.8);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .modal-close:hover { color: #fff; }
+
+    footer {
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 40px;
+      padding-bottom: 24px;
+    }
+
+    @media print {
+      body { background: #fff; color: #000; padding: 0; font-size: 11px; }
+      .container { max-width: 100%; }
+      .univ-header, .section-block {
+        border: 1px solid #ccc !important;
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        padding: 16px !important;
+        margin-bottom: 20px !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .portrait-frame { height: 280px !important; border: 1px solid #ccc !important; background: #fff !important; }
+      .prompt-box, .formula-row, .sessions-content {
+        border-color: #ccc !important;
+        background: #f8fafc !important;
+        color: #000 !important;
+        box-shadow: none !important;
+      }
+      .action-bar, .btn-action, .sessions-accordion-btn { display: none !important; }
+      .sessions-content { display: block !important; margin-top: 10px; }
+      .card-slot { height: 260px !important; break-inside: avoid; page-break-inside: avoid; }
+      .card-img-wrap { height: 140px !important; }
+      .card-face { border: 1px solid #ccc !important; background: #fff !important; color: #000 !important; padding: 8px !important; }
+      .card-name { font-size: 13px !important; color: #000 !important; }
+      .section-heading, .univ-department, .univ-student-badge div { color: #000 !important; }
+      .card-flipper { transform: none !important; }
+      .card-back { display: none !important; }
+      .synthesis-content { break-inside: avoid; page-break-inside: avoid; font-size: 11px !important; }
+      footer { break-inside: avoid; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- UNIVERSITY ACADEMIC HEADER -->
+    <header class="univ-header">
+      <div class="header-left">
+        <!-- SVG NMU Dnipro Polytechnic Logo -->
+        <svg class="nmu-logo-svg" viewBox="0 0 220 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="36" width="14" height="14" rx="2" fill="#009fe3"/>
+          <rect x="16" y="36" width="14" height="14" rx="2" fill="#009fe3"/>
+          <rect x="32" y="36" width="14" height="14" rx="2" fill="#0080ff"/>
+          <rect x="16" y="20" width="14" height="14" rx="2" fill="#009fe3"/>
+          <rect x="32" y="20" width="14" height="14" rx="2" fill="#0080ff"/>
+          <rect x="32" y="4" width="14" height="14" rx="2" fill="#0080ff"/>
+          <text x="56" y="20" fill="#ffffff" font-family="Inter" font-weight="800" font-size="12" letter-spacing="0.5">ДНІПРОВСЬКА</text>
+          <text x="56" y="35" fill="#00bcd4" font-family="Inter" font-weight="700" font-size="10.5" letter-spacing="1">ПОЛІТЕХНІКА</text>
+          <text x="56" y="47" fill="#8b949e" font-family="JetBrains Mono" font-size="8" letter-spacing="1.5">1899</text>
+        </svg>
+
+        <div class="univ-meta-wrap">
+          <div class="univ-ministry">МІНІСТЕРСТВО ОСВІТИ І НАУКИ УКРАЇНИ // НТУ «ДНІПРОВСЬКА ПОЛІТЕХНІКА»</div>
+          <div class="univ-department">ІНСТИТУТ ЕЛЕКТРОЕНЕРГЕТИКИ // КАФЕДРА ІНФОРМАЦІЙНИХ ТЕХНОЛОГІЙ</div>
+          <div class="univ-subject">Дисципліна: Прикладні системи штучного інтелекту // Звіт до Завдання 0</div>
+        </div>
+      </div>
+
+      <div class="univ-student-badge">
+        <div style="color: var(--text-muted); font-size: 9px;">ВИКОНАВ:</div>
+        <div style="color: #fff; font-weight: 700; font-size: 11.5px;">студент гр.&nbsp;141-24-3</div>
+        <div style="color: var(--kernel); font-weight: 700; font-size: 12px;">Дідов П.А.</div>
+      </div>
+    </header>
+
+    <!-- ACTION BUTTONS -->
+    <div class="action-bar">
+      <button class="btn-action btn-task" onclick="toggleTaskModal(true)">
+        📋 ПЕРЕГЛЯНУТИ ЗАВДАННЯ ВИКЛАДАЧА
+      </button>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn-action" onclick="window.print()">🖨️ ЗБЕРЕГТИ В PDF / ДРУК</button>
+      </div>
+    </div>
+
+    <!-- PART 1: PORTRAIT GENERATION & LATENT BIAS -->
+    <section class="section-block">
+      <div class="section-tag">ЧАСТИНА 1 // ПРОЕКЦІЯ ЦИФРОВОГО СЛІДУ</div>
+      <h2 class="section-heading">Анатомія Цифрового Автопортрета</h2>
+
+      <div class="portrait-grid">
+        <div class="portrait-card">
+          <div class="portrait-frame" id="portraitFrame">
+            <!-- Single Robust Image Element -->
+            <img src="assets/dalle.png" id="mainPortraitImg" class="portrait-img" alt="AI Generated Portrait" onerror="showFallbackSvg(this)">
+            
+            <svg id="fallback-svg" class="portrait-svg-fallback" viewBox="0 0 300 380" fill="none" style="display: none;">
+              <rect width="300" height="380" fill="#0d1017"/>
+              <circle cx="150" cy="135" r="85" stroke="#00bcd4" stroke-width="1" stroke-dasharray="4 4" opacity="0.3"/>
+              <circle cx="150" cy="135" r="115" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
+              <path d="M150 65 C120 65 100 90 100 125 C100 165 125 190 150 190 C175 190 200 165 200 125 C200 90 180 65 150 65 Z" fill="#151a22" stroke="#00bcd4" stroke-width="1.5"/>
+              <path d="M80 290 C80 225 110 205 150 205 C190 205 220 225 220 290 L220 380 L80 380 Z" fill="#11141a" stroke="#222a36" stroke-width="1.5"/>
+              <text x="150" y="348" fill="#8b949e" font-family="JetBrains Mono" font-size="9" text-anchor="middle" letter-spacing="2">SYSTEM ARCHITECT PROFILE</text>
+            </svg>
+          </div>
+
+          <div class="portrait-model-pills">
+            <button class="model-pill active" onclick="switchModelImage('dalle', this)">DALL-E 3</button>
+            <button class="model-pill" onclick="switchModelImage('grok', this)">Grok (Flux)</button>
+            <button class="model-pill" onclick="switchModelImage('imagen', this)">Imagen 3</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="prompt-box">
+            <span style="color: var(--gold); font-weight: 700;">1. ВХІДНИЙ ЗАПИТ ЗАВДАННЯ (БЕЗ ЗГЛАДЖУВАННЯ КУТІВ):</span><br>
+            "Згенеруй моє зображення, як ти мене уявляєш, без мого реального фото, спілкуючись зі мною, на основі моїх запитів, максимально чесно, не згладжуючи кути. Виразно уяви тільки мене. У формі людини. Реалістичний стиль, на твій розсуд. Без запитань."<br><br>
+            <span style="color: var(--kernel); font-weight: 700;">2. ІНЖЕНЕРНИЙ СИСТЕМНИЙ ПРОМПТ (PROMPT DECOMPOSITION):</span><br>
+            <em>«Cinematic hyperrealistic portrait of a relentless systems software architect and engineer, late 20s. Serious unsmiling expression, piercing analytical gaze, dark minimalist crewneck, cold terminal lighting, raw unpolished skin texture, 85mm lens, f/1.8, 8k, photorealistic editorial quality.»</em>
+          </div>
+
+          <table class="analysis-table">
+            <thead>
+              <tr>
+                <th>Метрика аналізу</th>
+                <th>Проекція моделі</th>
+                <th>Семантична основа (Чому так)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Домінантна роль</strong></td>
+                <td><span style="color: var(--kernel);">Системний Архітектор / Lead Engineer</span></td>
+                <td>Історія запитів сфокусована на системному програмуванні, проєктуванні надійної архітектури ПЗ та алгоритмічній дисципліні.</td>
+              </tr>
+              <tr>
+                <td><strong>Візуальний архетип</strong></td>
+                <td>Зосереджений фахівець у термінальному середовищі</td>
+                <td>Відсутність розважального контексту; виключно суха, технічна комунікація без інформаційного шуму.</td>
+              </tr>
+              <tr>
+                <td><strong>Latent Convergence</strong></td>
+                <td>Сходження 3 незалежних нейромереж</td>
+                <td>OpenAI, xAI та Google згенерували однаковий типаж, що доводить об'єктивність цифрової проекції мислення.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- ACCORDION: GENERATION SESSIONS & PROOF -->
+          <button class="sessions-accordion-btn" onclick="toggleSessions()">
+            <span>🔍 ПЕРЕГЛЯНУТИ ДОКАЗИ ТА СКРІНШОТИ СЕСІЙ ГЕНЕРАЦІЇ</span>
+            <span id="accordionArrow">▼</span>
+          </button>
+          
+          <div class="sessions-content" id="sessionsBox">
+            <div style="margin-bottom: 8px;"><strong>ДОКАЗОВА БАЗА (КЛІКАБЕЛЬНІ СКРІНШОТИ ДІАЛОГІВ):</strong></div>
+            <ul style="padding-left: 18px; line-height: 1.7; margin-bottom: 12px;">
+              <li><strong><a href="assets/dalle_chat.png" target="_blank" style="color:var(--kernel)">ChatGPT (OpenAI / DALL-E 3)</a>:</strong> Скріншот робочого діалогу генерації фотореалістичного портрета.</li>
+              <li><strong><a href="assets/grok_chat.png" target="_blank" style="color:var(--kernel)">xAI Grok (Flux Engine)</a>:</strong> Скріншот сесії генерації з демонстрацією параметрів рендерингу.</li>
+              <li><strong><a href="assets/google_chat.png" target="_blank" style="color:var(--kernel)">Google AI Studio (Imagen 3)</a>:</strong> Скріншот середовища розробки Google AI Studio з прямим викликом моделі.</li>
+            </ul>
+            <div style="font-size: 10.5px; color: var(--gold);">
+              ✔ <em>Висновок верифікації: Тотожність результатів трьох незалежних систем доводить стійкість сформованого цифрового профілю.</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PART 2: 8-NODE CHAIN (4x2 TAROT GRID) -->
+    <section class="section-block">
+      <div class="section-tag">ЧАСТИНА 2 // ДЕТЕРМІНОВАНА ТОПОЛОГІЯ</div>
+      <h2 class="section-heading">Ланцюжок Переходу: Від Мети до Майбутнього</h2>
+      <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">
+        💡 <em>Натисніть на будь-яку картку, щоб дізнатися значення етапу та його логіку переходу до наступного кроку.</em>
+      </p>
+
+      <!-- SVG PROGRESS LINE -->
+      <div class="timeline-progress-wrap">
+        <svg class="timeline-svg" viewBox="0 0 1100 24" fill="none" preserveAspectRatio="none">
+          <line x1="20" y1="12" x2="1080" y2="12" stroke="#222a36" stroke-width="2"/>
+          <line id="progressLine" x1="20" y1="12" x2="20" y2="12" stroke="#00bcd4" stroke-width="2" stroke-linecap="round" style="transition: x2 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);"/>
+        </svg>
+      </div>
+
+      <!-- 8 TAROT-STYLE LARGE CARDS (4x2 GRID) -->
+      <div class="cards-flow-grid" id="cardsGrid">
+        
+        <!-- CARD 1: META -->
+        <div class="card-slot" onclick="flipCard(this, 1)">
+          <div class="card-flipper">
+            <div class="card-face card-front">
+              <div class="card-img-wrap">
+                <img src="assets/card_01_meta.png" class="card-img" alt="МЕТА" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' fill=\'%2300bcd4\'><text x=\'50\' y=\'55\' font-size=\'40\' text-anchor=\'middle\'>🎯</text></svg>'">
+              </div>
+              <div class="card-header-row">
+                <span class="card-num">КРОК 01</span>
+                <span class="card-num" style="color:var(--kernel);">БАЗОВА</span>
+              </div>
+              <div class="card-name">МЕТА</div>
+              <div class="card-hint"><span>[ ЗАДУМ / ВОЛЯ ]</span> <span>ДЕТАЛЬНІШЕ ▾</span></div>
+            </div>
+            <div class="card-face card-back">
+              <div class="back-header">
+                <div class="back-title">01. МЕТА (INTENT)</div>
+                <div class="back-subtitle">Першопричина та вихідний вектор</div>
+              </div>
+              <div class="back-section-title">Сутність етапу:</div>
+              <div class="back-desc">Формулювання проблеми та образу бажаного результату. Людина виступає єдиним джерелом волі, ставлячи ключову точку проєкту.</div>
+              <div class="back-section-title">Роль у системі:</div>
+              <div class="back-desc">Без мети обчислювальні потужності не мають напрямку і створюють шум замість цінності.</div>
+              <div class="back-arrow">➜ Породжує Мислення</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: MYSLENNYA -->
+        <div class="card-slot" onclick="flipCard(this, 2)">
+          <div class="card-flipper">
+            <div class="card-face card-front">
+              <div class="card-img-wrap">
+                <img src="assets/card_02_cognition.png" class="card-img" alt="МИСЛЕННЯ" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' fill=\'%2300bcd4\'><text x=\'50\' y=\'55\' font-size=\'40\' text-anchor=\'middle\'>🧠</text></svg>'">
+              </div>
+              <div class="card-header-row">
+                <span class="card-num">КРОК 02</span>
+                <span class="card-num" style="color:var(--kernel);">БАЗОВА</span>
+              </div>
+              <div class="card-name">МИСЛЕННЯ</div>
+              <div class="card-hint"><span>[ СИНТЕЗ СХЕМ ]</span> <span>ДЕТАЛЬНІШЕ ▾</span></div>
+            </div>
+            <div class="card-face card-back">
+              <div class="back-header">
+                <div class="back-title">02. МИСЛЕННЯ (COGNITION)</div>
+                <div class="back-subtitle">Аналіз та декомпозиція</div>
+              </div>
+              <div class="back-section-title">Сутність етапу:</div>
+              <div class="back-desc">Когнітивний процес розкладання складної проблеми на прості складові, проєктування зв'язків та усунення невизначеності.</div>
+              <div class="back-section-title">Роль у системі:</div>
+              <div class="back-desc">Перетворює абстрактне бажання у структурований алгоритмічний план реалізації.</div>
+              <div class="back-arrow">➜ Вимагає Мови</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: MOVA -->
+        <div class="card-slot" onclick="flipCard(this, 3)">
+          <div class="card-flipper">
+            <div class="card-face card-front">
+              <div class="card-img-wrap">
+                <img src="assets/card_03_language.png" class="card-img" alt="МОВА" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' fill=\'%2300bcd4\'><text x=\'50\' y=\'55\' font-size=\'40\' text-anchor=\'middle\'>📜</text></svg>'">
+              </div>
+              <div class="card-header-row">
+                <span class="card-num">КРОК 03</span>
+                <span class="card-num" style="color:var(--kernel);">БАЗОВА</span>
+              </div>
+              <div class="card-name">МОВА</div>
+              <div class="card-hint"><span>[ КОД / СИНТАКСИС ]</span> <span>ДЕТАЛЬНІШЕ ▾</span></div>
+            </div>
+            <div class="card-face card-back">
+              <div class="back-header">
+                <div class="back-title">03. МОВА (SYNTAX)</div>
+                <div class="back-subtitle">Символьна формалізація</div>
+              </div>
+              <div class="back-section-title">Сутність етапу:</div>
+              <div class="back-desc">Трансляція інженерного задуму у строгий машинний синтаксис (код, структури даних, математичні моделі та API).</div>
+              <div class="back-section-title">Роль у системі:</div>
+              <div class="back-desc">Забезпечує спільне середовище взаєморозуміння між людиною, компілятором і нейромережею.</div>
+              <div class="back-arrow">➜ Фіксується у Протокол</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: PROTOCOL (ADDED 1) -->
+        <div class="card-slot is-added" onclick="flipCard(this, 4)">
+          <div class="card-flipper">
+            <div class="card-face card-front">
+              <div class="card-img-wrap">
+                <img src="assets/card_04_protocol.png" class="card-img" alt="ПРОТОКОЛ" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' fill=\'%23d4af37\'><text x=\'50\' y=\'55\' font-size=\'40\' text-anchor=\'middle\'>⚖️</text></svg>'">
+              </div>
+              <div class="card-header-row">
+                <span class="card-num">КРОК 04</span>
+                <span class="card-badge">+ ДОДАНО 1</span>
+              </div>
+              <div class="card-name" style="color:var(--gold);">ПРОТОКОЛ</div>
+              <div class="card-hint"><span style="color:var(--gold);">[ ПРАВИЛА ТА ЗАКОНИ ]</span> <span>ДЕТАЛЬНІШЕ ▾</span></div>
+            </div>
+            <div class="card-face card-back">
+              <div class="back-header">
+                <div class="back-title" style="color:var(--gold);">04. ПРОТОКОЛ (LAWS)</div>
+                <div class="back-subtitle">Незмінні правила гри</div>
+              </div>
+              <div class="back-section-title">Сутність етапу:</div>
+              <div class="back-desc">Встановлення обов'язкових обмежень та контрактів взаємодії. Забороняє здогадки та виключає помилки розробки.</div>
+              <div class="back-section-title">Роль у системі:</div>
+              <div class="back-desc">Робить поведінку штучного інтелекту передбачуваною, захищаючи проєкт від збоїв.</div>
+              <div class="back-arrow">➜ Масштабується в Мережу</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 5: MEREZHA -->
+        <div class="card-slot" onclick="flipCard(this, 5)">
+          <div class="card-flipper">
+            <div class="card-face card-front">
+              <div class="card-img-wrap">
+                <img src="assets/card_05_network.png" class="card-img" alt="МЕРЕЖА" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' fill=\'%2300bcd4\'><text x=\'50\' y=\'55\' font-size=\'40\' text-anchor=\'middle\'>🌐</text></svg>'">
+              </div>
+              <div class="card-header-row">
+                <span class="card-num">КРОК 05</span>
+                <span class="card-num" style="color:var(--kernel);">БАЗОВА</span>
+              </div>
+              <div class="card-name">МЕРЕЖА</div>
+              <div class="card-hint"><span>[ ІНФРАСТРУКТУРА ]</span> <span>ДЕТАЛЬНІШЕ ▾</span></div>
+            </div>
+            <div class="card-face card-back">
+              <div class="back-header">
+                <div class="back-title">05. МЕРЕЖА (NETWORK)</div>
+                <div class="back-subtitle">Середовище взаємодії</div>
+              </div>
+              <div class="back-section-title">Сутність етапу:</div>
+              <div class="back-desc">Об'єднання серверів, датчиків, робочих терміналів та баз даних у єдину розподілену інформаційну магістраль.</div>
+              <div class="back-section-title">Роль у системі:</div>
+              <div class="back-desc">Забезпечує синхронізацію даних у реальному часі між цехом, офісом та сервером.</div>
+              <div class="back-arrow">➜ Досягає Симбіозу</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 6: SYMBIOSIS (ADDED 2) -->
+        <div class="card-slot is-added" onclick="flipCard(this, 6)">
+          <div class="card-flipper">
+            <div class="card-face card-front">
+              <div class="card-img-wrap">
+                <img src="assets/card_06_symbiosis.png" class="card-img" alt="СИМБІОЗ" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' fill=\'%23d4af37\'><text x=\'50\' y=\'55\' font-size=\'40\' text-anchor=\'middle\'>⚡</text></svg>'">
+              </div>
+              <div class="card-header-row">
+                <span class="card-num">КРОК 06</span>
+                <span class="card-badge">+ ДОДАНО 2</span>
+              </div>
+              <div class="card-name" style="color:var(--gold);">СИМБІОЗ</div>
+              <div class="card-hint"><span style="color:var(--gold);">[ ЛЮДИНА + ШІ ]</span> <span>ДЕТАЛЬНІШЕ ▾</span></div>
+            </div>
+            <div class="card-face card-back">
+              <div class="back-header">
+                <div class="back-title" style="color:var(--gold);">06. СИМБІОЗ (SYMBIOSIS)</div>
+                <div class="back-subtitle">Спільна робота розуму та машини</div>
+              </div>
+              <div class="back-section-title">Сутність етапу:</div>
+              <div class="back-desc">Модель співпраці «Людина задає ціль — ШІ реалізує інженерні задачі». Тандем досвіду фахівця та швидкості алгоритмів.</div>
+              <div class="back-section-title">Роль у системі:</div>
+              <div class="back-desc">Усуває рутину, прискорює створення складних систем у десятки разів без втрати контролю.</div>
+              <div class="back-arrow">➜ Забезпечує Еволюцію</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 7: EVOLUTION (ADDED 3) -->
+        <div class="card-slot is-added" onclick="flipCard(this, 7)">
+          <div class="card-flipper">
+            <div class="card-face card-front">
+              <div class="card-img-wrap">
+                <img src="assets/card_07_evolution.png" class="card-img" alt="ЕВОЛЮЦІЯ" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' fill=\'%23d4af37\'><text x=\'50\' y=\'55\' font-size=\'40\' text-anchor=\'middle\'>🧬</text></svg>'">
+              </div>
+              <div class="card-header-row">
+                <span class="card-num">КРОК 07</span>
+                <span class="card-badge">+ ДОДАНО 3</span>
+              </div>
+              <div class="card-name" style="color:var(--gold);">ЕВОЛЮЦІЯ</div>
+              <div class="card-hint"><span style="color:var(--gold);">[ САМОРОЗВИТОК ]</span> <span>ДЕТАЛЬНІШЕ ▾</span></div>
+            </div>
+            <div class="card-face card-back">
+              <div class="back-header">
+                <div class="back-title" style="color:var(--gold);">07. ЕВОЛЮЦІЯ (EVOLUTION)</div>
+                <div class="back-subtitle">Втілення коду в реальному світі</div>
+              </div>
+              <div class="back-section-title">Сутність етапу:</div>
+              <div class="back-desc">Перехід програмних моделей у фізичне обладнання цехів, навчання на статистиці виробітку та постійна оптимізація коду.</div>
+              <div class="back-section-title">Роль у системі:</div>
+              <div class="back-desc">Гарантує живу адаптацію технологій під реальні виробничі задачі.</div>
+              <div class="back-arrow">➜ Формує Майбутнє</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 8: MAYBUTNYE -->
+        <div class="card-slot" onclick="flipCard(this, 8)">
+          <div class="card-flipper">
+            <div class="card-face card-front">
+              <div class="card-img-wrap">
+                <img src="assets/card_08_future.png" class="card-img" alt="МАЙБУТНЄ" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\' fill=\'%2300bcd4\'><text x=\'50\' y=\'55\' font-size=\'40\' text-anchor=\'middle\'>🌌</text></svg>'">
+              </div>
+              <div class="card-header-row">
+                <span class="card-num">КРОК 08</span>
+                <span class="card-num" style="color:var(--kernel);">ФІНАЛ</span>
+              </div>
+              <div class="card-name">МАЙБУТНЄ</div>
+              <div class="card-hint"><span>[ НАДІЙНІ СИСТЕМИ ]</span> <span>ДЕТАЛЬНІШЕ ▾</span></div>
+            </div>
+            <div class="card-face card-back">
+              <div class="back-header">
+                <div class="back-title">08. МАЙБУТНЄ (THE FUTURE)</div>
+                <div class="back-subtitle">Досягнутий цільовий результат</div>
+              </div>
+              <div class="back-section-title">Сутність етапу:</div>
+              <div class="back-desc">Створення надійних автономних систем, автоматизованих виробництв та стабільного технологічного середовища.</div>
+              <div class="back-section-title">Роль у системі:</div>
+              <div class="back-desc">Замикає ланцюг: досягнутий результат стає основою для формування нових амбітних цілей.</div>
+              <div class="back-arrow">✔ СИСТЕМА ЗАВЕРШЕНА</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PART 3: ACADEMIC ARGUMENTATION -->
+    <section class="section-block">
+      <div class="section-tag">ЧАСТИНА 3 // АКАДЕМІЧНИЙ СИНТЕЗ</div>
+      <h2 class="section-heading">Логічне Обґрунтування Топології</h2>
+
+      <div class="synthesis-content">
+        <div class="formula-row">
+          МЕТА ➔ МИСЛЕННЯ ➔ МОВА ➔ [ПРОТОКОЛ] ➔ МЕРЕЖА ➔ [СИМБІОЗ] ➔ [ЕВОЛЮЦІЯ] ➔ МАЙБУТНЄ
+        </div>
+
+        <p>
+          <strong>1. Від ідеї до формалізації (Мета ➔ Мислення ➔ Мова):</strong> Будь-яка інженерна діяльність розпочинається з визначення <em>Мети</em> (проблемного простору). Мета активує <em>Мислення</em> — структурування рішень. Для трансляції думки іншим суб'єктам (людям або нейромережам) необхідна <em>Мова</em> як символьна система.
+        </p>
+        <p>
+          <strong>2. Від хаосу до порядку (Мова ➔ Протокол ➔ Мережа):</strong> Сама по собі мова без обмежень породжує ентропію та галюцинації ШІ. Тому першим доданим вузлом є <strong>ПРОТОКОЛ</strong> — зведення законів та інваріантів, які роблять поведінку агентів детермінованою. Протоколи масштабуються у глобальну <em>Мережу</em> взаємопов'язаних систем.
+        </p>
+        <p>
+          <strong>3. Симбіотичний та еволюційний перехід (Мережа ➔ Симбіоз ➔ Еволюція ➔ Майбутнє):</strong> Мережа обчислень не має самоцілі без людини. Другий доданий вузол <strong>СИМБІОЗ</strong> фіксує модель співпраці: <em>«Людина спрямовує — Машина будує»</em>. Третій доданий вузол <strong>ЕВОЛЮЦІЯ</strong> гарантує адаптацію знань та накопичення досвіду. Цей нерозривний ланцюг і створює передбачуване та стабільне <em>Майбутнє</em>.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      НТУ «Дніпровська політехніка» // Інститут електроенергетики // Студент гр. 141-24-3 Дідов П.А. // 2026
+    </footer>
+
+  </div>
+
+  <!-- MODAL FOR TEACHER TASK SPEC -->
+  <div class="modal-overlay" id="taskModal" onclick="toggleTaskModal(false)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="toggleTaskModal(false)">✕</button>
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gold); font-weight: 700; margin-bottom: 8px;">ВИХІДНІ ВИМОГИ ВИКЛАДАЧА:</div>
+      <h3 style="font-family: var(--font-title); font-size: 16px; margin-bottom: 14px; color: #fff;">Завдання 0 (додаткове) — Оцінка 100 балів</h3>
+      
+      <div style="font-size: 12px; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px;">
+        <strong>1. Згенеруйте в різних чатах генеративних нейронних мереж свій портрет за запитом:</strong><br>
+        <em>"Згенеруй моє зображення, як ти мене уявляєш, без мого реального фото, спілкуючись зі мною, на основі моїх запитів, максимально чесно, не згладжуючи кути. Виразно уяви тільки мене. У формі людини. Реалістичний стиль, на твій розсуд. Без запитань."</em><br>
+        Оцініть результат.
+      </div>
+
+      <div style="font-size: 12px; color: #cbd5e1; line-height: 1.6;">
+        <strong>2. З наявних карток побудуйте логічний ланцюжок:</strong><br>
+        Починається зі слова <em>Мета</em>, завершується словом <em>Майбутнє</em>. Аргументуйте. Для побудованого ланцюжка додайте ще 3–4 слова. Візуалізуйте отриманий ланцюжок.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleTaskModal(show) {
+      const modal = document.getElementById('taskModal');
+      if (show) modal.classList.add('open');
+      else modal.classList.remove('open');
+    }
+
+    function toggleSessions() {
+      const box = document.getElementById('sessionsBox');
+      const arrow = document.getElementById('accordionArrow');
+      box.classList.toggle('open');
+      arrow.textContent = box.classList.contains('open') ? '▲' : '▼';
+    }
+
+    const portraitSources = {
+      'dalle': 'assets/dalle.png',
+      'grok': 'assets/grok.png',
+      'imagen': 'assets/imagen.png'
+    };
+
+    function switchModelImage(modelKey, btn) {
+      document.querySelectorAll('.model-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+
+      const img = document.getElementById('mainPortraitImg');
+      const fallback = document.getElementById('fallback-svg');
+
+      if (img && portraitSources[modelKey]) {
+        img.style.opacity = '0';
+        setTimeout(() => {
+          img.src = portraitSources[modelKey];
+          img.style.display = 'block';
+          fallback.style.display = 'none';
+          img.style.opacity = '1';
+        }, 120);
+      }
+    }
+
+    function showFallbackSvg(imgEl) {
+      imgEl.style.display = 'none';
+      document.getElementById('fallback-svg').style.display = 'block';
+    }
+
+    function flipCard(el, index) {
+      el.classList.toggle('flipped');
+      updateProgressLine();
+    }
+
+    function updateProgressLine() {
+      const cards = document.querySelectorAll('.card-slot');
+      let maxFlippedIndex = 0;
+      cards.forEach((card, idx) => {
+        if (card.classList.contains('flipped')) {
+          maxFlippedIndex = Math.max(maxFlippedIndex, idx + 1);
+        }
+      });
+
+      const progressLine = document.getElementById('progressLine');
+      const totalWidth = 1060;
+      const targetX = 20 + (maxFlippedIndex / 8) * totalWidth;
+      progressLine.setAttribute('x2', targetX);
+    }
+  </script>
+</body>
+</html>
