@@ -233,19 +233,29 @@
       border-radius: 4px;
       position: relative;
       overflow: hidden;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .portrait-frame { height: 320px; }
     }
 
     .portrait-img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
-      transition: opacity 0.2s ease-in-out;
+      opacity: 0;
+      transition: opacity 0.25s ease-in-out;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .portrait-img.active {
       opacity: 1;
+      pointer-events: auto;
+      z-index: 2;
     }
 
     .portrait-svg-fallback {
@@ -296,20 +306,20 @@
 
     .table-wrap {
       width: 100%;
+      max-width: 100%;
       overflow-x: auto;
     }
 
     .analysis-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 12px;
-      margin-top: 10px;
-      min-width: 480px;
+      font-size: 12.5px;
+      margin-top: 12px;
     }
 
     .analysis-table th, .analysis-table td {
       border: 1px solid var(--border);
-      padding: 8px 12px;
+      padding: 10px 12px;
       text-align: left;
     }
 
@@ -317,7 +327,35 @@
       background: #0d1017;
       color: var(--kernel);
       font-family: var(--font-mono);
-      font-size: 10.5px;
+      font-size: 11px;
+    }
+
+    @media (max-width: 650px) {
+      .analysis-table, .analysis-table thead, .analysis-table tbody, .analysis-table th, .analysis-table td, .analysis-table tr {
+        display: block;
+        min-width: 0 !important;
+        width: 100% !important;
+      }
+      .analysis-table thead { display: none; }
+      .analysis-table tr {
+        border: 1px solid var(--border);
+        margin-bottom: 10px;
+        border-radius: 4px;
+        background: #0d1017;
+        padding: 8px 10px;
+      }
+      .analysis-table td {
+        border: none;
+        padding: 4px 0;
+      }
+      .analysis-table td:first-child {
+        color: var(--gold);
+        font-family: var(--font-mono);
+        font-size: 10px;
+        text-transform: uppercase;
+        border-bottom: 1px dashed var(--border);
+        margin-bottom: 4px;
+      }
     }
 
     .sessions-accordion-btn {
@@ -734,8 +772,10 @@
       <div class="portrait-grid">
         <div class="portrait-card">
           <div class="portrait-frame" id="portraitFrame">
-            <!-- Single Robust Image Element with Assets Source -->
-            <img src="assets/dalle.png" id="mainPortraitImg" class="portrait-img" alt="AI Generated Portrait" onerror="showFallbackSvg(this)">
+            <!-- Hardware Accelerated 3-Image Stack -->
+            <img src="assets/dalle.png" id="img-dalle" class="portrait-img active" alt="DALL-E 3 Portrait">
+            <img src="assets/grok.png" id="img-grok" class="portrait-img" alt="Grok Portrait">
+            <img src="assets/imagen.png" id="img-imagen" class="portrait-img" alt="Imagen 3 Portrait">
             
             <svg id="fallback-svg" class="portrait-svg-fallback" viewBox="0 0 300 380" fill="none" style="display: none;">
               <rect width="300" height="380" fill="#0d1017"/>
@@ -1120,33 +1160,15 @@
       arrow.textContent = box.classList.contains('open') ? '▲' : '▼';
     }
 
-    const portraitSources = {
-      'dalle': 'assets/dalle.png',
-      'grok': 'assets/grok.png',
-      'imagen': 'assets/imagen.png'
-    };
-
     function switchModelImage(modelKey, btn) {
       document.querySelectorAll('.model-pill').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
 
-      const img = document.getElementById('mainPortraitImg');
-      const fallback = document.getElementById('fallback-svg');
-
-      if (img && portraitSources[modelKey]) {
-        img.style.opacity = '0';
-        setTimeout(() => {
-          img.src = portraitSources[modelKey];
-          img.style.display = 'block';
-          fallback.style.display = 'none';
-          img.style.opacity = '1';
-        }, 120);
+      document.querySelectorAll('.portrait-img').forEach(img => img.classList.remove('active'));
+      const target = document.getElementById('img-' + modelKey);
+      if (target) {
+        target.classList.add('active');
       }
-    }
-
-    function showFallbackSvg(imgEl) {
-      imgEl.style.display = 'none';
-      document.getElementById('fallback-svg').style.display = 'block';
     }
 
     function flipCard(el, index) {
