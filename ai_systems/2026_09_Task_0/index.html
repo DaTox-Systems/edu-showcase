@@ -1,8 +1,10 @@
+<!-- FILE: projects/education/ai_systems/2026_09_Task_0/work/index.html -->
 <!DOCTYPE html>
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
   <title>Завдання 0: Семиотика ШІ | НТУ «Дніпровська політехніка»</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,13 +34,15 @@
       font-family: var(--font-main);
       line-height: 1.6;
       min-height: 100vh;
-      padding: 32px 24px;
+      padding: 24px 16px;
       overflow-x: hidden;
+      width: 100%;
     }
 
     .container {
       max-width: 1280px;
       margin: 0 auto;
+      width: 100%;
     }
 
     /* ACADEMIC UNIVERSITY HEADER */
@@ -47,12 +51,12 @@
       border: 1px solid var(--border);
       border-top: 3px solid var(--kernel);
       border-radius: 6px;
-      padding: 20px 24px;
-      margin-bottom: 28px;
+      padding: 20px;
+      margin-bottom: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
 
@@ -63,7 +67,7 @@
     .header-left {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
     }
 
     @media (max-width: 950px) {
@@ -71,8 +75,8 @@
     }
 
     .nmu-logo-svg {
-      width: 150px;
-      height: 48px;
+      width: 140px;
+      height: 44px;
       flex-shrink: 0;
     }
 
@@ -85,21 +89,23 @@
       font-size: 10px;
       color: var(--text-muted);
       letter-spacing: 0.5px;
-      white-space: nowrap;
+      word-break: break-word;
     }
 
     .univ-department {
       font-size: 13.5px;
       font-weight: 700;
       color: #fff;
-      margin: 3px 0;
+      margin: 4px 0;
       letter-spacing: 0.3px;
+      word-break: break-word;
     }
 
     .univ-subject {
       font-family: var(--font-mono);
       font-size: 11px;
       color: var(--kernel);
+      word-break: break-word;
     }
 
     .univ-student-badge {
@@ -164,8 +170,13 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 32px;
-      margin-bottom: 36px;
+      padding: 24px 20px;
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .section-block { padding: 32px; }
     }
 
     .section-tag {
@@ -180,21 +191,26 @@
 
     .section-heading {
       font-family: var(--font-title);
-      font-size: 22px;
+      font-size: 20px;
       color: #fff;
       letter-spacing: 1px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+      word-break: break-word;
+    }
+
+    @media (min-width: 768px) {
+      .section-heading { font-size: 22px; }
     }
 
     /* PART 1: PORTRAIT & ANALYSIS */
     .portrait-grid {
       display: grid;
       grid-template-columns: 360px 1fr;
-      gap: 32px;
+      gap: 24px;
       align-items: start;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 950px) {
       .portrait-grid { grid-template-columns: 1fr; }
     }
 
@@ -202,19 +218,22 @@
       background: var(--surface-card);
       border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 16px;
+      padding: 14px;
       text-align: center;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
     }
 
     .portrait-frame {
       width: 100%;
-      height: 420px;
+      height: 380px;
       background: #0d1017;
       border: 1px solid var(--border);
       border-radius: 4px;
       position: relative;
       overflow: hidden;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -265,25 +284,32 @@
       background: #0d1017;
       border: 1px solid var(--border);
       border-left: 3px solid var(--gold);
-      padding: 16px;
+      padding: 14px;
       border-radius: 3px;
       font-family: var(--font-mono);
-      font-size: 11.5px;
+      font-size: 11px;
       color: #cbd5e1;
-      margin-bottom: 18px;
-      line-height: 1.55;
+      margin-bottom: 16px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
     }
 
     .analysis-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
-      margin-top: 14px;
+      font-size: 12px;
+      margin-top: 10px;
+      min-width: 480px;
     }
 
     .analysis-table th, .analysis-table td {
       border: 1px solid var(--border);
-      padding: 10px 14px;
+      padding: 8px 12px;
       text-align: left;
     }
 
@@ -291,7 +317,7 @@
       background: #0d1017;
       color: var(--kernel);
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 10.5px;
     }
 
     .sessions-accordion-btn {
@@ -299,13 +325,13 @@
       background: #0d1017;
       border: 1px dashed var(--border);
       color: var(--kernel);
-      padding: 12px;
+      padding: 10px 14px;
       border-radius: 4px;
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       cursor: pointer;
-      margin-top: 18px;
+      margin-top: 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -323,52 +349,54 @@
       border: 1px solid var(--border);
       border-top: none;
       border-radius: 0 0 4px 4px;
-      padding: 16px;
+      padding: 14px;
       font-family: var(--font-mono);
       font-size: 11px;
       color: #cbd5e1;
+      word-break: break-word;
     }
     .sessions-content.open { display: block; }
 
-    /* PART 2: 8-NODE TIMELINE (4x2 GRID) */
+    /* PART 2: 8-NODE TIMELINE (4x2 GRID, 1 COL ON MOBILE) */
     .timeline-progress-wrap {
-      margin: 20px 0 26px;
+      margin: 16px 0 24px;
       position: relative;
     }
 
     .timeline-svg {
       width: 100%;
-      height: 24px;
+      height: 20px;
       display: block;
     }
 
     .cards-flow-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 16px;
       perspective: 1000px;
     }
 
     @media (max-width: 950px) {
       .cards-flow-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
+        gap: 14px;
       }
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 550px) {
       .cards-flow-grid {
         grid-template-columns: 1fr;
       }
     }
 
     .card-slot {
-      height: 400px;
+      height: 380px;
       position: relative;
       cursor: pointer;
       animation: fadeInCard 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       opacity: 0;
       transform: translateY(16px);
+      width: 100%;
     }
 
     @keyframes fadeInCard {
@@ -418,8 +446,8 @@
 
     .card-slot:hover .card-front {
       border-color: var(--kernel);
-      transform: translateY(-6px);
-      box-shadow: 0 16px 32px rgba(0,0,0,0.7);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.7);
     }
 
     .card-slot.is-added .card-front {
@@ -432,17 +460,17 @@
       border: 1px solid var(--kernel);
       border-left: 4px solid var(--kernel);
       box-shadow: 0 12px 28px rgba(0, 188, 212, 0.18);
-      padding: 20px;
+      padding: 16px;
     }
 
     .card-img-wrap {
       width: 100%;
-      height: 220px;
+      height: 200px;
       background: #090c10;
       border: 1px solid var(--border);
       border-radius: 4px;
       overflow: hidden;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -458,120 +486,121 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .card-num {
       font-family: var(--font-mono);
-      font-size: 10px;
+      font-size: 9.5px;
       color: var(--text-muted);
       letter-spacing: 1px;
     }
 
     .card-badge {
       font-family: var(--font-mono);
-      font-size: 9px;
+      font-size: 8.5px;
       font-weight: 700;
       color: var(--gold);
       background: var(--gold-glow);
-      padding: 2px 8px;
+      padding: 2px 6px;
       border-radius: 3px;
       border: 1px solid rgba(212, 175, 55, 0.4);
     }
 
     .card-name {
       font-family: var(--font-title);
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 700;
       color: #fff;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
       text-align: center;
-      margin: 4px 0 8px;
+      margin: 2px 0 6px;
     }
 
     .card-hint {
       font-family: var(--font-mono);
-      font-size: 9.5px;
+      font-size: 9px;
       color: var(--text-muted);
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-top: 1px solid var(--border);
-      padding-top: 8px;
+      padding-top: 6px;
     }
 
     /* RICH CARD BACK */
     .back-header {
       border-bottom: 1px solid var(--border);
-      padding-bottom: 10px;
-      margin-bottom: 12px;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
     }
 
     .back-title {
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--kernel);
       letter-spacing: 0.5px;
     }
 
     .back-subtitle {
-      font-size: 10px;
+      font-size: 9.5px;
       color: var(--text-muted);
       margin-top: 2px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
     }
 
     .back-section-title {
       font-family: var(--font-mono);
-      font-size: 9px;
+      font-size: 8.5px;
       color: var(--gold);
       text-transform: uppercase;
       font-weight: 700;
-      margin: 10px 0 3px;
+      margin: 8px 0 2px;
       letter-spacing: 0.5px;
     }
 
     .back-desc {
-      font-size: 12px;
+      font-size: 11.5px;
       color: #cbd5e1;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     .back-arrow {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 10px;
       color: var(--gold);
       margin-top: auto;
       border-top: 1px dashed var(--border);
-      padding-top: 10px;
+      padding-top: 8px;
       font-weight: 600;
     }
 
     /* SYNTHESIS BLOCK */
     .synthesis-content {
-      font-size: 13px;
+      font-size: 12.5px;
       color: #cbd5e1;
-      line-height: 1.7;
+      line-height: 1.65;
     }
 
     .synthesis-content p {
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .formula-row {
       background: #0d1017;
       border: 1px solid var(--border);
-      padding: 14px 20px;
+      padding: 12px 16px;
       border-radius: 4px;
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 11px;
       color: var(--kernel);
-      margin: 18px 0;
+      margin: 16px 0;
       overflow-x: auto;
       text-align: center;
       letter-spacing: 0.5px;
+      white-space: nowrap;
     }
 
     /* MODAL TASK SPEC */
@@ -583,7 +612,7 @@
       align-items: center;
       justify-content: center;
       z-index: 1000;
-      padding: 20px;
+      padding: 16px;
     }
     .modal-overlay.open { display: flex; }
     .modal-content {
@@ -592,14 +621,16 @@
       border-radius: 6px;
       max-width: 650px;
       width: 100%;
-      padding: 28px;
+      padding: 24px;
       position: relative;
       box-shadow: 0 16px 40px rgba(0,0,0,0.8);
+      max-height: 90vh;
+      overflow-y: auto;
     }
     .modal-close {
       position: absolute;
-      top: 16px;
-      right: 16px;
+      top: 14px;
+      right: 14px;
       background: transparent;
       border: none;
       color: var(--text-muted);
@@ -613,7 +644,7 @@
       font-family: var(--font-mono);
       font-size: 10px;
       color: var(--text-muted);
-      margin-top: 40px;
+      margin-top: 36px;
       padding-bottom: 24px;
     }
 
@@ -703,7 +734,7 @@
       <div class="portrait-grid">
         <div class="portrait-card">
           <div class="portrait-frame" id="portraitFrame">
-            <!-- Single Robust Image Element -->
+            <!-- Single Robust Image Element with Assets Source -->
             <img src="assets/dalle.png" id="mainPortraitImg" class="portrait-img" alt="AI Generated Portrait" onerror="showFallbackSvg(this)">
             
             <svg id="fallback-svg" class="portrait-svg-fallback" viewBox="0 0 300 380" fill="none" style="display: none;">
@@ -717,9 +748,9 @@
           </div>
 
           <div class="portrait-model-pills">
-            <button class="model-pill active" onclick="switchModelImage('dalle', this)">DALL-E 3</button>
-            <button class="model-pill" onclick="switchModelImage('grok', this)">Grok (Flux)</button>
-            <button class="model-pill" onclick="switchModelImage('imagen', this)">Imagen 3</button>
+            <button class="model-pill active" onclick="switchModelImage('dalle', this)">DALL-E 3 (OpenAI)</button>
+            <button class="model-pill" onclick="switchModelImage('grok', this)">Grok (xAI / Flux)</button>
+            <button class="model-pill" onclick="switchModelImage('imagen', this)">Imagen 3 (Google)</button>
           </div>
         </div>
 
@@ -731,32 +762,34 @@
             <em>«Cinematic hyperrealistic portrait of a relentless systems software architect and engineer, late 20s. Serious unsmiling expression, piercing analytical gaze, dark minimalist crewneck, cold terminal lighting, raw unpolished skin texture, 85mm lens, f/1.8, 8k, photorealistic editorial quality.»</em>
           </div>
 
-          <table class="analysis-table">
-            <thead>
-              <tr>
-                <th>Метрика аналізу</th>
-                <th>Проекція моделі</th>
-                <th>Семантична основа (Чому так)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Домінантна роль</strong></td>
-                <td><span style="color: var(--kernel);">Системний Архітектор / Lead Engineer</span></td>
-                <td>Історія запитів сфокусована на системному програмуванні, проєктуванні надійної архітектури ПЗ та алгоритмічній дисципліні.</td>
-              </tr>
-              <tr>
-                <td><strong>Візуальний архетип</strong></td>
-                <td>Зосереджений фахівець у термінальному середовищі</td>
-                <td>Відсутність розважального контексту; виключно суха, технічна комунікація без інформаційного шуму.</td>
-              </tr>
-              <tr>
-                <td><strong>Latent Convergence</strong></td>
-                <td>Сходження 3 незалежних нейромереж</td>
-                <td>OpenAI, xAI та Google згенерували однаковий типаж, що доводить об'єктивність цифрової проекції мислення.</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-wrap">
+            <table class="analysis-table">
+              <thead>
+                <tr>
+                  <th>Метрика аналізу</th>
+                  <th>Проекція моделі</th>
+                  <th>Семантична основа (Чому так)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Домінантна роль</strong></td>
+                  <td><span style="color: var(--kernel);">Системний Архітектор / Lead Engineer</span></td>
+                  <td>Історія запитів сфокусована на системному програмуванні, проєктуванні надійної архітектури ПЗ та алгоритмічній дисципліні.</td>
+                </tr>
+                <tr>
+                  <td><strong>Візуальний архетип</strong></td>
+                  <td>Зосереджений фахівець у термінальному середовищі</td>
+                  <td>Відсутність розважального контексту; виключно суха, технічна комунікація без інформаційного шуму.</td>
+                </tr>
+                <tr>
+                  <td><strong>Latent Convergence</strong></td>
+                  <td>Сходження 3 незалежних нейромереж</td>
+                  <td>OpenAI, xAI та Google згенерували однаковий типаж, що доводить об'єктивність цифрової проекції мислення.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
           <!-- ACCORDION: GENERATION SESSIONS & PROOF -->
           <button class="sessions-accordion-btn" onclick="toggleSessions()">
@@ -1058,15 +1091,15 @@
     <div class="modal-content" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="toggleTaskModal(false)">✕</button>
       <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gold); font-weight: 700; margin-bottom: 8px;">ВИХІДНІ ВИМОГИ ВИКЛАДАЧА:</div>
-      <h3 style="font-family: var(--font-title); font-size: 16px; margin-bottom: 14px; color: #fff;">Завдання 0 (додаткове) — Оцінка 100 балів</h3>
+      <h3 style="font-family: var(--font-title); font-size: 15px; margin-bottom: 12px; color: #fff;">Завдання 0 (додаткове) — Оцінка 100 балів</h3>
       
-      <div style="font-size: 12px; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px;">
+      <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.55; margin-bottom: 12px;">
         <strong>1. Згенеруйте в різних чатах генеративних нейронних мереж свій портрет за запитом:</strong><br>
         <em>"Згенеруй моє зображення, як ти мене уявляєш, без мого реального фото, спілкуючись зі мною, на основі моїх запитів, максимально чесно, не згладжуючи кути. Виразно уяви тільки мене. У формі людини. Реалістичний стиль, на твій розсуд. Без запитань."</em><br>
         Оцініть результат.
       </div>
 
-      <div style="font-size: 12px; color: #cbd5e1; line-height: 1.6;">
+      <div style="font-size: 11.5px; color: #cbd5e1; line-height: 1.55;">
         <strong>2. З наявних карток побудуйте логічний ланцюжок:</strong><br>
         Починається зі слова <em>Мета</em>, завершується словом <em>Майбутнє</em>. Аргументуйте. Для побудованого ланцюжка додайте ще 3–4 слова. Візуалізуйте отриманий ланцюжок.
       </div>
