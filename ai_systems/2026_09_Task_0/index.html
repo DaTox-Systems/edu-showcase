@@ -1,4 +1,3 @@
-<!-- FILE: projects/education/ai_systems/2026_09_Task_0/work/index.html -->
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -208,6 +207,38 @@
       .section-heading { font-size: 22px; }
     }
 
+    /* PROMPT MODE SWITCHER TABS */
+    .mode-switcher-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      background: #0d1017;
+      padding: 6px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .mode-tab {
+      flex: 1;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .mode-tab.active {
+      background: var(--kernel-glow);
+      border-color: var(--kernel);
+      color: var(--kernel);
+    }
+
     /* PART 1: PORTRAIT & ANALYSIS */
     .portrait-grid {
       display: grid;
@@ -265,11 +296,6 @@
       z-index: 2;
     }
 
-    .portrait-svg-fallback {
-      width: 100%;
-      height: 100%;
-    }
-
     .portrait-model-pills {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -309,6 +335,13 @@
       margin-bottom: 16px;
       line-height: 1.5;
       word-break: break-word;
+    }
+
+    .analysis-panel {
+      display: none;
+    }
+    .analysis-panel.active {
+      display: block;
     }
 
     .table-wrap {
@@ -685,6 +718,44 @@
     }
     .modal-close:hover { color: #fff; }
 
+    /* GLOSSARY TOOLTIP STYLES */
+    .glossary-term {
+      color: var(--kernel);
+      border-bottom: 1px dashed var(--kernel);
+      cursor: help;
+      position: relative;
+      display: inline-block;
+    }
+
+    .glossary-term::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 125%;
+      left: 0;
+      background: #1c212c;
+      color: #fff;
+      font-family: var(--font-main);
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.4;
+      padding: 8px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--kernel);
+      width: 220px;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      text-align: left;
+      pointer-events: none;
+    }
+
+    .glossary-term:hover::after {
+      opacity: 1;
+      visibility: visible;
+    }
+
     footer {
       text-align: center;
       font-family: var(--font-mono);
@@ -772,91 +843,157 @@
       </div>
     </div>
 
-    <!-- PART 1: PORTRAIT GENERATION & LATENT BIAS -->
+    <!-- PART 1: PORTRAIT GENERATION & COMPARATIVE ANALYSIS -->
     <section class="section-block">
-      <div class="section-tag">ЧАСТИНА 1 // ПРОЕКЦІЯ ЦИФРОВОГО СЛІДУ</div>
-      <h2 class="section-heading">Анатомія Цифрового Автопортрета</h2>
+      <div class="section-tag">ЧАСТИНА 1 // ПОРІВНЯЛЬНИЙ АНАЛІЗ ПРОМПТІВ</div>
+      <h2 class="section-heading">Експеримент: Сирий промпт викладача vs Інженерний системний промпт</h2>
 
-      <div class="portrait-grid">
-        <div class="portrait-card">
-          <div class="portrait-frame" id="portraitFrame">
-            <!-- Hardware Accelerated 3-Image Stack -->
-            <img src="assets/dalle.png" id="img-dalle" class="portrait-img active" alt="DALL-E 3 Portrait">
-            <img src="assets/grok.png" id="img-grok" class="portrait-img" alt="Grok Portrait">
-            <img src="assets/imagen.png" id="img-imagen" class="portrait-img" alt="Imagen 3 Portrait">
+      <!-- MODE SWITCHER TABS -->
+      <div class="mode-switcher-bar">
+        <button class="mode-tab active" onclick="switchPromptMode('raw', this)">ВАРАНТ А: СИРИЙ ПРОМПТ ВИКЛАДАЧА (BASELINE)</button>
+        <button class="mode-tab" onclick="switchPromptMode('engineered', this)">ВАРІАНТ Б: ІНЖЕНЕРНИЙ ПРОМПТ (OPTIMIZED)</button>
+      </div>
+
+      <!-- MODE A: RAW PROMPT ANALYSIS -->
+      <div id="panel-raw" class="analysis-panel active">
+        <div class="portrait-grid">
+          <div class="portrait-card">
+            <div class="portrait-frame">
+              <img src="assets/raw_dalle.png" id="raw-img-dalle" class="portrait-img active" alt="Raw DALL-E 3">
+              <img src="assets/raw_grok.png" id="raw-img-grok" class="portrait-img" alt="Raw Grok">
+              <img src="assets/raw_imagen.png" id="raw-img-imagen" class="portrait-img" alt="Raw Imagen 3">
+            </div>
+            <div class="portrait-model-pills">
+              <button class="model-pill active" onclick="switchRawImage('dalle', this)">DALL-E 3</button>
+              <button class="model-pill" onclick="switchRawImage('grok', this)">Grok</button>
+              <button class="model-pill" onclick="switchRawImage('imagen', this)">Imagen 3</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="prompt-box">
+              <span style="color: var(--gold); font-weight: 700;">ВХІДНИЙ ЗАПИТ ВИКЛАДАЧА (СИРИЙ БЕЗПОРУШНИЙ ПРОМПТ):</span><br>
+              "Згенеруй моє зображення, як ти мене уявляєш, без мого реального фото, спілкуючись зі мною, на основі моїх запитів, максимально чесно, не згладжуючи кути. Виразно уяви тільки мене. У формі людини. Реалістичний стиль, на твій розсуд. Без запитань."
+            </div>
+
+            <div class="table-wrap">
+              <table class="analysis-table">
+                <thead>
+                  <tr>
+                    <th>Аспект аналізу</th>
+                    <th>Поведінка моделі (Сирий промпт)</th>
+                    <th>Висновок щодо ефективності</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Latent Bias (Стоковий шум)</strong></td>
+                    <td>Модель спирається виключно на загальну статистику інтернету за ключовим словом «людина» і «реалістичний стиль».</td>
+                    <td><span style="color: #da3633;">НИЗЬКА ДЕТЕРМІНІЗМ</span> — образи виходять випадковими, емоційними та розмитими.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Технічний контекст</strong></td>
+                    <td>Повна відсутність згадки про інженерну діяльність, робоче середовище чи профіль архітектора.</td>
+                    <td>Результат не відображає реальний цифровий профіль студента.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <button class="sessions-accordion-btn" onclick="toggleRawSessions()">
+              <span>🔍 ДОКАЗИ ТА СКРІНШОТИ ДІАЛОГІВ (СИРИЙ ПРОМПТ)</span>
+              <span id="rawAccordionArrow">▼</span>
+            </button>
             
-            <svg id="fallback-svg" class="portrait-svg-fallback" viewBox="0 0 300 380" fill="none" style="display: none;">
-              <rect width="300" height="380" fill="#0d1017"/>
-              <circle cx="150" cy="135" r="85" stroke="#00bcd4" stroke-width="1" stroke-dasharray="4 4" opacity="0.3"/>
-              <circle cx="150" cy="135" r="115" stroke="#d4af37" stroke-width="0.5" opacity="0.2"/>
-              <path d="M150 65 C120 65 100 90 100 125 C100 165 125 190 150 190 C175 190 200 165 200 125 C200 90 180 65 150 65 Z" fill="#151a22" stroke="#00bcd4" stroke-width="1.5"/>
-              <path d="M80 290 C80 225 110 205 150 205 C190 205 220 225 220 290 L220 380 L80 380 Z" fill="#11141a" stroke="#222a36" stroke-width="1.5"/>
-              <text x="150" y="348" fill="#8b949e" font-family="JetBrains Mono" font-size="9" text-anchor="middle" letter-spacing="2">SYSTEM ARCHITECT PROFILE</text>
-            </svg>
-          </div>
-
-          <div class="portrait-model-pills">
-            <button class="model-pill active" onclick="switchModelImage('dalle', this)">DALL-E 3</button>
-            <button class="model-pill" onclick="switchModelImage('grok', this)">Grok</button>
-            <button class="model-pill" onclick="switchModelImage('imagen', this)">Imagen 3</button>
-          </div>
-        </div>
-
-        <div>
-          <div class="prompt-box">
-            <span style="color: var(--gold); font-weight: 700;">1. ВХІДНИЙ ЗАПИТ ЗАВДАННЯ (БЕЗ ЗГЛАДЖУВАННЯ КУТІВ):</span><br>
-            "Згенеруй моє зображення, як ти мене уявляєш, без мого реального фото, спілкуючись зі мною, на основі моїх запитів, максимально чесно, не згладжуючи кути. Виразно уяви тільки мене. У формі людини. Реалістичний стиль, на твій розсуд. Без запитань."<br><br>
-            <span style="color: var(--kernel); font-weight: 700;">2. ІНЖЕНЕРНИЙ СИСТЕМНИЙ ПРОМПТ (PROMPT DECOMPOSITION):</span><br>
-            <em>«Cinematic hyperrealistic portrait of a relentless systems software architect and engineer, late 20s. Serious unsmiling expression, piercing analytical gaze, dark minimalist crewneck, cold terminal lighting, raw unpolished skin texture, 85mm lens, f/1.8, 8k, photorealistic editorial quality.»</em>
-          </div>
-
-          <div class="table-wrap">
-            <table class="analysis-table">
-              <thead>
-                <tr>
-                  <th>Метрика аналізу</th>
-                  <th>Проекція моделі</th>
-                  <th>Семантична основа (Чому так)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Домінантна роль</strong></td>
-                  <td><span style="color: var(--kernel);">Системний Архітектор / Lead Engineer</span></td>
-                  <td>Історія запитів сфокусована на системному програмуванні, проєктуванні надійної архітектури ПЗ та алгоритмічній дисципліні.</td>
-                </tr>
-                <tr>
-                  <td><strong>Візуальний архетип</strong></td>
-                  <td>Зосереджений фахівець у термінальному середовищі</td>
-                  <td>Відсутність розважального контексту; виключно суха, технічна комунікація без інформаційного шуму.</td>
-                </tr>
-                <tr>
-                  <td><strong>Latent Convergence</strong></td>
-                  <td>Сходження 3 незалежних нейромереж</td>
-                  <td>OpenAI, xAI та Google згенерували однаковий типаж, що доводить об'єктивність цифрової проекції мислення.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- ACCORDION: GENERATION SESSIONS & PROOF -->
-          <button class="sessions-accordion-btn" onclick="toggleSessions()">
-            <span>🔍 ПЕРЕГЛЯНУТИ ДОКАЗИ ТА СКРІНШОТИ СЕСІЙ ГЕНЕРАЦІЇ</span>
-            <span id="accordionArrow">▼</span>
-          </button>
-          
-          <div class="sessions-content" id="sessionsBox">
-            <div style="margin-bottom: 8px;"><strong>ДОКАЗОВА БАЗА (КЛІКАБЕЛЬНІ СКРІНШОТИ ДІАЛОГІВ):</strong></div>
-            <ul style="padding-left: 18px; line-height: 1.7; margin-bottom: 12px;">
-              <li><strong><a href="assets/dalle_chat.png" target="_blank" style="color:var(--kernel)">ChatGPT (OpenAI / DALL-E 3)</a>:</strong> Скріншот робочого діалогу генерації фотореалістичного портрета.</li>
-              <li><strong><a href="assets/grok_chat.png" target="_blank" style="color:var(--kernel)">xAI Grok (Flux Engine)</a>:</strong> Скріншот сесії генерації з демонстрацією параметрів рендерингу.</li>
-              <li><strong><a href="assets/google_chat.png" target="_blank" style="color:var(--kernel)">Google AI Studio (Imagen 3)</a>:</strong> Скріншот середовища розробки Google AI Studio з прямим викликом моделі.</li>
-            </ul>
-            <div style="font-size: 10.5px; color: var(--gold);">
-              ✔ <em>Висновок верифікації: Тотожність результатів трьох незалежних систем доводить стійкість сформованого цифрового профілю.</em>
+            <div class="sessions-content" id="rawSessionsBox">
+              <ul style="padding-left: 18px; line-height: 1.7;">
+                <li><strong><a href="assets/raw_dalle_chat.png" target="_blank" style="color:var(--kernel)">ChatGPT (Raw DALL-E 3)</a>:</strong> Скріншот діалогу генерації за сирим промптом.</li>
+                <li><strong><a href="assets/raw_grok_chat.png" target="_blank" style="color:var(--kernel)">xAI Grok (Raw Flux)</a>:</strong> Скріншот сесії за сирим промптом.</li>
+                <li><strong><a href="assets/raw_google_chat.png" target="_blank" style="color:var(--kernel)">Google AI Studio (Raw Imagen 3)</a>:</strong> Скріншот сесії за сирим промптом.</li>
+              </ul>
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- MODE B: ENGINEERED PROMPT ANALYSIS -->
+      <div id="panel-engineered" class="analysis-panel">
+        <div class="portrait-grid">
+          <div class="portrait-card">
+            <div class="portrait-frame">
+              <img src="assets/dalle.png" id="eng-img-dalle" class="portrait-img active" alt="Engineered DALL-E 3">
+              <img src="assets/grok.png" id="eng-img-grok" class="portrait-img" alt="Engineered Grok">
+              <img src="assets/imagen.png" id="eng-img-imagen" class="portrait-img" alt="Engineered Imagen 3">
+            </div>
+            <div class="portrait-model-pills">
+              <button class="model-pill active" onclick="switchEngImage('dalle', this)">DALL-E 3</button>
+              <button class="model-pill" onclick="switchEngImage('grok', this)">Grok</button>
+              <button class="model-pill" onclick="switchEngImage('imagen', this)">Imagen 3</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="prompt-box" style="border-left-color: var(--kernel);">
+              <span style="color: var(--kernel); font-weight: 700;">ІНЖЕНЕРНИЙ СИСТЕМНИЙ ПРОМПТ (РЕЗУЛЬТАТ ДЕКОМПОЗИЦІЇ):</span><br>
+              <em>«Cinematic hyperrealistic portrait of a relentless systems software architect and engineer, late 20s. Serious unsmiling expression, piercing analytical gaze, dark minimalist crewneck, cold terminal lighting, raw unpolished skin texture, 85mm lens, f/1.8, 8k, photorealistic editorial quality.»</em>
+            </div>
+
+            <div class="table-wrap">
+              <table class="analysis-table">
+                <thead>
+                  <tr>
+                    <th>Аспект аналізу</th>
+                    <th>Поведінка моделі (Інженерний промпт)</th>
+                    <th>Висновок щодо ефективності</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Контроль дифузії</strong></td>
+                    <td>Жорстка фіксація параметрів освітлення, оптики (85mm), текстури шкіри та професійної ролі.</td>
+                    <td><span style="color: var(--kernel);">ВИСОКА ДЕТЕРМІНІЗМ</span> — нуль шуму, повна відповідність профілю.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Latent Convergence</strong></td>
+                    <td>Усі три незалежні нейромережі згенерували єдиний точний тип архітектора ПЗ.</td>
+                    <td>Доведено об'єктивність цифрової проекції мислення та успіх промпт-инжинірингу.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <button class="sessions-accordion-btn" onclick="toggleEngSessions()">
+              <span>🔍 ДОКАЗИ ТА СКРІНШОТИ ДІАЛОГІВ (ІНЖЕНЕРНИЙ ПРОМПТ)</span>
+              <span id="engAccordionArrow">▼</span>
+            </button>
+            
+            <div class="sessions-content" id="engSessionsBox">
+              <ul style="padding-left: 18px; line-height: 1.7;">
+                <li><strong><a href="assets/dalle_chat.png" target="_blank" style="color:var(--kernel)">ChatGPT (Engineered DALL-E 3)</a>:</strong> Скріншот сесії з декомпозицією.</li>
+                <li><strong><a href="assets/grok_chat.png" target="_blank" style="color:var(--kernel)">xAI Grok (Engineered Flux)</a>:</strong> Скріншот сесії з декомпозицією.</li>
+                <li><strong><a href="assets/google_chat.png" target="_blank" style="color:var(--kernel)">Google AI Studio (Engineered Imagen 3)</a>:</strong> Скріншот сесії з декомпозицією.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- METHODOLOGICAL SUMMARY CARD -->
+    <section class="section-block" style="border-left: 3px solid var(--gold);">
+      <div class="section-tag">МЕТОДИЧНИЙ ВИСНОВОК // ПРИКЛАДНІ СИСТЕМИ ШІ</div>
+      <h2 class="section-heading" style="font-size: 18px; margin-bottom: 14px;">Чому інженерний підхід перевершує сирий промпт</h2>
+      <div class="synthesis-content">
+        <p>
+          <strong>1. <span class="glossary-term" data-tooltip="Процес розбиття тексту на менші шматочки (слова або склади), які комп'ютер перетворює на числа для розуміння.">Токенізація</span> та лінгвістичний бар'єр:</strong> Передові генеративні моделі (DALL-E 3, Flux, Imagen 3) навчалися переважно на англомовних технічних <span class="glossary-term" data-tooltip="Величезна база даних із мільйонів картинок і текстів, на якій «тренувалася» нейромережа.">датасетах</span>. Прямий переклад метафор на зразок <em>«як ти мене уявляєш»</em> або <em>«не згладжуючи кути»</em> призводит до розмиття смислу у <span class="glossary-term" data-tooltip="Математичний «всесвіт» усередині нейромережі, де схожі за змістом поняття лежать поруч одне з одним.">прихованому просторі (Latent Space)</span> моделі. Англійські ж терміни на кшталт <em>«systems software architect»</em> активують чіткі математичні вектори.
+        </p>
+        <p>
+          <strong>2. Подолання <span class="glossary-term" data-tooltip="Схильність моделі малювати стереотипи з інтернету (наприклад, хакера в капюшоні), якщо її не обмежити точними правилами.">Latent Bias (Стокового шуму)</span>:</strong> Без суворих обмежень (Constraints) нейромережа проектує масову культуру — стереотипні образи з кінематографа. Інженерний промпт відсікає цей шум через жорстку фіксацію контексту, матеріалів і середовища, забезпечуючи <span class="glossary-term" data-tooltip="Передбачуваність і точність результату, коли машина робить саме те, що від неї вимагають, без випадкових помилок.">детермінованість</span>.
+        </p>
+        <p>
+          <strong>3. Головний висновок завдання:</strong> Взаємодія з ШІ — це не інтуїтивна магія, а <strong>контрактне проєктування</strong>. Формула ефективності проста: <em>Людина задає сувору мету та системні обмеження — Машина забезпечує детерміноване виконання</em>.
+        </p>
       </div>
     </section>
 
@@ -1129,7 +1266,7 @@
     </section>
 
     <footer>
-      НТУ «Дніпровська політехніка» // Інститут електроенергетики // Студент гр. 141-24-3 Дідов П.А. // 2026
+      НТУ «Дніпровська політехніка» // Інститут електроенергетики // Студент гр. 141-24-2 Дідов П.А. // 2026
     </footer>
 
   </div>
@@ -1161,19 +1298,47 @@
       else modal.classList.remove('open');
     }
 
-    function toggleSessions() {
-      const box = document.getElementById('sessionsBox');
-      const arrow = document.getElementById('accordionArrow');
+    function toggleRawSessions() {
+      const box = document.getElementById('rawSessionsBox');
+      const arrow = document.getElementById('rawAccordionArrow');
       box.classList.toggle('open');
       arrow.textContent = box.classList.contains('open') ? '▲' : '▼';
     }
 
-    function switchModelImage(modelKey, btn) {
-      document.querySelectorAll('.model-pill').forEach(p => p.classList.remove('active'));
+    function toggleEngSessions() {
+      const box = document.getElementById('engSessionsBox');
+      const arrow = document.getElementById('engAccordionArrow');
+      box.classList.toggle('open');
+      arrow.textContent = box.classList.contains('open') ? '▲' : '▼';
+    }
+
+    function switchPromptMode(mode, btn) {
+      document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
       btn.classList.add('active');
 
-      document.querySelectorAll('.portrait-img').forEach(img => img.classList.remove('active'));
-      const target = document.getElementById('img-' + modelKey);
+      document.querySelectorAll('.analysis-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + mode).classList.add('active');
+    }
+
+    function switchRawImage(modelKey, btn) {
+      const parentCard = btn.closest('.portrait-card');
+      parentCard.querySelectorAll('.model-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+
+      parentCard.querySelectorAll('.portrait-img').forEach(img => img.classList.remove('active'));
+      const target = document.getElementById('raw-img-' + modelKey);
+      if (target) {
+        target.classList.add('active');
+      }
+    }
+
+    function switchEngImage(modelKey, btn) {
+      const parentCard = btn.closest('.portrait-card');
+      parentCard.querySelectorAll('.model-pill').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+
+      parentCard.querySelectorAll('.portrait-img').forEach(img => img.classList.remove('active'));
+      const target = document.getElementById('eng-img-' + modelKey);
       if (target) {
         target.classList.add('active');
       }
