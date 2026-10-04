@@ -1,0 +1,2143 @@
+<!-- FILE: projects/education/3_course/1_semester/12_bioenergy/2026_09_12_bioenergy_presentation_1/work/index.html -->
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Біомаса для виробництва твердого біопалива | НТУ «Дніпровська політехніка»</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0a0c10;
+      --surface: #11141a;
+      --surface-card: #151a22;
+      --border: #222a36;
+      
+      /* 4-PHASE END-TO-END COLOR DNA */
+      --phase-1: #00bcd4; /* Фаза 1: Механічна підготовка та захист */
+      --phase-1-glow: rgba(0, 188, 212, 0.15);
+      --phase-2: #d4af37; /* Фаза 2: Термодинамічне сушіння */
+      --phase-2-glow: rgba(212, 175, 55, 0.15);
+      --phase-3: #00e676; /* Фаза 3: Пластифікація та пресування */
+      --phase-3-glow: rgba(0, 230, 118, 0.15);
+      --phase-4: #a855f7; /* Фаза 4: Стабілізація та логістика */
+      --phase-4-glow: rgba(168, 85, 247, 0.15);
+
+      --alert: #da3633;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --font-main: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-title: 'Cinzel', serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+      background-color: var(--void);
+      color: var(--text);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    body {
+      padding: 16px 12px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* UNIVERSITY ACADEMIC HEADER */
+    .univ-header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--phase-1);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+
+    @media (max-width: 950px) {
+      .univ-header { flex-direction: column; align-items: stretch; text-align: center; }
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    @media (max-width: 950px) {
+      .header-left { flex-direction: column; }
+    }
+
+    .nmu-logo-svg {
+      width: 140px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+
+    .univ-meta-wrap { line-height: 1.45; }
+    .univ-ministry {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    .univ-department {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #fff;
+      margin: 3px 0;
+      letter-spacing: 0.3px;
+    }
+    .univ-subject {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--phase-1);
+    }
+
+    .univ-student-badge {
+      background: rgba(0, 188, 212, 0.08);
+      border: 1px solid var(--phase-1);
+      border-radius: 4px;
+      padding: 8px 14px;
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 950px) {
+      .univ-student-badge { text-align: center; }
+    }
+
+    /* CONTROLS BAR */
+    .controls-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .slide-nav-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-nav {
+      background: #0d1017;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-nav:hover:not(:disabled) {
+      border-color: var(--phase-1);
+      color: var(--phase-1);
+      background: var(--phase-1-glow);
+    }
+
+    .btn-nav:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .slide-indicator {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--phase-2);
+      font-weight: 700;
+      min-width: 70px;
+      text-align: center;
+    }
+
+    .view-mode-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      background: #0d1017;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      border-color: var(--phase-1);
+      color: var(--phase-1);
+      background: var(--phase-1-glow);
+    }
+
+    .btn-notes-toggle {
+      border-color: var(--phase-2);
+      color: var(--phase-2);
+    }
+    .btn-notes-toggle:hover {
+      background: var(--phase-2-glow);
+      color: #fff;
+    }
+
+    .btn-faq-toggle {
+      border-color: var(--phase-3);
+      color: var(--phase-3);
+      font-weight: 700;
+    }
+    .btn-faq-toggle:hover {
+      background: var(--phase-3-glow);
+      color: #fff;
+    }
+
+    /* SLIDE STAGE & SPLIT SCREEN ARCHITECTURE */
+    .slide-stage {
+      position: relative;
+      min-height: 600px;
+    }
+
+    .slide-card {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 24px 22px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+
+    .slide-card.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .slide-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--phase-2);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .slide-title {
+      font-family: var(--font-title);
+      font-size: 21px;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    .slide-num-stamp {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--phase-1);
+      font-weight: 700;
+      opacity: 0.7;
+    }
+
+    /* SPLIT SCREEN LAYOUT */
+    .slide-split {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    /* NODE PIPELINE BUTTONS ON SLIDE 2 */
+    .node-pipeline-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    @media (max-width: 900px) {
+      .node-pipeline-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    }
+    @media (max-width: 500px) {
+      .node-pipeline-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .node-step-btn {
+      background: #0d1017;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 8px 6px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+    .node-step-btn .step-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+    .node-step-btn .step-title {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+    .node-step-btn:hover {
+      border-color: var(--phase-1);
+      transform: translateY(-2px);
+    }
+    .node-step-btn.active[data-phase="1"] {
+      border-color: var(--phase-1);
+      background: var(--phase-1-glow);
+    }
+    .node-step-btn.active[data-phase="2"] {
+      border-color: var(--phase-2);
+      background: var(--phase-2-glow);
+    }
+    .node-step-btn.active[data-phase="3"] {
+      border-color: var(--phase-3);
+      background: var(--phase-3-glow);
+    }
+    .node-step-btn.active[data-phase="4"] {
+      border-color: var(--phase-4);
+      background: var(--phase-4-glow);
+    }
+    .node-step-btn.active .step-num { color: #fff; }
+
+    /* 3D FLIPPER ANIMATION FOR SLIDE 2 IMAGES */
+    .node-3d-flipper {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+      transform-style: preserve-3d;
+    }
+    .node-3d-flipper.flipping {
+      transform: rotateY(90deg) scale(0.96);
+      opacity: 0.15;
+    }
+
+    /* DYNAMIC TEXT SLIDE-FADE */
+    .text-transition-wrap {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .text-transition-wrap.changing {
+      opacity: 0;
+      transform: translateX(12px);
+    }
+
+    @media (max-width: 950px) {
+      .slide-split { grid-template-columns: 1fr; }
+    }
+
+    .slide-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .media-frame {
+      width: 100%;
+      height: 380px;
+      background: #0d1017;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .media-frame:hover {
+      border-color: var(--phase-1);
+      box-shadow: 0 8px 24px rgba(0, 188, 212, 0.15);
+    }
+
+    .media-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+      transition: transform 0.3s ease;
+    }
+
+    .media-frame:hover .media-img {
+      transform: scale(1.02);
+    }
+
+    .media-fallback {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px 20px;
+      color: var(--text-muted);
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #151a22 0%, #0d1017 100%);
+      box-sizing: border-box;
+    }
+
+    .media-fallback-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+      opacity: 0.85;
+    }
+
+    .media-fallback-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--phase-1);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .media-fallback-sub {
+      font-size: 11px;
+      color: #94a3b8;
+      max-width: 280px;
+      line-height: 1.45;
+    }
+
+    .media-hint {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .slide-data {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* KPI CARDS & GRIDS */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .grid-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2col, .grid-3col, .grid-4col { grid-template-columns: 1fr; }
+    }
+
+    .kpi-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px 14px;
+      border-left: 3px solid var(--phase-1);
+    }
+
+    .kpi-card.p1 { border-left-color: var(--phase-1); }
+    .kpi-card.p2 { border-left-color: var(--phase-2); }
+    .kpi-card.p3 { border-left-color: var(--phase-3); }
+    .kpi-card.p4 { border-left-color: var(--phase-4); }
+
+    .kpi-label {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+      letter-spacing: 0.5px;
+    }
+
+    .kpi-value {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .kpi-desc {
+      font-size: 11.5px;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 8px;
+      font-size: 12.5px;
+      color: #cbd5e1;
+      line-height: 1.5;
+    }
+
+    .bullet-list li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: var(--phase-1);
+      font-size: 13px;
+    }
+
+    .bullet-list.p2 li::before { color: var(--phase-2); }
+    .bullet-list.p3 li::before { color: var(--phase-3); }
+    .bullet-list.p4 li::before { color: var(--phase-4); }
+
+    /* GLOSSARY TOOLTIPS */
+    .glossary-term {
+      color: var(--phase-1);
+      border-bottom: 1px dashed var(--phase-1);
+      cursor: help;
+      position: relative;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .glossary-term::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1c212c;
+      color: #fff;
+      font-family: var(--font-main);
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.4;
+      padding: 8px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--phase-1);
+      width: 250px;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+      text-align: left;
+      pointer-events: none;
+    }
+
+    .glossary-term:hover::after {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* SVG PROCESS ROUTE (SLIDE 2) */
+    .svg-diagram-wrap {
+      background: #0d1017;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      margin: 10px 0 14px;
+      overflow-x: auto;
+    }
+
+    .svg-diagram {
+      width: 100%;
+      min-width: 880px;
+      height: auto;
+      display: block;
+    }
+
+    /* COMPARATIVE TABLE (SLIDE 7) */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 6px;
+    }
+
+    .bio-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    .bio-table th, .bio-table td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .bio-table th {
+      background: #0d1017;
+      color: var(--phase-1);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .bio-table tr:hover {
+      background: rgba(0, 188, 212, 0.03);
+    }
+
+    .tag-pill {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      font-weight: 700;
+    }
+
+    .tag-green { background: rgba(0, 230, 118, 0.15); color: var(--phase-3); border: 1px solid var(--phase-3); }
+    .tag-yellow { background: rgba(212, 175, 55, 0.15); color: var(--phase-2); border: 1px solid var(--phase-2); }
+    .tag-red { background: rgba(218, 54, 51, 0.15); color: var(--alert); border: 1px solid var(--alert); }
+
+    /* CALCULATOR (SLIDE 8) */
+    .calc-container {
+      background: #0d1017;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+    }
+
+    .calc-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .calc-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .calc-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--phase-2);
+      font-weight: 700;
+    }
+
+    .calc-select, .calc-input {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .calc-select:focus, .calc-input:focus {
+      outline: none;
+      border-color: var(--phase-1);
+    }
+
+    .preset-btn-group {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-preset {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 5px 8px;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-preset:hover, .btn-preset.active {
+      border-color: var(--phase-1);
+      color: var(--phase-1);
+      background: var(--phase-1-glow);
+    }
+
+    .calc-results-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    @media (max-width: 950px) {
+      .calc-results-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 550px) {
+      .calc-results-grid { grid-template-columns: 1fr; }
+    }
+
+    .calc-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 8px 10px;
+    }
+
+    .calc-card-title {
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .calc-card-val {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--phase-1);
+      margin-bottom: 2px;
+    }
+
+    .calc-card-sub {
+      font-size: 10px;
+      color: #94a3b8;
+    }
+
+    /* STATIC TABLE FOR PRINT INSTEAD OF INTERACTIVE CALC */
+    .print-static-table {
+      display: none;
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 10px;
+    }
+    .print-static-table th, .print-static-table td {
+      border: 1px solid #ccc;
+      padding: 6px 8px;
+      text-align: left;
+    }
+
+    /* SPEAKER NOTES DRAWER */
+    .speaker-drawer {
+      background: #0d1117;
+      border: 1px solid var(--phase-2);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin-top: 16px;
+      display: none;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .speaker-drawer.open {
+      display: block;
+    }
+
+    .speaker-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 6px;
+    }
+
+    .speaker-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--phase-2);
+      font-weight: 700;
+    }
+
+    .speaker-text {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #e2e8f0;
+      background: rgba(212, 175, 55, 0.04);
+      padding: 10px 14px;
+      border-radius: 4px;
+      border-left: 3px solid var(--phase-2);
+    }
+
+    /* FOOTNOTES & FOOTER */
+    .slide-footnote {
+      margin-top: 12px;
+      padding-top: 6px;
+      border-top: 1px dashed var(--border);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 26px;
+      padding-bottom: 20px;
+    }
+
+    /* LIGHTBOX MODAL */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+      cursor: zoom-out;
+    }
+
+    .lightbox-modal.open {
+      display: flex;
+    }
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90vh;
+      border: 1px solid var(--phase-1);
+      border-radius: 6px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.9);
+      object-fit: contain;
+    }
+
+    /* MODAL WINDOWS (TASK & FAQ) */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1500;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-content {
+      background: var(--surface);
+      border: 1px solid var(--phase-2);
+      border-radius: 6px;
+      max-width: 780px;
+      width: 100%;
+      padding: 22px;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.85);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .modal-close:hover { color: #fff; }
+
+    /* FAQ ACCORDION STYLES */
+    .faq-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .faq-header {
+      padding: 12px 14px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--phase-1);
+      background: #0d1017;
+      transition: background 0.2s;
+    }
+    .faq-header:hover {
+      background: var(--phase-1-glow);
+    }
+    .faq-body {
+      display: none;
+      padding: 14px;
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.55;
+      border-top: 1px dashed var(--border);
+    }
+    .faq-body.open {
+      display: block;
+    }
+    .faq-math {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--phase-2);
+      background: #090c10;
+      padding: 8px 10px;
+      border-radius: 4px;
+      margin: 8px 0;
+    }
+
+    /* PRINT STYLES */
+    @media print {
+      body { background: #fff !important; color: #000 !important; padding: 0 !important; font-size: 11px !important; }
+      .controls-bar, .speaker-drawer, .btn-action, .modal-overlay, .lightbox-modal, footer { display: none !important; }
+      .container { max-width: 100% !important; margin: 0 !important; }
+      .univ-header {
+        border: 1px solid #ccc !important;
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+      }
+      .slide-card {
+        display: block !important;
+        border: 1px solid #ddd !important;
+        background: #fff !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        margin-bottom: 24px !important;
+        break-inside: avoid;
+        page-break-after: always;
+      }
+      .slide-title, .univ-department, .kpi-value, .calc-card-val { color: #000 !important; }
+      .kpi-card, .calc-card, .calc-container, .svg-diagram-wrap, .media-fallback { background: #f8fafc !important; border-color: #ccc !important; color: #000 !important; }
+      .bio-table th { background: #eee !important; color: #000 !important; }
+      .bio-table td { color: #000 !important; }
+      .bullet-list li { color: #222 !important; }
+      .media-frame { height: 260px !important; border: 1px solid #ccc !important; }
+      .calc-row, .calc-results-grid { display: none !important; }
+      .print-static-table { display: table !important; }
+      .print-appendix-block { display: block !important; page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- ACADEMIC UNIVERSITY HEADER -->
+    <header class="univ-header">
+      <div class="header-left">
+        <!-- SVG NMU Dnipro Polytechnic Logo -->
+        <svg class="nmu-logo-svg" viewBox="0 0 220 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="36" width="14" height="14" rx="2" fill="#009fe3"/>
+          <rect x="16" y="36" width="14" height="14" rx="2" fill="#009fe3"/>
+          <rect x="32" y="36" width="14" height="14" rx="2" fill="#0080ff"/>
+          <rect x="16" y="20" width="14" height="14" rx="2" fill="#009fe3"/>
+          <rect x="32" y="20" width="14" height="14" rx="2" fill="#0080ff"/>
+          <rect x="32" y="4" width="14" height="14" rx="2" fill="#0080ff"/>
+          <text x="56" y="20" fill="#ffffff" font-family="Inter" font-weight="800" font-size="12" letter-spacing="0.5">ДНІПРОВСЬКА</text>
+          <text x="56" y="35" fill="#00bcd4" font-family="Inter" font-weight="700" font-size="10.5" letter-spacing="1">ПОЛІТЕХНІКА</text>
+          <text x="56" y="47" fill="#8b949e" font-family="JetBrains Mono" font-size="8" letter-spacing="1.5">1899</text>
+        </svg>
+
+        <div class="univ-meta-wrap">
+          <div class="univ-ministry">МІНІСТЕРСТВО ОСВІТИ І НАУКИ УКРАЇНИ // НТУ «ДНІПРОВСЬКА ПОЛІТЕХНІКА»</div>
+          <div class="univ-department">КАФЕДРА ТЕПЛОВОГО ІНЖИНІРИНГУ // ІНСТИТУТ ЕЛЕКТРОЕНЕРГЕТИКИ (ЕТФ)</div>
+          <div class="univ-subject">Дисципліна: Біоенергетика: процеси, технології, інновації (доц. Чемеринський М.С.) // Науково-технічна доповідь</div>
+        </div>
+      </div>
+
+      <div class="univ-student-badge">
+        <div style="color: var(--text-muted); font-size: 9px;">ВИКОНАВ:</div>
+        <div style="color: #fff; font-weight: 700; font-size: 11.5px;">студент гр.&nbsp;141-24-2</div>
+        <div style="color: var(--phase-1); font-weight: 700; font-size: 12px;">Дідов Платон Андрійович</div>
+      </div>
+    </header>
+
+    <!-- SLIDE NAVIGATION & ACTIONS CONTROLS -->
+    <div class="controls-bar">
+      <div class="slide-nav-group">
+        <button class="btn-nav" id="btnPrev" onclick="navigateSlide(-1)">◀ НАЗАД</button>
+        <span class="slide-indicator" id="slideIndicator">1 / 8</span>
+        <button class="btn-nav" id="btnNext" onclick="navigateSlide(1)">ВПЕРЕД ▶</button>
+      </div>
+
+      <div class="view-mode-group">
+        <button class="btn-action btn-notes-toggle" id="btnNotes" onclick="toggleSpeakerNotes()">
+          💬 ШПАРГАЛКА СПІКЕРА [N]
+        </button>
+        <button class="btn-action btn-faq-toggle" onclick="toggleFaqModal(true)">
+          📚 НАУКОВИЙ РЕЗЕРВ [Q]
+        </button>
+        <button class="btn-action" onclick="toggleFullscreen()">
+          ⛶ ПОВНИЙ ЕКРАН [F]
+        </button>
+        <button class="btn-action" onclick="toggleTaskModal(true)">
+          📋 ТЗ ВИКЛАДАЧА
+        </button>
+        <button class="btn-action" onclick="window.print()">
+          🖨️ ДРУК / PDF
+        </button>
+      </div>
+    </div>
+
+    <!-- SPEAKER NOTES DRAWER -->
+    <div class="speaker-drawer" id="speakerDrawer">
+      <div class="speaker-drawer-header">
+        <span class="speaker-tag">🎙️ ТЕКСТ УСНОЇ НАУКОВОЇ ДОПОВІДІ (45–60 СЕКУНД // БЕЗОСОБОВИЙ СТИЛЬ 3-Ї ОСОБИ):</span>
+        <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted);">Клавіша [N] для закриття</span>
+      </div>
+      <div class="speaker-text" id="speakerTextContent">
+        Завантаження промови до слайда...
+      </div>
+    </div>
+
+    <!-- SLIDE STAGE -->
+    <main class="slide-stage" id="slideStage">
+
+      <!-- SLIDE 1: PROBLEM CONTEXT & UKRAINE LANDSCAPE -->
+      <article class="slide-card active" data-slide="1">
+        <div class="slide-header">
+          <div>
+            <div class="slide-badge">АКТ 01 // ВХІД У ПРОБЛЕМУ</div>
+            <h1 class="slide-title">Біомаса для твердого біопалива: Виклики енергетики України</h1>
+          </div>
+          <div class="slide-num-stamp">01 / 08</div>
+        </div>
+
+        <div class="slide-split">
+          <div class="slide-visual">
+            <div class="media-frame" onclick="openLightbox('assets/01_hero_problem.png')">
+              <img src="assets/01_hero_problem.png" class="media-img" alt="Енергетичний виклик та біомаса" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">🇺🇦</div>
+                <div class="media-fallback-title">01_hero_problem.png</div>
+                <div class="media-fallback-sub">Енергетичні виклики України: дефіцит викопного газу та перетворення мокрих відходів лісопиляння у стандартизовані гранули</div>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для перегляду у високій якості</div>
+          </div>
+
+          <div class="slide-data">
+            <h2 style="font-family: var(--font-title); font-size: 16.5px; color: var(--phase-2); line-height: 1.4;">
+              Повний технологічний цикл виробництва деревних паливних гранул вищої категорії якості (європейського стандарту <span class="glossary-term" data-tooltip="Міжнародний сертифікований стандарт якості деревних гранул вищого ґатунку: зольність Ad ≤ 0.7%, вологість Wr ≤ 10%, теплота згоряння ≥ 16.5–18.0 МДж/кг.">ENplus A1</span>)
+            </h2>
+
+            <!-- 3 ФАКТОРИ АКТУАЛЬНОСТІ (ПОВНЕ ЗАПОВНЕННЯ ПРОСТОРУ) -->
+            <div class="grid-3col">
+              <div class="kpi-card p1" style="padding:10px 12px;">
+                <div class="kpi-label" style="color:var(--phase-1);">1. Енергетичний виклик</div>
+                <div class="kpi-desc" style="font-size:11px;">
+                  Руйнування централізованих ТЕЦ вимагає негайного розгортання автономних котелень на місцевих відновлюваних ресурсах.
+                </div>
+              </div>
+
+              <div class="kpi-card p2" style="padding:10px 12px;">
+                <div class="kpi-label" style="color:var(--phase-2);">2. Економічний фактор</div>
+                <div class="kpi-desc" style="font-size:11px;">
+                  Вартість імпортного природного газу перевищує собівартість теплової енергії з біопалива у <strong>2.5–3 рази</strong>.
+                </div>
+              </div>
+
+              <div class="kpi-card p3" style="padding:10px 12px;">
+                <div class="kpi-label" style="color:var(--phase-3);">3. Безвідходне виробництво</div>
+                <div class="kpi-desc" style="font-size:11px;">
+                  Утилізація понад 3.5 млн м³ вологих відходів лісопиляння (<span class="glossary-term" data-tooltip="Робоча вологість">W<sup>r</sup> ≈ 50%</span>), які зараз гниють або спалюються з димом.
+                </div>
+              </div>
+            </div>
+
+            <!-- МЕТА ТА СТАНДАРТ ЯКОСТІ -->
+            <div class="grid-2col">
+              <div class="kpi-card p1" style="padding:12px 14px;">
+                <div class="kpi-label">Мета та інженерні задачі</div>
+                <div class="kpi-desc" style="font-size:11.5px;">
+                  Дослідження наскрізного термодинамічного циклу гранулювання, розрахунок теплового балансу сушіння, аналіз зольності 4-х біопалив та оцінка заміщення газу в Об'єднаній енергетичній системі (ОЕС) України.
+                </div>
+              </div>
+
+              <div class="kpi-card p2" style="padding:12px 14px;">
+                <div class="kpi-label">Нормативи стандарту ENplus A1</div>
+                <div class="kpi-desc" style="font-size:11.5px;">
+                  Діаметр: <strong>6.0 мм</strong> | Вологість: <span class="glossary-term" data-tooltip="Робоча вологість палива">W<sup>r</sup> ≤ 10%</span><br>
+                  Зольність: <span class="glossary-term" data-tooltip="Зольність сухої маси">A<sup>d</sup> ≤ 0.7%</span> | Густина: <strong>> 1150 кг/м³</strong> (тоне у воді)
+                </div>
+              </div>
+            </div>
+
+            <div class="slide-footnote">
+              * За даними Біоенергетичної асоціації України (UABIO), доступний річний потенціал твердої біомаси перевищує 35 млн т.у.п./рік.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SLIDE 2: INTERACTIVE 8-NODE PLANT ROUTE WITH 3D FLIP -->
+      <article class="slide-card" data-slide="2">
+        <div class="slide-header">
+          <div>
+            <div class="slide-badge">АКТ 02 // ТЕХНОЛОГІЧНИЙ МАРШРУТ</div>
+            <h2 class="slide-title">Як працює завод: покроковий шлях від відходів до гранули</h2>
+          </div>
+          <div class="slide-num-stamp">02 / 08</div>
+        </div>
+
+        <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 12px;">
+          💡 <em>Оберіть будь-який із 8 технологічних вузлів нижче, щоб розгорнути інженерний аналіз та візуалізацію процесу:</em>
+        </p>
+
+        <!-- 8 COMPACT INTERACTIVE STAGE BUTTONS (INITIAL STATE: NO IMAGES) -->
+        <div class="node-pipeline-grid" id="nodeButtonsBar">
+          <button class="node-step-btn active" onclick="activateNode(1, this)" data-phase="1">
+            <span class="step-num">01</span>
+            <span class="step-title">Приймання</span>
+          </button>
+          <button class="node-step-btn" onclick="activateNode(2, this)" data-phase="1">
+            <span class="step-num">02</span>
+            <span class="step-title">Сепарація</span>
+          </button>
+          <button class="node-step-btn" onclick="activateNode(3, this)" data-phase="2">
+            <span class="step-num">03</span>
+            <span class="step-title">Сушіння</span>
+          </button>
+          <button class="node-step-btn" onclick="activateNode(4, this)" data-phase="3">
+            <span class="step-num">04</span>
+            <span class="step-title">Помел</span>
+          </button>
+          <button class="node-step-btn" onclick="activateNode(5, this)" data-phase="3">
+            <span class="step-num">05</span>
+            <span class="step-title">Пропарювання</span>
+          </button>
+          <button class="node-step-btn" onclick="activateNode(6, this)" data-phase="3">
+            <span class="step-num">06</span>
+            <span class="step-title">Пресування</span>
+          </button>
+          <button class="node-step-btn" onclick="activateNode(7, this)" data-phase="4">
+            <span class="step-num">07</span>
+            <span class="step-title">Охолодження</span>
+          </button>
+          <button class="node-step-btn" onclick="activateNode(8, this)" data-phase="4">
+            <span class="step-num">08</span>
+            <span class="step-title">Пакування</span>
+          </button>
+        </div>
+
+        <!-- DYNAMIC 3D FLIP INSPECTOR STAGE (UNFOLDS UPON SELECTION) -->
+        <div class="node-inspector-box" id="nodeInspectorBox">
+          <div class="slide-split" style="align-items: center;">
+            <!-- 3D FLIPPER VISUAL CANVAS -->
+            <div class="slide-visual" style="perspective: 1200px;">
+              <div class="media-frame node-3d-flipper" id="nodeMediaFrame" onclick="openNodeLightbox()">
+                <img src="assets/node_01_intake.png" id="nodeDynamicImg" class="media-img" alt="Технологічний вузол" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+                <div class="media-fallback" id="nodeDynamicFallback">
+                  <div class="media-fallback-icon" id="nodeFallbackIcon">🚛</div>
+                  <div class="media-fallback-title" id="nodeFallbackTitle">ВУЗОЛ 01: ПРИЙМАННЯ СИРОВИНИ</div>
+                  <div class="media-fallback-sub" id="nodeFallbackSub">
+                    Надходження некондиційних відходів лісопиляння вологістю близько 50%
+                  </div>
+                </div>
+              </div>
+              <div class="media-hint">🔍 Натисніть на зображення для повноекранного перегляду</div>
+            </div>
+
+            <!-- HUMAN-ENGINEERED DYNAMIC DATA CANVAS -->
+            <div class="slide-data text-transition-wrap" id="nodeTextDataWrap">
+              <div class="kpi-card p1" id="nodeMainCard">
+                <div class="kpi-label" id="nodePhaseTag" style="color:var(--phase-1);">ФАЗА 1 // ВУЗОЛ 01</div>
+                <h3 id="nodeTitle" style="font-size: 17px; color: #fff; margin-bottom: 8px;">1. Приймання та накопичення сировини</h3>
+                
+                <div style="font-size: 13px; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px;">
+                  <strong style="color:var(--phase-1);">Суть операції:</strong> <span id="nodeOpDesc">Здійснюється прийом та вивантаження у бункери сирої тирси, стружки та обаполу лісопиляння.</span>
+                </div>
+
+                <div style="font-size: 13px; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px;">
+                  <strong style="color:var(--phase-2);">Фізичний стан:</strong> <span id="nodePhysDesc">Близько 50% загальної ваги складає природна капілярна вода. Насипна густина становить лише 180–220 кг/м³ (матеріал надто легкий і нестійкий для далекої доставки).</span>
+                </div>
+
+                <div style="font-size: 13px; color: #cbd5e1; line-height: 1.6;">
+                  <strong style="color:var(--phase-3);">Технологічний результат:</strong> <span id="nodeResDesc">Створення стабільного оперативного запасу сировини для безперервної роботи лінії гранулювання.</span>
+                </div>
+              </div>
+
+              <!-- CONTROLS FOR SEQUENTIAL WALKTROUGH -->
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <button class="btn-action" onclick="stepNode(-1)">◀ Попередній вузол</button>
+                <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);" id="nodeCounterLabel">Вузол 1 із 8</span>
+                <button class="btn-action" onclick="stepNode(1)">Наступний вузол ▶</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footnote">
+          * Завод є енергетично автономним по теплу: сушарка споживає відходи окорки деревини (кору), а електрика йде виключно на електродвигуни подрібнювачів і преса (70–95 кВт·год/т).
+        </div>
+      </article>
+
+      <!-- SLIDE 3: PHASE 1 - INTAKE & SEPARATION -->
+      <article class="slide-card" data-slide="3">
+        <div class="slide-header">
+          <div>
+            <div class="slide-badge" style="color:var(--phase-1);">АКТ 03 // ФАЗА 1: ПІДГОТОВКА ТА ЗАХИСТ</div>
+            <h2 class="slide-title">Вузол 1: Приймання, фракціонування та магнітна сепарація</h2>
+          </div>
+          <div class="slide-num-stamp">03 / 08</div>
+        </div>
+
+        <div class="slide-split">
+          <div class="slide-visual">
+            <div class="media-frame" onclick="openLightbox('assets/03_shredder_magnet.png')">
+              <img src="assets/03_shredder_magnet.png" class="media-img" alt="Подрібнювач та магнітний сепаратор" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">🧲</div>
+                <div class="media-fallback-title">03_shredder_magnet.png</div>
+                <div class="media-fallback-sub">Рубальна машина та підвісний неодимовий магніт, що витягує уламки металу над потоком тріски</div>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для перегляду у високій якості</div>
+          </div>
+
+          <div class="slide-data">
+            <div class="kpi-card p1">
+              <div class="kpi-label">Вхідні параметри та логістика</div>
+              <ul class="bullet-list">
+                <li>Свіжа некондиційна тирса має вологість <span class="glossary-term" data-tooltip="Робоча вологість">$W^r = 45\text{--}55\%$</span> та насипну густину лише 180–220 кг/м³.</li>
+                <li>Економічне плече доставки вологої сировини автотранспортом обмежене відстанню у <strong>50 км</strong>.</li>
+              </ul>
+            </div>
+
+            <div class="grid-2col">
+              <div class="kpi-card p1">
+                <div class="kpi-label">Рубальні машини</div>
+                <div class="kpi-desc">
+                  Обапіл і шматки кори подрібнюються в однорідну технологічну тріску <strong>15–25 мм</strong> для стабілізації аеродинаміки сушильного барабана.
+                </div>
+              </div>
+
+              <div class="kpi-card p1" style="border-left-color: var(--alert);">
+                <div class="kpi-label" style="color:var(--alert);">Захист матриці преса</div>
+                <div class="kpi-desc">
+                  Двоступенева магнітна колонка з неодимовими магнітами вилучає цвяхи та болти, виключаючи аварійне руйнування матриці вартістю понад 5 000 євро.
+                </div>
+              </div>
+            </div>
+
+            <div class="slide-footnote">
+              * Застосування дискових гуркотів знижує вміст піску, гарантуючи норматив $A^d \le 0.7\%$.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SLIDE 4: PHASE 2 - DRYING THERMODYNAMICS -->
+      <article class="slide-card" data-slide="4">
+        <div class="slide-header">
+          <div>
+            <div class="slide-badge" style="color:var(--phase-2);">АКТ 04 // ФАЗА 2: ТЕРМОДИНАМІЧНЕ ЗНЕВОДНЕННЯ</div>
+            <h2 class="slide-title">Вузол 2: Термодинаміка сушіння та тепловий баланс</h2>
+          </div>
+          <div class="slide-num-stamp">04 / 08</div>
+        </div>
+
+        <div class="slide-split">
+          <div class="slide-visual">
+            <div class="media-frame" onclick="openLightbox('assets/04_drum_dryer.png')">
+              <img src="assets/04_drum_dryer.png" class="media-img" alt="Сушильний барабан" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">🔥</div>
+                <div class="media-fallback-title">04_drum_dryer.png</div>
+                <div class="media-fallback-sub">3-ходовий барабанний агрегат у розрізі: рух гарячих газів та випар вологи 50% -> 10%</div>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для перегляду у високій якості</div>
+          </div>
+
+          <div class="slide-data">
+            <div class="grid-2col">
+              <div class="kpi-card p2">
+                <div class="kpi-label">Зниження вологості</div>
+                <div class="kpi-value" style="color:var(--phase-2);">50% ➔ 10%</div>
+                <div class="kpi-desc">Видалення 800 кг капілярної вологи на 1 т готових пелет.</div>
+              </div>
+
+              <div class="kpi-card p2">
+                <div class="kpi-label">Питомі теплові витрати</div>
+                <div class="kpi-value" style="color:var(--phase-2);">3.2 – 3.6 МДж</div>
+                <div class="kpi-desc">Теплової енергії на 1 кг випаруваної води з сировини.</div>
+              </div>
+            </div>
+
+            <div class="kpi-card p2">
+              <div class="kpi-label">Матеріально-тепловий баланс та автономність</div>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--phase-2); background: #0d1017; padding: 8px 10px; border-radius: 4px; margin-bottom: 6px;">
+                Q_суш = m_w \cdot r + Q_втрат \approx 2.7\text{--}3.0\text{ ГДж на 1 т пелет}
+              </div>
+              <p style="font-size: 12px; color: #cbd5e1; line-height: 1.5;">
+                Виробництво не використовує природний газ. Тепло забезпечується спалюванням <strong>190 кг власної некондиційної кори</strong> ($Q_i^r \approx 14.5\text{ МДж/кг}$) у передтопку барабанної або стрічкової сушарки. Лінія є на 100% теплоенергетично автономною.
+              </p>
+            </div>
+
+            <div class="slide-footnote">
+              * Застосування стрічкових низькотемпературних сушарок (вода 85–90°C) виключає займання деревного пилу.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SLIDE 5: PHASE 3 - LIGNIN & PELLET PRESS -->
+      <article class="slide-card" data-slide="5">
+        <div class="slide-header">
+          <div>
+            <div class="slide-badge" style="color:var(--phase-3);">АКТ 05 // ФАЗА 3: ПЛАСТИФІКАЦІЯ ТА ПРЕСУВАННЯ</div>
+            <h2 class="slide-title">Вузли 3–4: Активація лігніну парою та пресування 120 МПа</h2>
+          </div>
+          <div class="slide-num-stamp">05 / 08</div>
+        </div>
+
+        <div class="slide-split">
+          <div class="slide-visual">
+            <div class="media-frame" onclick="openLightbox('assets/05_press_lignin.png')">
+              <img src="assets/05_press_lignin.png" class="media-img" alt="Прес-гранулятор та лігнін" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">⚙️</div>
+                <div class="media-fallback-title">05_press_lignin.png</div>
+                <div class="media-fallback-sub">Мікроструктура плавлення лігніну під парою та розріз прес-гранулятора з матрицею 120 МПа</div>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для перегляду у високій якості</div>
+          </div>
+
+          <div class="slide-data">
+            <div class="grid-2col">
+              <div class="kpi-card p3">
+                <div class="kpi-label">Тиск у зоні деформації</div>
+                <div class="kpi-value" style="color:var(--phase-3);">100 – 120 МПа</div>
+                <div class="kpi-desc">Понад 1100 атмосфер у клині між вальцем і матрицею.</div>
+              </div>
+
+              <div class="kpi-card p3">
+                <div class="kpi-label">Температура тертя</div>
+                <div class="kpi-value" style="color:var(--phase-2);">95 – 115 °C</div>
+                <div class="kpi-desc">Саморозігрів маси у фільєрах діаметром 6.0 мм.</div>
+              </div>
+            </div>
+
+            <div class="kpi-card p3">
+              <div class="kpi-label">Природний термоклей: Роль <span class="glossary-term" data-tooltip="Природний полімер клітинних стінок деревини (вміст 20–30%), що плавиться при нагріванні.">Лігніну</span></div>
+              <ul class="bullet-list p3">
+                <li>Деревина містить 20–30% лігніну. При пропарюванні ($T = 85\text{--}95\ ^\circ\text{C}$) він розм'якшується, виступаючи натуральним зв'язуючим агентом.</li>
+                <li>За тиску понад 100 МПа долається межа пружності клітин, а розплавлений лігнін запечатує пори, утворюючи монолітну структуру з густиною $>1150\text{ кг/м}^3$.</li>
+                <li>Синтетичні клеї, феноли та хімічні смоли відсутні на 100%.</li>
+              </ul>
+            </div>
+
+            <div class="slide-footnote">
+              * Коефіцієнт стиснення фільєри $L/D$ становить $1:4.5\text{--}1:5.5$ для сосни та $1:3.2$ для дуба.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SLIDE 6: PHASE 4 - COOLING & PACKAGING -->
+      <article class="slide-card" data-slide="6">
+        <div class="slide-header">
+          <div>
+            <div class="slide-badge" style="color:var(--phase-4);">АКТ 06 // ФАЗА 4: СТАБІЛІЗАЦІЯ ТА ЛОГІСТИКА</div>
+            <h2 class="slide-title">Вузол 5: Охолодження, загартування лігніну та фасування</h2>
+          </div>
+          <div class="slide-num-stamp">06 / 08</div>
+        </div>
+
+        <div class="slide-split">
+          <div class="slide-visual">
+            <div class="media-frame" onclick="openLightbox('assets/06_cooling_pack.png')">
+              <img src="assets/06_cooling_pack.png" class="media-img" alt="Охолодження та упаковка" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">📦</div>
+                <div class="media-fallback-title">06_cooling_pack.png</div>
+                <div class="media-fallback-sub">Протиточна охолоджувальна шахта, вібросито відсіву пилу та робот, що пакує мішки 15 кг на європалети</div>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для перегляду у високій якості</div>
+          </div>
+
+          <div class="slide-data">
+            <div class="grid-2col">
+              <div class="kpi-card p4">
+                <div class="kpi-label">Протитечійний охолоджувач</div>
+                <div class="kpi-desc">
+                  Гаряча гранула ($95\ ^\circ\text{C}$) продувається зустрічним повітрям. Температура падає до $+5\ ^\circ\text{C}$ над рівнем довкілля.
+                </div>
+              </div>
+
+              <div class="kpi-card p4">
+                <div class="kpi-label">Загартування лігніну (<span class="glossary-term" data-tooltip="Mechanical Durability — показник стійкості гранули до стирання під час логістики.">DU</span>)</div>
+                <div class="kpi-desc">
+                  При охолодженні розм'якшений лігнін кристалізується, забезпечуючи механічну міцність $\mathbf{DU \ge 98.0\%}$.
+                </div>
+              </div>
+            </div>
+
+            <div class="kpi-card p4">
+              <div class="kpi-label">Вібросепарація пилу та тарні формати</div>
+              <ul class="bullet-list p4">
+                <li>Віброгуркіт відсіває 2–3% крихти та пилу, які повертаються назад у прес (100% безвідходність).</li>
+                <li><strong>Мішки 15 кг:</strong> Герметичний перфорований поліетилен (для приватних автоматичних пальників).</li>
+                <li><strong>Біг-беги 1000 кг:</strong> Поліпропіленові контейнери з антистатичною ниткою (для промислових ТЕЦ).</li>
+              </ul>
+            </div>
+
+            <div class="slide-footnote">
+              * Герметичне фасування захищає гранулу від зворотного вбирання вологи з повітря під час тривалого зберігання.
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SLIDE 7: 4-BIOFUEL COMPARISON MATRIX -->
+      <article class="slide-card" data-slide="7">
+        <div class="slide-header">
+          <div>
+            <div class="slide-badge">АКТ 07 // ІНЖЕНЕРНИЙ БАТЛ</div>
+            <h2 class="slide-title">Матриця параметрів 4-х видів біопалив України</h2>
+          </div>
+          <div class="slide-num-stamp">07 / 08</div>
+        </div>
+
+        <div class="slide-split">
+          <div class="slide-visual">
+            <div class="media-frame" onclick="openLightbox('assets/07_four_fuels.png')">
+              <img src="assets/07_four_fuels.png" class="media-img" alt="Порівняння 4 видів палива" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">⚖️</div>
+                <div class="media-fallback-title">07_four_fuels.png</div>
+                <div class="media-fallback-sub">Макро-порівняння 4-х зразків палива на плиті: біла деревна A1, лушпиння соняшника, солома, торф</div>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для перегляду у високій якості</div>
+          </div>
+
+          <div class="slide-data">
+            <div class="table-wrap">
+              <table class="bio-table">
+                <thead>
+                  <tr>
+                    <th>Параметр палива</th>
+                    <th>Деревні пелети A1</th>
+                    <th>Лушпиння соняшника</th>
+                    <th>Солома зернових</th>
+                    <th>Торф'яний брикет</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Сировинна база</strong></td>
+                    <td>~3.5 млн м³/рік</td>
+                    <td><span class="tag-pill tag-green">~4.0 млн т/рік (<span class="glossary-term" data-tooltip="Олійноекстракційні заводи">ОЕЗ</span>)</span></td>
+                    <td><span class="tag-pill tag-green">>30 млн т/рік</span></td>
+                    <td>Поклади Полісся</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Необхідність сушіння</strong></td>
+                    <td><span class="tag-pill tag-red">ТАК (50% ➔ 10%)</span></td>
+                    <td><span class="tag-pill tag-green">НІ ($W^r \approx 10\%$)</span></td>
+                    <td><span class="tag-pill tag-green">НІ ($W^r \approx 14\%$)</span></td>
+                    <td><span class="tag-pill tag-yellow">ТАК (фрезерний)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Теплота <span class="glossary-term" data-tooltip="Нижча теплота згоряння на робочу масу">$Q_i^r$</span></strong></td>
+                    <td><strong>18.0 МДж/кг</strong> (5.0 кВт·год)</td>
+                    <td><strong>17.5 МДж/кг</strong> (4.8 кВт·год)</td>
+                    <td>15.0 МДж/кг (4.2 кВт·год)</td>
+                    <td>14.5 МДж/кг (4.0 кВт·год)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Зольність <span class="glossary-term" data-tooltip="Зольність сухої маси">$A^d$</span></strong></td>
+                    <td><span class="tag-pill tag-green">0.5 – 0.7 %</span></td>
+                    <td><span class="tag-pill tag-yellow">2.5 – 3.5 %</span></td>
+                    <td><span class="tag-pill tag-red">5.0 – 8.0 %</span></td>
+                    <td><span class="tag-pill tag-red">10.0 – 15.0 %</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Температура плавлення <span class="glossary-term" data-tooltip="Температура деформації та шлакування золи">$T_{пл}$</span></strong></td>
+                    <td><span class="tag-pill tag-green">> 1200 °C</span></td>
+                    <td><span class="tag-pill tag-yellow">~1050 °C</span></td>
+                    <td><span class="tag-pill tag-red">&lt; 850 °C (Шлак!)</span></td>
+                    <td>> 1150 °C</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Сфера застосування</strong></td>
+                    <td>Побутові котли, експорт</td>
+                    <td>Промислові ТЕЦ, паросилові</td>
+                    <td>Котли з рухомими колосниками</td>
+                    <td>Побутові печі, сектор ЖКГ</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="kpi-card" style="border-left-color: var(--alert); padding:8px 12px;">
+              <div class="kpi-label" style="color:var(--alert);">Інженерний висновок щодо температури плавлення золи ($T_{пл}$)</div>
+              <div class="kpi-desc">
+                Солома містить велику кількість сполук <strong>Калію ($K_2O$)</strong>, через що зола плавиться при температурі нижче 850°C. У стандартних пальниках це викликає важке склоподібне шлакування. Тому деревна гранула є безальтернативною для приватного житла, а лушпиння соняшника — найбільш рентабельним для промисловості.
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- SLIDE 8: APPLIED CALCULATOR & STRATEGIC SUMMARY -->
+      <article class="slide-card" data-slide="8">
+        <div class="slide-header">
+          <div>
+            <div class="slide-badge">АКТ 08 // ПРИКЛАДНІ РОЗРАХУНКИ ТА ПІДСУМОК</div>
+            <h2 class="slide-title">Енергетичний калькулятор заміщення газу та висновки</h2>
+          </div>
+          <div class="slide-num-stamp">08 / 08</div>
+        </div>
+
+        <div class="slide-split">
+          <div class="slide-visual">
+            <div class="media-frame" onclick="openLightbox('assets/08_energy_calculator.png')">
+              <img src="assets/08_energy_calculator.png" class="media-img" alt="Ваги енергетичного еквіваленту" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">⚖️</div>
+                <div class="media-fallback-title">08_energy_calculator.png</div>
+                <div class="media-fallback-sub">Стилізовані ваги: 1 т біопалива врівноважує 450 кубометрів природного газу та засніжений будинок</div>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для перегляду у високій якості</div>
+          </div>
+
+          <div class="slide-data">
+            <!-- INTERACTIVE CALCULATOR (HIDDEN ON PRINT) -->
+            <div class="calc-container">
+              <div class="calc-row">
+                <div class="calc-input-group">
+                  <label class="calc-label" for="calcFuelType">Вибір виду біопалива:</label>
+                  <select class="calc-select" id="calcFuelType" onchange="calculateBioenergy()">
+                    <option value="wood" selected>Деревні пелети ENplus A1 (18.0 МДж/кг, зола 0.6%)</option>
+                    <option value="sunflower">Пелети з лушпиння соняшника (17.5 МДж/кг, зола 3.0%)</option>
+                    <option value="straw">Пелети із соломи зернових (15.0 МДж/кг, зола 6.0%)</option>
+                    <option value="peat">Торф'яні брикети (14.5 МДж/кг, зола 12.0%)</option>
+                  </select>
+                </div>
+
+                <div class="calc-input-group">
+                  <label class="calc-label" for="calcAmount">Маса (кг):</label>
+                  <input type="number" class="calc-input" id="calcAmount" value="1000" min="1" step="10" oninput="calculateBioenergy()" style="width: 110px;">
+                </div>
+
+                <div class="calc-input-group">
+                  <label class="calc-label">Швидкі пресети:</label>
+                  <div class="preset-btn-group">
+                    <button class="btn-preset" onclick="setCalcPreset(15)">15 кг</button>
+                    <button class="btn-preset active" onclick="setCalcPreset(1000)">1 т</button>
+                    <button class="btn-preset" onclick="setCalcPreset(22000)">22 т</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="calc-results-grid">
+                <div class="calc-card">
+                  <div class="calc-card-title">Теплова енергія ($Q$)</div>
+                  <div class="calc-card-val" id="resGcal">4.30 Гкал</div>
+                  <div class="calc-card-sub" id="resMwh">5.00 МВт·год</div>
+                </div>
+
+                <div class="calc-card">
+                  <div class="calc-card-title">Заміщення газу</div>
+                  <div class="calc-card-val" id="resGas">450 м³ газу</div>
+                  <div class="calc-card-sub">ККД $\eta = 92\%$</div>
+                </div>
+
+                <div class="calc-card">
+                  <div class="calc-card-title">Заміщення вугілля</div>
+                  <div class="calc-card-val" id="resCoal">0.78 т</div>
+                  <div class="calc-card-sub">Марки Д</div>
+                </div>
+
+                <div class="calc-card">
+                  <div class="calc-card-title">Вихід сухої золи</div>
+                  <div class="calc-card-val" id="resAsh" style="color:var(--phase-2);">6.0 кг</div>
+                  <div class="calc-card-sub" id="resAshDesc">Добриво</div>
+                </div>
+              </div>
+
+              <div class="calc-results-grid" style="margin-top: 8px;">
+                <div class="calc-card" style="border-left: 3px solid var(--phase-1);">
+                  <div class="calc-card-title">🏠 Дім 150 м² (6 кВт)</div>
+                  <div class="calc-card-val" id="resHouseDays">34.7 діб</div>
+                  <div class="calc-card-sub">Автономного тепла</div>
+                </div>
+
+                <div class="calc-card" style="border-left: 3px solid var(--phase-2);">
+                  <div class="calc-card-title">🏭 Цех / Котел 200 кВт</div>
+                  <div class="calc-card-val" id="resGreenhouseHours">25.0 годин</div>
+                  <div class="calc-card-sub">Номіналу</div>
+                </div>
+
+                <div class="calc-card" style="border-left: 3px solid var(--phase-3);">
+                  <div class="calc-card-title">⚡ Електроенергія ТЕЦ</div>
+                  <div class="calc-card-val" id="resElec">1 250 кВт·год</div>
+                  <div class="calc-card-sub">$\eta_{el} = 25\%$</div>
+                </div>
+
+                <div class="calc-card" style="border-left: 3px solid var(--phase-4);">
+                  <div class="calc-card-title">🏢 Котельня 1 МВт</div>
+                  <div class="calc-card-val" id="resBoilerHours">5.0 годин</div>
+                  <div class="calc-card-sub">Магістралі</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STATIC FALLBACK TABLE FOR PRINT PDF -->
+            <table class="print-static-table">
+              <thead>
+                <tr>
+                  <th>Сценарій обсягу</th>
+                  <th>Теплова енергія</th>
+                  <th>Заміщення газу</th>
+                  <th>Заміщення вугілля</th>
+                  <th>Автономія дому (150 м²)</th>
+                  <th>Вихід золи</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>15 кг (мішок)</strong></td>
+                  <td>0.06 Гкал (0.08 МВт·год)</td>
+                  <td>6.8 м³ газу</td>
+                  <td>11.7 кг</td>
+                  <td>12.5 годин</td>
+                  <td>0.09 кг</td>
+                </tr>
+                <tr>
+                  <td><strong>1 тонна (біг-бег)</strong></td>
+                  <td>4.30 Гкал (5.00 МВт·год)</td>
+                  <td>450 м³ газу</td>
+                  <td>0.78 т</td>
+                  <td>34.7 діб</td>
+                  <td>6.0 кг</td>
+                </tr>
+                <tr>
+                  <td><strong>22 тонни (автопоїзд)</strong></td>
+                  <td>94.6 Гкал (110 МВт·год)</td>
+                  <td>9 900 м³ газу</td>
+                  <td>17.2 т</td>
+                  <td>2.1 роки тепла</td>
+                  <td>132 кг</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- STRATEGIC SUMMARY -->
+            <div class="kpi-card p1" style="padding: 10px 14px; margin-top: 4px;">
+              <div style="font-weight:700; color:#fff; font-size:12.5px; margin-bottom:2px;">
+                Висновки для Об'єднаної енергетичної системи (ОЕС) України
+              </div>
+              <p style="font-size: 11.5px; color: #cbd5e1; line-height: 1.45;">
+                Виробництво паливних гранул забезпечує повну $CO_2$-нейтральність та переводить некондиційні відходи у висококалорійний енергоносій. Повний потенціал біомаси України становить до <strong>8 млрд м³ заміщення імпортного газу на рік</strong>. Науково-технічну доповідь завершено.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </main>
+
+    <footer>
+      НТУ «Дніпровська політехніка» // Інститут електроенергетики // Кафедра теплового інжинірингу // гр. 141-24-2 // 2026
+    </footer>
+
+  </div>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+    <img src="" id="lightboxImg" class="lightbox-img" alt="Збільшений графічний рендер">
+  </div>
+
+  <!-- MODAL: SCIENTIFIC APPENDIX / FAQ FOR DISCUSSION -->
+  <div class="modal-overlay" id="faqModal" onclick="toggleFaqModal(false)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="toggleFaqModal(false)">✕</button>
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--phase-3); font-weight: 700; margin-bottom: 6px;">
+        НАУКОВИЙ РЕЗЕРВ // ІНЖЕНЕРНИЙ FAQ ДЛЯ ДИСКУСІЇ З ВИКЛАДАЧЕМ:
+      </div>
+      <h3 style="font-family: var(--font-title); font-size: 16px; margin-bottom: 14px; color: #fff;">
+        Поглиблений теплотехнічний аналіз процесів гранулювання (Спеціальність 141)
+      </h3>
+
+      <!-- FAQ 1 -->
+      <div class="faq-card">
+        <div class="faq-header" onclick="toggleFaqAccordion(this)">
+          <span>1. Тепловий баланс сушіння: Звідки береться тепло на випар 800 кг води?</span>
+          <span>▼</span>
+        </div>
+        <div class="faq-body">
+          <p>На випаровування 800 кг води для отримання 1 т пелет потрібно витратити:</p>
+          <div class="faq-math">Q_суш = m_w \cdot r + Q_втрат = 800 \cdot 2.26 + 700 \approx 2.7\text{--}3.0\text{ ГДж}</div>
+          <p>Ця теплова потужність на 100% покривається власним передтопком сушарки, де спалюється <strong>190 кг власної некондиційної кори</strong> ($Q_i^r \approx 14.5\text{ МДж/кг}$). Природний газ не витрачається — лінія є повністю теплоенергетично автономною.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-card">
+        <div class="faq-header" onclick="toggleFaqAccordion(this)">
+          <span>2. Хімізм шлакування золи: Чому солома плавиться при T &lt; 850°C, а дерево — ні?</span>
+          <span>▼</span>
+        </div>
+        <div class="faq-body">
+          <p>У золі деревини переважають тугоплавкі оксиди Кальцію і Магнію ($CaO \approx 45\%$, $MgO \approx 10\%$, $T_{пл} > 1200^\circ\text{C}$). У золі соломи та агробіомаси висока концентрація легкоплавких оксидів лужних металів ($K_2O$ до 25%, $Na_2O$) та хлоридів ($KCl$):</p>
+          <div class="faq-math">K_2O + n \cdot SiO_2 \longrightarrow K_2O \cdot nSiO_2 \quad (T_{плавл} = 750\text{--}850^\circ\text{C})</div>
+          <p>Вони утворюють низькотемпературні евтектичні розплави рідкого скла, які налипають на труби теплообмінників котла та спікають колосники в монолітний шлак.</p>
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-card">
+        <div class="faq-header" onclick="toggleFaqAccordion(this)">
+          <span>3. Фізика тиску 100–120 МПа: Що відбувається на клітинному рівні?</span>
+          <span>▼</span>
+        </div>
+        <div class="faq-body">
+          <p>Початкова насипна густина тирси — лише 180 кг/м³. За тиску до 40 МПа витісняється лише повітря. При досягненні <strong>100–120 МПа</strong> напруження перевищує межу пружності клітинних оболонок лігноцелюлози: клітини руйнуються, молекулярні відстані скорочуються до дії сил Ван-дер-Ваальса, а розм'якшений лігнін запечатує мікропори. Досягається дійсна густина $\mathbf{\rho = 1150\text{--}1250\text{ кг/м}^3}$ (пелета тоне у воді).</p>
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-card">
+        <div class="faq-header" onclick="toggleFaqAccordion(this)">
+          <span>4. Геометрія матриці L/D: Чому дуб і сосна вимагають різних фільєр?</span>
+          <span>▼</span>
+        </div>
+        <div class="faq-body">
+          <p>Коефіцієнт стиснення $L/D$ — відношення робочої довжини каналу фільєри до її діаметра (6 мм):</p>
+          <ul>
+            <li><strong>Хвойні породи (сосна):</strong> опір тертя помірний, лігнін пластичний. Потрібен високий коефіцієнт $L/D = 1:4.5\text{--}1:5.5$ (довжина каналу 27–33 мм).</li>
+            <li><strong>Тверді листяні (дуб, бук):</strong> колосальний опір тертя. На матриці $1:5$ відбудеться заклинювання преса або поломка вала. Потрібна коротка матриця $L/D = 1:3\text{--}1:3.5$ (довжина 18–21 мм).</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="faq-card">
+        <div class="faq-header" onclick="toggleFaqAccordion(this)">
+          <span>5. Пожежовибухобезпека: Як захищено цех від вибуху деревного пилу?</span>
+          <span>▼</span>
+        </div>
+        <div class="faq-body">
+          <p>Сухий пил фракцією $<200\text{ мкм}$ при концентрації $>30\text{ г/м}^3$ формує вибухову аерозольну суміш (НКМПП). Захист забезпечується:</p>
+          <ul>
+            <li>Встановленням аспіраційних фільтрів стандарту ATEX з антистатичними рукавами.</li>
+            <li>Розривними мембранами на бункерах для спрямованого скидання ударної хвилі вибуху назовні.</li>
+            <li>Оптичними інфрачервоними датчиками виявлення іскор та форсунками імпульсного гасіння водою (система GreCon) у повітропроводах.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FAQ 6 -->
+      <div class="faq-card">
+        <div class="faq-header" onclick="toggleFaqAccordion(this)">
+          <span>6. Аналіз життєвого циклу (LCA): Чи дійсно біопаливо є CO2-нейтральним?</span>
+          <span>▼</span>
+        </div>
+        <div class="faq-body">
+          <p>За європейською методикою <strong>RED II (Renewable Energy Directive)</strong>, враховуючи витрати електрики на заводі (85 кВт·год/т) та дизельного палива на доставку лісовозами у радіусі до 50 км, пряме скорочення викидів парникових газів становить <strong>понад 88%</strong> у порівнянні з природним газом і понад 94% у порівнянні з вугіллям.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ORIGINAL TEACHER TASK SPEC -->
+  <div class="modal-overlay" id="taskModal" onclick="toggleTaskModal(false)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="toggleTaskModal(false)">✕</button>
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--phase-2); font-weight: 700; margin-bottom: 6px;">ВИХІДНІ ВИМОГИ ВИКЛАДАЧА:</div>
+      <h3 style="font-family: var(--font-title); font-size: 16px; margin-bottom: 12px; color: #fff;">Доповідь 5.10.2026 // Дисципліна «Біоенергетика»</h3>
+      
+      <div style="font-size: 12.5px; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px; background:#0d1017; padding:12px; border-radius:4px; border-left:3px solid var(--phase-2);">
+        <strong>Зробіть доповідь (презентацію) на 5–10 хвилин.</strong><br>
+        <strong>Тема:</strong> Біомаса для виробництва твердого біопалива.<br>
+        <strong>Вимога:</strong> Необхідно обрати один вид сировини і описати повний цикл від отримання до готового палива.
+      </div>
+
+      <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">
+        <strong>Інженерна реалізація кафедри теплового інжинірингу:</strong><br>
+        1. Обрано деревну тирсу лісопиляння з описом 4-х фаз і 8-ми вузлів переробки у гранули ENplus A1.<br>
+        2. Проведено аналіз 4-х видів біопалив України (деревина, лушпиння, солома, торф).<br>
+        3. Інтегровано калькулятор виходу теплової енергії та заміщення природного газу.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // SLIDE ENGINE (COMPRESSED TO 8 ACTS)
+    const totalSlides = 8;
+    let currentSlide = 1;
+
+    // OBJECTIVE ACADEMIC SPEECH SCRIPTS (THIRD-PERSON / PASSIVE FORM // 45-55 SEC)
+    const speakerNotes = {
+      1: "У представленій науково-технічній доповіді досліджено повний технологічний цикл виробництва стандартизованого твердого біопалива — деревних гранул вищої споживчої категорії ENplus A1. В умовах дефіциту імпортного природного газу та руйнування централізованої інфраструктури ОЕС України утилізація багатотонних відходів лісопиляння є ключовим інструментом забезпечення локального автономного тепла.",
+      2: "Технологічний маршрут лінії складається з чотирьох послідовних фаз та восьми вузлів переробки. Фаза 1 — механічна підготовка та захист обладнання; Фаза 2 — термодинамічне зневоднення; Фаза 3 — молотковий помел, парова пластифікація лігніну та пресування; Фаза 4 — стабілізація, кристалізація та упаковка. Лінія споживає від 70 до 95 кВт·год електрики на тонну продукції.",
+      3: "Перша фаза забезпечує підготовку вологій сировині з вологістю до 55%. Дискові рубальні машини вирівнюють фракцію до 15–25 мм для рівномірного прогріву в сушарці. Ключовим вузлом захисту виступає двоступенева електромагнітна колонка з неодимовими магнітами, яка вилучає металеві включення, запобігаючи аварійному розколу кільцевої матриці преса вартістю понад 5 000 євро.",
+      4: "Друга фаза є найбільш енергоємною: сушіння біомаси. Для зниження вологості з 50% до нормативних 10% необхідно випарувати 800 кг води на кожну тонну готових пелет. За теплових витрат близько 3.4 МДж на кілограм води загальна потреба сягає 2.8 ГДж тепла. Це тепло повністю забезпечується спалюванням 190 кг власної кори у передтопку, роблячи завод на 100% теплоенергетично автономним.",
+      5: "Третя фаза розпочинається молотковим помелом до часток 1–2.5 мм та подальшим кондиціонуванням сухою парою з температурою 90°C. Природний полімер лігнін, вміст якого в деревині сягає 30%, переходить у пластичний стан і виступає натуральним клеєм. Далі у прес-грануляторі під тиском 120 МПа маса видавлюється крізь фільєри 6 мм, досягаючи густини понад 1150 кг/м³ без додавання синтетичних смол.",
+      6: "Четверта фаза завершує технологічний переділ. Гаряча гранула продувається у протитоковому охолоджувачі зустрічним холодним повітрям. Лігнін кристалізується, забезпечуючи механічну міцність гранули не менше 98%. Віброгуркіт відсіює 2% крихти назад у прес, а кондиційне паливо пакується у герметичні мішки по 15 кг для приватних пальників або біг-беги по 1000 кг для ТЕЦ.",
+      7: "Порівняльний аналіз чотирьох базових біопалив України доводить неприпустимість спалювання агробіомаси у побутових котлах. Солома зернових містить високу концентрацію оксидів калію, через що її зола плавиться при температурі нижче 850°C, запікаючи колосники монолітним склом. Деревна пелета має температуру деформації золи понад 1200°C і є безпечною для приватного житла, тоді як сухе лушпиння соняшника — найбільш рентабельне для ТЕЦ.",
+      8: "Математичне моделювання показує, що одна тонна деревних пелет виділяє 4.3 Гкал тепла, заміщуючи 450 кубометрів природного газу або 780 кг вугілля. Цього достатньо для автономного опалення житлового будинку 150 м² протягом 35 діб за мінімального виходу золи всього 6 кг. Виробництво є повністю нейтральним щодо викидів діоксиду вуглецю, забезпечуючи стратегічний резерв енергонезалежності України. Доповідь завершено."
+    };
+
+    function updateSlide() {
+      document.querySelectorAll('.slide-card').forEach(s => s.classList.remove('active'));
+      const activeCard = document.querySelector(`.slide-card[data-slide="${currentSlide}"]`);
+      if (activeCard) activeCard.classList.add('active');
+
+      document.getElementById('slideIndicator').textContent = `${currentSlide} / ${totalSlides}`;
+      document.getElementById('btnPrev').disabled = (currentSlide === 1);
+      document.getElementById('btnNext').disabled = (currentSlide === totalSlides);
+
+      const noteBox = document.getElementById('speakerTextContent');
+      noteBox.textContent = speakerNotes[currentSlide] || "Коментар до слайда відсутній.";
+    }
+
+    function navigateSlide(dir) {
+      currentSlide += dir;
+      if (currentSlide < 1) currentSlide = 1;
+      if (currentSlide > totalSlides) currentSlide = totalSlides;
+      updateSlide();
+    }
+
+    function toggleSpeakerNotes() {
+      const drawer = document.getElementById('speakerDrawer');
+      drawer.classList.toggle('open');
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => alert(err.message));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    function toggleTaskModal(show) {
+      const modal = document.getElementById('taskModal');
+      if (show) modal.classList.add('open');
+      else modal.classList.remove('open');
+    }
+
+    function toggleFaqModal(show) {
+      const modal = document.getElementById('faqModal');
+      if (show) modal.classList.add('open');
+      else modal.classList.remove('open');
+    }
+
+    function toggleFaqAccordion(header) {
+      const body = header.nextElementSibling;
+      const arrow = header.querySelector('span:last-child');
+      body.classList.toggle('open');
+      arrow.textContent = body.classList.contains('open') ? '▲' : '▼';
+    }
+
+    // IMAGE FALLBACK & LIGHTBOX ENGINE
+    function handleImgLoad(img) {
+      img.style.display = 'block';
+      const fallback = img.nextElementSibling;
+      if (fallback) fallback.style.display = 'none';
+    }
+
+    function handleImgError(img) {
+      img.style.display = 'none';
+      const fallback = img.nextElementSibling;
+      if (fallback) fallback.style.display = 'flex';
+    }
+
+    function openLightbox(src) {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      img.src = src;
+      img.onerror = () => {
+        alert("Зображення за шляхом " + src + " буде відображено після розміщення у папці work/assets/.");
+        modal.classList.remove('open');
+      };
+      img.onload = () => {
+        modal.classList.add('open');
+      };
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('open');
+    }
+
+    // KEYBOARD NAVIGATION
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        navigateSlide(1);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        navigateSlide(-1);
+      } else if (e.key.toLowerCase() === 'n') {
+        e.preventDefault();
+        toggleSpeakerNotes();
+      } else if (e.key.toLowerCase() === 'q') {
+        e.preventDefault();
+        toggleFaqModal(true);
+      } else if (e.key.toLowerCase() === 'f') {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Escape') {
+        closeLightbox();
+        toggleTaskModal(false);
+        toggleFaqModal(false);
+      }
+    });
+
+    // BIOENERGY APPLIED CALCULATOR LOGIC
+    const fuelParams = {
+      wood: { q: 18.0, ash: 0.006, ashDesc: "Калійне добриво" },
+      sunflower: { q: 17.5, ash: 0.030, ashDesc: "Агрозола, видалення" },
+      straw: { q: 15.0, ash: 0.060, ashDesc: "Шлак, циклон" },
+      peat: { q: 14.5, ash: 0.120, ashDesc: "Баласт, утилізація" }
+    };
+
+    function setCalcPreset(amount) {
+      document.getElementById('calcAmount').value = amount;
+      document.querySelectorAll('.btn-preset').forEach(b => b.classList.remove('active'));
+      if (event && event.target) event.target.classList.add('active');
+      calculateBioenergy();
+    }
+
+    function calculateBioenergy() {
+      const fuelKey = document.getElementById('calcFuelType').value;
+      const amount = parseFloat(document.getElementById('calcAmount').value) || 0;
+      const p = fuelParams[fuelKey];
+
+      const totalMj = amount * p.q;
+      const gcal = totalMj / 4186.8;
+      const mwh = totalMj / 3600.0;
+
+      const gasM3 = (totalMj * 0.88) / (34.0 * 0.92);
+      const coalTons = (totalMj * 0.88) / (23000.0 * 0.75);
+      const ashKg = amount * p.ash;
+
+      const houseKwh = (totalMj / 3.6) * 0.88;
+      const houseHours = houseKwh / 6.0;
+      const houseDays = houseHours / 24.0;
+
+      const greenhouseHours = (totalMj / 3.6 * 0.88) / 200.0;
+      const elecKwh = (totalMj / 3.6) * 0.25;
+      const boilerHours = (totalMj / 3.6 * 0.90) / 1000.0;
+
+      document.getElementById('resGcal').textContent = gcal.toFixed(2) + " Гкал";
+      document.getElementById('resMwh').textContent = mwh.toFixed(2) + " МВт·год";
+      document.getElementById('resGas').textContent = Math.round(gasM3).toLocaleString('uk-UA') + " м³";
+      document.getElementById('resCoal').textContent = coalTons.toFixed(2) + " т";
+      document.getElementById('resAsh').textContent = ashKg.toFixed(1) + " кг";
+      document.getElementById('resAshDesc').textContent = p.ashDesc;
+
+      document.getElementById('resHouseDays').textContent = houseDays.toFixed(1) + " діб";
+      document.getElementById('resGreenhouseHours').textContent = greenhouseHours.toFixed(1) + " год";
+      document.getElementById('resElec').textContent = Math.round(elecKwh).toLocaleString('uk-UA') + " кВт·год";
+      document.getElementById('resBoilerHours').textContent = boilerHours.toFixed(1) + " год";
+    }
+
+    // 8-NODE DYNAMIC DATABASE (HUMAN-ENGINEERED / DE-PERSONALIZED)
+    const plantNodesData = {
+      1: {
+        phase: 1, phaseColor: "var(--phase-1)", pClass: "p1", icon: "🚛",
+        file: "assets/node_01_intake.png",
+        phaseTag: "ФАЗА 1 // ВУЗОЛ 01 // МЕХАНІЧНА ПІДГОТОВКА",
+        title: "1. Приймання та вхідний контроль сировини",
+        op: "Здійснюється прийом та вивантаження у бункери свіжої некондиційної тирси, стружки та обаполу лісопиляння.",
+        phys: "Половину загальної маси становить природна капілярна вода (вологість 45–55%). Насипна густина не перевищує 200 кг/м³ — матеріал надто легкий для далекої доставки автотранспортом.",
+        res: "Створення стабільного накопичувального буфера для безперервного живлення технологічної лінії."
+      },
+      2: {
+        phase: 1, phaseColor: "var(--phase-1)", pClass: "p1", icon: "🧲",
+        file: "assets/node_02_magnet.png",
+        phaseTag: "ФАЗА 1 // ВУЗОЛ 02 // ЗАХИСТ ОБЛАДНАННЯ",
+        title: "2. Двоступенева магнітна та ситова сепарація",
+        op: "Видалення сторонніх мінеральних і металевих часток перед подачею на подрібнювачі та сушарку.",
+        phys: "Потужний підвісний неодимовий електромагніт витягує цвяхи, болти та уламки пилок, а дисковий сепаратор відсіює каміння й пісок.",
+        res: "100% захист пресової кільцевої матриці від аварійного розколу та зниження вмісту золи до норми Ad ≤ 0.7%."
+      },
+      3: {
+        phase: 2, phaseColor: "var(--phase-2)", pClass: "p2", icon: "🔥",
+        file: "assets/node_03_dryer.png",
+        phaseTag: "ФАЗА 2 // ВУЗОЛ 03 // ТЕРМОДИНАМІЧНЕ ЗНЕВОДНЕННЯ",
+        title: "3. Термодинамічне сушіння біомаси",
+        op: "Інтенсивне випаровування вологи гарячим теплоносієм у триходовому обертовому барабані або на стрічці.",
+        phys: "Вологість сировини знижується з 50% до нормативних 8–10%. На випаровування 800 кг води на 1 т пелет витрачається близько 2.8 ГДж тепла.",
+        res: "Отримання сухої тріски. Тепло повністю покривається спалюванням супутніх відходів окорки колод (деревної кори)."
+      },
+      4: {
+        phase: 3, phaseColor: "var(--phase-3)", pClass: "p3", icon: "🔨",
+        file: "assets/node_04_mill.png",
+        phaseTag: "ФАЗА 3 // ВУЗОЛ 04 // МЕХАНІЧНЕ ПОДРІБНЕННЯ",
+        title: "4. Тонкий ударно-молотковий помел",
+        op: "Перетирання висушеної тріски обертовими сталевими пластинами (молотками) крізь калібровані сита.",
+        phys: "Отримання однорідного деревного борошна розміром часток 1.0–2.5 мм без великих твердих включень.",
+        res: "Підготовка структури до пресування: однорідна фракція виключає утворення внутрішніх тріщин у гранулі."
+      },
+      5: {
+        phase: 3, phaseColor: "var(--phase-3)", pClass: "p3", icon: "💨",
+        file: "assets/node_05_steam.png",
+        phaseTag: "ФАЗА 3 // ВУЗОЛ 05 // ГІДРОТЕРМІЧНА ОБРОБКА",
+        title: "5. Парове кондиціонування та активація лігніну",
+        op: "Обробка сухого деревного борошна сухою насиченою парою з температурою 85–95°C у шнековому змішувачі.",
+        phys: "Природний високомолекулярний полімер лігнін (вміст 20–30%) плавиться і переходить у пластичний стан термоклею.",
+        res: "Створення липкої пластичної маси без додавання хімічних клеїв, фенолів чи синтетичних смол."
+      },
+      6: {
+        phase: 3, phaseColor: "var(--phase-3)", pClass: "p3", icon: "⚙️",
+        file: "assets/node_06_press.png",
+        phaseTag: "ФАЗА 3 // ВУЗОЛ 06 // ПРЕСУВАННЯ НАДВИСОКИМ ТИСКОМ",
+        title: "6. Формування гранул у кільцевій матриці",
+        op: "Затягування гарячої маси у клиновий зазор і продавлювання крізь отвори (фільєри) матриці діаметром 6 мм.",
+        phys: "Тиск у зоні деформації сягає 100–120 МПа (понад 1100 атмосфер), маса стискається в 6 разів і розігрівається до 115°C.",
+        res: "Монолітні пелети з пікнометричною густиною 1150–1250 кг/м³, які на виході відсікаються ножами на довжину 10–30 мм."
+      },
+      7: {
+        phase: 4, phaseColor: "var(--phase-4)", pClass: "p4", icon: "❄️",
+        file: "assets/node_07_cooler.png",
+        phaseTag: "ФАЗА 4 // ВУЗОЛ 07 // СТАБІЛІЗАЦІЯ СТРУКТУРИ",
+        title: "7. Протиточне охолодження та загартування лігніну",
+        op: "Продування гарячих свіжоспресованих гранул зустрічним потоком холодного повітря у вертикальній шахті.",
+        phys: "Температура гранул падає з 95°C до рівня довкілля. Розм'якшений лігнін кристалізується («загартовується»).",
+        res: "Гранула набуває нормативної твердості та стійкості до стирання (DU ≥ 98.0%). Вібросито повертає 2% пилу назад у прес."
+      },
+      8: {
+        phase: 4, phaseColor: "var(--phase-4)", pClass: "p4", icon: "📦",
+        file: "assets/node_08_packing.png",
+        phaseTag: "ФАЗА 4 // ВУЗОЛ 08 // ЛОГІСТИЧНЕ СКЛАДУВАННЯ",
+        title: "8. Герметичне фасування та відвантаження",
+        op: "Автоматичне зважування, затарювання та герметична запайка готового стандартизованого біопалива.",
+        phys: "Поліетиленові мішки по 15 кг захищають паливо від атмосферної вологи. Біг-беги по 1000 кг зручні для ТЕЦ.",
+        res: "Готовий до відвантаження енергоносій преміум-якості ENplus A1 з мінімальним екологічним слідом."
+      }
+    };
+
+    let currentNodeIndex = 1;
+
+    function activateNode(idx, btn) {
+      if (currentNodeIndex === idx) return;
+      currentNodeIndex = idx;
+
+      // Update button styles
+      document.querySelectorAll('.node-step-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      const data = plantNodesData[idx];
+
+      // 3D FLIP ANIMATION ON IMAGE
+      const flipper = document.getElementById('nodeMediaFrame');
+      const textWrap = document.getElementById('nodeTextDataWrap');
+      
+      flipper.classList.add('flipping');
+      textWrap.classList.add('changing');
+
+      setTimeout(() => {
+        // Swap Data
+        document.getElementById('nodeDynamicImg').src = data.file;
+        document.getElementById('nodeFallbackIcon').textContent = data.icon;
+        document.getElementById('nodeFallbackTitle').textContent = `ВУЗОЛ 0${idx}: ${data.title.split('. ')[1].toUpperCase()}`;
+        document.getElementById('nodeFallbackSub').textContent = data.op;
+
+        document.getElementById('nodePhaseTag').textContent = data.phaseTag;
+        document.getElementById('nodePhaseTag').style.color = data.phaseColor;
+
+        const mainCard = document.getElementById('nodeMainCard');
+        mainCard.className = `kpi-card ${data.pClass}`;
+
+        document.getElementById('nodeTitle').textContent = data.title;
+        document.getElementById('nodeOpDesc').textContent = data.op;
+        document.getElementById('nodePhysDesc').textContent = data.phys;
+        document.getElementById('nodeResDesc').textContent = data.res;
+        document.getElementById('nodeCounterLabel').textContent = `Вузол ${idx} із 8`;
+
+        // Restore animation
+        flipper.classList.remove('flipping');
+        textWrap.classList.remove('changing');
+      }, 200);
+    }
+
+    function stepNode(dir) {
+      let next = currentNodeIndex + dir;
+      if (next < 1) next = 8;
+      if (next > 8) next = 1;
+      const targetBtn = document.querySelectorAll('.node-step-btn')[next - 1];
+      activateNode(next, targetBtn);
+    }
+
+    function openNodeLightbox() {
+      const data = plantNodesData[currentNodeIndex];
+      openLightbox(data.file);
+    }
+
+    // INIT
+    updateSlide();
+    calculateBioenergy();
+  </script>
+</body>
+</html>
