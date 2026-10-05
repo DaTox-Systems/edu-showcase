@@ -393,9 +393,6 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       transition: all 0.3s ease;
     }
 
@@ -404,19 +401,12 @@
       box-shadow: 0 8px 24px rgba(0, 188, 212, 0.15);
     }
 
-    .media-img {
+    /* ПОЛНАЯ ИЗОЛЯЦИЯ: КАРТИНКА СТРОГО ПОВЕРХ ЗАГЛУШКИ */
+    .media-fallback {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      display: none;
-      transition: transform 0.3s ease;
-    }
-
-    .media-frame:hover .media-img {
-      transform: scale(1.02);
-    }
-
-    .media-fallback {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -424,10 +414,37 @@
       text-align: center;
       padding: 24px 20px;
       color: var(--text-muted);
-      width: 100%;
-      height: 100%;
       background: radial-gradient(circle at center, #151a22 0%, #0d1017 100%);
       box-sizing: border-box;
+      z-index: 1;
+    }
+
+    .media-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 2;
+      transition: transform 0.3s ease, opacity 0.25s ease;
+      background: #0d1017;
+    }
+
+    .media-frame:hover .media-img {
+      transform: scale(1.02);
+    }
+
+    .interactive-subcard {
+      transition: all 0.2s ease;
+    }
+    .interactive-subcard:hover {
+      border-color: var(--phase-1);
+      transform: translateY(-2px);
+    }
+    .interactive-subcard.active {
+      background: var(--phase-1-glow);
+      border-color: var(--phase-1);
     }
 
     .media-fallback-icon {
@@ -1017,14 +1034,27 @@
         <button class="btn-nav" id="btnPrev" onclick="navigateSlide(-1)">◀ НАЗАД</button>
         <span class="slide-indicator" id="slideIndicator">1 / 8</span>
         <button class="btn-nav" id="btnNext" onclick="navigateSlide(1)">ВПЕРЕД ▶</button>
+
+        <!-- ПЕРЕХОД К ЛЮБОМУ СЛАЙДУ В 1 КЛИК -->
+        <select class="calc-select" id="slideQuickSelect" onchange="goToSlide(parseInt(this.value))" style="padding: 4px 8px; font-size: 11px; height: 30px;">
+          <option value="1">Слайд 1: Вхід у проблему (Виклики)</option>
+          <option value="2">Слайд 2: Карта заводу (8 вузлів)</option>
+          <option value="3">Слайд 3: Фаза 1 — Підготовка тріски</option>
+          <option value="4">Слайд 4: Фаза 2 — Термодинаміка сушіння</option>
+          <option value="5">Слайд 5: Фаза 3 — Лігнін та прес 120 МПа</option>
+          <option value="6">Слайд 6: Фаза 4 — Стабілізація та упаковка</option>
+          <option value="7">Слайд 7: Інженерний батл (4 біопалива)</option>
+          <option value="8" selected>Слайд 8: Економіка та окупність котла</option>
+          <option value="9">Слайд 9: Академічні висновки</option>
+        </select>
       </div>
 
       <div class="view-mode-group">
         <button class="btn-action btn-notes-toggle" id="btnNotes" onclick="toggleSpeakerNotes()">
-          💬 ШПАРГАЛКА СПІКЕРА [N]
+          🎙️ ДОПОВІДЬ ДО СЛАЙДУ [N]
         </button>
         <button class="btn-action btn-faq-toggle" onclick="toggleFaqModal(true)">
-          📚 НАУКОВИЙ РЕЗЕРВ [Q]
+          📚 ДОДАТКОВІ ПИТАННЯ [Q]
         </button>
         <button class="btn-action" onclick="toggleFullscreen()">
           ⛶ ПОВНИЙ ЕКРАН [F]
@@ -1065,7 +1095,7 @@
         <div class="slide-split">
           <div class="slide-visual">
             <div class="media-frame" onclick="openLightbox('assets/01_hero_problem.png')">
-              <img src="assets/01_hero_problem.png" class="media-img" alt="Енергетичний виклик та біомаса" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <img src="assets/01_hero_problem.png" class="media-img" alt="Енергетичний виклик та біомаса" onerror="handleImgError(this)">
               <div class="media-fallback">
                 <div class="media-fallback-icon">🇺🇦</div>
                 <div class="media-fallback-title">01_hero_problem.png</div>
@@ -1231,56 +1261,73 @@
         </div>
       </article>
 
-      <!-- SLIDE 3: PHASE 1 - INTAKE & SEPARATION -->
+      <!-- SLIDE 3: INTERACTIVE 3D PHASE 1 INSPECTOR -->
       <article class="slide-card" data-slide="3">
         <div class="slide-header">
           <div>
-            <div class="slide-badge" style="color:var(--phase-1);">АКТ 03 // ФАЗА 1: ПІДГОТОВКА ТА ЗАХИСТ</div>
-            <h2 class="slide-title">Вузол 1: Приймання, фракціонування та магнітна сепарація</h2>
+            <div class="slide-badge" style="color:var(--phase-1);">АКТ 03 // ФАЗА 1: МЕХАНІЧНА ПІДГОТОВКА ТА ЗАХИСТ</div>
+            <h2 class="slide-title">Вузли 1–2: Фракціонування деревини та захисна сепарація</h2>
           </div>
           <div class="slide-num-stamp">03 / 08</div>
         </div>
 
         <div class="slide-split">
-          <div class="slide-visual">
-            <div class="media-frame" onclick="openLightbox('assets/03_shredder_magnet.png')">
-              <img src="assets/03_shredder_magnet.png" class="media-img" alt="Подрібнювач та магнітний сепаратор" onload="handleImgLoad(this)" onerror="handleImgError(this)">
-              <div class="media-fallback">
-                <div class="media-fallback-icon">🧲</div>
-                <div class="media-fallback-title">03_shredder_magnet.png</div>
-                <div class="media-fallback-sub">Рубальна машина та підвісний неодимовий магніт, що витягує уламки металу над потоком тріски</div>
+          <!-- 3D FLIPPER VISUAL ON SLIDE 3 -->
+          <div class="slide-visual" style="perspective: 1200px;">
+            <div class="media-frame node-3d-flipper" id="s3MediaFrame" onclick="openS3Lightbox()">
+              <img src="assets/03_shredder_magnet.png" id="s3Img" class="media-img" alt="Обладнання фази 1" onerror="handleImgError(this)">
+              <div class="media-fallback" id="s3Fallback">
+                <div class="media-fallback-icon" id="s3Icon">🧲</div>
+                <div class="media-fallback-title" id="s3Title">ЕЛЕКТРОМАГНІТНИЙ ЗАХИСТ</div>
+                <div class="media-fallback-sub" id="s3Sub">Вилучення феромагнітних включень перед подачею сировини у сушильний барабан</div>
               </div>
             </div>
-            <div class="media-hint">🔍 Натисніть для перегляду у високій якості</div>
+            <div class="media-hint">🔍 Натисніть на зображення для повноекранного перегляду</div>
           </div>
 
           <div class="slide-data">
-            <div class="kpi-card p1">
-              <div class="kpi-label">Вхідні параметри та логістика</div>
-              <ul class="bullet-list">
-                <li>Свіжа некондиційна тирса має вологість <span class="glossary-term" data-tooltip="Робоча вологість">$W^r = 45\text{--}55\%$</span> та насипну густину лише 180–220 кг/м³.</li>
-                <li>Економічне плече доставки вологої сировини автотранспортом обмежене відстанню у <strong>50 км</strong>.</li>
-              </ul>
+            <!-- 1. ЕКОНОМІКА СИРОВИНИ -->
+            <div class="kpi-card p1" style="padding:10px 14px;">
+              <div class="kpi-label" style="color:var(--phase-1);">Економічний бар'єр доставки сировини</div>
+              <p style="font-size:12px; color:#cbd5e1; line-height:1.5;">
+                Свіжа тирса наполовину складається з води (<span class="glossary-term" data-tooltip="Робоча вологість палива">W<sup>r</sup> = 45–55%</span>) і займає величезний об'єм. Вантажівка перевозить переважно баластну воду та повітря. Тому транспортувати сировину далі ніж на <strong>50 км</strong> економічно збитково — пелетний завод зобов'язаний розташовуватися безпосередньо біля джерела відходів (лісопилки).
+              </p>
             </div>
 
-            <div class="grid-2col">
-              <div class="kpi-card p1">
-                <div class="kpi-label">Рубальні машини</div>
-                <div class="kpi-desc">
-                  Обапіл і шматки кори подрібнюються в однорідну технологічну тріску <strong>15–25 мм</strong> для стабілізації аеродинаміки сушильного барабана.
+            <p style="font-size: 11px; color: var(--phase-1); margin: 0; font-family: var(--font-mono);">
+              👉 Натисніть на картку етапу, щоб побачити роботу обладнання на фото:
+            </p>
+
+            <!-- 2. СВЯЗАННАЯ ТРИАДА ПОДГОТОВКИ -->
+            <div class="grid-3col">
+              <div class="kpi-card p1 interactive-subcard active" id="s3Card1" onclick="switchS3Sub(1)" style="cursor:pointer; padding:10px;">
+                <div class="kpi-label">1. Калібрування (15–25 мм)</div>
+                <div class="kpi-desc" style="font-size:11px;">
+                  Шматки різного розміру сохнуть нерівномірно (дрібне згорить, велике залишиться мокрим). Рубальна машина приводить обрізки до єдиного розміру.
                 </div>
               </div>
 
-              <div class="kpi-card p1" style="border-left-color: var(--alert);">
-                <div class="kpi-label" style="color:var(--alert);">Захист матриці преса</div>
-                <div class="kpi-desc">
-                  Двоступенева магнітна колонка з неодимовими магнітами вилучає цвяхи та болти, виключаючи аварійне руйнування матриці вартістю понад 5 000 євро.
+              <div class="kpi-card p1 interactive-subcard" id="s3Card2" onclick="switchS3Sub(2)" style="cursor:pointer; padding:10px;">
+                <div class="kpi-label">2. Відсів піску (Гуркіт)</div>
+                <div class="kpi-desc" style="font-size:11px;">
+                  Пісок із лісу — це абразив, який стирає метал сушарки і преса на 40% швидше. Дисковий гуркіт відсіює бруд, гарантуючи європейську зольність <span class="glossary-term" data-tooltip="Зольність сухої маси">A<sup>d</sup> ≤ 0.7%</span>.
+                </div>
+              </div>
+
+              <div class="kpi-card p1 interactive-subcard" id="s3Card3" onclick="switchS3Sub(3)" style="cursor:pointer; padding:10px; border-left-color: var(--alert);">
+                <div class="kpi-label" style="color:var(--alert);">3. Магнітний бар'єр</div>
+                <div class="kpi-desc" style="font-size:11px;">
+                  У відходах трапляються цвяхи та скоби. Один випадковий болт розколює сталеву матрицю преса вартістю <strong>понад 5 000 €</strong>, зупиняючи завод на тижні.
                 </div>
               </div>
             </div>
 
-            <div class="slide-footnote">
-              * Застосування дискових гуркотів знижує вміст піску, гарантуючи норматив $A^d \le 0.7\%$.
+            <!-- 3. ИТОГ ФАЗЫ 1 -->
+            <div class="kpi-card p1 interactive-subcard" id="s3Card4" onclick="switchS3Sub(4)" style="cursor:pointer; padding:10px 14px; border-left-color: var(--phase-2);">
+              <div class="kpi-label" style="color:var(--phase-2);">Отриманий результат підготовчої фази</div>
+              <p style="font-size:12px; color:#cbd5e1; line-height:1.45;">
+                Отримано чисту, однорідну тріску однакового розміру, без заліза та мінералів, повністю підготовлену до безпечного і рівномірного сушіння.
+              </p>
             </div>
           </div>
         </div>
@@ -1310,86 +1357,112 @@
           </div>
 
           <div class="slide-data">
-            <div class="grid-2col">
-              <div class="kpi-card p2">
-                <div class="kpi-label">Зниження вологості</div>
-                <div class="kpi-value" style="color:var(--phase-2);">50% ➔ 10%</div>
-                <div class="kpi-desc">Видалення 800 кг капілярної вологи на 1 т готових пелет.</div>
-              </div>
-
-              <div class="kpi-card p2">
-                <div class="kpi-label">Питомі теплові витрати</div>
-                <div class="kpi-value" style="color:var(--phase-2);">3.2 – 3.6 МДж</div>
-                <div class="kpi-desc">Теплової енергії на 1 кг випаруваної води з сировини.</div>
-              </div>
-            </div>
-
-            <div class="kpi-card p2">
-              <div class="kpi-label">Матеріально-тепловий баланс та автономність</div>
-              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--phase-2); background: #0d1017; padding: 8px 10px; border-radius: 4px; margin-bottom: 6px;">
-                Q_суш = m_w \cdot r + Q_втрат \approx 2.7\text{--}3.0\text{ ГДж на 1 т пелет}
-              </div>
-              <p style="font-size: 12px; color: #cbd5e1; line-height: 1.5;">
-                Виробництво не використовує природний газ. Тепло забезпечується спалюванням <strong>190 кг власної некондиційної кори</strong> ($Q_i^r \approx 14.5\text{ МДж/кг}$) у передтопку барабанної або стрічкової сушарки. Лінія є на 100% теплоенергетично автономною.
+            <!-- 1. ФІЗИЧНА СУТЬ ВОДНОГО БАР'ЄРА -->
+            <div class="kpi-card p2" style="padding:10px 14px;">
+              <div class="kpi-label" style="color:var(--phase-2);">Водний бар'єр: чому не можна гранулювати сиру тирсу?</div>
+              <p style="font-size:12px; color:#cbd5e1; line-height:1.5;">
+                Сира деревина (50% води) не здатна сформувати тверду гранулу — під тиском преса вода закипає і пар розриває гранулу на шматки. Щоб лігнін склеїв волокна, вологість сировини потрібно примусово знизити з <strong>50% до 8–10%</strong>.
               </p>
             </div>
 
-            <div class="slide-footnote">
-              * Застосування стрічкових низькотемпературних сушарок (вода 85–90°C) виключає займання деревного пилу.
+            <!-- 2. ДВЕ КЛЮЧЕВЫЕ СУТЬОВЫЕ КАРТОЧКИ -->
+            <div class="grid-2col">
+              <div class="kpi-card p2" style="padding:10px 12px;">
+                <div class="kpi-label">Масштаб випаровування</div>
+                <div class="kpi-value" style="color:var(--phase-2); font-size:16px;">800 літрів води</div>
+                <div class="kpi-desc" style="font-size:11px;">
+                  Саме стільки води сушильний барабан повинен випарувати в атмосферу, щоб отримати лише <strong>1 тонну сухих готових пелет</strong> (витрачається 1.8 т сирої тирси).
+                </div>
+              </div>
+
+              <div class="kpi-card p2" style="padding:10px 12px;">
+                <div class="kpi-label">Теплова формула процесу</div>
+                <div class="kpi-value" style="color:var(--phase-2); font-size:16px;">2.8 Гігаджоуля тепла</div>
+                <div class="kpi-desc" style="font-size:11px;">
+                  Енергія складається з теплоти фазового переходу води в пару (2.26 МДж/кг) та втрат тепла барабана: <code>Q = m<sub>w</sub> · r + Q<sub>втрат</sub></code> (3.4 МДж на кожен 1 кг води).
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. ИНЖЕНЕРНЫЙ ОТВЕТ: ГДЕ БРАТЬ ТЕПЛО БЕЗ ГАЗА -->
+            <div class="kpi-card p2" style="padding:10px 14px; border-left-color: var(--phase-3);">
+              <div class="kpi-label" style="color:var(--phase-3);">Інженерне рішення: як сушити без витрат природного газу?</div>
+              <p style="font-size:12px; color:#cbd5e1; line-height:1.5;">
+                Використовувати для сушарки покупний природний газ економічно неможливо — собівартість палива злетить у рази. Завод реалізує <strong>замкнений енергетичний цикл</strong>: у власному передтопку спалюють <strong>190 кг деревної кори</strong>, знятої з колод під час їхнього окорування (<span class="glossary-term" data-tooltip="Нижча теплота згоряння сухої кори">Q<sub>i</sub><sup>r</sup> ≈ 14.5 МДж/кг</span>). Це повністю покриває всі 2.8 ГДж. Завод є на <strong>100% теплоенергетично автономним</strong>.
+              </p>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- SLIDE 5: PHASE 3 - LIGNIN & PELLET PRESS -->
+      <!-- SLIDE 5: INTERACTIVE 3D PHASE 3 INSPECTOR -->
       <article class="slide-card" data-slide="5">
         <div class="slide-header">
           <div>
             <div class="slide-badge" style="color:var(--phase-3);">АКТ 05 // ФАЗА 3: ПЛАСТИФІКАЦІЯ ТА ПРЕСУВАННЯ</div>
-            <h2 class="slide-title">Вузли 3–4: Активація лігніну парою та пресування 120 МПа</h2>
+            <h2 class="slide-title">Вузли 4–6: Молотковий помел, плавлення лігніну та тиск 120 МПа</h2>
           </div>
           <div class="slide-num-stamp">05 / 08</div>
         </div>
 
         <div class="slide-split">
-          <div class="slide-visual">
-            <div class="media-frame" onclick="openLightbox('assets/05_press_lignin.png')">
-              <img src="assets/05_press_lignin.png" class="media-img" alt="Прес-гранулятор та лігнін" onload="handleImgLoad(this)" onerror="handleImgError(this)">
-              <div class="media-fallback">
-                <div class="media-fallback-icon">⚙️</div>
-                <div class="media-fallback-title">05_press_lignin.png</div>
-                <div class="media-fallback-sub">Мікроструктура плавлення лігніну під парою та розріз прес-гранулятора з матрицею 120 МПа</div>
+          <!-- 3D FLIPPER VISUAL -->
+          <div class="slide-visual" style="perspective: 1200px;">
+            <div class="media-frame node-3d-flipper" id="s5MediaFrame" onclick="openS5Lightbox()">
+              <img src="assets/05_press_lignin.png" id="s5Img" class="media-img" alt="Прес-гранулятор" onerror="handleImgError(this)">
+              <div class="media-fallback" id="s5Fallback">
+                <div class="media-fallback-icon" id="s5Icon">⚙️</div>
+                <div class="media-fallback-title" id="s5Title">ПРЕС-ГРАНУЛЯТОР 120 МПА</div>
+                <div class="media-fallback-sub" id="s5Sub">Формування гранул у кільцевій матриці крізь фільєри 6 мм під тиском 1100 атмосфер</div>
               </div>
             </div>
-            <div class="media-hint">🔍 Натисніть для перегляду у високій якості</div>
+            <div class="media-hint">🔍 Натисніть на зображення для повноекранного перегляду</div>
           </div>
 
           <div class="slide-data">
-            <div class="grid-2col">
-              <div class="kpi-card p3">
-                <div class="kpi-label">Тиск у зоні деформації</div>
-                <div class="kpi-value" style="color:var(--phase-3);">100 – 120 МПа</div>
-                <div class="kpi-desc">Понад 1100 атмосфер у клині між вальцем і матрицею.</div>
-              </div>
-
-              <div class="kpi-card p3">
-                <div class="kpi-label">Температура тертя</div>
-                <div class="kpi-value" style="color:var(--phase-2);">95 – 115 °C</div>
-                <div class="kpi-desc">Саморозігрів маси у фільєрах діаметром 6.0 мм.</div>
-              </div>
+            <!-- 4 КЛИКАБЕЛЬНЫХ ТАБА В РЯД -->
+            <div class="grid-4col" style="gap:6px; margin-bottom:4px;">
+              <button class="node-step-btn" id="s5Tab1" onclick="switchS5Sub(1)" style="padding:6px 4px;">
+                <span class="step-num" style="color:var(--phase-3);">01</span>
+                <span class="step-title" style="font-size:10px;">Помел у борошно</span>
+              </button>
+              <button class="node-step-btn" id="s5Tab2" onclick="switchS5Sub(2)" style="padding:6px 4px;">
+                <span class="step-num" style="color:var(--phase-2);">02</span>
+                <span class="step-title" style="font-size:10px;">Плавлення лігніну</span>
+              </button>
+              <button class="node-step-btn active" id="s5Tab3" onclick="switchS5Sub(3)" style="padding:6px 4px;" data-phase="3">
+                <span class="step-num" style="color:var(--phase-3);">03</span>
+                <span class="step-title" style="font-size:10px;">Прес 120 МПа</span>
+              </button>
+              <button class="node-step-btn" id="s5Tab4" onclick="switchS5Sub(4)" style="padding:6px 4px;">
+                <span class="step-num" style="color:var(--phase-2);">04</span>
+                <span class="step-title" style="font-size:10px;">Геометрія L/D</span>
+              </button>
             </div>
 
-            <div class="kpi-card p3">
-              <div class="kpi-label">Природний термоклей: Роль <span class="glossary-term" data-tooltip="Природний полімер клітинних стінок деревини (вміст 20–30%), що плавиться при нагріванні.">Лігніну</span></div>
-              <ul class="bullet-list p3">
-                <li>Деревина містить 20–30% лігніну. При пропарюванні ($T = 85\text{--}95\ ^\circ\text{C}$) він розм'якшується, виступаючи натуральним зв'язуючим агентом.</li>
-                <li>За тиску понад 100 МПа долається межа пружності клітин, а розплавлений лігнін запечатує пори, утворюючи монолітну структуру з густиною $>1150\text{ кг/м}^3$.</li>
-                <li>Синтетичні клеї, феноли та хімічні смоли відсутні на 100%.</li>
-              </ul>
+            <!-- ПРОСТОРНАЯ ЧИТАЕМАЯ КАРТОЧКА С НОРМАЛЬНЫМ ШРИФТОМ -->
+            <div class="kpi-card p3 text-transition-wrap" id="s5DataCard" style="padding:16px 18px; min-height:240px; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="kpi-label" id="s5CardLabel" style="color:var(--phase-3); font-size:10.5px; margin-bottom:6px;">
+                  ЕТАП 03 // СЕРЦЕ ЗАВОДУ: ПРЕС-ГРАНУЛЯТОР
+                </div>
+                <h3 id="s5CardTitle" style="font-size:16px; color:#fff; margin-bottom:10px;">
+                  3. Як працює прес: кільцева матриця, отвори-фільєри та вальці
+                </h3>
+                <p id="s5CardDesc" style="font-size:13px; color:#cbd5e1; line-height:1.6; margin-bottom:12px;">
+                  Робочим органом є <strong>кільцева матриця</strong> — важкий обертовий барабан зі сталі, у стінках якого просвердлені тисячі отворів діаметром 6 мм (вони називаються <span class="glossary-term" data-tooltip="Калібровані канали в матриці">фільєрами</span>). Всередині барабана обертаються важкі ролики (<strong>вальці</strong>). Вони підминають липку масу і з силою в <strong>1100 атмосфер (100–120 МПа)</strong> вдавлюють її в отвори. Від шаленого тертя температура піднімається до 115 °C, а дерево ущільнюється в 6 разів і виходить монолітними гранулами густиною <strong>> 1150 кг/м³</strong> (тоне у воді).
+                </p>
+              </div>
+
+              <!-- НИЖНЯЯ ПЛАШКА С КЛЮЧЕВЫМ ПАРАМЕТРОМ -->
+              <div style="background:#090c10; padding:10px 14px; border-radius:4px; border-left:3px solid var(--phase-3); display:flex; justify-content:space-between; align-items:center;" id="s5KpiBar">
+                <span style="font-family:var(--font-mono); font-size:11px; color:#94a3b8;" id="s5KpiLabel">Робочий тиск у зоні деформації:</span>
+                <span style="font-family:var(--font-mono); font-size:15px; font-weight:700; color:#fff;" id="s5KpiVal">100 – 120 МПа (1100 атм)</span>
+              </div>
             </div>
 
             <div class="slide-footnote">
-              * Коефіцієнт стиснення фільєри $L/D$ становить $1:4.5\text{--}1:5.5$ для сосни та $1:3.2$ для дуба.
+              * Завдяки пластифікації лігніну гранула склеюється виключно власними природними силами без синтетичних смол.
             </div>
           </div>
         </div>
@@ -1399,8 +1472,8 @@
       <article class="slide-card" data-slide="6">
         <div class="slide-header">
           <div>
-            <div class="slide-badge" style="color:var(--phase-4);">АКТ 06 // ФАЗА 4: СТАБІЛІЗАЦІЯ ТА ЛОГІСТИКА</div>
-            <h2 class="slide-title">Вузол 5: Охолодження, загартування лігніну та фасування</h2>
+            <div class="slide-badge" style="color:var(--phase-4);">АКТ 06 // ФАЗА 4: СТАБІЛІЗАЦІЯ СТРУКТУРИ ТА ЛОГІСТИКА</div>
+            <h2 class="slide-title">Вузли 7–8: Охолодження, загартування лігніну та фасування</h2>
           </div>
           <div class="slide-num-stamp">06 / 08</div>
         </div>
@@ -1408,7 +1481,7 @@
         <div class="slide-split">
           <div class="slide-visual">
             <div class="media-frame" onclick="openLightbox('assets/06_cooling_pack.png')">
-              <img src="assets/06_cooling_pack.png" class="media-img" alt="Охолодження та упаковка" onload="handleImgLoad(this)" onerror="handleImgError(this)">
+              <img src="assets/06_cooling_pack.png" class="media-img" alt="Охолодження та упаковка" onerror="handleImgError(this)">
               <div class="media-fallback">
                 <div class="media-fallback-icon">📦</div>
                 <div class="media-fallback-title">06_cooling_pack.png</div>
@@ -1419,63 +1492,120 @@
           </div>
 
           <div class="slide-data">
+            <!-- 1. ЧОМУ НЕ МОЖНА ПАКУВАТИ ГАРЯЧИМ -->
+            <div class="kpi-card p4" style="padding:10px 14px;">
+              <div class="kpi-label" style="color:var(--phase-4);">Фізичний бар'єр: чому гранулу не можна фасувати одразу з преса?</div>
+              <p style="font-size:12px; color:#cbd5e1; line-height:1.5;">
+                На виході з матриці гранула має температуру <strong>95 °C</strong> і є м'якою, як теплий пластилін. Якщо засипати її в тару гарячою, вона розчавиться під власною вагою в пил, а волога випаде конденсатом усередині мішка, викликаючи плісняву та ризик самозаймання на складі.
+              </p>
+            </div>
+
+            <!-- 2. ПРОТИТОЧНЕ ОХОЛОДЖЕННЯ ТА ЗАГАРТУВАННЯ -->
             <div class="grid-2col">
-              <div class="kpi-card p4">
-                <div class="kpi-label">Протитечійний охолоджувач</div>
-                <div class="kpi-desc">
-                  Гаряча гранула ($95\ ^\circ\text{C}$) продувається зустрічним повітрям. Температура падає до $+5\ ^\circ\text{C}$ над рівнем довкілля.
+              <div class="kpi-card p4" style="padding:10px 12px;">
+                <div class="kpi-label">Протитечійне охолодження</div>
+                <div class="kpi-value" style="color:var(--phase-4); font-size:16px;">95 °C ➔ +5 °C</div>
+                <div class="kpi-desc" style="font-size:11px;">
+                  Холодне повітря продувається назустріч гранулам. Температура падає нижче точки склування лігніну до температури цеху (+5 °C над довкіллям).
                 </div>
               </div>
 
-              <div class="kpi-card p4">
-                <div class="kpi-label">Загартування лігніну (<span class="glossary-term" data-tooltip="Mechanical Durability — показник стійкості гранули до стирання під час логістики.">DU</span>)</div>
-                <div class="kpi-desc">
-                  При охолодженні розм'якшений лігнін кристалізується, забезпечуючи механічну міцність $\mathbf{DU \ge 98.0\%}$.
+              <div class="kpi-card p4" style="padding:10px 12px;">
+                <div class="kpi-label">Загартування міцності (<span class="glossary-term" data-tooltip="Mechanical Durability — стійкість до стирання">DU</span>)</div>
+                <div class="kpi-value" style="color:var(--phase-4); font-size:16px;">DU ≥ 98.0 %</div>
+                <div class="kpi-desc" style="font-size:11px;">
+                  Охолоджений лігнін кристалізується і стає монолітним «скелетом». Гранула набуває твердості каменю та не кришиться під час перевезень.
                 </div>
               </div>
             </div>
 
-            <div class="kpi-card p4">
-              <div class="kpi-label">Вібросепарація пилу та тарні формати</div>
-              <ul class="bullet-list p4">
-                <li>Віброгуркіт відсіває 2–3% крихти та пилу, які повертаються назад у прес (100% безвідходність).</li>
-                <li><strong>Мішки 15 кг:</strong> Герметичний перфорований поліетилен (для приватних автоматичних пальників).</li>
-                <li><strong>Біг-беги 1000 кг:</strong> Поліпропіленові контейнери з антистатичною ниткою (для промислових ТЕЦ).</li>
+            <!-- 3. ВІБРОСИТО ТА ФОРМАТИ ТАРИ -->
+            <div class="kpi-card p4" style="padding:10px 14px; border-left-color: var(--phase-1);">
+              <div class="kpi-label" style="color:var(--phase-1);">100% безвідходність та герметичне фасування</div>
+              <ul class="bullet-list p4" style="margin-top:4px;">
+                <li><strong>Віброгуркіт:</strong> відсіює 2% крихти та пилу, які повертаються шнеком назад у прес (нуль відходів).</li>
+                <li><strong>Мішки 15 кг (для дому):</strong> поліетилен з мікроперфорацією (повітря виходить, волога не заходить).</li>
+                <li><strong>Біг-беги 1000 кг (для ТЕЦ):</strong> поліпропілен з антистатичною ниткою (захист від іскор пилу в дорозі).</li>
               </ul>
-            </div>
-
-            <div class="slide-footnote">
-              * Герметичне фасування захищає гранулу від зворотного вбирання вологи з повітря під час тривалого зберігання.
             </div>
           </div>
         </div>
       </article>
 
-      <!-- SLIDE 7: 4-BIOFUEL COMPARISON MATRIX -->
+      <!-- SLIDE 7: INTERACTIVE 4-BIOFUEL BATTLE WITH 3D FLIP -->
       <article class="slide-card" data-slide="7">
         <div class="slide-header">
           <div>
-            <div class="slide-badge">АКТ 07 // ІНЖЕНЕРНИЙ БАТЛ</div>
-            <h2 class="slide-title">Матриця параметрів 4-х видів біопалив України</h2>
+            <div class="slide-badge">АКТ 07 // ІНЖЕНЕРНИЙ БАТЛ ПАЛИВ</div>
+            <h2 class="slide-title">Порівняльний аналіз 4-х видів твердого біопалива України</h2>
           </div>
           <div class="slide-num-stamp">07 / 08</div>
         </div>
 
         <div class="slide-split">
-          <div class="slide-visual">
-            <div class="media-frame" onclick="openLightbox('assets/07_four_fuels.png')">
-              <img src="assets/07_four_fuels.png" class="media-img" alt="Порівняння 4 видів палива" onload="handleImgLoad(this)" onerror="handleImgError(this)">
-              <div class="media-fallback">
-                <div class="media-fallback-icon">⚖️</div>
-                <div class="media-fallback-title">07_four_fuels.png</div>
-                <div class="media-fallback-sub">Макро-порівняння 4-х зразків палива на плиті: біла деревна A1, лушпиння соняшника, солома, торф</div>
+          <!-- 3D FLIPPER VISUAL -->
+          <div class="slide-visual" style="perspective: 1200px;">
+            <div class="media-frame node-3d-flipper" id="s7MediaFrame" onclick="openS7Lightbox()">
+              <img src="assets/07_wood_pellets.png" id="s7Img" class="media-img" alt="Біопаливо України" onerror="handleImgError(this)">
+              <div class="media-fallback" id="s7Fallback">
+                <div class="media-fallback-icon" id="s7Icon">🪵</div>
+                <div class="media-fallback-title" id="s7Title">ДЕРЕВНІ ПЕЛЕТИ ENPLUS A1</div>
+                <div class="media-fallback-sub" id="s7Sub">Еталонне паливо для автоматичних побутових котлів: мінімальна зольність та відсутність шлакування</div>
               </div>
             </div>
-            <div class="media-hint">🔍 Натисніть для перегляду у високій якості</div>
+            <div class="media-hint">🔍 Натисніть на зображення для повноекранного перегляду</div>
           </div>
 
           <div class="slide-data">
-            <div class="table-wrap">
+            <!-- 4 КЛИКАБЕЛЬНЫХ ТАБА ТОПЛИВА В РЯД -->
+            <div class="grid-4col" style="gap:6px; margin-bottom:4px;">
+              <button class="node-step-btn active" id="s7Tab1" onclick="switchS7Sub(1)" style="padding:6px 4px;" data-phase="1">
+                <span class="step-num" style="color:var(--phase-1);">01</span>
+                <span class="step-title" style="font-size:10px;">Деревина (A1)</span>
+              </button>
+              <button class="node-step-btn" id="s7Tab2" onclick="switchS7Sub(2)" style="padding:6px 4px;">
+                <span class="step-num" style="color:var(--phase-2);">02</span>
+                <span class="step-title" style="font-size:10px;">Лушпиння соняшника</span>
+              </button>
+              <button class="node-step-btn" id="s7Tab3" onclick="switchS7Sub(3)" style="padding:6px 4px;">
+                <span class="step-num" style="color:var(--alert);">03</span>
+                <span class="step-title" style="font-size:10px;">Солома зернових</span>
+              </button>
+              <button class="node-step-btn" id="s7Tab4" onclick="switchS7Sub(4)" style="padding:6px 4px;">
+                <span class="step-num" style="color:var(--phase-4);">04</span>
+                <span class="step-title" style="font-size:10px;">Торфобрикет</span>
+              </button>
+            </div>
+
+            <!-- ПРОСТОРНАЯ ЧИТАЕМАЯ КАРТОЧКА ПАЛИВА -->
+            <div class="kpi-card p1 text-transition-wrap" id="s7DataCard" style="padding:14px 16px; min-height:220px; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="kpi-label" id="s7CardTag" style="color:var(--phase-1); font-size:10.5px; margin-bottom:4px;">
+                  ПАЛИВО 01 // ЕТАЛОН ЧИСТОТИ ДЛЯ ПОБУТОВИХ КОТЛІВ
+                </div>
+                <h3 id="s7CardTitle" style="font-size:16px; color:#fff; margin-bottom:8px;">
+                  1. Деревні гранули (ENplus A1): бездоганна робота пальника
+                </h3>
+                <p id="s7CardDesc" style="font-size:12.5px; color:#cbd5e1; line-height:1.55; margin-bottom:10px;">
+                  <strong>Поведінка в котлі:</strong> Золи утворюється мінімум (<span class="glossary-term" data-tooltip="Зольність сухої маси">A<sup>d</sup> ≤ 0.7%</span> — лише 5–7 кг з тонни). Зола складається з тугоплавких оксидів Кальцію і не плавиться навіть за температури понад 1200 °C. Колосники залишаються абсолютно чистими, склоподібний шлак не утворюється. Ідеальне паливо для автоматизованих пальників приватних будинків.
+                </p>
+              </div>
+
+              <!-- НИЖНЯЯ ПЛАШКА С КЛЮЧЕВЫМИ ХАРАКТЕРИСТИКАМИ -->
+              <div style="background:#090c10; padding:8px 12px; border-radius:4px; border-left:3px solid var(--phase-1); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;" id="s7KpiBar">
+                <span style="font-family:var(--font-mono); font-size:11px; color:#94a3b8;" id="s7Kpi1">Теплота Q<sub>i</sub><sup>r</sup>: <strong>18.0 МДж/кг (5.0 кВт·год)</strong></span>
+                <span style="font-family:var(--font-mono); font-size:11px; color:#94a3b8;" id="s7Kpi2">Температура плавлення: <strong style="color:var(--phase-3);">> 1200 °C (Без шлаку)</strong></span>
+                <span style="font-family:var(--font-mono); font-size:11px; color:#94a3b8;" id="s7Kpi3">Сфера: <strong>Побутові котли / Експорт</strong></span>
+              </div>
+            </div>
+
+            <!-- АККОРДЕОН СВОДНОЙ ТАБЛИЦЫ ДЛЯ ГЛУБОКОГО АНАЛИЗА -->
+            <button class="sessions-accordion-btn" onclick="toggleSummaryTable()" style="margin-top:6px; padding:6px 10px; font-size:10px;">
+              <span>📊 РОЗГОРНУТИ ПОВНУ ЗВЕДЕНУ ТАБЛИЦЮ ВСІХ 4-Х ПАЛИВ</span>
+              <span id="summaryTableArrow">▼</span>
+            </button>
+
+            <div class="table-wrap" id="summaryTableBox" style="display:none; margin-top:8px;">
               <table class="bio-table">
                 <thead>
                   <tr>
@@ -1490,85 +1620,143 @@
                   <tr>
                     <td><strong>Сировинна база</strong></td>
                     <td>~3.5 млн м³/рік</td>
-                    <td><span class="tag-pill tag-green">~4.0 млн т/рік (<span class="glossary-term" data-tooltip="Олійноекстракційні заводи">ОЕЗ</span>)</span></td>
+                    <td><span class="tag-pill tag-green">~4.0 млн т/рік (ОЕЗ)</span></td>
                     <td><span class="tag-pill tag-green">>30 млн т/рік</span></td>
                     <td>Поклади Полісся</td>
                   </tr>
                   <tr>
-                    <td><strong>Необхідність сушіння</strong></td>
-                    <td><span class="tag-pill tag-red">ТАК (50% ➔ 10%)</span></td>
-                    <td><span class="tag-pill tag-green">НІ ($W^r \approx 10\%$)</span></td>
-                    <td><span class="tag-pill tag-green">НІ ($W^r \approx 14\%$)</span></td>
-                    <td><span class="tag-pill tag-yellow">ТАК (фрезерний)</span></td>
+                    <td><strong>Сушіння сировини</strong></td>
+                    <td><span class="tag-pill tag-red">Потрібне (50% ➔ 10%)</span></td>
+                    <td><span class="tag-pill tag-green">Не потрібне (сухе 10%)</span></td>
+                    <td><span class="tag-pill tag-green">Сухе з поля (14%)</span></td>
+                    <td><span class="tag-pill tag-yellow">Потрібне (фрезерний)</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Теплота <span class="glossary-term" data-tooltip="Нижча теплота згоряння на робочу масу">$Q_i^r$</span></strong></td>
+                    <td><strong>Теплота Q<sub>i</sub><sup>r</sup></strong></td>
                     <td><strong>18.0 МДж/кг</strong> (5.0 кВт·год)</td>
                     <td><strong>17.5 МДж/кг</strong> (4.8 кВт·год)</td>
                     <td>15.0 МДж/кг (4.2 кВт·год)</td>
                     <td>14.5 МДж/кг (4.0 кВт·год)</td>
                   </tr>
                   <tr>
-                    <td><strong>Зольність <span class="glossary-term" data-tooltip="Зольність сухої маси">$A^d$</span></strong></td>
+                    <td><strong>Зольність A<sup>d</sup></strong></td>
                     <td><span class="tag-pill tag-green">0.5 – 0.7 %</span></td>
                     <td><span class="tag-pill tag-yellow">2.5 – 3.5 %</span></td>
                     <td><span class="tag-pill tag-red">5.0 – 8.0 %</span></td>
                     <td><span class="tag-pill tag-red">10.0 – 15.0 %</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Температура плавлення <span class="glossary-term" data-tooltip="Температура деформації та шлакування золи">$T_{пл}$</span></strong></td>
+                    <td><strong>Плавлення золи T<sub>пл</sub></strong></td>
                     <td><span class="tag-pill tag-green">> 1200 °C</span></td>
                     <td><span class="tag-pill tag-yellow">~1050 °C</span></td>
                     <td><span class="tag-pill tag-red">&lt; 850 °C (Шлак!)</span></td>
                     <td>> 1150 °C</td>
                   </tr>
-                  <tr>
-                    <td><strong>Сфера застосування</strong></td>
-                    <td>Побутові котли, експорт</td>
-                    <td>Промислові ТЕЦ, паросилові</td>
-                    <td>Котли з рухомими колосниками</td>
-                    <td>Побутові печі, сектор ЖКГ</td>
-                  </tr>
                 </tbody>
               </table>
-            </div>
-
-            <div class="kpi-card" style="border-left-color: var(--alert); padding:8px 12px;">
-              <div class="kpi-label" style="color:var(--alert);">Інженерний висновок щодо температури плавлення золи ($T_{пл}$)</div>
-              <div class="kpi-desc">
-                Солома містить велику кількість сполук <strong>Калію ($K_2O$)</strong>, через що зола плавиться при температурі нижче 850°C. У стандартних пальниках це викликає важке склоподібне шлакування. Тому деревна гранула є безальтернативною для приватного житла, а лушпиння соняшника — найбільш рентабельним для промисловості.
-              </div>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- SLIDE 8: APPLIED CALCULATOR & STRATEGIC SUMMARY -->
+      <!-- SLIDE 8: DUAL-MODE CALCULATOR (PHYSICAL & FINANCIAL ROI) -->
       <article class="slide-card" data-slide="8">
         <div class="slide-header">
           <div>
-            <div class="slide-badge">АКТ 08 // ПРИКЛАДНІ РОЗРАХУНКИ ТА ПІДСУМОК</div>
-            <h2 class="slide-title">Енергетичний калькулятор заміщення газу та висновки</h2>
+            <div class="slide-badge">АКТ 08 // ПРИКЛАДНІ РОЗРАХУНКИ ТА ЕКОНОМІКА</div>
+            <h2 class="slide-title">Калькулятор ефективності: Заміщення газу та окупність котла</h2>
           </div>
-          <div class="slide-num-stamp">08 / 08</div>
+          <div class="slide-num-stamp">08 / 09</div>
         </div>
 
         <div class="slide-split">
-          <div class="slide-visual">
-            <div class="media-frame" onclick="openLightbox('assets/08_energy_calculator.png')">
-              <img src="assets/08_energy_calculator.png" class="media-img" alt="Ваги енергетичного еквіваленту" onload="handleImgLoad(this)" onerror="handleImgError(this)">
-              <div class="media-fallback">
-                <div class="media-fallback-icon">⚖️</div>
-                <div class="media-fallback-title">08_energy_calculator.png</div>
-                <div class="media-fallback-sub">Стилізовані ваги: 1 т біопалива врівноважує 450 кубометрів природного газу та засніжений будинок</div>
+          <div class="slide-visual" style="perspective: 1200px;">
+            <div class="media-frame node-3d-flipper" id="s8MediaFrame" onclick="openS8Lightbox()">
+              <img src="assets/08_house_boiler.png" id="s8Img" class="media-img" alt="Об'єкт опалення" onerror="handleImgError(this)">
+              <div class="media-fallback" id="s8Fallback">
+                <div class="media-fallback-icon" id="s8Icon">🏠</div>
+                <div class="media-fallback-title" id="s8Title">ПРИВАТНИЙ ДІМ (150 М²)</div>
+                <div class="media-fallback-sub" id="s8Sub">Автоматичний пелетний котел 18 кВт із бункером у приватному житловому секторі</div>
               </div>
             </div>
-            <div class="media-hint">🔍 Натисніть для перегляду у високій якості</div>
+            <div class="media-hint">🔍 Натисніть на зображення для повноекранного перегляду</div>
           </div>
 
           <div class="slide-data">
-            <!-- INTERACTIVE CALCULATOR (HIDDEN ON PRINT) -->
-            <div class="calc-container">
+            <!-- ПЕРЕКЛЮЧАТЕЛЬ РЕЖИМОВ КАЛЬКУЛЯТОРА -->
+            <div style="display:flex; gap:8px; margin-bottom:6px;">
+              <button class="btn-action active" id="btnCalcModeFin" onclick="switchCalcMode('fin')" style="border-color:var(--phase-3); color:var(--phase-3);">
+                💰 ФІНАНСОВА ОКУПНІСТЬ (ВИТРАТИ / ЕКОНОМІЯ / ТТК)
+              </button>
+              <button class="btn-action" id="btnCalcModePhys" onclick="switchCalcMode('phys')">
+                ⚡ ФІЗИЧНИЙ ЕКВІВАЛЕНТ (ТОННИ / ГАЗ У М³)
+              </button>
+            </div>
+
+            <!-- РЕЖИМ 1: ФИНАНСОВЫЙ КАЛЬКУЛЯТОР ОКУПАЕМОСТИ КОТЛА -->
+            <div class="calc-container" id="calcBoxFin">
+              <div class="grid-2col" style="gap:10px; margin-bottom:10px;">
+                <div class="calc-input-group">
+                  <label class="calc-label">Площа приміщення:</label>
+                  <select class="calc-select" id="finAreaSelect" onchange="applyAreaPreset()">
+                    <option value="100">100 м² (котел 10–12 кВт)</option>
+                    <option value="150" selected>150 м² (котел 16–20 кВт)</option>
+                    <option value="300">300 м² (котел 35–40 кВт)</option>
+                    <option value="1000">1000 м² (промисловий 100 кВт)</option>
+                  </select>
+                </div>
+
+                <div class="calc-input-group">
+                  <label class="calc-label">Чим опалюєте зараз?</label>
+                  <select class="calc-select" id="finSourceType" onchange="calcFinancialRoi()">
+                    <option value="gas" selected>Природний газ (~18 грн/м³ бізнес / ~8 грн дім)</option>
+                    <option value="elec">Електроопалення (4.32 грн/кВт·год)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid-2col" style="gap:10px; margin-bottom:12px;">
+                <div class="calc-input-group">
+                  <label class="calc-label">Ваші витрати зараз у місяць узимку (грн):</label>
+                  <input type="number" class="calc-input" id="finCurrentCost" value="6500" step="500" oninput="calcFinancialRoi()">
+                </div>
+
+                <div class="calc-input-group">
+                  <label class="calc-label">Орієнтовна ціна котла з монтажем (грн):</label>
+                  <input type="number" class="calc-input" id="finBoilerCapex" value="82000" step="1000" oninput="calcFinancialRoi()">
+                </div>
+              </div>
+
+              <!-- РЕЗУЛЬТАТЫ ФИНАНСОВОГО РАСЧЕТА -->
+              <div class="calc-results-grid">
+                <div class="calc-card" style="border-left:3px solid var(--phase-1);">
+                  <div class="calc-card-title">Витрати на пелети / міс</div>
+                  <div class="calc-card-val" id="finPelletCost">2 900 грн</div>
+                  <div class="calc-card-sub">Купівля ~600 кг пелет</div>
+                </div>
+
+                <div class="calc-card" style="border-left:3px solid var(--phase-3);">
+                  <div class="calc-card-title">Чиста економія / міс</div>
+                  <div class="calc-card-val" id="finMonthlySave" style="color:var(--phase-3);">+ 3 600 грн</div>
+                  <div class="calc-card-sub">Зменшення чеку на ~55%</div>
+                </div>
+
+                <div class="calc-card" style="border-left:3px solid var(--phase-2);">
+                  <div class="calc-card-title">Економія за сезон (6 міс)</div>
+                  <div class="calc-card-val" id="finSeasonSave" style="color:var(--phase-2);">+ 21 600 грн</div>
+                  <div class="calc-card-sub">Збережено в бюджеті</div>
+                </div>
+
+                <div class="calc-card" style="border-left:3px solid #fff;">
+                  <div class="calc-card-title">Термін окупності котла</div>
+                  <div class="calc-card-val" id="finPayback" style="color:#fff;">3.8 сезони</div>
+                  <div class="calc-card-sub" id="finPaybackSub">~3.5 роки експлуатації</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- РЕЖИМ 2: ФИЗИЧЕСКИЙ ЭКВИВАЛЕНТ (ТОННЫ, ГАЗ, ЗОЛА) -->
+            <div class="calc-container" id="calcBoxPhys" style="display:none;">
               <div class="calc-row">
                 <div class="calc-input-group">
                   <label class="calc-label" for="calcFuelType">Вибір виду біопалива:</label>
@@ -1597,7 +1785,7 @@
 
               <div class="calc-results-grid">
                 <div class="calc-card">
-                  <div class="calc-card-title">Теплова енергія ($Q$)</div>
+                  <div class="calc-card-title">Теплова енергія (Q)</div>
                   <div class="calc-card-val" id="resGcal">4.30 Гкал</div>
                   <div class="calc-card-sub" id="resMwh">5.00 МВт·год</div>
                 </div>
@@ -1605,7 +1793,7 @@
                 <div class="calc-card">
                   <div class="calc-card-title">Заміщення газу</div>
                   <div class="calc-card-val" id="resGas">450 м³ газу</div>
-                  <div class="calc-card-sub">ККД $\eta = 92\%$</div>
+                  <div class="calc-card-sub">ККД котла η = 92%</div>
                 </div>
 
                 <div class="calc-card">
@@ -1620,81 +1808,108 @@
                   <div class="calc-card-sub" id="resAshDesc">Добриво</div>
                 </div>
               </div>
-
-              <div class="calc-results-grid" style="margin-top: 8px;">
-                <div class="calc-card" style="border-left: 3px solid var(--phase-1);">
-                  <div class="calc-card-title">🏠 Дім 150 м² (6 кВт)</div>
-                  <div class="calc-card-val" id="resHouseDays">34.7 діб</div>
-                  <div class="calc-card-sub">Автономного тепла</div>
-                </div>
-
-                <div class="calc-card" style="border-left: 3px solid var(--phase-2);">
-                  <div class="calc-card-title">🏭 Цех / Котел 200 кВт</div>
-                  <div class="calc-card-val" id="resGreenhouseHours">25.0 годин</div>
-                  <div class="calc-card-sub">Номіналу</div>
-                </div>
-
-                <div class="calc-card" style="border-left: 3px solid var(--phase-3);">
-                  <div class="calc-card-title">⚡ Електроенергія ТЕЦ</div>
-                  <div class="calc-card-val" id="resElec">1 250 кВт·год</div>
-                  <div class="calc-card-sub">$\eta_{el} = 25\%$</div>
-                </div>
-
-                <div class="calc-card" style="border-left: 3px solid var(--phase-4);">
-                  <div class="calc-card-title">🏢 Котельня 1 МВт</div>
-                  <div class="calc-card-val" id="resBoilerHours">5.0 годин</div>
-                  <div class="calc-card-sub">Магістралі</div>
-                </div>
-              </div>
             </div>
 
-            <!-- STATIC FALLBACK TABLE FOR PRINT PDF -->
+            <!-- STATIC TABLE FOR PRINT PDF -->
             <table class="print-static-table">
               <thead>
                 <tr>
-                  <th>Сценарій обсягу</th>
-                  <th>Теплова енергія</th>
-                  <th>Заміщення газу</th>
-                  <th>Заміщення вугілля</th>
-                  <th>Автономія дому (150 м²)</th>
-                  <th>Вихід золи</th>
+                  <th>Площа будинку</th>
+                  <th>Витрати газ / електро</th>
+                  <th>Витрати пелети</th>
+                  <th>Економія за сезон (6 міс)</th>
+                  <th>Окупність котла</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>15 кг (мішок)</strong></td>
-                  <td>0.06 Гкал (0.08 МВт·год)</td>
-                  <td>6.8 м³ газу</td>
-                  <td>11.7 кг</td>
-                  <td>12.5 годин</td>
-                  <td>0.09 кг</td>
+                  <td><strong>100 м²</strong> (котел 10 кВт)</td>
+                  <td>4 500 грн/міс</td>
+                  <td>2 000 грн/міс</td>
+                  <td><strong>+ 15 000 грн</strong></td>
+                  <td>~3.8 сезони</td>
                 </tr>
                 <tr>
-                  <td><strong>1 тонна (біг-бег)</strong></td>
-                  <td>4.30 Гкал (5.00 МВт·год)</td>
-                  <td>450 м³ газу</td>
-                  <td>0.78 т</td>
-                  <td>34.7 діб</td>
-                  <td>6.0 кг</td>
+                  <td><strong>150 м²</strong> (котел 18 кВт)</td>
+                  <td>6 500 грн/міс</td>
+                  <td>2 900 грн/міс</td>
+                  <td><strong>+ 21 600 грн</strong></td>
+                  <td>~3.8 сезони</td>
                 </tr>
                 <tr>
-                  <td><strong>22 тонни (автопоїзд)</strong></td>
-                  <td>94.6 Гкал (110 МВт·год)</td>
-                  <td>9 900 м³ газу</td>
-                  <td>17.2 т</td>
-                  <td>2.1 роки тепла</td>
-                  <td>132 кг</td>
+                  <td><strong>300 м²</strong> (котел 35 кВт)</td>
+                  <td>14 000 грн/міс</td>
+                  <td>5 800 грн/міс</td>
+                  <td><strong>+ 49 200 грн</strong></td>
+                  <td>~2.6 сезони</td>
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      </article>
 
-            <!-- STRATEGIC SUMMARY -->
-            <div class="kpi-card p1" style="padding: 10px 14px; margin-top: 4px;">
-              <div style="font-weight:700; color:#fff; font-size:12.5px; margin-bottom:2px;">
-                Висновки для Об'єднаної енергетичної системи (ОЕС) України
+      <!-- SLIDE 9: FINAL ACADEMIC CONCLUSIONS -->
+      <article class="slide-card" data-slide="9">
+        <div class="slide-header">
+          <div>
+            <div class="slide-badge">АКТ 09 // НАУКОВІ ПІДСУМКИ</div>
+            <h2 class="slide-title">Висновки: Енергетичний, екологічний та державний ефект</h2>
+          </div>
+          <div class="slide-num-stamp">09 / 09</div>
+        </div>
+
+        <div class="slide-split">
+          <div class="slide-visual">
+            <div class="media-frame" onclick="openLightbox('assets/09_co2_cycle.png')">
+              <img src="assets/09_co2_cycle.png" class="media-img" alt="Замкнене коло декарбонізації" onerror="handleImgError(this)">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">🌿</div>
+                <div class="media-fallback-title">09_co2_cycle.png</div>
+                <div class="media-fallback-sub">Замкнений вуглецевий цикл біомаси: фотосинтез лісу -> переробка відходів -> чиста теплова генерація</div>
               </div>
-              <p style="font-size: 11.5px; color: #cbd5e1; line-height: 1.45;">
-                Виробництво паливних гранул забезпечує повну $CO_2$-нейтральність та переводить некондиційні відходи у висококалорійний енергоносій. Повний потенціал біомаси України становить до <strong>8 млрд м³ заміщення імпортного газу на рік</strong>. Науково-технічну доповідь завершено.
+            </div>
+            <div class="media-hint">🔍 Натисніть для перегляду у високій якості</div>
+          </div>
+
+          <div class="slide-data">
+            <div class="grid-2col">
+              <div class="kpi-card p1">
+                <div class="kpi-label" style="color:var(--phase-1);">1. Технологічний підсумок</div>
+                <p style="font-size:12px; color:#cbd5e1; line-height:1.5;">
+                  Доведено можливість перетворення низькосортних вологих відходів лісопиляння (W<sup>r</sup> ≈ 50%) у стандартизоване тверде біопаливо вищої категорії якості <strong>ENplus A1</strong> виключно за рахунок природного лігніну без синтетичних клеїв.
+                </p>
+              </div>
+
+              <div class="kpi-card p2">
+                <div class="kpi-label" style="color:var(--phase-2);">2. Термодинамічна автономність</div>
+                <p style="font-size:12px; color:#cbd5e1; line-height:1.5;">
+                  Виробнича лінія є на 100% теплоенергетично автономною: спалювання 190 кг власної кори окорки повністю покриває випаровування 800 кг води на тонну пелет із нульовими витратами викопного газу.
+                </p>
+              </div>
+
+              <div class="kpi-card p3">
+                <div class="kpi-label" style="color:var(--phase-3);">3. Екологічний ефект (RED II)</div>
+                <p style="font-size:12px; color:#cbd5e1; line-height:1.5;">
+                  Повний замкнений вуглецевий цикл. Використання гранул скорочує викиди парникових газів на <strong>88–94%</strong> у порівнянні з природним газом та вугіллям, формуючи фундамент декарбонізації.
+                </p>
+              </div>
+
+              <div class="kpi-card p4">
+                <div class="kpi-label" style="color:var(--phase-4);">4. Стратегічний резерв України</div>
+                <p style="font-size:12px; color:#cbd5e1; line-height:1.5;">
+                  Утилізація доступного потенціалу твердої біомаси становить резерв заміщення до <strong>8 млрд м³ імпортного газу щороку</strong>, забезпечуючи стійкість Об'єднаної енергетичної системи (ОЕС) України.
+                </p>
+              </div>
+            </div>
+
+            <!-- АКАДЕМИЧЕСКИЙ ЗАКЛЮЧИТЕЛЬНЫЙ БЛОК -->
+            <div class="kpi-card p1" style="padding:12px 16px; background:#0d1117; border-left-color:var(--phase-1);">
+              <div style="font-family:var(--font-title); font-size:14px; color:#fff; margin-bottom:4px;">
+                Науково-технічну доповідь завершено
+              </div>
+              <p style="font-size:11.5px; color:var(--text-muted); line-height:1.5; margin:0;">
+                Представлені розрахунки матеріальних балансів, енергетичної еквівалентності та термінів окупності котлів відкриті для обговорення. Дякую за увагу.
               </p>
             </div>
           </div>
@@ -1714,93 +1929,176 @@
     <img src="" id="lightboxImg" class="lightbox-img" alt="Збільшений графічний рендер">
   </div>
 
-  <!-- MODAL: SCIENTIFIC APPENDIX / FAQ FOR DISCUSSION -->
+  <!-- MODAL: SCIENTIFIC APPENDIX / ADDITIONAL QUESTIONS -->
   <div class="modal-overlay" id="faqModal" onclick="toggleFaqModal(false)">
-    <div class="modal-content" onclick="event.stopPropagation()">
+    <div class="modal-content" onclick="event.stopPropagation()" style="max-width: 820px;">
       <button class="modal-close" onclick="toggleFaqModal(false)">✕</button>
-      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--phase-3); font-weight: 700; margin-bottom: 6px;">
-        НАУКОВИЙ РЕЗЕРВ // ІНЖЕНЕРНИЙ FAQ ДЛЯ ДИСКУСІЇ З ВИКЛАДАЧЕМ:
-      </div>
-      <h3 style="font-family: var(--font-title); font-size: 16px; margin-bottom: 14px; color: #fff;">
-        Поглиблений теплотехнічний аналіз процесів гранулювання (Спеціальність 141)
-      </h3>
-
-      <!-- FAQ 1 -->
-      <div class="faq-card">
-        <div class="faq-header" onclick="toggleFaqAccordion(this)">
-          <span>1. Тепловий баланс сушіння: Звідки береться тепло на випар 800 кг води?</span>
-          <span>▼</span>
-        </div>
-        <div class="faq-body">
-          <p>На випаровування 800 кг води для отримання 1 т пелет потрібно витратити:</p>
-          <div class="faq-math">Q_суш = m_w \cdot r + Q_втрат = 800 \cdot 2.26 + 700 \approx 2.7\text{--}3.0\text{ ГДж}</div>
-          <p>Ця теплова потужність на 100% покривається власним передтопком сушарки, де спалюється <strong>190 кг власної некондиційної кори</strong> ($Q_i^r \approx 14.5\text{ МДж/кг}$). Природний газ не витрачається — лінія є повністю теплоенергетично автономною.</p>
-        </div>
+      
+      <!-- ПЕРЕМИКАЧ ВКЛАДОК -->
+      <div style="display:flex; gap:8px; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
+        <button class="btn-action active" id="btnFaqTabTheory" onclick="switchFaqTab('theory', this)" style="border-color:var(--phase-3); color:var(--phase-3);">
+          📚 ДОДАТКОВІ ПИТАННЯ (ТЕОРІЯ)
+        </button>
+        <button class="btn-action" id="btnFaqTabCalc" onclick="switchFaqTab('calc', this)" style="border-color:var(--phase-1); color:var(--phase-1);">
+          🔬 РОЗРАХУНОК ТЕХНІЧНОГО АНАЛІЗУ ПАЛИВА (ДСТУ)
+        </button>
       </div>
 
-      <!-- FAQ 2 -->
-      <div class="faq-card">
-        <div class="faq-header" onclick="toggleFaqAccordion(this)">
-          <span>2. Хімізм шлакування золи: Чому солома плавиться при T &lt; 850°C, а дерево — ні?</span>
-          <span>▼</span>
+      <!-- ВКЛАДКА 2: КАЛЬКУЛЯТОР-ПОМІЧНИК -->
+      <div id="faqTabCalcContent" style="display:none;">
+        <div style="font-family: var(--font-mono); font-size: 10.5px; color: var(--phase-1); font-weight: 700; margin-bottom: 4px;">
+          КАФЕДРАЛЬНИЙ ПОМІЧНИК РОЗРАХУНКУ ТЕХНІЧНОГО АНАЛІЗУ ТВЕРДОГО ПАЛИВА ЗА ДСТУ
         </div>
-        <div class="faq-body">
-          <p>У золі деревини переважають тугоплавкі оксиди Кальцію і Магнію ($CaO \approx 45\%$, $MgO \approx 10\%$, $T_{пл} > 1200^\circ\text{C}$). У золі соломи та агробіомаси висока концентрація легкоплавких оксидів лужних металів ($K_2O$ до 25%, $Na_2O$) та хлоридів ($KCl$):</p>
-          <div class="faq-math">K_2O + n \cdot SiO_2 \longrightarrow K_2O \cdot nSiO_2 \quad (T_{плавл} = 750\text{--}850^\circ\text{C})</div>
-          <p>Вони утворюють низькотемпературні евтектичні розплави рідкого скла, які налипають на труби теплообмінників котла та спікають колосники в монолітний шлак.</p>
+        <p style="font-size:11.5px; color:#94a3b8; margin-bottom:12px;">
+          Автоматизація обробки результатів лабораторного практикуму за масою наважок:
+        </p>
+
+        <!-- КНОПКИ ПРИМЕРОВ И ОЧИСТКИ -->
+        <div style="display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap;">
+          <button class="btn-preset active" id="btnLabPreset1" onclick="loadLabPreset(1)">📋 Приклад розрахунку №1 (Деревна тирса)</button>
+          <button class="btn-preset" id="btnLabPreset2" onclick="loadLabPreset(2)">📋 Приклад розрахунку №2 (Контрольний зразок)</button>
+          <button class="btn-preset" onclick="clearLabInputs()" style="border-color:var(--alert); color:var(--alert);">🔄 Очистити поля (Ввести власні дані)</button>
+        </div>
+
+        <!-- 3 СЕКЦИИ НАВАЖЕК -->
+        <div class="grid-3col" style="gap:10px; margin-bottom:12px;">
+          <!-- 1. ВОЛОГА РОБОЧА -->
+          <div class="kpi-card p1" style="padding:10px;">
+            <div class="kpi-label" style="color:var(--phase-1);">1. Волога робоча (Wʳ, 105 °C)</div>
+            <div style="font-size:10px; color:#cbd5e1; margin-bottom:6px;">Сушильна шафа: бюкс + наважка</div>
+            <label style="font-size:9.5px; color:var(--text-muted);">Маса тари m<sub>т</sub> (г):</label>
+            <input type="number" step="0.001" class="calc-input" id="labW_t" value="19.805" oninput="calcLabAnalysis()" style="width:100%; margin-bottom:4px; padding:4px;">
+            <label style="font-size:9.5px; color:var(--text-muted);">Маса наважки m (г):</label>
+            <input type="number" step="0.001" class="calc-input" id="labW_m" value="10.063" oninput="calcLabAnalysis()" style="width:100%; margin-bottom:4px; padding:4px;">
+            <label style="font-size:9.5px; color:var(--text-muted);">Після сушіння m₁ (г):</label>
+            <input type="number" step="0.001" class="calc-input" id="labW_m1" value="25.550" oninput="calcLabAnalysis()" style="width:100%; margin-bottom:6px; padding:4px;">
+            <div style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:#fff;" id="labResWr">Wʳ = 42.91 %</div>
+          </div>
+
+          <!-- 2. ЗОЛЬНІСТЬ НА СУХУ МАСУ -->
+          <div class="kpi-card p2" style="padding:10px;">
+            <div class="kpi-label" style="color:var(--phase-2);">2. Зольність (Aᵈ, 815 °C)</div>
+            <div style="font-size:10px; color:#cbd5e1; margin-bottom:6px;">Муфельна піч: тигель + прожарювання</div>
+            <label style="font-size:9.5px; color:var(--text-muted);">Маса тигля m<sub>т</sub> (г):</label>
+            <input type="number" step="0.001" class="calc-input" id="labA_t" value="22.710" oninput="calcLabAnalysis()" style="width:100%; margin-bottom:4px; padding:4px;">
+            <label style="font-size:9.5px; color:var(--text-muted);">Маса наважки m (г):</label>
+            <input type="number" step="0.001" class="calc-input" id="labA_m" value="1.001" oninput="calcLabAnalysis()" style="width:100%; margin-bottom:4px; padding:4px;">
+            <label style="font-size:9.5px; color:var(--text-muted);">Тигель + зола m₁ (г):</label>
+            <input type="number" step="0.001" class="calc-input" id="labA_m1" value="22.717" oninput="calcLabAnalysis()" style="width:100%; margin-bottom:6px; padding:4px;">
+            <div style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:#fff;" id="labResAd">Aᵈ = 0.70 %</div>
+          </div>
+
+          <!-- 3. ЛЕТКІ РЕЧОВИНИ -->
+          <div class="kpi-card p3" style="padding:10px;">
+            <div class="kpi-label" style="color:var(--phase-3);">3. Леткі речовини (Vᵈᵃᶠ, 900 °C)</div>
+            <div style="font-size:10px; color:#cbd5e1; margin-bottom:6px;">Нагрів без кисню (7 хв)</div>
+            <label style="font-size:9.5px; color:var(--text-muted);">Маса тигля з кришкою m<sub>т</sub> (г):</label>
+            <input type="number" step="0.001" class="calc-input" id="labV_t" value="23.544" oninput="calcLabAnalysis()" style="width:100%; margin-bottom:4px; padding:4px;">
+            <label style="font-size:9.5px; color:var(--text-muted);">Маса наважки m (г):</label>
+            <input type="number" step="0.001" class="calc-input" id="labV_m" value="1.000" oninput="calcLabAnalysis()" style="width:100%; margin-bottom:4px; padding:4px;">
+            <label style="font-size:9.5px; color:var(--text-muted);">Після прожарювання m₁ (г):</label>
+            <input type="number" step="0.001" class="calc-input" id="labV_m1" value="23.740" oninput="calcLabAnalysis()" style="width:100%; margin-bottom:6px; padding:4px;">
+            <div style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:#fff;" id="labResVdaf">Vᵈᵃᶠ = 80.40 %</div>
+          </div>
+        </div>
+
+        <!-- АВТОМАТИЧЕСКИЙ ВЫВОД ПОМОЩНИКА -->
+        <div class="kpi-card p1" style="padding:12px; background:#090c10;">
+          <div style="font-family:var(--font-mono); font-size:10px; color:var(--phase-1); font-weight:700; margin-bottom:4px;">
+            АВТОМАТИЧНИЙ ІНЖЕНЕРНИЙ ВИСНОВОК ЗА РЕЗУЛЬТАТАМИ НАВАЖОК:
+          </div>
+          <div style="font-size:12px; color:#cbd5e1; line-height:1.5;" id="labSummaryText">
+            Розрахунок завершено. Робоча вологість 42.91% свідчить про високий вміст капілярної води в тирсі (потребує сушіння). Зольність 0.70% відповідає вищому ґатунку ENplus A1. Вихід летких речовин 80.40% підтверджує високу реакційну здатність факела.
+          </div>
         </div>
       </div>
 
-      <!-- FAQ 3 -->
-      <div class="faq-card">
-        <div class="faq-header" onclick="toggleFaqAccordion(this)">
-          <span>3. Фізика тиску 100–120 МПа: Що відбувається на клітинному рівні?</span>
-          <span>▼</span>
+      <!-- ВКЛАДКА 1: ТЕОРЕТИЧЕСКИЕ ВОПРОСЫ (ВЫЧИЩЕНЫ ОТ СЫРОГО LATEX) -->
+      <div id="faqTabTheoryContent">
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--phase-3); font-weight: 700; margin-bottom: 6px;">
+          ДОДАТКОВІ ПИТАННЯ // ТЕПЛОТЕХНІЧНИЙ АНАЛІЗ
         </div>
-        <div class="faq-body">
-          <p>Початкова насипна густина тирси — лише 180 кг/м³. За тиску до 40 МПа витісняється лише повітря. При досягненні <strong>100–120 МПа</strong> напруження перевищує межу пружності клітинних оболонок лігноцелюлози: клітини руйнуються, молекулярні відстані скорочуються до дії сил Ван-дер-Ваальса, а розм'якшений лігнін запечатує мікропори. Досягається дійсна густина $\mathbf{\rho = 1150\text{--}1250\text{ кг/м}^3}$ (пелета тоне у воді).</p>
-        </div>
-      </div>
+        <h3 style="font-family: var(--font-title); font-size: 16px; margin-bottom: 14px; color: #fff;">
+          Поглиблений теплотехнічний аналіз процесів гранулювання (Спеціальність 141)
+        </h3>
 
-      <!-- FAQ 4 -->
-      <div class="faq-card">
-        <div class="faq-header" onclick="toggleFaqAccordion(this)">
-          <span>4. Геометрія матриці L/D: Чому дуб і сосна вимагають різних фільєр?</span>
-          <span>▼</span>
+        <!-- FAQ 1 -->
+        <div class="faq-card">
+          <div class="faq-header" onclick="toggleFaqAccordion(this)">
+            <span>1. Тепловий баланс сушіння: Звідки береться тепло на випар 800 кг води?</span>
+            <span>▼</span>
+          </div>
+          <div class="faq-body">
+            <p>На випаровування 800 кг води для отримання 1 т пелет потрібно витратити:</p>
+            <div class="faq-math">Q<sub>суш</sub> = m<sub>w</sub> · r + Q<sub>втрат</sub> = 800 · 2.26 + 700 ≈ 2.7 – 3.0 ГДж</div>
+            <p>Ця теплова потужність на 100% покривається власним передтопком сушарки, де спалюється <strong>190 кг деревної кори від окорування колод</strong> (Q<sub>i</sub><sup>r</sup> ≈ 14.5 МДж/кг). Природний газ не витрачається — лінія є повністю теплоенергетично автономною.</p>
+          </div>
         </div>
-        <div class="faq-body">
-          <p>Коефіцієнт стиснення $L/D$ — відношення робочої довжини каналу фільєри до її діаметра (6 мм):</p>
-          <ul>
-            <li><strong>Хвойні породи (сосна):</strong> опір тертя помірний, лігнін пластичний. Потрібен високий коефіцієнт $L/D = 1:4.5\text{--}1:5.5$ (довжина каналу 27–33 мм).</li>
-            <li><strong>Тверді листяні (дуб, бук):</strong> колосальний опір тертя. На матриці $1:5$ відбудеться заклинювання преса або поломка вала. Потрібна коротка матриця $L/D = 1:3\text{--}1:3.5$ (довжина 18–21 мм).</li>
-          </ul>
-        </div>
-      </div>
 
-      <!-- FAQ 5 -->
-      <div class="faq-card">
-        <div class="faq-header" onclick="toggleFaqAccordion(this)">
-          <span>5. Пожежовибухобезпека: Як захищено цех від вибуху деревного пилу?</span>
-          <span>▼</span>
+        <!-- FAQ 2 -->
+        <div class="faq-card">
+          <div class="faq-header" onclick="toggleFaqAccordion(this)">
+            <span>2. Хімізм шлакування золи: Чому солома плавиться при T &lt; 850 °C, а дерево — ні?</span>
+            <span>▼</span>
+          </div>
+          <div class="faq-body">
+            <p>У золі деревини переважають тугоплавкі оксиди Кальцію і Магнію (CaO ≈ 45%, MgO ≈ 10%, T<sub>пл</sub> > 1200 °C). У золі соломи та агробіомаси висока концентрація легкоплавких оксидів лужних металів (K<sub>2</sub>O до 25%, Na<sub>2</sub>O) та хлоридів (KCl):</p>
+            <div class="faq-math">K<sub>2</sub>O + n·SiO<sub>2</sub> ⟶ K<sub>2</sub>O·nSiO<sub>2</sub> (T<sub>плавл</sub> = 750 – 850 °C)</div>
+            <p>Вони утворюють низькотемпературні евтектичні розплави рідкого скла, які налипають на труби теплообмінників котла та спікають колосники в монолітний шлак.</p>
+          </div>
         </div>
-        <div class="faq-body">
-          <p>Сухий пил фракцією $<200\text{ мкм}$ при концентрації $>30\text{ г/м}^3$ формує вибухову аерозольну суміш (НКМПП). Захист забезпечується:</p>
-          <ul>
-            <li>Встановленням аспіраційних фільтрів стандарту ATEX з антистатичними рукавами.</li>
-            <li>Розривними мембранами на бункерах для спрямованого скидання ударної хвилі вибуху назовні.</li>
-            <li>Оптичними інфрачервоними датчиками виявлення іскор та форсунками імпульсного гасіння водою (система GreCon) у повітропроводах.</li>
-          </ul>
-        </div>
-      </div>
 
-      <!-- FAQ 6 -->
-      <div class="faq-card">
-        <div class="faq-header" onclick="toggleFaqAccordion(this)">
-          <span>6. Аналіз життєвого циклу (LCA): Чи дійсно біопаливо є CO2-нейтральним?</span>
-          <span>▼</span>
+        <!-- FAQ 3 -->
+        <div class="faq-card">
+          <div class="faq-header" onclick="toggleFaqAccordion(this)">
+            <span>3. Фізика тиску 100–120 МПа: Що відбувається на клітинному рівні?</span>
+            <span>▼</span>
+          </div>
+          <div class="faq-body">
+            <p>Початкова насипна густина тирси — лише 180 кг/м³. За тиску до 40 МПа витісняється лише повітря. При досягненні <strong>100–120 МПа</strong> напруження перевищує межу пружності клітинних оболонок лігноцелюлози: клітини руйнуються, молекулярні відстані скорочуються до дії сил Ван-дер-Ваальса, а розм'якшений лігнін запечатує мікропори. Досягається дійсна густина <strong>ρ = 1150–1250 кг/м³</strong> (пелета тоне у воді).</p>
+          </div>
         </div>
-        <div class="faq-body">
-          <p>За європейською методикою <strong>RED II (Renewable Energy Directive)</strong>, враховуючи витрати електрики на заводі (85 кВт·год/т) та дизельного палива на доставку лісовозами у радіусі до 50 км, пряме скорочення викидів парникових газів становить <strong>понад 88%</strong> у порівнянні з природним газом і понад 94% у порівнянні з вугіллям.</p>
+
+        <!-- FAQ 4 -->
+        <div class="faq-card">
+          <div class="faq-header" onclick="toggleFaqAccordion(this)">
+            <span>4. Геометрія матриці L/D: Чому дуб і сосна вимагають різних фільєр?</span>
+            <span>▼</span>
+          </div>
+          <div class="faq-body">
+            <p>Коефіцієнт стиснення L/D — відношення робочої довжини каналу фільєри до її діаметра (6 мм):</p>
+            <ul>
+              <li><strong>Хвойні породи (сосна):</strong> опір тертя помірний, лігнін пластичний. Потрібен високий коефіцієнт L/D = 1:4.5 – 1:5.5 (довжина каналу 27–33 мм).</li>
+              <li><strong>Тверді листяні (дуб, бук):</strong> колосальний опір тертя. На матриці 1:5 відбудеться заклинювання преса або поломка привідного вала. Потрібна коротка матриця L/D = 1:3 – 1:3.2 (довжина 18–21 мм).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-card">
+          <div class="faq-header" onclick="toggleFaqAccordion(this)">
+            <span>5. Пожежовибухобезпека: Як захищено цех від вибуху деревного пилу?</span>
+            <span>▼</span>
+          </div>
+          <div class="faq-body">
+            <p>Сухий пил фракцією &lt; 200 мкм при концентрації &gt; 30 г/м³ формує вибухову аерозольну суміш (НКМПП). Захист забезпечується:</p>
+            <ul>
+              <li>Встановленням аспіраційних фільтрів стандарту ATEX з антистатичними рукавами.</li>
+              <li>Розривними мембранами на бункерах для спрямованого скидання ударної хвилі вибуху назовні.</li>
+              <li>Оптичними інфрачервоними датчиками виявлення іскор та форсунками імпульсного гасіння водою (система GreCon) у повітропроводах.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-card">
+          <div class="faq-header" onclick="toggleFaqAccordion(this)">
+            <span>6. Аналіз життєвого циклу (LCA): Чи дійсно біопаливо є CO2-нейтральним?</span>
+            <span>▼</span>
+          </div>
+          <div class="faq-body">
+            <p>За європейською методикою <strong>RED II (Renewable Energy Directive)</strong>, враховуючи витрати електрики на заводі (85 кВт·год/т) та дизельного палива на доставку лісовозами у радіусі до 50 км, пряме скорочення викидів парникових газів становить <strong>понад 88%</strong> у порівнянні з природним газом і понад 94% у порівнянні з вугіллям.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1829,8 +2127,8 @@
   </div>
 
   <script>
-    // SLIDE ENGINE (COMPRESSED TO 8 ACTS)
-    const totalSlides = 8;
+    // SLIDE ENGINE (9 ACTS)
+    const totalSlides = 9;
     let currentSlide = 1;
 
     // OBJECTIVE ACADEMIC SPEECH SCRIPTS (THIRD-PERSON / PASSIVE FORM // 45-55 SEC)
@@ -1842,7 +2140,8 @@
       5: "Третя фаза розпочинається молотковим помелом до часток 1–2.5 мм та подальшим кондиціонуванням сухою парою з температурою 90°C. Природний полімер лігнін, вміст якого в деревині сягає 30%, переходить у пластичний стан і виступає натуральним клеєм. Далі у прес-грануляторі під тиском 120 МПа маса видавлюється крізь фільєри 6 мм, досягаючи густини понад 1150 кг/м³ без додавання синтетичних смол.",
       6: "Четверта фаза завершує технологічний переділ. Гаряча гранула продувається у протитоковому охолоджувачі зустрічним холодним повітрям. Лігнін кристалізується, забезпечуючи механічну міцність гранули не менше 98%. Віброгуркіт відсіює 2% крихти назад у прес, а кондиційне паливо пакується у герметичні мішки по 15 кг для приватних пальників або біг-беги по 1000 кг для ТЕЦ.",
       7: "Порівняльний аналіз чотирьох базових біопалив України доводить неприпустимість спалювання агробіомаси у побутових котлах. Солома зернових містить високу концентрацію оксидів калію, через що її зола плавиться при температурі нижче 850°C, запікаючи колосники монолітним склом. Деревна пелета має температуру деформації золи понад 1200°C і є безпечною для приватного житла, тоді як сухе лушпиння соняшника — найбільш рентабельне для ТЕЦ.",
-      8: "Математичне моделювання показує, що одна тонна деревних пелет виділяє 4.3 Гкал тепла, заміщуючи 450 кубометрів природного газу або 780 кг вугілля. Цього достатньо для автономного опалення житлового будинку 150 м² протягом 35 діб за мінімального виходу золи всього 6 кг. Виробництво є повністю нейтральним щодо викидів діоксиду вуглецю, забезпечуючи стратегічний резерв енергонезалежності України. Доповідь завершено."
+      8: "Економічне та прикладне моделювання доводить високу інвестиційну привабливість переходу на тверде біопаливо. Для типового будинку площею 150 м² купівля пелет скорочує зимові витрати на опалення більш ніж наполовину у порівнянні з газом або електрикою, забезпечуючи понад 21 тисячу гривень чистої економії за сезон. Автоматичний пелетний котел повністю окупає витрати на придбання та монтаж менш ніж за 4 опалювальні сезони, а для комерційних підприємств на комерційному тарифі газу окупність досягається вже за перший рік експлуатації.",
+      9: "Узагальнюючи результати науково-технічного дослідження, слід підкреслити чотири фундаментальні висновки. Технологічно доведено отримання гранул вищого ґатунку ENplus A1 за рахунок природного лігніну без синтетичного клею. Термодинамічно обґрунтовано повну теплову автономність заводу на відходах власної кори. Екологічно підтверджено скорочення викидів парникових газів на 90% за європейською директивою RED II. А для Об'єднаної енергетичної системи України тверда біомаса формує стратегічний резерв заміщення до 8 млрд кубометрів газу щороку. Доповідь завершено. Дякую за увагу!"
     };
 
     function updateSlide() {
@@ -1853,6 +2152,10 @@
       document.getElementById('slideIndicator').textContent = `${currentSlide} / ${totalSlides}`;
       document.getElementById('btnPrev').disabled = (currentSlide === 1);
       document.getElementById('btnNext').disabled = (currentSlide === totalSlides);
+
+      // СИНХРОНИЗАЦИЯ ДРОПДАУНА В ШАПКЕ
+      const sel = document.getElementById('slideQuickSelect');
+      if (sel) sel.value = currentSlide;
 
       const noteBox = document.getElementById('speakerTextContent');
       noteBox.textContent = speakerNotes[currentSlide] || "Коментар до слайда відсутній.";
@@ -2135,9 +2438,429 @@
       openLightbox(data.file);
     }
 
+    // SLIDE 3 SUB-CARD 3D SWITCHER
+    const s3SubData = {
+      1: { icon: "🪵", title: "РУБАЛЬНІ МАШИНИ", sub: "Калібрування великогабаритних обрізків та обаполу в тріску 15–25 мм", file: "assets/03_shredder.png" },
+      2: { icon: "🌪️", title: "ДИСКОВИЙ ГУРКІТ", sub: "Відсіювання мінерального піску, ґрунту та глини для досягнення зольності Ad ≤ 0.7%", file: "assets/03_screen.png" },
+      3: { icon: "🧲", title: "МАГНІТНИЙ ЗАХИСТ", sub: "Підвісний залізовідділювач вилучає цвяхи та болти для захисту преса від аварії", file: "assets/03_shredder_magnet.png" },
+      4: { icon: "✨", title: "ТЕХНОЛОГІЧНА ТРІСКА", sub: "Однорідна очищена тріска готова до безпечної подачі в сушильний барабан", file: "assets/03_chips_ready.png" }
+    };
+
+    let currentS3Sub = 3;
+
+    function switchS3Sub(num) {
+      currentS3Sub = num;
+      document.querySelectorAll('#slideStage [id^="s3Card"]').forEach(c => c.classList.remove('active'));
+      const activeCard = document.getElementById('s3Card' + num);
+      if (activeCard) activeCard.classList.add('active');
+
+      const frame = document.getElementById('s3MediaFrame');
+      frame.classList.add('flipping');
+
+      setTimeout(() => {
+        const d = s3SubData[num];
+        const imgEl = document.getElementById('s3Img');
+        imgEl.style.display = 'block';
+        imgEl.src = d.file;
+        imgEl.onerror = function() {
+          this.style.display = 'none'; // Мягко прячем картинку, если файл еще не сгенерирован
+        };
+        document.getElementById('s3Icon').textContent = d.icon;
+        document.getElementById('s3Title').textContent = d.title;
+        document.getElementById('s3Sub').textContent = d.sub;
+        frame.classList.remove('flipping');
+      }, 200);
+    }
+
+    function openS3Lightbox() {
+      const d = s3SubData[currentS3Sub];
+      openLightbox(d.file);
+    }
+
+    // SLIDE 5 INTERACTIVE 4-SUB SWITCHER
+    const s5SubData = {
+      1: {
+        file: "assets/05_mill.png", icon: "🔨", pClass: "p3",
+        tag: "ЕТАП 01 // МЕХАНІЧНА ПІДГОТОВКА ДО ПРЕСУВАННЯ",
+        title: "1. Тонкий помел у борошно: захист матриці від заклинювання",
+        desc: "Великі шматки сухої тріски не здатні пройти крізь калібровані отвори преса діаметром 6 мм і гарантовано розколють метал. Тому суха тріска спочатку надходить у <strong>молотковий млин</strong>, де сталеві пластини на швидкості 3000 об/хв перетирають її на однорідне деревне борошно фракцією <strong>1.0–2.5 мм</strong> (розміром як манна крупа).",
+        kpiLabel: "Кінцева фракція деревного борошна:", kpiVal: "1.0 – 2.5 мм (манна крупа)"
+      },
+      2: {
+        file: "assets/05_lignin_steam.png", icon: "💨", pClass: "p2",
+        tag: "ЕТАП 02 // ГІДРОТЕРМІЧНЕ КОНДИЦІОНУВАННЯ",
+        title: "2. Як склеїти дерево без клею: секрет природного лігніну",
+        desc: "Деревина містить 20–30% природного високомолекулярного полімеру — <span class='glossary-term' data-tooltip='Природний полімер клітинних стінок деревини'>лігніну</span>. У холодному стані він сухий і крихкий. У шнековому змішувачі сухе борошно обдають парою з температурою <strong>85–95 °C</strong>. Лігнін розм'якшується і перетворюється на <strong>природний термоклей</strong>, що виключає додавання хімічних смол.",
+        kpiLabel: "Температура плавлення лігніну парою:", kpiVal: "85 – 95 °C (суха пара)"
+      },
+      3: {
+        file: "assets/05_press_lignin.png", icon: "⚙️", pClass: "p3",
+        tag: "ЕТАП 03 // СЕРЦЕ ЗАВОДУ: ПРЕС-ГРАНУЛЯТОР",
+        title: "3. Як працює прес: кільцева матриця, отвори-фільєри та вальці",
+        desc: "Робочим органом є <strong>кільцева матриця</strong> — важкий сталевий барабан зі сталі, у стінках якого просвердлені тисячі отворів діаметром 6 мм (вони називаються <span class='glossary-term' data-tooltip='Калібровані канали в матриці'>фільєрами</span>). Всередині барабана обертаються важкі ролики (<strong>вальці</strong>). Вони підминають липку масу і з силою в <strong>1100 атмосфер (100–120 МПа)</strong> вдавлюють її в отвори. Від шаленого тертя температура піднімається до 115 °C, а дерево ущільнюється в 6 разів і виходить монолітними гранулами густиною <strong>> 1150 кг/м³</strong> (тоне у воді).",
+        kpiLabel: "Робочий тиск у зоні деформації:", kpiVal: "100 – 120 МПа (1100 атм)"
+      },
+      4: {
+        file: "assets/05_matrix_channels.png", icon: "📐", pClass: "p2",
+        tag: "ЕТАП 04 // ІНЖЕНЕРНИЙ РОЗРАХУНОК ФІЛЬЄРИ",
+        title: "4. Геометрія матриці (L/D): чому дуб зламає вал на матриці сосни?",
+        desc: "Товщина стінки матриці визначає довжину отвору-каналу. М'яка <strong>сосна</strong> ковзає легко, тому канал роблять довгим (<strong>30 мм</strong>, співвідношення L/D = 1:5), щоб добре спресувати гранулу. Твердий <strong>дуб</strong> має колосальний опір тертю: у 30-мм каналі сосни він застрягне намертво, спричинивши аварійне заклинювання або поломку головного привідного вала електродвигуна. Тому для дуба канал фільєри роблять значно коротшим — <strong>19 мм</strong> (L/D = 1:3.2).",
+        kpiLabel: "Співвідношення довжини до діаметра (L/D):", kpiVal: "1:5 (Сосна) / 1:3.2 (Дуб)"
+      }
+    };
+
+    let currentS5Sub = 3;
+
+    function switchS5Sub(num) {
+      currentS5Sub = num;
+      document.querySelectorAll('#slideStage [id^="s5Tab"]').forEach((t, idx) => {
+        t.classList.toggle('active', (idx + 1) === num);
+      });
+
+      const frame = document.getElementById('s5MediaFrame');
+      const card = document.getElementById('s5DataCard');
+      frame.classList.add('flipping');
+      card.classList.add('changing');
+
+      setTimeout(() => {
+        const d = s5SubData[num];
+        const imgEl = document.getElementById('s5Img');
+        imgEl.style.display = 'block';
+        imgEl.src = d.file;
+        imgEl.onerror = function() { this.style.display = 'none'; };
+
+        document.getElementById('s5Icon').textContent = d.icon;
+        document.getElementById('s5Title').textContent = d.title.split('. ')[1].toUpperCase();
+        document.getElementById('s5Sub').textContent = d.desc.replace(/<[^>]*>?/gm, '').slice(0, 100) + '...';
+
+        document.getElementById('s5CardLabel').textContent = d.tag;
+        document.getElementById('s5CardTitle').innerHTML = d.title;
+        document.getElementById('s5CardDesc').innerHTML = d.desc;
+        document.getElementById('s5KpiLabel').textContent = d.kpiLabel;
+        document.getElementById('s5KpiVal').textContent = d.kpiVal;
+
+        card.className = `kpi-card ${d.pClass} text-transition-wrap`;
+        frame.classList.remove('flipping');
+        card.classList.remove('changing');
+      }, 200);
+    }
+
+    function openS5Lightbox() {
+      const d = s5SubData[currentS5Sub];
+      openLightbox(d.file);
+    }
+
+    // SLIDE 7 INTERACTIVE 4-FUEL SWITCHER
+    const s7SubData = {
+      1: {
+        file: "assets/07_wood_pellets.png", icon: "🪵", pClass: "p1", color: "var(--phase-1)",
+        tag: "ПАЛИВО 01 // ЕТАЛОН ЧИСТОТИ ДЛЯ ПОБУТОВИХ КОТЛІВ",
+        title: "1. Деревні гранули (ENplus A1): бездоганна робота пальника",
+        desc: "<strong>Поведінка в котлі:</strong> Золи утворюється мінімум (A<sup>d</sup> ≤ 0.7% — лише 5–7 кг з тонни). Зола складається з тугоплавких оксидів Кальцію і не плавиться навіть за температури понад 1200 °C. Колосники залишаються чистими, шлак не утворюється. Ідеальне паливо для автоматизованих пальників приватних будинків.",
+        kpi1: "Теплота Q<sub>i</sub><sup>r</sup>: <strong>18.0 МДж/кг (5.0 кВт·год)</strong>",
+        kpi2: "Плавлення золи: <strong style='color:var(--phase-3);'>> 1200 °C (Без шлаку)</strong>",
+        kpi3: "Сфера: <strong>Побутові котли / Експорт</strong>"
+      },
+      2: {
+        file: "assets/07_sunflower_pellets.png", icon: "🌻", pClass: "p2", color: "var(--phase-2)",
+        tag: "ПАЛИВО 02 // ПРОМИСЛОВИЙ ЕКОНОМІЧНИЙ ЛІДЕР",
+        title: "2. Лушпиння соняшника (ОЕЗ): високе тепло без витрат на сушіння",
+        desc: "<strong>Поведінка в котлі:</strong> Головний козир — сировина з олійноекстракційних заводів надходить уже сухою (W<sup>r</sup> ≈ 9–10%), сушарка не потрібна! Це робить гранулу вдвічі дешевшою за деревну. Теплота згоряння майже як у дерева (17.5 МДж/кг). Зола плавиться при ~1050 °C. Найкраще паливо для промислових ТЕЦ з автоматичним очищенням колосників.",
+        kpi1: "Теплота Q<sub>i</sub><sup>r</sup>: <strong>17.5 МДж/кг (4.8 кВт·год)</strong>",
+        kpi2: "Плавлення золи: <strong style='color:var(--phase-2);'>~1050 °C (Середній)</strong>",
+        kpi3: "Сфера: <strong>Промислові ТЕЦ / Заводи</strong>"
+      },
+      3: {
+        file: "assets/07_straw_pellets.png", icon: "🌾", pClass: "p1", color: "var(--alert)",
+        tag: "ПАЛИВО 03 // ІНЖЕНЕРНИЙ ПІДСТУП: ШЛАКУВАННЯ КАЛІЄМ",
+        title: "3. Солома зернових: чому вона категорично заборонена для дому?",
+        desc: "<strong>Поведінка в котлі:</strong> Солома містить велику кількість сполук Калію (K<sub>2</sub>O) та Хлору (KCl). Через це її зола плавиться вже при <strong>T<sub>пл</sub> &lt; 850 °C</strong>. У звичайному пальнику зола перетворюється на рідке скло, яке запікає колосники монолітним шлаком за лічені години, а хлор роз'їдає сталеві труби. Спалюється тільки на спеціальних ТЕС із рухомими колосниками.",
+        kpi1: "Теплота Q<sub>i</sub><sup>r</sup>: <strong>15.0 МДж/кг (4.2 кВт·год)</strong>",
+        kpi2: "Плавлення золи: <strong style='color:var(--alert);'>&lt; 850 °C (Важкий шлак!)</strong>",
+        kpi3: "Сфера: <strong>Спеціальні котли ТЕС</strong>"
+      },
+      4: {
+        file: "assets/07_peat_briquettes.png", icon: "🧱", pClass: "p4", color: "var(--phase-4)",
+        tag: "ПАЛИВО 04 // ТРАДИЦІЙНИЙ РЕЗЕРВ ДЛЯ РУЧНИХ ТОПОК",
+        title: "4. Торф'яний брикет: висока зольність для простих печей",
+        desc: "<strong>Поведінка в котлі:</strong> Поклади Полісся (>2 млрд т). Теплота згоряння помірна (14.5 МДж/кг), але головний недолік — гігантська зольність (<strong>10–15%</strong>). Спаливши 1 тонну торфу, господар отримує до 150 кг баластної золи та специфічний дим. Застосовується виключно у простих сільських печах і ручних твердопаливних котлах.",
+        kpi1: "Теплота Q<sub>i</sub><sup>r</sup>: <strong>14.5 МДж/кг (4.0 кВт·год)</strong>",
+        kpi2: "Зольність: <strong style='color:var(--alert);'>10.0 – 15.0 % (Баласт)</strong>",
+        kpi3: "Сфера: <strong>Сільські печі / ЖКГ</strong>"
+      }
+    };
+
+    let currentS7Sub = 1;
+
+    function switchS7Sub(num) {
+      currentS7Sub = num;
+      document.querySelectorAll('#slideStage [id^="s7Tab"]').forEach((t, idx) => {
+        t.classList.toggle('active', (idx + 1) === num);
+      });
+
+      const frame = document.getElementById('s7MediaFrame');
+      const card = document.getElementById('s7DataCard');
+      frame.classList.add('flipping');
+      card.classList.add('changing');
+
+      setTimeout(() => {
+        const d = s7SubData[num];
+        const imgEl = document.getElementById('s7Img');
+        imgEl.style.display = 'block';
+        imgEl.src = d.file;
+        imgEl.onerror = function() { this.style.display = 'none'; };
+
+        document.getElementById('s7Icon').textContent = d.icon;
+        document.getElementById('s7Title').textContent = d.title.split('. ')[1].toUpperCase();
+        document.getElementById('s7Sub').textContent = d.desc.replace(/<[^>]*>?/gm, '').slice(0, 100) + '...';
+
+        document.getElementById('s7CardTag').textContent = d.tag;
+        document.getElementById('s7CardTag').style.color = d.color;
+        document.getElementById('s7CardTitle').innerHTML = d.title;
+        document.getElementById('s7CardDesc').innerHTML = d.desc;
+        document.getElementById('s7Kpi1').innerHTML = d.kpi1;
+        document.getElementById('s7Kpi2').innerHTML = d.kpi2;
+        document.getElementById('s7Kpi3').innerHTML = d.kpi3;
+
+        card.className = `kpi-card ${d.pClass} text-transition-wrap`;
+        frame.classList.remove('flipping');
+        card.classList.remove('changing');
+      }, 200);
+    }
+
+    function openS7Lightbox() {
+      const d = s7SubData[currentS7Sub];
+      openLightbox(d.file);
+    }
+
+    function toggleSummaryTable() {
+      const box = document.getElementById('summaryTableBox');
+      const arrow = document.getElementById('summaryTableArrow');
+      const isHidden = box.style.display === 'none';
+      box.style.display = isHidden ? 'block' : 'none';
+      arrow.textContent = isHidden ? '▲' : '▼';
+    } 
+
+    // QUICK SLIDE JUMP (1 CLICK)
+    function goToSlide(num) {
+      if (num >= 1 && num <= totalSlides) {
+        currentSlide = num;
+        updateSlide();
+        const sel = document.getElementById('slideQuickSelect');
+        if (sel) sel.value = num;
+      }
+    }
+
+    // FAQ TABS SWITCHER
+    function switchFaqTab(tabName, btn) {
+      const theory = document.getElementById('faqTabTheoryContent');
+      const calc = document.getElementById('faqTabCalcContent');
+      const btnTheory = document.getElementById('btnFaqTabTheory');
+      const btnCalc = document.getElementById('btnFaqTabCalc');
+
+      if (tabName === 'theory') {
+        theory.style.display = 'block';
+        calc.style.display = 'none';
+        btnTheory.classList.add('active');
+        btnCalc.classList.remove('active');
+      } else {
+        theory.style.display = 'none';
+        calc.style.display = 'block';
+        btnCalc.classList.add('active');
+        btnTheory.classList.remove('active');
+        calcLabAnalysis();
+      }
+    }
+
+    // LAB NOTEBOOK PRESETS (PLATON'S DATA)
+    const labPresets = {
+      1: { wt: 19.805, wm: 10.063, wm1: 25.550, at: 22.710, am: 1.001, am1: 22.717, vt: 23.544, vm: 1.000, vm1: 23.740 },
+      2: { wt: 19.719, wm: 10.327, wm1: 25.740, at: 25.650, am: 1.003, am1: 25.657, vt: 24.425, vm: 1.001, vm1: 24.635 }
+    };
+
+    function loadLabPreset(num) {
+      const p = labPresets[num];
+      document.getElementById('labW_t').value = p.wt;
+      document.getElementById('labW_m').value = p.wm;
+      document.getElementById('labW_m1').value = p.wm1;
+
+      document.getElementById('labA_t').value = p.at;
+      document.getElementById('labA_m').value = p.am;
+      document.getElementById('labA_m1').value = p.am1;
+
+      document.getElementById('labV_t').value = p.vt;
+      document.getElementById('labV_m').value = p.vm;
+      document.getElementById('labV_m1').value = p.vm1;
+
+      document.getElementById('btnLabPreset1').classList.toggle('active', num === 1);
+      document.getElementById('btnLabPreset2').classList.toggle('active', num === 2);
+
+      calcLabAnalysis();
+    }
+
+    function clearLabInputs() {
+      document.getElementById('labW_t').value = '';
+      document.getElementById('labW_m').value = '';
+      document.getElementById('labW_m1').value = '';
+
+      document.getElementById('labA_t').value = '';
+      document.getElementById('labA_m').value = '';
+      document.getElementById('labA_m1').value = '';
+
+      document.getElementById('labV_t').value = '';
+      document.getElementById('labV_m').value = '';
+      document.getElementById('labV_m1').value = '';
+
+      document.getElementById('btnLabPreset1').classList.remove('active');
+      document.getElementById('btnLabPreset2').classList.remove('active');
+
+      document.getElementById('labResWr').textContent = 'Wʳ = 0.00 %';
+      document.getElementById('labResAd').textContent = 'Aᵈ = 0.00 %';
+      document.getElementById('labResVdaf').textContent = 'Vᵈᵃᶠ = 0.00 %';
+      document.getElementById('labSummaryText').textContent = 'Поля очищено. Введіть власні експериментальні наважки з вагів для автоматичного розрахунку.';
+    }
+
+    function calcLabAnalysis() {
+      // 1. Wr = ((t + m) - m1) / m * 100
+      const wt = parseFloat(document.getElementById('labW_t').value) || 0;
+      const wm = parseFloat(document.getElementById('labW_m').value) || 1;
+      const wm1 = parseFloat(document.getElementById('labW_m1').value) || 0;
+      const wr = Math.max(0, ((wt + wm) - wm1) / wm * 100);
+
+      // 2. Ad = (m1 - t) / m * 100
+      const at = parseFloat(document.getElementById('labA_t').value) || 0;
+      const am = parseFloat(document.getElementById('labA_m').value) || 1;
+      const am1 = parseFloat(document.getElementById('labA_m1').value) || 0;
+      const ad = Math.max(0, (am1 - at) / am * 100);
+
+      // 3. Vdaf
+      const vt = parseFloat(document.getElementById('labV_t').value) || 0;
+      const vm = parseFloat(document.getElementById('labV_m').value) || 1;
+      const vm1 = parseFloat(document.getElementById('labV_m1').value) || 0;
+      const vdaf = Math.max(0, (1 - (vm1 - vt) / vm) * 100);
+
+      document.getElementById('labResWr').textContent = `Wʳ = ${wr.toFixed(2)} %`;
+      document.getElementById('labResAd').textContent = `Aᵈ = ${ad.toFixed(2)} %`;
+      document.getElementById('labResVdaf').textContent = `Vᵈᵃᶠ = ${vdaf.toFixed(2)} %`;
+
+      document.getElementById('labSummaryText').textContent = 
+        `Розрахунок завершено. Робоча вологість ${wr.toFixed(1)}% свідчить про високий вміст капілярної води в тирсі (потребує сушіння). ` +
+        `Зольність ${ad.toFixed(2)}% відповідає вищому ґатунку стандарту ENplus A1 (норма ≤ 0.7%). ` +
+        `Вихід летких речовин ${vdaf.toFixed(1)}% підтверджує високу реакційну здатність палива під час факельного спалювання.`;
+    }
+
+    // FINANCIAL ROI CALCULATOR ENGINE
+    const areaBoilerData = {
+      100: { power: 12, defCost: 4500, capex: 65000 },
+      150: { power: 18, defCost: 6500, capex: 82000 },
+      300: { power: 35, defCost: 14000, capex: 135000 },
+      1000: { power: 100, defCost: 45000, capex: 260000 }
+    };
+
+    // 3D FLIP LOGIC FOR SLIDE 8 ON AREA SELECTION
+    const s8VisualData = {
+      100: { file: "assets/08_house_boiler.png", icon: "🏠", title: "НЕВЕЛИКИЙ ДІМ (100 М²)", sub: "Компактний пелетний котел 10–12 кВт" },
+      150: { file: "assets/08_house_boiler.png", icon: "🏡", title: "ПРИВАТНИЙ ДІМ (150 М²)", sub: "Автоматичний пелетний котел 18 кВт із бункером у приватному секторі" },
+      300: { file: "assets/08_commercial_boiler.png", icon: "🏢", title: "КОМЕРЦІЙНИЙ ОБ'ЄКТ (300 М²)", sub: "Котельня 35–40 кВт для автосервісу, магазину або офісу" },
+      1000: { file: "assets/08_industrial_boiler.png", icon: "🏭", title: "ПРОМИСЛОВИЙ ОБ'ЄКТ (1000 М²)", sub: "Блочно-модульна котельня 100 кВт для теплиці, школи або цеху" }
+    };
+
+    let currentS8Img = "assets/08_house_boiler.png";
+
+    function applyAreaPreset() {
+      const area = parseInt(document.getElementById('finAreaSelect').value) || 150;
+      const d = areaBoilerData[area];
+      document.getElementById('finCurrentCost').value = d.defCost;
+      document.getElementById('finBoilerCapex').value = d.capex;
+
+      // 3D FLIP ON AREA CHANGE
+      const frame = document.getElementById('s8MediaFrame');
+      const v = s8VisualData[area];
+      currentS8Img = v.file;
+
+      if (frame) {
+        frame.classList.add('flipping');
+        setTimeout(() => {
+          const imgEl = document.getElementById('s8Img');
+          imgEl.style.display = 'block';
+          imgEl.src = v.file;
+          imgEl.onerror = function() { this.style.display = 'none'; };
+          document.getElementById('s8Icon').textContent = v.icon;
+          document.getElementById('s8Title').textContent = v.title;
+          document.getElementById('s8Sub').textContent = v.sub;
+          frame.classList.remove('flipping');
+        }, 200);
+      }
+
+      calcFinancialRoi();
+    }
+
+    function openS8Lightbox() {
+      openLightbox(currentS8Img);
+    }
+
+    function switchCalcMode(mode) {
+      const boxFin = document.getElementById('calcBoxFin');
+      const boxPhys = document.getElementById('calcBoxPhys');
+      const btnFin = document.getElementById('btnCalcModeFin');
+      const btnPhys = document.getElementById('btnCalcModePhys');
+
+      if (mode === 'fin') {
+        boxFin.style.display = 'block';
+        boxPhys.style.display = 'none';
+        btnFin.classList.add('active');
+        btnPhys.classList.remove('active');
+        btnFin.style.color = 'var(--phase-3)';
+        btnPhys.style.color = 'var(--text)';
+        calcFinancialRoi();
+      } else {
+        boxFin.style.display = 'none';
+        boxPhys.style.display = 'block';
+        btnPhys.classList.add('active');
+        btnFin.classList.remove('active');
+        btnPhys.style.color = 'var(--phase-1)';
+        btnFin.style.color = 'var(--text)';
+        calculateBioenergy();
+      }
+    }
+
+    function calcFinancialRoi() {
+      const area = parseInt(document.getElementById('finAreaSelect').value) || 150;
+      const curCost = parseFloat(document.getElementById('finCurrentCost').value) || 6500;
+      const capex = parseFloat(document.getElementById('finBoilerCapex').value) || 82000;
+
+      // Теплопотреба на місяць (кВт·год) ~ площа * 60 Вт/м2 * 24 год * 30 дн * 0.65 коеф. навантаження
+      const heatKwhMonth = area * 0.06 * 24 * 30 * 0.65;
+      // Тонн пелет на місяць (1 т пелет = 4900 кВт·год, ккд котла 88%)
+      const pelletTons = heatKwhMonth / (4900 * 0.88);
+      // Вартість пелет (5000 грн/т)
+      const pelletCostMonth = Math.round(pelletTons * 5000);
+
+      // Економія в місяць
+      const monthlySave = Math.max(0, curCost - pelletCostMonth);
+      // Сезонна економія (6 місяців опалення)
+      const seasonSave = monthlySave * 6;
+
+      // Термін окупності в сезонах (роках)
+      const paybackSeasons = seasonSave > 0 ? (capex / seasonSave) : 99;
+
+      document.getElementById('finPelletCost').textContent = pelletCostMonth.toLocaleString('uk-UA') + " грн";
+      document.getElementById('finMonthlySave').textContent = "+ " + monthlySave.toLocaleString('uk-UA') + " грн";
+      document.getElementById('finSeasonSave').textContent = "+ " + seasonSave.toLocaleString('uk-UA') + " грн";
+      
+      if (paybackSeasons < 10) {
+        document.getElementById('finPayback').textContent = paybackSeasons.toFixed(1) + " сезони";
+        document.getElementById('finPaybackSub').textContent = `Повне повернення інвестицій за ${paybackSeasons.toFixed(1)} роки`;
+      } else {
+        document.getElementById('finPayback').textContent = "> 10 років";
+        document.getElementById('finPaybackSub').textContent = "Потребує оптимізації тарифу";
+      }
+    }
+
     // INIT
     updateSlide();
     calculateBioenergy();
+    calcFinancialRoi();
   </script>
 </body>
 </html>
