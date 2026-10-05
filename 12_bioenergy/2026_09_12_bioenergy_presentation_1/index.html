@@ -960,37 +960,216 @@
       margin: 8px 0;
     }
 
-    /* PRINT STYLES */
+    /* PRINT MEDIA SPECIFICATION: STRICT A4 LANDSCAPE DECK */
+    @page {
+      size: A4 landscape;
+      margin: 5mm 8mm;
+    }
+
     @media print {
-      body { background: #fff !important; color: #000 !important; padding: 0 !important; font-size: 11px !important; }
-      .controls-bar, .speaker-drawer, .btn-action, .modal-overlay, .lightbox-modal, footer { display: none !important; }
-      .container { max-width: 100% !important; margin: 0 !important; }
-      .univ-header {
-        border: 1px solid #ccc !important;
-        background: #fff !important;
-        color: #000 !important;
-        box-shadow: none !important;
-        break-inside: avoid;
+      * {
+        animation: none !important;
+        transition: none !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
+
+      html, body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-size: 9.5px !important;
+      }
+
+      .controls-bar, .speaker-drawer, .btn-action, .modal-overlay, .lightbox-modal, footer, .media-hint,
+      .node-pipeline-grid, [id^="btnCalcMode"], .calc-input-group, #calcBoxFin > .grid-2col,
+      .sessions-accordion-btn {
+        display: none !important;
+      }
+
+      .container {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      /*  ШАПКА ДЛЯ УСАДКИ НА ЛИСТ 1 ВМЕСТЕ СО СЛАЙДОМ 1 */
+      .univ-header {
+        border: 1px solid #94a3b8 !important;
+        background: #f8fafc !important;
+        color: #0f172a !important;
+        box-shadow: none !important;
+        padding: 4px 10px !important;
+        margin-bottom: 6px !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+
+      .nmu-logo-svg {
+        width: 90px !important;
+        height: 26px !important;
+      }
+
+      .univ-department {
+        font-size: 11.5px !important;
+        margin: 1px 0 !important;
+      }
+
+      .univ-ministry, .univ-subject {
+        font-size: 8.5px !important;
+      }
+
+      .univ-student-badge {
+        padding: 3px 8px !important;
+        font-size: 9px !important;
+        background: #f1f5f9 !important;
+        border-color: #94a3b8 !important;
+      }
+
+      .slide-stage {
+        min-height: auto !important;
+      }
+
       .slide-card {
         display: block !important;
-        border: 1px solid #ddd !important;
-        background: #fff !important;
-        color: #000 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        border: 1px solid #cbd5e1 !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
         box-shadow: none !important;
-        margin-bottom: 24px !important;
-        break-inside: avoid;
-        page-break-after: always;
+        padding: 9px 12px !important;
+        margin: 0 0 12px 0 !important;
+        page-break-before: always !important;
+        break-before: page !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        height: auto !important;
       }
-      .slide-title, .univ-department, .kpi-value, .calc-card-val { color: #000 !important; }
-      .kpi-card, .calc-card, .calc-container, .svg-diagram-wrap, .media-fallback { background: #f8fafc !important; border-color: #ccc !important; color: #000 !important; }
-      .bio-table th { background: #eee !important; color: #000 !important; }
-      .bio-table td { color: #000 !important; }
-      .bullet-list li { color: #222 !important; }
-      .media-frame { height: 260px !important; border: 1px solid #ccc !important; }
-      .calc-row, .calc-results-grid { display: none !important; }
-      .print-static-table { display: table !important; }
-      .print-appendix-block { display: block !important; page-break-before: always; }
+
+      .slide-card:first-of-type {
+        page-break-before: avoid !important;
+        break-before: avoid !important;
+        padding: 7px 12px !important;
+      }
+
+      .slide-card:first-of-type .media-frame {
+        height: 175px !important;
+      }
+
+      .slide-split {
+        grid-template-columns: 280px 1fr !important;
+        gap: 12px !important;
+      }
+
+      .slide-visual, .node-3d-flipper, .text-transition-wrap {
+        perspective: none !important;
+        transform: none !important;
+        transform-style: flat !important;
+        opacity: 1 !important;
+      }
+
+      .media-frame {
+        height: 200px !important;
+        border: 1px solid #cbd5e1 !important;
+        background: #f1f5f9 !important;
+      }
+
+      .media-img {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .kpi-card, .calc-card, .calc-container, .svg-diagram-wrap, .media-fallback {
+        background: #f8fafc !important;
+        border-color: #cbd5e1 !important;
+        color: #0f172a !important;
+        box-shadow: none !important;
+        opacity: 1 !important;
+      }
+
+      .slide-title, .kpi-value, .calc-card-val, .univ-department, h1, h2, h3 {
+        color: #0f172a !important;
+      }
+
+      .bullet-list li, p, span, div {
+        color: #1e293b !important;
+      }
+
+      /* СВЕТЛЫЕ КНОПКИ ЭТАПОВ ДЛЯ СЛАЙДОВ 5 И 7 (ЧИСТАЯ БУМАГА) */
+      .node-step-btn {
+        background: #f8fafc !important;
+        border: 1px solid #cbd5e1 !important;
+        color: #0f172a !important;
+        box-shadow: none !important;
+      }
+
+      .node-step-btn .step-num {
+        color: #64748b !important;
+        font-weight: 700 !important;
+      }
+
+      .node-step-btn .step-title {
+        color: #0f172a !important;
+        font-weight: 600 !important;
+      }
+
+      .node-step-btn.active {
+        background: #e2e8f0 !important;
+        border-color: #00838f !important;
+      }
+
+      .node-step-btn.active .step-num {
+        color: #00838f !important;
+      }
+
+      .node-step-btn.active .step-title {
+        color: #0f172a !important;
+      }
+
+      /* СВЕТЛЫЕ ПЛАШКИ KPI НА СЛАЙДАХ 5 И 7 */
+      #s5KpiBar, #s7KpiBar {
+        background: #f1f5f9 !important;
+        border: 1px solid #cbd5e1 !important;
+        border-left: 3px solid #00838f !important;
+      }
+
+      #s5KpiBar span, #s7KpiBar span, #s5KpiBar strong, #s7KpiBar strong {
+        color: #0f172a !important;
+      }
+
+      .bio-table th {
+        background: #e2e8f0 !important;
+        color: #0f172a !important;
+      }
+      .bio-table td {
+        color: #1e293b !important;
+      }
+
+      / ПЕЧАТНАЯ ВЕРСИЯ КАЛЬКУЛЯТОРА (СЛАЙД 8) */
+      .calc-row, .calc-results-grid, #calcBoxPhys {
+        display: none !important;
+      }
+      #calcBoxFin {
+        display: block !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+      }
+      .print-static-table {
+        display: table !important;
+        width: 100% !important;
+        margin-top: 6px !important;
+        background: #fff !important;
+      }
+      .print-static-table th {
+        background: #e2e8f0 !important;
+        color: #0f172a !important;
+      }
     }
   </style>
 </head>
@@ -1032,7 +1211,7 @@
     <div class="controls-bar">
       <div class="slide-nav-group">
         <button class="btn-nav" id="btnPrev" onclick="navigateSlide(-1)">◀ НАЗАД</button>
-        <span class="slide-indicator" id="slideIndicator">1 / 8</span>
+        <span class="slide-indicator" id="slideIndicator">1 / 9</span>
         <button class="btn-nav" id="btnNext" onclick="navigateSlide(1)">ВПЕРЕД ▶</button>
 
         <!-- ПЕРЕХОД К ЛЮБОМУ СЛАЙДУ В 1 КЛИК -->
@@ -1071,7 +1250,7 @@
     <!-- SPEAKER NOTES DRAWER -->
     <div class="speaker-drawer" id="speakerDrawer">
       <div class="speaker-drawer-header">
-        <span class="speaker-tag">🎙️ ТЕКСТ УСНОЇ НАУКОВОЇ ДОПОВІДІ (45–60 СЕКУНД // БЕЗОСОБОВИЙ СТИЛЬ 3-Ї ОСОБИ):</span>
+        <span class="speaker-tag">🎙️ СУПРОВІДНИЙ ТЕКСТ ДОПОВІДІ ДО СЛАЙДА:</span>
         <span style="font-family: var(--font-mono); font-size: 10px; color: var(--text-muted);">Клавіша [N] для закриття</span>
       </div>
       <div class="speaker-text" id="speakerTextContent">
@@ -1089,7 +1268,7 @@
             <div class="slide-badge">АКТ 01 // ВХІД У ПРОБЛЕМУ</div>
             <h1 class="slide-title">Біомаса для твердого біопалива: Виклики енергетики України</h1>
           </div>
-          <div class="slide-num-stamp">01 / 08</div>
+          <div class="slide-num-stamp">01 / 09</div>
         </div>
 
         <div class="slide-split">
@@ -1166,7 +1345,7 @@
             <div class="slide-badge">АКТ 02 // ТЕХНОЛОГІЧНИЙ МАРШРУТ</div>
             <h2 class="slide-title">Як працює завод: покроковий шлях від відходів до гранули</h2>
           </div>
-          <div class="slide-num-stamp">02 / 08</div>
+          <div class="slide-num-stamp">02 / 09</div>
         </div>
 
         <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 12px;">
@@ -1268,7 +1447,7 @@
             <div class="slide-badge" style="color:var(--phase-1);">АКТ 03 // ФАЗА 1: МЕХАНІЧНА ПІДГОТОВКА ТА ЗАХИСТ</div>
             <h2 class="slide-title">Вузли 1–2: Фракціонування деревини та захисна сепарація</h2>
           </div>
-          <div class="slide-num-stamp">03 / 08</div>
+          <div class="slide-num-stamp">03 / 09</div>
         </div>
 
         <div class="slide-split">
@@ -1340,7 +1519,7 @@
             <div class="slide-badge" style="color:var(--phase-2);">АКТ 04 // ФАЗА 2: ТЕРМОДИНАМІЧНЕ ЗНЕВОДНЕННЯ</div>
             <h2 class="slide-title">Вузол 2: Термодинаміка сушіння та тепловий баланс</h2>
           </div>
-          <div class="slide-num-stamp">04 / 08</div>
+          <div class="slide-num-stamp">04 / 09</div>
         </div>
 
         <div class="slide-split">
@@ -1365,7 +1544,7 @@
               </p>
             </div>
 
-            <!-- 2. ДВЕ КЛЮЧЕВЫЕ СУТЬОВЫЕ КАРТОЧКИ -->
+            <!-- 2. ДВЕ КЛЮЧЕВЫЕ КАРТОЧКИ -->
             <div class="grid-2col">
               <div class="kpi-card p2" style="padding:10px 12px;">
                 <div class="kpi-label">Масштаб випаровування</div>
@@ -1402,7 +1581,7 @@
             <div class="slide-badge" style="color:var(--phase-3);">АКТ 05 // ФАЗА 3: ПЛАСТИФІКАЦІЯ ТА ПРЕСУВАННЯ</div>
             <h2 class="slide-title">Вузли 4–6: Молотковий помел, плавлення лігніну та тиск 120 МПа</h2>
           </div>
-          <div class="slide-num-stamp">05 / 08</div>
+          <div class="slide-num-stamp">05 / 09</div>
         </div>
 
         <div class="slide-split">
@@ -1440,7 +1619,7 @@
               </button>
             </div>
 
-            <!-- ПРОСТОРНАЯ ЧИТАЕМАЯ КАРТОЧКА С НОРМАЛЬНЫМ ШРИФТОМ -->
+            <!-- КАРТОЧКА  -->
             <div class="kpi-card p3 text-transition-wrap" id="s5DataCard" style="padding:16px 18px; min-height:240px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
                 <div class="kpi-label" id="s5CardLabel" style="color:var(--phase-3); font-size:10.5px; margin-bottom:6px;">
@@ -1475,7 +1654,7 @@
             <div class="slide-badge" style="color:var(--phase-4);">АКТ 06 // ФАЗА 4: СТАБІЛІЗАЦІЯ СТРУКТУРИ ТА ЛОГІСТИКА</div>
             <h2 class="slide-title">Вузли 7–8: Охолодження, загартування лігніну та фасування</h2>
           </div>
-          <div class="slide-num-stamp">06 / 08</div>
+          <div class="slide-num-stamp">06 / 09</div>
         </div>
 
         <div class="slide-split">
@@ -1539,7 +1718,7 @@
             <div class="slide-badge">АКТ 07 // ІНЖЕНЕРНИЙ БАТЛ ПАЛИВ</div>
             <h2 class="slide-title">Порівняльний аналіз 4-х видів твердого біопалива України</h2>
           </div>
-          <div class="slide-num-stamp">07 / 08</div>
+          <div class="slide-num-stamp">07 / 09</div>
         </div>
 
         <div class="slide-split">
@@ -1577,7 +1756,7 @@
               </button>
             </div>
 
-            <!-- ПРОСТОРНАЯ ЧИТАЕМАЯ КАРТОЧКА ПАЛИВА -->
+            <!-- КАРТОЧКА ПАЛИВА -->
             <div class="kpi-card p1 text-transition-wrap" id="s7DataCard" style="padding:14px 16px; min-height:220px; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
                 <div class="kpi-label" id="s7CardTag" style="color:var(--phase-1); font-size:10.5px; margin-bottom:4px;">
@@ -1686,7 +1865,7 @@
             <!-- ПЕРЕКЛЮЧАТЕЛЬ РЕЖИМОВ КАЛЬКУЛЯТОРА -->
             <div style="display:flex; gap:8px; margin-bottom:6px;">
               <button class="btn-action active" id="btnCalcModeFin" onclick="switchCalcMode('fin')" style="border-color:var(--phase-3); color:var(--phase-3);">
-                💰 ФІНАНСОВА ОКУПНІСТЬ (ВИТРАТИ / ЕКОНОМІЯ / ТТК)
+                💰 ФІНАНСОВА ОКУПНІСТЬ (ВИТРАТИ / ЕКОНОМІЯ / ТЕРМІН ОКУПНОСТІ)
               </button>
               <button class="btn-action" id="btnCalcModePhys" onclick="switchCalcMode('phys')">
                 ⚡ ФІЗИЧНИЙ ЕКВІВАЛЕНТ (ТОННИ / ГАЗ У М³)
@@ -1708,7 +1887,7 @@
 
                 <div class="calc-input-group">
                   <label class="calc-label">Чим опалюєте зараз?</label>
-                  <select class="calc-select" id="finSourceType" onchange="calcFinancialRoi()">
+                  <select class="calc-select" id="finSourceType" onchange="updateTariffCost()">
                     <option value="gas" selected>Природний газ (~18 грн/м³ бізнес / ~8 грн дім)</option>
                     <option value="elec">Електроопалення (4.32 грн/кВт·год)</option>
                   </select>
@@ -2002,10 +2181,10 @@
           </div>
         </div>
 
-        <!-- АВТОМАТИЧЕСКИЙ ВЫВОД ПОМОЩНИКА -->
+        <!-- ЗВЕДЕНИЙ ВИСНОВОК ТЕХНІЧНОГО АНАЛІЗУ -->
         <div class="kpi-card p1" style="padding:12px; background:#090c10;">
           <div style="font-family:var(--font-mono); font-size:10px; color:var(--phase-1); font-weight:700; margin-bottom:4px;">
-            АВТОМАТИЧНИЙ ІНЖЕНЕРНИЙ ВИСНОВОК ЗА РЕЗУЛЬТАТАМИ НАВАЖОК:
+            ЗВЕДЕНИЙ ІНЖЕНЕРНИЙ ВИСНОВОК ЗА РЕЗУЛЬТАТАМИ ДОСЛІДЖЕННЯ:
           </div>
           <div style="font-size:12px; color:#cbd5e1; line-height:1.5;" id="labSummaryText">
             Розрахунок завершено. Робоча вологість 42.91% свідчить про високий вміст капілярної води в тирсі (потребує сушіння). Зольність 0.70% відповідає вищому ґатунку ENplus A1. Вихід летких речовин 80.40% підтверджує високу реакційну здатність факела.
@@ -2013,7 +2192,7 @@
         </div>
       </div>
 
-      <!-- ВКЛАДКА 1: ТЕОРЕТИЧЕСКИЕ ВОПРОСЫ (ВЫЧИЩЕНЫ ОТ СЫРОГО LATEX) -->
+      <!-- ВКЛАДКА 1: ТЕОРЕТИЧЕСКИЕ ВОПРОСЫ  -->
       <div id="faqTabTheoryContent">
         <div style="font-family: var(--font-mono); font-size: 11px; color: var(--phase-3); font-weight: 700; margin-bottom: 6px;">
           ДОДАТКОВІ ПИТАННЯ // ТЕПЛОТЕХНІЧНИЙ АНАЛІЗ
@@ -2135,7 +2314,7 @@
     const speakerNotes = {
       1: "У представленій науково-технічній доповіді досліджено повний технологічний цикл виробництва стандартизованого твердого біопалива — деревних гранул вищої споживчої категорії ENplus A1. В умовах дефіциту імпортного природного газу та руйнування централізованої інфраструктури ОЕС України утилізація багатотонних відходів лісопиляння є ключовим інструментом забезпечення локального автономного тепла.",
       2: "Технологічний маршрут лінії складається з чотирьох послідовних фаз та восьми вузлів переробки. Фаза 1 — механічна підготовка та захист обладнання; Фаза 2 — термодинамічне зневоднення; Фаза 3 — молотковий помел, парова пластифікація лігніну та пресування; Фаза 4 — стабілізація, кристалізація та упаковка. Лінія споживає від 70 до 95 кВт·год електрики на тонну продукції.",
-      3: "Перша фаза забезпечує підготовку вологій сировині з вологістю до 55%. Дискові рубальні машини вирівнюють фракцію до 15–25 мм для рівномірного прогріву в сушарці. Ключовим вузлом захисту виступає двоступенева електромагнітна колонка з неодимовими магнітами, яка вилучає металеві включення, запобігаючи аварійному розколу кільцевої матриці преса вартістю понад 5 000 євро.",
+      3: "Перша фаза забезпечує підготовку вологої сировини вологістю до 55%. Дискові рубальні машини вирівнюють фракцію до 15–25 мм для рівномірного прогріву в сушарці. Ключовим вузлом захисту виступає двоступенева електромагнітна колонка з неодимовими магнітами, яка вилучає металеві включення, запобігаючи аварійному розколу кільцевої матриці преса вартістю понад 5 000 євро.",
       4: "Друга фаза є найбільш енергоємною: сушіння біомаси. Для зниження вологості з 50% до нормативних 10% необхідно випарувати 800 кг води на кожну тонну готових пелет. За теплових витрат близько 3.4 МДж на кілограм води загальна потреба сягає 2.8 ГДж тепла. Це тепло повністю забезпечується спалюванням 190 кг власної кори у передтопку, роблячи завод на 100% теплоенергетично автономним.",
       5: "Третя фаза розпочинається молотковим помелом до часток 1–2.5 мм та подальшим кондиціонуванням сухою парою з температурою 90°C. Природний полімер лігнін, вміст якого в деревині сягає 30%, переходить у пластичний стан і виступає натуральним клеєм. Далі у прес-грануляторі під тиском 120 МПа маса видавлюється крізь фільєри 6 мм, досягаючи густини понад 1150 кг/м³ без додавання синтетичних смол.",
       6: "Четверта фаза завершує технологічний переділ. Гаряча гранула продувається у протитоковому охолоджувачі зустрічним холодним повітрям. Лігнін кристалізується, забезпечуючи механічну міцність гранули не менше 98%. Віброгуркіт відсіює 2% крихти назад у прес, а кондиційне паливо пакується у герметичні мішки по 15 кг для приватних пальників або біг-беги по 1000 кг для ТЕЦ.",
@@ -2672,7 +2851,7 @@
       }
     }
 
-    // LAB NOTEBOOK PRESETS (PLATON'S DATA)
+    // Experimental benchmark presets according to DSTU testing standards
     const labPresets = {
       1: { wt: 19.805, wm: 10.063, wm1: 25.550, at: 22.710, am: 1.001, am1: 22.717, vt: 23.544, vm: 1.000, vm1: 23.740 },
       2: { wt: 19.719, wm: 10.327, wm1: 25.740, at: 25.650, am: 1.003, am1: 25.657, vt: 24.425, vm: 1.001, vm1: 24.635 }
@@ -2749,15 +2928,14 @@
         `Вихід летких речовин ${vdaf.toFixed(1)}% підтверджує високу реакційну здатність палива під час факельного спалювання.`;
     }
 
-    // FINANCIAL ROI CALCULATOR ENGINE
+    // Technical-economic boiler model and tariff grid
     const areaBoilerData = {
-      100: { power: 12, defCost: 4500, capex: 65000 },
-      150: { power: 18, defCost: 6500, capex: 82000 },
-      300: { power: 35, defCost: 14000, capex: 135000 },
-      1000: { power: 100, defCost: 45000, capex: 260000 }
+      100: { power: 12, gasCost: 4500, elecCost: 7800, capex: 65000 },
+      150: { power: 18, gasCost: 6500, elecCost: 11200, capex: 82000 },
+      300: { power: 35, gasCost: 14000, elecCost: 24500, capex: 135000 },
+      1000: { power: 100, gasCost: 45000, elecCost: 78000, capex: 260000 }
     };
 
-    // 3D FLIP LOGIC FOR SLIDE 8 ON AREA SELECTION
     const s8VisualData = {
       100: { file: "assets/08_house_boiler.png", icon: "🏠", title: "НЕВЕЛИКИЙ ДІМ (100 М²)", sub: "Компактний пелетний котел 10–12 кВт" },
       150: { file: "assets/08_house_boiler.png", icon: "🏡", title: "ПРИВАТНИЙ ДІМ (150 М²)", sub: "Автоматичний пелетний котел 18 кВт із бункером у приватному секторі" },
@@ -2767,13 +2945,19 @@
 
     let currentS8Img = "assets/08_house_boiler.png";
 
+    function updateTariffCost() {
+      const area = parseInt(document.getElementById('finAreaSelect').value) || 150;
+      const source = document.getElementById('finSourceType').value;
+      const d = areaBoilerData[area];
+      document.getElementById('finCurrentCost').value = (source === 'gas') ? d.gasCost : d.elecCost;
+      calcFinancialRoi();
+    }
+
     function applyAreaPreset() {
       const area = parseInt(document.getElementById('finAreaSelect').value) || 150;
       const d = areaBoilerData[area];
-      document.getElementById('finCurrentCost').value = d.defCost;
       document.getElementById('finBoilerCapex').value = d.capex;
 
-      // 3D FLIP ON AREA CHANGE
       const frame = document.getElementById('s8MediaFrame');
       const v = s8VisualData[area];
       currentS8Img = v.file;
@@ -2792,7 +2976,7 @@
         }, 200);
       }
 
-      calcFinancialRoi();
+      updateTariffCost();
     }
 
     function openS8Lightbox() {
@@ -2810,7 +2994,9 @@
         boxPhys.style.display = 'none';
         btnFin.classList.add('active');
         btnPhys.classList.remove('active');
+        btnFin.style.borderColor = 'var(--phase-3)';
         btnFin.style.color = 'var(--phase-3)';
+        btnPhys.style.borderColor = 'var(--border)';
         btnPhys.style.color = 'var(--text)';
         calcFinancialRoi();
       } else {
@@ -2818,7 +3004,9 @@
         boxPhys.style.display = 'block';
         btnPhys.classList.add('active');
         btnFin.classList.remove('active');
+        btnPhys.style.borderColor = 'var(--phase-1)';
         btnPhys.style.color = 'var(--phase-1)';
+        btnFin.style.borderColor = 'var(--border)';
         btnFin.style.color = 'var(--text)';
         calculateBioenergy();
       }
@@ -2829,19 +3017,13 @@
       const curCost = parseFloat(document.getElementById('finCurrentCost').value) || 6500;
       const capex = parseFloat(document.getElementById('finBoilerCapex').value) || 82000;
 
-      // Теплопотреба на місяць (кВт·год) ~ площа * 60 Вт/м2 * 24 год * 30 дн * 0.65 коеф. навантаження
+      // Thermal demand model: area * 0.06 kW/m2 * 720h * 0.65 load factor
       const heatKwhMonth = area * 0.06 * 24 * 30 * 0.65;
-      // Тонн пелет на місяць (1 т пелет = 4900 кВт·год, ккд котла 88%)
       const pelletTons = heatKwhMonth / (4900 * 0.88);
-      // Вартість пелет (5000 грн/т)
       const pelletCostMonth = Math.round(pelletTons * 5000);
 
-      // Економія в місяць
       const monthlySave = Math.max(0, curCost - pelletCostMonth);
-      // Сезонна економія (6 місяців опалення)
       const seasonSave = monthlySave * 6;
-
-      // Термін окупності в сезонах (роках)
       const paybackSeasons = seasonSave > 0 ? (capex / seasonSave) : 99;
 
       document.getElementById('finPelletCost').textContent = pelletCostMonth.toLocaleString('uk-UA') + " грн";
@@ -2850,7 +3032,7 @@
       
       if (paybackSeasons < 10) {
         document.getElementById('finPayback').textContent = paybackSeasons.toFixed(1) + " сезони";
-        document.getElementById('finPaybackSub').textContent = `Повне повернення інвестицій за ${paybackSeasons.toFixed(1)} роки`;
+        document.getElementById('finPaybackSub').textContent = `Повне повернення за ${paybackSeasons.toFixed(1)} роки`;
       } else {
         document.getElementById('finPayback').textContent = "> 10 років";
         document.getElementById('finPaybackSub').textContent = "Потребує оптимізації тарифу";
