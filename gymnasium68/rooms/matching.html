@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
@@ -70,7 +70,7 @@
 
 <script src="data.js"></script>
 <script>
-  let crystals = parseInt(localStorage.getItem('mom_school_crystals') || '0');
+  let crystals = parseInt(localStorage.getItem('gym68_crystals') || '0');
   document.getElementById('crystal-count').textContent = crystals;
 
   let selectedEl = null;
@@ -125,7 +125,7 @@
         selectedEl = null;
         matchedCount++;
         crystals++;
-        localStorage.setItem('mom_school_crystals', crystals);
+        localStorage.setItem('gym68_crystals', crystals);
         document.getElementById('crystal-count').textContent = crystals;
 
         if (matchedCount === cardsData.length / 2) {
@@ -150,3 +150,4 @@
 </script>
 </body>
 </html>
+

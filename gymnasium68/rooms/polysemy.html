@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
@@ -351,12 +351,12 @@
 <script src="data.js"></script>
 <script>
   let state = {
-    crystals: parseInt(localStorage.getItem('mom_school_crystals') || '0')
+    crystals: parseInt(localStorage.getItem('gym68_crystals') || '0')
   };
 
   function updateUI() {
     document.getElementById('crystals-count').innerText = state.crystals;
-    localStorage.setItem('mom_school_crystals', state.crystals);
+    localStorage.setItem('gym68_crystals', state.crystals);
   }
   updateUI();
 
@@ -579,3 +579,4 @@
 
 </body>
 </html>
+
