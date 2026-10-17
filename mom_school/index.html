@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4-А клас • Дніпровська гімназія №68</title>
+<style>
+  :root {
+    --wood-shelf: #3d2612;
+    --board-green: #1e3f20;
+    --paper-card: #fdfbf7;
+    --gold-accent: #d4af37;
+    --text-dark: #222222;
+  }
+  body {
+    /* Фонове зображення справжньої бібліотеки як на сайті гімназії №68 */
+    background: linear-gradient(rgba(43, 29, 17, 0.85), rgba(26, 16, 9, 0.9)), 
+                url('https://school68.dnepredu.com/uk/site/index.html') no-repeat center center fixed;
+    background-color: #2b1d11;
+    background-size: cover;
+    font-family: 'Times New Roman', Times, serif, Arial, sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .site-header {
+    background: rgba(61, 38, 18, 0.9);
+    border: 3px solid var(--gold-accent);
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.7);
+  }
+  h1 {
+    margin: 0;
+    font-size: 28px;
+    color: var(--gold-accent);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+  }
+  .subtitle {
+    font-size: 16px;
+    color: #f0e6d2;
+    margin-top: 8px;
+  }
+  .classroom {
+    background-color: rgba(30, 63, 32, 0.92);
+    border: 8px solid var(--wood-shelf);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+  }
+  .room-card {
+    background-color: var(--paper-card);
+    color: var(--text-dark);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 6px solid var(--gold-accent);
+  }
+  .room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.6);
+  }
+  .room-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #1a4d2e;
+  }
+  .room-desc {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+  .room-btn {
+    background-color: #2e5c31;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.2s;
+  }
+  .room-btn:hover {
+    background-color: #1e3f20;
+  }
+  footer {
+    margin-top: 30px;
+    font-size: 13px;
+    color: #dcd6d0;
+    text-align: center;
+    background: rgba(43, 29, 17, 0.85);
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 900px;
+    border: 1px solid var(--gold-accent);
+    line-height: 1.6;
+  }
+  .credits {
+    color: var(--gold-accent);
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<div class="site-header">
+  <h1>Дніпровська гімназія № 68 • 4-А клас</h1>
+  <div class="subtitle">Інтерактивний кабінет початкової школи • Віртуальна аркада знань</div>
+</div>
+
+<main class="classroom">
+  <!-- Кімната 1 -->
+  <div class="room-card">
+    <div>
+      <div class="room-title">📚 Українська мова</div>
+      <div class="room-desc"><strong>Тема: Багатозначні слова (Слова-хамелеони)</strong><br>Інтерактивний тренажер для пошуку та розрізнення значень слів.</div>
+    </div>
+    <a href="rooms/polysemy.html" class="room-btn">Увійти в кімнату ➔</a>
+  </div>
+
+  <!-- Кімната 2 -->
+  <div class="room-card" style="opacity: 0.75;">
+    <div>
+      <div class="room-title">✏️ Правопис (У розробці)</div>
+      <div class="room-desc"><strong>Тема: Ненаголошені е, и в коренях</strong><br>Інтерактивна гра-сортування по кошиках.</div>
+    </div>
+    <span class="room-btn" style="background-color: #777; cursor: not-allowed;">Скоро відкриття</span>
+  </div>
+
+  <!-- Кімната 3 -->
+  <div class="room-card" style="opacity: 0.75;">
+    <div>
+      <div class="room-title">🧮 Математика (У розробці)</div>
+      <div class="room-desc"><strong>Тема: Табличне множення</strong><br>Тренажер швидкого рахунку для всього класу.</div>
+    </div>
+    <span class="room-btn" style="background-color: #777; cursor: not-allowed;">Скоро відкриття</span>
+  </div>
+</main>
+
+<footer>
+  <div><strong>Ідея та педагогічний супровід:</strong> учитель початкових класів <span class="credits">Задорожна Наталія Іванівна</span></div>
+  <div><strong>Архітектура та розробка:</strong> <span class="credits">DaToxSys Education Division</span></div>
+  <div style="margin-top: 8px; font-size: 11px; color: #aaa;">© 2026 Дніпровська гімназія № 68 • Всі права захищені</div>
+</footer>
+
+</body>
+</html>

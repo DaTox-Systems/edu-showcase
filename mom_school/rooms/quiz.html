@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Гра 3: Бліц-тест • Слова-хамелеони</title>
+<style>
+  :root {
+    --primary-green: #2e5c31;
+    --accent-gold: #d4af37;
+    --bg-dark: #1a2e1b;
+    --paper-card: #fdfbf7;
+    --text-main: #222222;
+  }
+  body {
+    background-color: var(--bg-dark);
+    font-family: 'Times New Roman', Times, serif, Arial, sans-serif;
+    color: #fff; margin: 0; padding: 20px;
+    display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+  }
+  .container {
+    width: 100%; max-width: 800px;
+    background: var(--paper-card); color: var(--text-main);
+    border-radius: 12px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  }
+  .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
+  .back-btn { background: #444; color: #fff; text-decoration: none; padding: 6px 12px; border-radius: 6px; font-size: 14px; }
+  .question-box { font-size: 19px; font-weight: bold; margin-bottom: 20px; color: var(--primary-green); }
+  .answers-grid { display: flex; flex-direction: column; gap: 10px; }
+  .answer-btn {
+    background: #f0ede6; border: 2px solid #b5ab9a; border-radius: 8px;
+    padding: 14px; text-align: left; font-size: 15px; font-weight: bold;
+    cursor: pointer; transition: 0.2s;
+  }
+  .answer-btn:hover { background: #e2ded4; }
+  .answer-btn.correct { background: #c8e6c9; border-color: #2e5c31; color: #1e3f20; }
+  .answer-btn.wrong { background: #ffcdd2; border-color: #c62828; color: #c62828; }
+  .analytics-item { padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; }
+  .btn-primary { background: var(--primary-green); color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; }
+  .btn-primary:hover { background: #1e3f20; }
+</style>
+</head>
+<body>
+
+<!-- МОДАЛЬНЕ ВІКНО ІНСТРУКТАЖУ ГРИ 3 -->
+<div id="rules-modal" style="display:flex; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; z-index:1000;">
+  <div style="background:var(--paper-card); color:var(--text-main); width:90%; max-width:500px; border-radius:12px; padding:25px; text-align:center; border-top:6px solid var(--accent-gold);">
+    <h2 style="color:var(--primary-green); margin-top:0;">🧩 Гра 3: Бліц-тест</h2>
+    <p style="text-align:left; line-height:1.5;"><strong>Правила бліцу:</strong><br> Тебе чекає 10 питань про слова-хамелеони. Уважно читай контекст речення та обирай правильний варіант відповіді.<br>• За кожну правильну відповідь — 2 кристали 💎!<br>• Наприкінці тебе чекає детальний звіт та аналіз твоїх відповідей.</p>
+    <div style="display:flex; justify-content:center; gap:10px; margin-top:20px;">
+      <button onclick="location.href='polysemy.html'" style="background:#888; color:#fff; border:none; padding:10px 18px; border-radius:6px; font-weight:bold; cursor:pointer;">Скасувати</button>
+      <button onclick="document.getElementById('rules-modal').style.display='none'; initQuiz();" style="background:var(--primary-green); color:#fff; border:none; padding:10px 20px; border-radius:6px; font-weight:bold; cursor:pointer;">Почати бліц!</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="header">
+    <a href="polysemy.html" class="back-btn">➔ До меню кімнати</a>
+    <h2 style="margin:0; color: var(--primary-green);">🧩 Гра 3: Бліц-тест</h2>
+    <div style="font-weight:bold; color:var(--accent-gold);">💎 <span id="crystal-count">0</span></div>
+  </div>
+  
+  <div id="quiz-box">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+      <div id="q-counter" style="font-size: 14px; font-weight: bold; color: var(--primary-green);">Питання 1 із 10</div>
+      <button onclick="skipQuestion()" style="background: #e0e0e0; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; font-weight: bold;">Пропустити ➔</button>
+    </div>
+    <div id="q-title" class="question-box">Завантаження питання...</div>
+    <div id="q-answers" class="answers-grid"></div>
+  </div>
+
+  <div id="analytics-screen" style="display: none; text-align: center;">
+    <h3 style="color: var(--primary-green);">📊 Підсумковий звіт бліц-тесту</h3>
+    <p id="score-summary" style="font-size: 18px; font-weight: bold;"></p>
+    <div id="analytics-list" style="text-align: left; max-height: 300px; overflow-y: auto; background: #f9f9f9; border: 1px solid #ddd; padding: 10px; border-radius: 6px; margin: 15px 0;"></div>
+    <button class="btn-primary" onclick="initQuiz()">Пройти тест знову</button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+  let crystals = parseInt(localStorage.getItem('mom_school_crystals') || '0');
+  document.getElementById('crystal-count').textContent = crystals;
+
+  let currentQ = 0;
+  let quizLog = [];
+
+  function initQuiz() {
+    currentQ = 0;
+    quizLog = [];
+    document.getElementById('quiz-box').style.display = 'block';
+    document.getElementById('analytics-screen').style.display = 'none';
+    loadQuiz();
+  }
+
+  function loadQuiz() {
+    if (currentQ >= POLYSEMY_DATA.quiz.length) {
+      showAnalytics();
+      return;
+    }
+    const item = POLYSEMY_DATA.quiz[currentQ];
+    document.getElementById('q-counter').innerText = `Питання ${currentQ + 1} із ${POLYSEMY_DATA.quiz.length}`;
+    document.getElementById('q-title').innerText = item.question;
+    const grid = document.getElementById('q-answers');
+    grid.innerHTML = "";
+
+    item.options.forEach((opt, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'answer-btn';
+      btn.innerText = opt;
+      btn.onclick = () => checkQuiz(idx, item.correct, btn, item);
+      grid.appendChild(btn);
+    });
+  }
+
+  function checkQuiz(selected, right, btn, item) {
+    const buttons = document.querySelectorAll('.answer-btn');
+    buttons.forEach(b => b.onclick = null);
+
+    const isCorrect = (selected === right);
+    if (isCorrect) {
+      btn.classList.add('correct');
+    } else {
+      btn.classList.add('wrong');
+      buttons[right].classList.add('correct');
+    }
+
+    quizLog.push({
+      question: item.question,
+      correct: isCorrect,
+      userAnswer: item.options[selected],
+      rightAnswer: item.options[right],
+      explanation: item.explanation
+    });
+
+    setTimeout(() => {
+      currentQ++;
+      loadQuiz();
+    }, 1500);
+  }
+
+  function skipQuestion() {
+    const item = POLYSEMY_DATA.quiz[currentQ];
+    quizLog.push({
+      question: item.question,
+      correct: false,
+      userAnswer: "Пропущено",
+      rightAnswer: item.options[item.correct],
+      explanation: "Питання було пропущено."
+    });
+    currentQ++;
+    loadQuiz();
+  }
+
+  function showAnalytics() {
+    document.getElementById('quiz-box').style.display = 'none';
+    const screen = document.getElementById('analytics-screen');
+    screen.style.display = 'block';
+
+    const correctCount = quizLog.filter(x => x.correct).length;
+    
+    // НАГОРОДА НАРАХОВУЄТЬСЯ СТРОГО В КІНЦІ ТЕСТУ!
+    const earned = correctCount * 2;
+    crystals += earned;
+    localStorage.setItem('mom_school_crystals', crystals);
+    document.getElementById('crystal-count').textContent = crystals;
+
+    document.getElementById('score-summary').innerText = `Правильних відповідей: ${correctCount} із ${quizLog.length} (+${earned} кристалів 💎 на загальний рахунок!)`;
+
+    const list = document.getElementById('analytics-list');
+    list.innerHTML = "";
+    quizLog.forEach((log, i) => {
+      const div = document.createElement('div');
+      div.className = 'analytics-item';
+      div.innerHTML = `
+        <strong>${i+1}. ${log.question}</strong><br>
+        ${log.correct 
+          ? `<span style="color:#2e5c31; font-weight:bold;">✓ Вірно (${log.userAnswer})</span>` 
+          : `<span style="color:#c62828; font-weight:bold;">✗ Твоя відповідь: ${log.userAnswer} <br> ➔ Правильно: ${log.rightAnswer}</span>`}
+        <br><small style="color:#555;">💡 ${log.explanation}</small>
+      `;
+      list.appendChild(div);
+    });
+  }
+
+  // ініціалізація закладена в кнопку модалки
+</script>
+</body>
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Слова-хамелеони • Українська мова 4 клас</title>
+<style>
+  :root {
+    --primary-green: #2e5c31;
+    --accent-gold: #d4af37;
+    --bg-dark: #1a2e1b;
+    --paper-card: #fdfbf7;
+    --text-main: #222222;
+    --direct-col: #2196F3;
+    --figurative-col: #9C27B0;
+    --phrase-col: #FF9800;
+  }
+  body {
+    background-color: var(--bg-dark);
+    background-image: radial-gradient(circle, #2c4c2e 0%, #111e12 100%);
+    font-family: 'Times New Roman', Times, serif, Arial, sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    touch-action: manipulation;
+    overflow-x: hidden;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--accent-gold);
+    padding-bottom: 10px;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    color: var(--accent-gold);
+  }
+  .stats {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--accent-gold);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--accent-gold);
+  }
+  .back-btn {
+    background: #444;
+    color: #fff;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  
+  /* Меню вибору ігор */
+  .game-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+  }
+  .menu-card {
+    background: var(--paper-card);
+    color: var(--text-main);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+    border-bottom: 5px solid var(--primary-green);
+  }
+  .menu-card:hover {
+    transform: translateY(-4px);
+    background: #fff;
+  }
+  .menu-card h3 {
+    margin-top: 0;
+    color: var(--primary-green);
+  }
+
+  /* Модальне вікно інструктажу */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .modal-box {
+    background: var(--paper-card);
+    color: var(--text-main);
+    width: 90%;
+    max-width: 550px;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    border-top: 6px solid var(--accent-gold);
+    text-align: center;
+  }
+  .modal-box h2 {
+    color: var(--primary-green);
+    margin-top: 0;
+  }
+  .rules-list {
+    text-align: left;
+    margin: 20px 0;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .rules-list li {
+    margin-bottom: 10px;
+  }
+  .modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  .start-game-btn {
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .start-game-btn:hover { background-color: #1e3f20; }
+  .cancel-btn {
+    background-color: #888;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .cancel-btn:hover { background-color: #666; }
+
+  /* Контейнер гри */
+  .game-container {
+    display: none;
+    width: 100%;
+    max-width: 900px;
+    background: var(--paper-card);
+    color: var(--text-main);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    position: relative;
+    z-index: 10;
+  }
+  .game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+  .close-game {
+    background: #c62828;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  /* Гра 1: Сортер */
+  .sorter-card-box {
+    background: #f0ede6;
+    border: 2px dashed #b5ab9a;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .baskets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  .basket {
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.1s;
+  }
+  .basket:active { transform: scale(0.97); }
+  .basket-direct { background-color: var(--direct-col); }
+  .basket-figurative { background-color: var(--figurative-col); }
+  .basket-phrase { background-color: var(--phrase-col); }
+
+  .feedback-msg {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    min-height: 24px;
+  }
+
+  /* Блок аналітики (звіт по помилках) */
+  .analytics-box {
+    margin-top: 20px;
+    text-align: left;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    max-height: 250px;
+    overflow-y: auto;
+  }
+  .analytics-item {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .correct-ans { color: #2e5c31; font-weight: bold; }
+  .error-ans { color: #c62828; font-weight: bold; }
+
+  /* Canvas для салюту */
+  #confetti-canvas {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 999;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<header>
+  <a href="../index.html" class="back-btn">➔ Назад в Кабінет</a>
+  <h1>🦎 Слова-хамелеони</h1>
+  <div class="stats">💎 <span id="crystals-count">0</span> кристалів</div>
+</header>
+
+<!-- МОДАЛЬНЕ ВІКНО ІНСТРУКТАЖУ -->
+<div id="rules-modal" class="modal-overlay">
+  <div class="modal-box">
+    <h2>🕵️‍♂️ Детективне агентство: Правила</h2>
+    <div class="rules-list">
+      <ul>
+        <li><strong>Мета гри:</strong> Дослідити, як звичайні слова змінюють своє значення залежно від контексту.</li>
+        <li><strong>Як грати:</strong> У центрі з'явиться речення або словосполучення. Ваше завдання — визначити його тип та натиснути на правильний кошик:
+          <ul>
+            <li>🔵 <strong>Пряме значення</strong> — звичайна назва предмета чи явища.</li>
+            <li>🟣 <strong>Переносне значення</strong> — назва, перенесена на інший предмет за схожістю.</li>
+            <li>🟠 <strong>Фразеологізм</strong> — стійкий вираз (крилатий вислів).</li>
+          </ul>
+        </li>
+        <li><strong>Нагорода:</strong> За кожну правильну відповідь ви отримуєте кристали знань 💎! Жодних штрафів за помилки — вчимося разом!</li>
+      </ul>
+    </div>
+    <div class="modal-buttons">
+      <button class="cancel-btn" onclick="closeRulesModal()">Скасувати</button>
+      <button class="start-game-btn" onclick="initGameSession()">Почати розслідування!</button>
+    </div>
+  </div>
+</div>
+
+<!-- ГОЛОВНЕ МЕНЮ ВИБОРУ ІГОР -->
+<main id="main-menu" class="game-menu">
+  <div class="menu-card" onclick="openSorterRules()">
+    <h3>🎯 Гра 1: Хамелеон-сортер</h3>
+    <p>Розподіли речення та словосполучення у правильні кошики за значенням.</p>
+  </div>
+  <div class="menu-card" onclick="location.href='matching.html'">
+    <h3>🔗 Гра 2: Знайди пару</h3>
+    <p>З'єднай слово-хамелеон з його правильним значенням у контексті.</p>
+  </div>
+  <div class="menu-card" onclick="location.href='quiz.html'">
+    <h3>🧩 Гра 3: Бліц-тест</h3>
+    <p>Перевір свої знання у швидкому тестуванні з вибором відповідей.</p>
+  </div>
+</main>
+
+<!-- ІГРОВИЙ МОДУЛЬ: СОРТЕР -->
+<section id="game-sorter" class="game-container">
+  <div class="game-header">
+    <h2 style="margin:0; color: var(--primary-green);">Гра 1: Сортер значень</h2>
+    <button class="close-game" onclick="closeGame()">Вийти в меню</button>
+  </div>
+  
+  <div id="sorter-area">
+    <div id="sorter-card" class="sorter-card-box">Завантаження завдання...</div>
+
+    <div class="baskets-grid">
+      <div class="basket basket-direct" onclick="checkSorterAnswer('direct')">
+        Пряме значення
+      </div>
+      <div class="basket basket-figurative" onclick="checkSorterAnswer('figurative')">
+        Переносне значення
+      </div>
+      <div class="basket basket-phrase" onclick="checkSorterAnswer('phrase')">
+        Фразеологізм
+      </div>
+    </div>
+
+    <div id="sorter-feedback" class="feedback-msg"></div>
+  </div>
+
+  <!-- ЕКРАН АНАЛІТИКИ (Звіт після гри) -->
+  <div id="analytics-screen" style="display: none; text-align: center;">
+    <h3 style="color: var(--primary-green); margin-top: 0;">📊 Аналіз розслідування (Звіт)</h3>
+    <p>Ось як ти впорався із завданнями. Проаналізуй помилки, якщо вони були:</p>
+    <div id="analytics-list" class="analytics-box"></div>
+    <button class="start-game-btn" style="margin-top: 20px;" onclick="startSorterGame()">Грати знову</button>
+  </div>
+</section>
+
+<!-- ПІДКЛЮЧЕННЯ ДАНИХ -->
+<script src="data.js"></script>
+<script>
+  let state = {
+    crystals: parseInt(localStorage.getItem('mom_school_crystals') || '0')
+  };
+
+  function updateUI() {
+    document.getElementById('crystals-count').innerText = state.crystals;
+    localStorage.setItem('mom_school_crystals', state.crystals);
+  }
+  updateUI();
+
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  function playSound(type) {
+    if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    if (type === 'success') {
+      osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.15);
+      gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+      osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+    } else if (type === 'error') {
+      osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+      osc.frequency.setValueAtTime(150, audioCtx.currentTime + 0.1);
+      gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+      osc.start(); osc.stop(audioCtx.currentTime + 0.2);
+    } else if (type === 'win') {
+      // Переможний аккорд
+      [523.25, 659.25, 783.99, 1046.5].forEach((freq, i) => {
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.connect(g); g.connect(audioCtx.destination);
+        o.frequency.setValueAtTime(freq, audioCtx.currentTime + i * 0.1);
+        g.gain.setValueAtTime(0.1, audioCtx.currentTime + i * 0.1);
+        g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + i * 0.1 + 0.3);
+        o.start(audioCtx.currentTime + i * 0.1);
+        o.stop(audioCtx.currentTime + i * 0.1 + 0.3);
+      });
+    }
+  }
+
+  function openSorterRules() {
+    document.getElementById('rules-modal').style.display = 'flex';
+  }
+
+  function closeRulesModal() {
+    document.getElementById('rules-modal').style.display = 'none';
+  }
+
+  function initGameSession() {
+    closeRulesModal();
+    document.getElementById('main-menu').style.display = 'none';
+    document.getElementById('game-sorter').style.display = 'block';
+    startSorterGame();
+  }
+
+  function closeGame() {
+    stopConfetti(); // зупиняємо салют при виході
+    document.getElementById('game-sorter').style.display = 'none';
+    document.getElementById('main-menu').style.display = 'grid';
+  }
+
+  function triggerVictory() {
+    playSound('win');
+    startConfetti();
+
+    document.getElementById('sorter-area').style.display = 'none';
+    const analyticsDiv = document.getElementById('analytics-screen');
+    analyticsDiv.style.display = 'block';
+
+    const listContainer = document.getElementById('analytics-list');
+    listContainer.innerHTML = "";
+
+    sessionLog.forEach((item, index) => {
+      const row = document.createElement('div');
+      row.className = 'analytics-item';
+      if (item.correct) {
+        row.innerHTML = `<span>${index+1}. «${item.text}»</span> <span class="correct-ans">Вірно (${item.chosen})</span>`;
+      } else {
+        row.innerHTML = `<span>${index+1}. «${item.text}»</span> <span class="error-ans">Помилка (обрано: ${item.chosen}, правильно: ${item.right})</span>`;
+      }
+      listContainer.appendChild(row);
+    });
+  }
+
+  function stopConfetti() {
+    isConfettiRunning = false;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  let currentTaskIndex = 0;
+  let sessionLog = []; // Масив для аналітики помилок
+
+  function startSorterGame() {
+    currentTaskIndex = 0;
+    sessionLog = [];
+    document.getElementById('sorter-area').style.display = 'block';
+    document.getElementById('analytics-screen').style.display = 'none';
+    loadNextSorterTask();
+  }
+
+  function loadNextSorterTask() {
+    if (typeof sorterTasks === 'undefined' || currentTaskIndex >= sorterTasks.length) {
+      triggerVictory();
+      return;
+    }
+    const task = sorterTasks[currentTaskIndex];
+    document.getElementById('sorter-card').innerHTML = `«${task.text}»`;
+    document.getElementById('sorter-feedback').innerHTML = "";
+  }
+
+  function checkSorterAnswer(selectedType) {
+    const task = sorterTasks[currentTaskIndex];
+    const feedback = document.getElementById('sorter-feedback');
+
+    const typeNames = {
+      direct: "Пряме значення",
+      figurative: "Переносне значення",
+      phrase: "Фразеологізм"
+    };
+
+    if (selectedType === task.type) {
+      playSound('success');
+      state.crystals += 1;
+      updateUI();
+      sessionLog.push({ text: task.text, correct: true, chosen: typeNames[selectedType] });
+      feedback.style.color = "#2e5c31";
+      feedback.innerHTML = "✅ Правильно! +1 кристал 💎";
+      currentTaskIndex++;
+      setTimeout(loadNextSorterTask, 800);
+    } else {
+      playSound('error');
+      sessionLog.push({ text: task.text, correct: false, chosen: typeNames[selectedType], right: typeNames[task.type] });
+      feedback.style.color = "#c62828";
+      feedback.innerHTML = `❌ Помилка! Підказка: ${task.hint}`;
+      // Дозволяємо спробувати ще раз для того ж завдання, але логуємо помилку
+    }
+  }
+
+  // --- ФІНАЛ ТА САЛЮТ ---
+  function triggerVictory() {
+    playSound('win');
+    startConfetti();
+
+    document.getElementById('sorter-area').style.display = 'none';
+    const analyticsDiv = document.getElementById('analytics-screen');
+    analyticsDiv.style.display = 'block';
+
+    const listContainer = document.getElementById('analytics-list');
+    listContainer.innerHTML = "";
+
+    sessionLog.forEach((item, index) => {
+      const row = document.createElement('div');
+      row.className = 'analytics-item';
+      if (item.correct) {
+        row.innerHTML = `<span>${index+1}. «${item.text}»</span> <span class="correct-ans">Вірно (${item.chosen})</span>`;
+      } else {
+        row.innerHTML = `<span>${index+1}. «${item.text}»</span> <span class="error-ans">Помилка (обрано: ${item.chosen})</span>`;
+      }
+      listContainer.appendChild(row);
+    });
+  }
+
+  // Салют з конфетті (Canvas)
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  function startConfetti() {
+    particles = [];
+    for (let i = 0; i < 150; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        r: Math.random() * 6 + 4,
+        dx: Math.random() * 4 - 2,
+        dy: Math.random() * 5 + 3,
+        color: ['#d4af37', '#2e5c31', '#2196F3', '#9C27B0', '#FF9800'][Math.floor(Math.random()*5)]
+      });
+    }
+    animateConfetti();
+  }
+
+  let isConfettiRunning = false;
+  function startConfetti() {
+    isConfettiRunning = true;
+    particles = [];
+    for (let i = 0; i < 150; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        r: Math.random() * 6 + 4,
+        dx: Math.random() * 4 - 2,
+        dy: Math.random() * 5 + 3,
+        color: ['#d4af37', '#2e5c31', '#2196F3', '#9C27B0', '#FF9800'][Math.floor(Math.random()*5)]
+      });
+    }
+    animateConfetti();
+  }
+
+  function animateConfetti() {
+    if (!isConfettiRunning) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.y > canvas.height) p.y = 0;
+    });
+    requestAnimationFrame(animateConfetti);
+  }
+</script>
+
+</body>
+</html>
