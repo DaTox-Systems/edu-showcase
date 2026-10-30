@@ -43,14 +43,19 @@ function focusOnDeckView() {
 
 function goToHub(e) {
   if (e) e.preventDefault();
-  // Якщо відкрито локально через file:/// з папки work: підйом на 2 рівні
+  // 1. Якщо ми на живому сайті GitHub Pages: прямий надійний шлях до Хабу
+  if (window.location.hostname.includes('github.io')) {
+    window.location.href = '/edu-showcase/01_ai_communications/index.html';
+    return;
+  }
+  // 2. Якщо відкрито локально через file:///
   if (window.location.pathname.includes('/work/')) {
     window.location.href = '../../index.html';
   } else {
-    // На вітрині GitHub Pages (де work відсутній): підйом на 1 рівень у Хаб курсу
     window.location.href = '../index.html';
   }
 }
+window.goToHub = goToHub;
 
 // =========================================================================
 // 3. TWO-CARD DECK CONTROLLER (NAVIGATOR <-> WORKSPACE)
