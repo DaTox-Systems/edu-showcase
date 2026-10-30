@@ -534,7 +534,7 @@ function spawnConfetti(x, y) {
 let secretClickCount = 0;
 let secretClickTimer = null;
 
-function handleStudentBadgeClick() {
+window.handleStudentBadgeClick = function() {
   const card = document.getElementById('studentFlipCard');
   if (!card) return;
 

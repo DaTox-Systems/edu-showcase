@@ -1014,6 +1014,8 @@ footer {
   perspective: 1000px;
   cursor: pointer;
   user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
   flex-shrink: 0;
 }
 .student-flip-card {
