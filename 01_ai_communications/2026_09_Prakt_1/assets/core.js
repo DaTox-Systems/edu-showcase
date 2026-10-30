@@ -41,6 +41,17 @@ function focusOnDeckView() {
   }
 }
 
+function goToHub(e) {
+  if (e) e.preventDefault();
+  // Якщо відкрито локально через file:/// з папки work: підйом на 2 рівні
+  if (window.location.pathname.includes('/work/')) {
+    window.location.href = '../../index.html';
+  } else {
+    // На вітрині GitHub Pages (де work відсутній): підйом на 1 рівень у Хаб курсу
+    window.location.href = '../index.html';
+  }
+}
+
 // =========================================================================
 // 3. TWO-CARD DECK CONTROLLER (NAVIGATOR <-> WORKSPACE)
 // =========================================================================
