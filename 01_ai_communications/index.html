@@ -1,0 +1,1088 @@
+<!-- FILE: projects/education/work/portfolio/edu-showcase/01_ai_communications/index.html -->
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>🌐 ГОЛОВНА СТОРІНКА // Людина і ШІ: мистецтво комунікацій | НТУ «ДП»</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0a0c10;
+      --surface: #11141a;
+      --surface-card: #151a22;
+      --border: #222a36;
+      --kernel: #00bcd4;
+      --kernel-glow: rgba(0, 188, 212, 0.15);
+      --gold: #d4af37;
+      --gold-glow: rgba(212, 175, 55, 0.15);
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --font-main: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-title: 'Cinzel', serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+
+    body {
+      background-color: var(--void);
+      color: var(--text);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 16px 12px 48px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* 1. UNIVERSITY ACADEMIC HEADER */
+    .univ-header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--kernel);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 950px) {
+      .univ-header { flex-direction: column; align-items: stretch; text-align: center; }
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    @media (max-width: 950px) { .header-left { flex-direction: column; } }
+
+    /* 3D INERTIAL LOGO */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: grab;
+      perspective: 1000px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.2s ease;
+    }
+    .logo-container:active { cursor: grabbing; }
+    .logo-container:hover { background: rgba(0, 188, 212, 0.04); }
+
+    .nmu-logo-svg {
+      width: 140px;
+      height: 44px;
+      flex-shrink: 0;
+      transform-style: preserve-3d;
+      will-change: transform;
+      filter: drop-shadow(0 0 4px rgba(0, 188, 212, 0.25));
+    }
+
+    @keyframes cubePulse {
+      0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 2px #00bcd4); }
+      50% { opacity: 1; filter: drop-shadow(0 0 8px #00bcd4); }
+    }
+    .cube-animated { animation: cubePulse 4s infinite ease-in-out; }
+
+    .univ-meta-wrap { line-height: 1.45; }
+    .univ-ministry {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+    .univ-department {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      margin: 2px 0;
+      letter-spacing: 0.3px;
+    }
+    .univ-subject {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--kernel);
+    }
+
+    /* LECTURER BADGE */
+    .lecturer-badge-wrap {
+      position: relative;
+      display: inline-block;
+    }
+    .lecturer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(0, 188, 212, 0.1));
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      color: #fff;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+    .lecturer-badge:hover {
+      border-color: var(--gold);
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(0, 188, 212, 0.2));
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.4);
+    }
+
+    .lecturer-popover {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      background: #11141a;
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      padding: 12px 14px;
+      width: 320px;
+      z-index: 2000;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.85);
+      display: none;
+    }
+    .lecturer-popover::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 24px;
+      width: 10px;
+      height: 10px;
+      background: #11141a;
+      border-left: 1px solid var(--gold);
+      border-top: 1px solid var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .univ-student-badge {
+      background: rgba(0, 188, 212, 0.08);
+      border: 1px solid var(--kernel);
+      border-radius: 4px;
+      padding: 8px 14px;
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+    @media (max-width: 950px) { .univ-student-badge { text-align: center; } }
+
+    /* 2. CENTERED HERO SECTION */
+    .hero-stage {
+      background: linear-gradient(180deg, #11141a 0%, #0d1017 100%);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 36px 24px 28px;
+      margin-bottom: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-subtitle-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--kernel);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: 26px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.35;
+      margin: 0 auto 16px;
+      max-width: 980px;
+      letter-spacing: 0.5px;
+    }
+    @media (max-width: 768px) { .hero-title { font-size: 20px; } }
+
+    .hero-desc {
+      font-size: 14.5px;
+      color: #cbd5e1;
+      max-width: 860px;
+      line-height: 1.6;
+      margin: 0 auto 24px;
+    }
+
+    /* 3. TOP NAVIGATION BUTTON BAR (RIGHT AFTER TITLE) */
+    .quick-nav-bar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-nav-item {
+      background: #0d1017;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 9px 16px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .btn-nav-item:hover {
+      border-color: var(--kernel);
+      color: var(--kernel);
+      background: var(--kernel-glow);
+      transform: translateY(-1px);
+    }
+    .btn-nav-active {
+      border-color: var(--kernel);
+      background: var(--kernel-glow);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(0, 188, 212, 0.25);
+    }
+    .btn-nav-subtle {
+      border-color: rgba(139, 148, 158, 0.3);
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .btn-nav-subtle:hover {
+      border-color: var(--gold);
+      color: #fff;
+      background: var(--gold-glow);
+    }
+    .btn-nav-gold {
+      border-color: rgba(212, 175, 55, 0.4);
+      color: var(--gold);
+    }
+    .btn-nav-gold:hover {
+      border-color: var(--gold);
+      color: #fff;
+      background: var(--gold-glow);
+    }
+    .btn-nav-pending {
+      opacity: 0.6;
+      cursor: default;
+    }
+    .btn-nav-pending:hover {
+      border-color: var(--border);
+      color: var(--text-muted);
+      background: #0d1017;
+      transform: none;
+    }
+
+    /* 4. FULL-WIDTH ANIMATED TABBED DECK ARCHITECTURE */
+    .deck-container {
+      margin-bottom: 32px;
+    }
+
+    .deck-tabs-header {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--border);
+      padding: 0 4px;
+    }
+
+    .deck-tab-btn {
+      background: #0d1017;
+      border: 1px solid var(--border);
+      border-bottom: none;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: 6px 6px 0 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      position: relative;
+      bottom: -2px;
+    }
+    .deck-tab-btn:hover {
+      color: #fff;
+      background: #151a22;
+    }
+    .deck-tab-btn.active-tab {
+      background: var(--surface);
+      border-color: var(--kernel);
+      border-top: 3px solid var(--kernel);
+      color: #fff;
+      border-bottom: 2px solid var(--surface);
+      box-shadow: 0 -4px 16px rgba(0, 188, 212, 0.15);
+    }
+    .deck-tab-btn.gold-tab.active-tab {
+      border-color: var(--gold);
+      border-top: 3px solid var(--gold);
+      box-shadow: 0 -4px 16px rgba(212, 175, 55, 0.15);
+    }
+
+    .deck-pane {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+      padding: 28px 26px;
+      animation: tabFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .deck-pane.active-pane {
+      display: block;
+    }
+
+    @keyframes tabFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .intro-box-title {
+      font-family: var(--font-title);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.5px;
+      margin-bottom: 18px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+    .intro-box.accent .intro-box-title {
+      color: var(--gold);
+      border-bottom-color: rgba(212, 175, 55, 0.3);
+    }
+
+    /* MAGAZINE SPLIT FEATURE CARDS (50/50 BALANCE) */
+    .feature-card-split {
+      background: #090c10;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+      transition: border-color 0.25s ease;
+    }
+    .feature-card-split:hover {
+      border-color: rgba(0, 188, 212, 0.4);
+      box-shadow: 0 4px 20px rgba(0, 188, 212, 0.08);
+    }
+    @media (max-width: 950px) {
+      .feature-card-split { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    .feature-text-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .feature-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .feature-step-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--kernel);
+      background: var(--kernel-glow);
+      border: 1px solid var(--kernel);
+      padding: 2px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.5px;
+    }
+
+    .feature-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .feature-desc-p {
+      font-size: 13.5px;
+      color: #cbd5e1;
+      line-height: 1.65;
+      text-align: left;
+    }
+
+    .feature-media-side {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .feature-media-img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid #222a36;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+      display: block;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .feature-media-img:hover {
+      border-color: var(--kernel);
+      transform: scale(1.01);
+    }
+
+    .figure-slot {
+      background: #07090d;
+      border: 1px dashed #263342;
+      border-radius: 4px;
+      padding: 24px 16px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .battle-preview-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 14px 0 6px;
+    }
+    .battle-prev-col {
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .col-uncontrolled {
+      background: rgba(218, 54, 51, 0.08);
+      border: 1px solid rgba(218, 54, 51, 0.3);
+      color: #fca5a5;
+    }
+    .col-protocol {
+      background: rgba(0, 188, 212, 0.08);
+      border: 1px solid rgba(0, 188, 212, 0.3);
+      color: #a5f3fc;
+    }
+
+    /* SIMPLE & ACCESSIBLE TOOLTIPS */
+    .tooltip-term {
+      position: relative;
+      color: var(--kernel);
+      text-decoration: underline dotted var(--kernel);
+      text-underline-offset: 3px;
+      cursor: help;
+      font-weight: 600;
+    }
+    .tooltip-term:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #151a22;
+      border: 1px solid var(--kernel);
+      color: #f1f5f9;
+      font-family: var(--font-main);
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.45;
+      padding: 8px 12px;
+      border-radius: 4px;
+      width: max-content;
+      max-width: 320px;
+      white-space: normal;
+      z-index: 1000;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.85);
+      pointer-events: none;
+    }
+
+    /* 5. STRUCTURE OF THE RESEARCH */
+    .structure-banner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 22px;
+      margin-bottom: 28px;
+    }
+    .structure-title {
+      font-family: var(--font-title);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    .structure-steps-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .struct-item {
+      background: #090c10;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px;
+    }
+    .struct-item-tag {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: var(--kernel);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .struct-item-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .struct-item-desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* CANVAS CONFETTI */
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 3000;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- 1. ACADEMIC HEADER WITH 3D INERTIAL LOGO -->
+    <header class="univ-header">
+      <div class="header-left">
+        <div class="logo-container" title="НТУ «Дніпровська політехніка» // Захопіть мишею для розкрутки">
+          <svg class="nmu-logo-svg" viewBox="0 0 220 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="36" width="14" height="14" rx="2" fill="#009fe3" class="cube-animated"/>
+            <rect x="16" y="36" width="14" height="14" rx="2" fill="#009fe3" class="cube-animated" style="animation-delay: 0.4s;"/>
+            <rect x="32" y="36" width="14" height="14" rx="2" fill="#0080ff" class="cube-animated" style="animation-delay: 0.8s;"/>
+            <rect x="16" y="20" width="14" height="14" rx="2" fill="#009fe3" class="cube-animated" style="animation-delay: 1.2s;"/>
+            <rect x="32" y="20" width="14" height="14" rx="2" fill="#0080ff" class="cube-animated" style="animation-delay: 1.6s;"/>
+            <rect x="32" y="4" width="14" height="14" rx="2" fill="#0080ff" class="cube-animated" style="animation-delay: 2.0s;"/>
+            
+            <text x="56" y="20" fill="#ffffff" font-family="Inter" font-weight="800" font-size="12" letter-spacing="0.5">ДНІПРОВСЬКА</text>
+            <text x="56" y="35" fill="#00bcd4" font-family="Inter" font-weight="700" font-size="10.5" letter-spacing="1">ПОЛІТЕХНІКА</text>
+            <text x="56" y="47" fill="#8b949e" font-family="JetBrains Mono" font-size="8" letter-spacing="1.5">1899</text>
+          </svg>
+        </div>
+
+        <div class="univ-meta-wrap">
+          <div class="univ-ministry">МІНІСТЕРСТВО ОСВІТИ І НАУКИ УКРАЇНИ // НТУ «ДНІПРОВСЬКА ПОЛІТЕХНІКА»</div>
+          <div class="univ-department">ФАКУЛЬТЕТ ІНФОРМАЦІЙНИХ ТЕХНОЛОГІЙ // КАФЕДРА ІТ ТА КОМП'ЮТЕРНОЇ ІНЖЕНЕРІЇ</div>
+          <div class="univ-subject">
+            Дисципліна: Людина і ШІ: мистецтво комунікацій // 
+            <span class="lecturer-badge-wrap">
+              <span class="lecturer-badge" id="lecturerBadge" onclick="triggerLecturerEasterEgg(event)" title="Натисніть для перегляду профілю викладача">
+                🎓 доцент Соколова Наталя Олегівна ✨
+              </span>
+              <div class="lecturer-popover" id="lecturerPopover">
+                <div style="font-family:var(--font-mono); font-size:10px; color:var(--gold); font-weight:700; margin-bottom:4px;">
+                  ОФІЦІЙНИЙ ПРОФІЛЬ ВИКЛАДАЧА
+                </div>
+                <div style="font-size:11.5px; color:#e2e8f0; line-height:1.45; margin-bottom:8px;">
+                  Соколова Наталя Олегівна — доцент кафедри ІТ та комп'ютерної інженерії, кандидат технічних наук.
+                </div>
+                <a href="https://it.nmu.org.ua/ua/HR_staff/prepods/Sokolova.php" target="_blank" style="color:var(--gold); font-family:var(--font-mono); font-size:10.5px; text-decoration:underline;">
+                  Сторінка кафедри ІТ та КІ ↗
+                </a>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="univ-student-badge">
+        <div style="color: var(--text-muted); font-size: 9px;">ВИКОНАВ:</div>
+        <div style="color: #fff; font-weight: 700; font-size: 11.5px;">студент гр.&nbsp;141-24-2</div>
+        <div style="color: var(--kernel); font-weight: 700; font-size: 12px;">Дідов Платон Андрійович</div>
+      </div>
+    </header>
+
+    <!-- 2. CENTERED HERO BLOCK -->
+    <section class="hero-stage">
+      <div class="hero-subtitle-tag">Навчально-дослідний студентський проєкт</div>
+      <h1 class="hero-title">
+        Методологія інженерного <span class="tooltip-term" data-tooltip="Спільна робота людини та ШІ, де людина визначає цілі та контролює якість, а нейромережа виконує обчислення та чорнову роботу.">симбіозу</span> з генеративним ШІ:<br>
+        керування контекстом, протоколи та відповідальність оператора
+      </h1>
+      <p class="hero-desc">
+        Дослідження порядку практичної взаємодії людини з 
+        <span class="tooltip-term" data-tooltip="Програми (наприклад, ChatGPT чи Claude), які навчені передбачати найбільш підходящі слова в тексті на основі прочитаних масивів інформації.">мовними моделями</span>, 
+        аналіз причин виникнення помилок та пошук методів надійної організації спільної роботи.
+      </p>
+    </section>
+
+    <!-- 3. НАВІГАЦІЯ ДО РОБІТ СЕМЕСТРУ -->
+    <div style="margin-bottom: 24px;">
+      <!-- Компактне посилання на вступний експеримент (Пролог) -->
+      <div style="text-align: center; margin-bottom: 12px;">
+        <a href="2026_09_Task_0/index.html" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-decoration: none; padding: 4px 12px; border-radius: 20px; border: 1px dashed rgba(139, 148, 158, 0.3); background: rgba(255, 255, 255, 0.01); transition: all 0.2s;" onmouseover="this.style.color='var(--gold)'; this.style.borderColor='var(--gold)';" onmouseout="this.style.color='var(--text-muted)'; this.style.borderColor='rgba(139, 148, 158, 0.3)';">
+          <span>🌱</span> <span>Вступний експеримент: Промпт-дизайн та декомпозиція портрета (Завдання 0) ↗</span>
+        </a>
+      </div>
+
+      <!-- Основні глави семестрового дослідження -->
+      <nav class="quick-nav-bar" style="margin-bottom: 0;">
+        <a href="2026_09_Prakt_1/index.html" class="btn-nav-item btn-nav-active" title="Перейти до Практичної роботи №1">
+          📘 Практична робота №1: Генерація ідеї, кейс Дніпра та міфи
+        </a>
+        <div class="btn-nav-item btn-nav-pending" title="Практична робота №2 (у процесі підготовки)">
+          🔒 Практична робота №2: Джерела та валідація DOI
+        </div>
+        <div class="btn-nav-item btn-nav-pending" title="Практична робота №3 (у процесі підготовки)">
+          🔒 Практична робота №3: Опитування та аналітика
+        </div>
+        <div class="btn-nav-item btn-nav-pending" title="Підсумкова робота (у процесі підготовки)">
+          🔒 Підсумкова робота: Захист дослідження
+        </div>
+      </nav>
+    </div>
+
+    <!-- 4. FULL-WIDTH ANIMATED TABBED DECK -->
+    <section class="deck-container">
+      
+      <!-- TABS SWITCHER HEADER -->
+      <div class="deck-tabs-header">
+        <button class="deck-tab-btn active-tab" id="tabBtnAnatomy" onclick="switchDeckTab('anatomy')">
+          🔬 ПРЕДМЕТ ДОСЛІДЖЕННЯ: ПРИРОДА ТА АНАТОМІЯ LLM
+        </button>
+        <button class="deck-tab-btn gold-tab" id="tabBtnIntent" onclick="switchDeckTab('intent')">
+          🎯 МЕТА ДОСЛІДЖЕННЯ ТА ПРОТОКОЛЬНИЙ ЗАХИСТ
+        </button>
+      </div>
+
+      <!-- PANE 1: ANATOMY OF LLM (100% WIDTH) -->
+      <div class="deck-pane active-pane" id="paneAnatomy">
+        <h2 class="intro-box-title">Предмет дослідження: Природа мовних моделей та анатомія генерації</h2>
+        
+        <!-- SUB-POINT 01: SPLIT FEATURE CARD -->
+        <div class="feature-card-split">
+          <div class="feature-text-side">
+            <div class="feature-badge-row">
+              <span class="feature-step-badge">01</span>
+            </div>
+            <h3 class="feature-heading">Від алгоритму Т9 до гігантських нейромереж</h3>
+            <p class="feature-desc-p">
+              Концептуальним пращуром сучасних технологій є система <span class="tooltip-term" data-tooltip="Здатність алгоритму заздалегідь передбачати найбільш ймовірне наступне значення (букву або слово) на основі раніше введених даних.">предиктивного</span> введення тексту <strong>Т9</strong> на мобільних телефонах. Вона аналізувала послідовність натискань і пропонувала слова зі словника.
+            </p>
+            <p class="feature-desc-p" style="margin-top:10px;">
+              Сучасні великі мовні моделі (LLM), які в масовій культурі заведено називати «штучним інтелектом» або <strong>ШІ</strong>, базуються на тому ж базовому математичному принципі, але масштабованому до сотень мільярдів параметрів: вони безперервно обчислюють, який наступний <span class="tooltip-term" data-tooltip="Мінімальна смислова одиниця тексту (склад, слово або частина слова), якою оперує нейромережа при математичних обчисленнях.">токен</span> статистично має слідувати за попередніми.
+            </p>
+          </div>
+          <div class="feature-media-side">
+            <img src="assets/fig01_t9_to_llm.png" alt="Еволюція: від предиктивного тексту Т9 до великих мовних моделей (LLM)" class="feature-media-img">
+          </div>
+        </div>
+
+        <!-- SUB-POINT 02: SPLIT FEATURE CARD -->
+        <div class="feature-card-split">
+          <div class="feature-text-side">
+            <div class="feature-badge-row">
+              <span class="feature-step-badge">02</span>
+            </div>
+            <h3 class="feature-heading">Архітектура, розміщення та процес навчання</h3>
+            <p class="feature-desc-p">
+              Модель не функціонує на пристрої користувача — це масивні матриці обчислень, розгорнуті на <span class="tooltip-term" data-tooltip="Групи потужних спеціалізованих відеокарт (GPU), об'єднаних у мережу для виконання мільярдів паралельних математичних обчислень одночасно.">серверних кластерах графічних прискорювачів</span> у віддалених дата-центрах.
+            </p>
+            <p class="feature-desc-p" style="margin-top:10px;">
+              Навчання складається з двох етапів: <em>попереднього тренування</em> на терабайтах світової літератури та веб-сторінок (вивчення структури мови) та <em>тонкого налаштування</em> методом <span class="tooltip-term" data-tooltip="(Reinforcement Learning from Human Feedback) — метод навчання нейромережі, де люди-експерти оцінюють відповіді моделі, навчаючи її бути ввічливою, безпечною та дотримуватися інструкцій.">RLHF</span> за участю експертів-людей, що перетворює сиру нейромережу на ввічливого інтелектуального асистента.
+            </p>
+          </div>
+          <div class="feature-media-side">
+            <img src="assets/fig02_infrastructure_training.png" alt="Архітектура, серверне розміщення та процес навчання LLM" class="feature-media-img" onerror="this.parentElement.innerHTML='<div class=\'figure-slot\'>🖼️ [Очікується ілюстрація 02]</div>'">
+          </div>
+        </div>
+
+        <!-- SUB-POINT 03: SPLIT FEATURE CARD -->
+        <div class="feature-card-split">
+          <div class="feature-text-side">
+            <div class="feature-badge-row">
+              <span class="feature-step-badge">03</span>
+            </div>
+            <h3 class="feature-heading">Семантична мімікрія: чому відповідь здається розумною?</h3>
+            <p class="feature-desc-p">
+              Людське враження від спілкування виникає через те, що має місце точна семантична <span class="tooltip-term" data-tooltip="Здатність програми правдоподібно імітувати людську поведінку та стиль мовлення, не володіючи при цьому реальним розумінням чи свідомістю.">мімікрія</span>. Модель переводить кожне слово у математичні координати (<span class="tooltip-term" data-tooltip="Математичне представлення слова у вигляді списку чисел, де близькі за змістом поняття розташовані поруч у багатовимірному просторі.">векторний простір</span>).
+            </p>
+            <p class="feature-desc-p" style="margin-top:10px;">
+              Механізм самодовільної уваги (Self-Attention) зіставляє контекстні зв'язки між усіма словами запиту та синтезує речення, які ідеально відтворюють людські синтаксичні та логічні патерни, створюючи ілюзію свідомого діалогу.
+            </p>
+          </div>
+          <div class="feature-media-side">
+            <img src="assets/fig03_semantic_mimicry.png" alt="Семантична мімікрія: векторний простір та увага" class="feature-media-img" onerror="this.parentElement.innerHTML='<div class=\'figure-slot\'>🖼️ [Очікується ілюстрація 03]</div>'">
+          </div>
+        </div>
+
+        <!-- SUB-POINT 04: SPLIT FEATURE CARD -->
+        <div class="feature-card-split">
+          <div class="feature-text-side">
+            <div class="feature-badge-row">
+              <span class="feature-step-badge">04</span>
+            </div>
+            <h3 class="feature-heading">Межі пам'яті та безперервність контекстного вікна</h3>
+            <p class="feature-desc-p">
+              Нейромережа не володіє власною безперервною пам'яттю між окремими <span class="tooltip-term" data-tooltip="Окремі діалогові чати або сеанси роботи користувача з моделлю від моменту відкриття вікна до його закриття чи очищення.">сесіями</span>, вона є повністю <span class="tooltip-term" data-tooltip="Властивість системи не зберігати в пам'яті стан чи історію попередніх запитів: кожен новий запит обробляється з чистого аркуша.">stateless</span>.
+            </p>
+            <p class="feature-desc-p" style="margin-top:10px;">
+              Ілюзія пам'яті створюється штучно: при кожній новій репліці додаток пересилає серверу всю попередню історію у межах <span class="tooltip-term" data-tooltip="Фізично обмежений буфер оперативної уваги моделі, куди вміщується лише певна кількість символів попереднього тексту.">контекстного вікна</span>. Коли діалог розростається, модель починає втрачати увагу до деталей на початку бесіди.
+            </p>
+          </div>
+          <div class="feature-media-side">
+            <img src="assets/fig04_context_window_memory.png" alt="Межі пам'яті та контекстне вікно" class="feature-media-img" onerror="this.parentElement.innerHTML='<div class=\'figure-slot\'>🖼️ [Очікується ілюстрація 04]</div>'">
+          </div>
+        </div>
+
+        <!-- SUB-POINT 05: SPLIT FEATURE CARD -->
+        <div class="feature-card-split">
+          <div class="feature-text-side">
+            <div class="feature-badge-row">
+              <span class="feature-step-badge">05</span>
+            </div>
+            <h3 class="feature-heading">Справжня природа галюцинацій</h3>
+            <p class="feature-desc-p">
+              Виникнення <span class="tooltip-term" data-tooltip="Схильність нейромережі впевнено стверджувати вигадані або неіснуючі факти через те, що вона підбирає слова за ймовірністю, а не за фактичною перевіркою істини.">галюцинацій</span> є прямим наслідком архітектури: модель оптимізована на правдоподібність і плавність викладу, а не на перевірку фізичної реальності (<span class="tooltip-term" data-tooltip="Реальні перевірені фізичні факти навколишнього світу, до яких чиста математична модель не має безпосереднього доступу без зовнішніх реєстрів.">відсутність Ground Truth</span>).
+            </p>
+            <p class="feature-desc-p" style="margin-top:10px;">
+              Коли модель стикається із запитанням без точних фактів у своїх числових вагах, алгоритм не зупиняється, а продовжує рядок найбільш ймовірними за стилем словами, створюючи переконливу вигадку замість правдивого визнання незнання.
+            </p>
+          </div>
+          <div class="feature-media-side">
+            <img src="assets/fig05_hallucination_mechanism.png" alt="Справжня природа та механізм галюцинацій" class="feature-media-img" onerror="this.parentElement.innerHTML='<div class=\'figure-slot\'>🖼️ [Очікується ілюстрація 05]</div>'">
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PANE 2: INTENT & METHODOLOGY (100% WIDTH) -->
+      <div class="deck-pane" id="paneIntent">
+        <h2 class="intro-box-title" style="color:var(--gold);">Мета дослідження та системний протокольний захист</h2>
+
+        <!-- SUB-POINT I: SPLIT FEATURE CARD -->
+        <div class="feature-card-split" style="border-left: 3px solid var(--gold);">
+          <div class="feature-text-side">
+            <div class="feature-badge-row">
+              <span class="feature-step-badge" style="color:var(--gold); border-color:var(--gold); background:var(--gold-glow);">I</span>
+            </div>
+            <h3 class="feature-heading">Проблема неконтрольованого «чату»</h3>
+            <p class="feature-desc-p">
+              Якщо мовна модель є стохастичним генератором правдоподібності, то довіряти їй інженерні розрахунки, програмні модулі чи наукові висновки у режимі вільного «побутового спілкування» категорично небезпечно.
+            </p>
+            <p class="feature-desc-p" style="margin-top:10px;">
+              Без жорстких обмежень модель прагне задовольнити користувача за будь-яку ціну, вдаючись до вигадування неіснуючих джерел, бібліотек чи топографічних маршрутів (синдром <em>First-Working-Solution</em>), що створює прихований критичний борг у системі.
+            </p>
+          </div>
+          <div class="feature-media-side">
+            <img src="assets/fig06_uncontrolled_chat_risks.png" alt="Ризики неконтрольованого чату та накопичення помилок" class="feature-media-img" onerror="this.parentElement.innerHTML='<div class=\'figure-slot\'>🖼️ [Ілюстрація I: Ризики хаотичного чату]</div>'">
+          </div>
+        </div>
+
+        <!-- SUB-POINT II: SPLIT FEATURE CARD -->
+        <div class="feature-card-split" style="border-left: 3px solid var(--gold);">
+          <div class="feature-text-side">
+            <div class="feature-badge-row">
+              <span class="feature-step-badge" style="color:var(--gold); border-color:var(--gold); background:var(--gold-glow);">II</span>
+            </div>
+            <h3 class="feature-heading">Формулювання наукової мети</h3>
+            <p class="feature-desc-p">
+              <strong>Головна мета нашого дослідження</strong> — розробити та експериментально обґрунтувати методологію дисциплінованого регулювання людино-машинної взаємодії.
+            </p>
+            <p class="feature-desc-p" style="margin-top:10px;">
+              Ми досліджуємо, як за допомогою <span class="tooltip-term" data-tooltip="Система попередніх інструкцій, яка встановлює негативні правила: забороняє домислювати невідомі змінні та зобов'язує цитувати реальні джерела.">формальних протоколів та дисциплінарних обмежень</span> виключити стохастичні галюцинації та перетворити генеративну модель на детермінований і надійний інженерний інструмент.
+            </p>
+          </div>
+          <div class="feature-media-side">
+            <img src="assets/fig07_protocol_filter_architecture.png" alt="Архітектура протокольного фільтра обмежень" class="feature-media-img" onerror="this.parentElement.innerHTML='<div class=\'figure-slot\'>🖼️ [Ілюстрація II: Протокольний фільтр обмежень]</div>'">
+          </div>
+        </div>
+
+        <!-- SUB-POINT III: SPLIT FEATURE CARD -->
+        <div class="feature-card-split" style="border-left: 3px solid var(--gold);">
+          <div class="feature-text-side">
+            <div class="feature-badge-row">
+              <span class="feature-step-badge" style="color:var(--gold); border-color:var(--gold); background:var(--gold-glow);">III</span>
+            </div>
+            <h3 class="feature-heading">Доктрина інженерного симбіозу</h3>
+            <p class="feature-desc-p">
+              Ми закріплюємо принцип неподільної відповідальності оператора: людина є єдиним носієм архітектурної волі, критичного аналізу та юридичної експертизи.
+            </p>
+            <p class="feature-desc-p" style="margin-top:10px;">
+              Нейромережа бере на себе трудомістку рутину швидкісної обробки даних, але функціонує суворо в межах заданих людиною когнітивних кордонів за формулою: <em>«Людина спрямовує — Машина будує»</em>.
+            </p>
+          </div>
+          <div class="feature-media-side">
+            <img src="assets/fig08_symbiosis_doctrine_model.png" alt="Концептуальна модель людино-машинного симбіозу" class="feature-media-img" onerror="this.parentElement.innerHTML='<div class=\'figure-slot\'>🖼️ [Ілюстрація III: Доктрина Симбіозу]</div>'">
+          </div>
+        </div>
+
+        <!-- SUB-POINT IV: SPLIT FEATURE CARD -->
+        <div class="feature-card-split" style="border-left: 3px solid var(--gold); margin-bottom:0;">
+          <div class="feature-text-side">
+            <div class="feature-badge-row">
+              <span class="feature-step-badge" style="color:var(--gold); border-color:var(--gold); background:var(--gold-glow);">IV</span>
+            </div>
+            <h3 class="feature-heading">Послідовний регламент виконання кожного завдання</h3>
+            <p class="feature-desc-p">
+              Дослідження виконується послідовно відповідно до програми навчального курсу. Кожен розділ присвячений окремому виклику у взаємодії з ШІ та підпорядкований обов'язковому 4-етапному інженерному циклу:
+            </p>
+            <div style="margin-top:12px; display:flex; flex-direction:column; gap:6px;">
+              <div style="font-size:12px; color:#cbd5e1; display:flex; align-items:center; gap:8px;">
+                <span style="color:var(--gold); font-family:var(--font-mono); font-weight:700;">1. ТЕОРІЯ:</span> Постановка проблеми, визначення об'єкта та предмета.
+              </div>
+              <div style="font-size:12px; color:#cbd5e1; display:flex; align-items:center; gap:8px;">
+                <span style="color:var(--kernel); font-family:var(--font-mono); font-weight:700;">2. ДОСЛІД:</span> Емпіричне тестування моделей реальними запитами.
+              </div>
+              <div style="font-size:12px; color:#cbd5e1; display:flex; align-items:center; gap:8px;">
+                <span style="color:#a855f7; font-family:var(--font-mono); font-weight:700;">3. АУДИТ:</span> Зіставлення результатів та фіксація неточностей.
+              </div>
+              <div style="font-size:12px; color:#cbd5e1; display:flex; align-items:center; gap:8px;">
+                <span style="color:#00e676; font-family:var(--font-mono); font-weight:700;">4. АРТЕФАКТ:</span> Створення готового стандарту для практики.
+              </div>
+            </div>
+          </div>
+          <div class="feature-media-side">
+            <img src="assets/fig09_research_cycle_pipeline.png" alt="4-етапний інженерний цикл виконання кожного завдання" class="feature-media-img" onerror="this.parentElement.innerHTML='<div class=\'figure-slot\'>🖼️ [Ілюстрація IV: 4-етапний регламент дослідження]</div>'">
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CANVAS CONFETTI FOR LECTURER EASTER EGG -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- FOOTER -->
+    <footer>
+      Національний технічний університет «Дніпровська політехніка» // Інститут електроенергетики<br>
+      Кафедра інформаційних технологій та комп'ютерної інженерії // гр. 141-24-2 // Дідов Платон Андрійович // 2026
+    </footer>
+
+  </div>
+
+  <script>
+    // =========================================================================
+    // 3D INERTIAL PHYSICS LOGO ENGINE
+    // =========================================================================
+    (function initPhysicsLogo() {
+      const container = document.querySelector('.logo-container');
+      const svg = document.querySelector('.nmu-logo-svg');
+      if (!container || !svg) return;
+
+      let isDragging = false;
+      let angleY = 0;
+      let velocityY = 0;
+      let lastX = 0;
+      let lastTime = 0;
+      let animFrameId = null;
+
+      function renderTransform() {
+        svg.style.transform = `rotateY(${angleY}deg)`;
+      }
+
+      function physicsLoop() {
+        if (!isDragging) {
+          angleY += velocityY;
+          velocityY *= 0.94;
+          if (Math.abs(velocityY) < 0.2) {
+            velocityY = 0;
+            const remainder = angleY % 360;
+            if (Math.abs(remainder) > 0.5) angleY -= remainder * 0.12;
+            else {
+              angleY = 0;
+              renderTransform();
+              cancelAnimationFrame(animFrameId);
+              animFrameId = null;
+              return;
+            }
+          }
+          renderTransform();
+        }
+        animFrameId = requestAnimationFrame(physicsLoop);
+      }
+
+      function onStart(clientX) {
+        isDragging = true;
+        lastX = clientX;
+        lastTime = performance.now();
+        velocityY = 0;
+        if (!animFrameId) animFrameId = requestAnimationFrame(physicsLoop);
+      }
+
+      function onMove(clientX) {
+        if (!isDragging) return;
+        const now = performance.now();
+        const deltaX = clientX - lastX;
+        const deltaTime = Math.max(1, now - lastTime);
+        angleY += deltaX * 1.2;
+        velocityY = (deltaX / deltaTime) * 16.0;
+        lastX = clientX;
+        lastTime = now;
+        renderTransform();
+      }
+
+      function onEnd() { isDragging = false; }
+
+      container.addEventListener('mousedown', e => { onStart(e.clientX); e.preventDefault(); });
+      window.addEventListener('mousemove', e => onMove(e.clientX));
+      window.addEventListener('mouseup', onEnd);
+      container.addEventListener('touchstart', e => { if (e.touches.length > 0) onStart(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('touchmove', e => { if (e.touches.length > 0) onMove(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('touchend', onEnd);
+    })();
+
+    // =========================================================================
+    // LECTURER RESPECT POPUP & CONFETTI ENGINE
+    // =========================================================================
+    let popoverTimeout = null;
+    function triggerLecturerEasterEgg(e) {
+      e.stopPropagation();
+      const popover = document.getElementById('lecturerPopover');
+      const badge = document.getElementById('lecturerBadge');
+      if (popover.style.display === 'block') { closeLecturerPopover(); return; }
+
+      popover.style.display = 'block';
+      const rect = badge.getBoundingClientRect();
+      spawnConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      if (popoverTimeout) clearTimeout(popoverTimeout);
+      popoverTimeout = setTimeout(closeLecturerPopover, 5000);
+    }
+
+    function closeLecturerPopover() {
+      const popover = document.getElementById('lecturerPopover');
+      if (popover) popover.style.display = 'none';
+      if (popoverTimeout) clearTimeout(popoverTimeout);
+    }
+
+    document.addEventListener('click', e => {
+      const popover = document.getElementById('lecturerPopover');
+      if (popover && !popover.contains(e.target)) closeLecturerPopover();
+    });
+
+    // =========================================================================
+    // FULL-WIDTH DECK TABS SWITCHER ENGINE
+    // =========================================================================
+    function switchDeckTab(tabKey) {
+      const btnAnatomy = document.getElementById('tabBtnAnatomy');
+      const btnIntent = document.getElementById('tabBtnIntent');
+      const paneAnatomy = document.getElementById('paneAnatomy');
+      const paneIntent = document.getElementById('paneIntent');
+
+      if (tabKey === 'anatomy') {
+        btnAnatomy.classList.add('active-tab');
+        btnIntent.classList.remove('active-tab');
+        paneAnatomy.classList.add('active-pane');
+        paneIntent.classList.remove('active-pane');
+      } else {
+        btnIntent.classList.add('active-tab');
+        btnAnatomy.classList.remove('active-tab');
+        paneIntent.classList.add('active-pane');
+        paneAnatomy.classList.remove('active-pane');
+      }
+    }
+
+    function spawnConfetti(x, y) {
+      let canvas = document.getElementById('confettiCanvas');
+      if (!canvas) {
+        canvas = document.createElement('canvas');
+        canvas.id = 'confettiCanvas';
+        document.body.appendChild(canvas);
+      }
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const ctx = canvas.getContext('2d');
+      const colors = ['#00bcd4', '#d4af37', '#00e676', '#ffffff', '#38bdf8', '#fbbf24'];
+      const particles = [];
+      for (let i = 0; i < 42; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 7 + 3;
+        particles.push({
+          x: x, y: y,
+          vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed - 2.5,
+          size: Math.random() * 5 + 3,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 1, decay: Math.random() * 0.025 + 0.015,
+          rotation: Math.random() * 360, rotSpeed: (Math.random() - 0.5) * 12
+        });
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = false;
+        for (let p of particles) {
+          if (p.alpha > 0) {
+            active = true;
+            p.x += p.vx; p.y += p.vy;
+            p.vy += 0.22; p.vx *= 0.98;
+            p.alpha -= p.decay; p.rotation += p.rotSpeed;
+            ctx.save();
+            ctx.globalAlpha = Math.max(0, p.alpha);
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rotation * Math.PI) / 180);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+            ctx.restore();
+          }
+        }
+        if (active) requestAnimationFrame(render);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      requestAnimationFrame(render);
+    }
+  </script>
+</body>
+</html>
