@@ -188,6 +188,14 @@
     }
     @media (max-width: 950px) { .univ-student-badge { text-align: center; } }
 
+    /* EASTER EGG FLIP CARD */
+    .student-flip-scene { perspective: 1000px; cursor: pointer; user-select: none; flex-shrink: 0; }
+    .student-flip-card { width: 220px; height: 62px; position: relative; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.2, 0.85, 0.4, 1.2); }
+    .student-flip-card.is-flipped { transform: rotateY(180deg); }
+    .flip-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 4px; padding: 8px 14px; display: flex; flex-direction: column; justify-content: center; }
+    .flip-front { background: rgba(0, 188, 212, 0.08); border: 1px solid var(--kernel); text-align: right; font-family: var(--font-mono); font-size: 11px; }
+    .flip-back { background: linear-gradient(135deg, #0f172a 0%, #020617 100%); border: 1.5px solid var(--gold); box-shadow: 0 0 16px rgba(212, 175, 55, 0.35); transform: rotateY(180deg); text-align: center; font-family: var(--font-mono); }
+
     /* 2. CENTERED HERO SECTION */
     .hero-stage {
       background: linear-gradient(180deg, #11141a 0%, #0d1017 100%);
@@ -647,10 +655,19 @@
         </div>
       </div>
 
-      <div class="univ-student-badge">
-        <div style="color: var(--text-muted); font-size: 9px;">ВИКОНАВ:</div>
-        <div style="color: #fff; font-weight: 700; font-size: 11.5px;">студент гр.&nbsp;141-24-2</div>
-        <div style="color: var(--kernel); font-weight: 700; font-size: 12px;">Дідов Платон Андрійович</div>
+      <div class="student-flip-scene" onclick="handleStudentBadgeClick()" title="5 швидких кліків активують системне ядро">
+        <div class="student-flip-card" id="studentFlipCard">
+          <div class="flip-face flip-front">
+            <div style="color: var(--text-muted); font-size: 9px;">ВИКОНАВ:</div>
+            <div style="color: #fff; font-weight: 700; font-size: 11.5px;">студент гр.&nbsp;141-24-2</div>
+            <div style="color: var(--kernel); font-weight: 700; font-size: 12px;">Дідов Платон Андрійович</div>
+          </div>
+          <div class="flip-face flip-back">
+            <div style="color: var(--gold); font-size: 9px; font-weight: 800; letter-spacing: 1px;">⚡ DATOXSYS LAB // ARCHITECT</div>
+            <div style="color: #fff; font-weight: 800; font-size: 11px; margin: 1px 0;">Platon Didov</div>
+            <div style="color: var(--kernel); font-size: 8.5px; letter-spacing: 0.5px;">HUMAN GUIDES // AI BUILDS</div>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -668,33 +685,7 @@
       </p>
     </section>
 
-    <!-- 3. НАВІГАЦІЯ ДО РОБІТ СЕМЕСТРУ -->
-    <div style="margin-bottom: 24px;">
-      <!-- Компактне посилання на вступний експеримент (Пролог) -->
-      <div style="text-align: center; margin-bottom: 12px;">
-        <a href="2026_09_Task_0/index.html" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-decoration: none; padding: 4px 12px; border-radius: 20px; border: 1px dashed rgba(139, 148, 158, 0.3); background: rgba(255, 255, 255, 0.01); transition: all 0.2s;" onmouseover="this.style.color='var(--gold)'; this.style.borderColor='var(--gold)';" onmouseout="this.style.color='var(--text-muted)'; this.style.borderColor='rgba(139, 148, 158, 0.3)';">
-          <span>🌱</span> <span>Вступний експеримент: Промпт-дизайн та декомпозиція портрета (Завдання 0) ↗</span>
-        </a>
-      </div>
-
-      <!-- Основні глави семестрового дослідження -->
-      <nav class="quick-nav-bar" style="margin-bottom: 0;">
-        <a href="2026_09_Prakt_1/index.html" class="btn-nav-item btn-nav-active" title="Перейти до Практичної роботи №1">
-          📘 Практична робота №1: Генерація ідеї, кейс Дніпра та міфи
-        </a>
-        <div class="btn-nav-item btn-nav-pending" title="Практична робота №2 (у процесі підготовки)">
-          🔒 Практична робота №2: Джерела та валідація DOI
-        </div>
-        <div class="btn-nav-item btn-nav-pending" title="Практична робота №3 (у процесі підготовки)">
-          🔒 Практична робота №3: Опитування та аналітика
-        </div>
-        <div class="btn-nav-item btn-nav-pending" title="Підсумкова робота (у процесі підготовки)">
-          🔒 Підсумкова робота: Захист дослідження
-        </div>
-      </nav>
-    </div>
-
-    <!-- 4. FULL-WIDTH ANIMATED TABBED DECK -->
+    <!-- 3. FULL-WIDTH ANIMATED TABBED DECK (КОНЦЕПТУАЛЬНИЙ БАЗИС) -->
     <section class="deck-container">
       
       <!-- TABS SWITCHER HEADER -->
@@ -903,6 +894,33 @@
 
     </section>
 
+    <!-- 4. НАВІГАЦІЙНИЙ МАРШРУТ (ПРАКТИЧНІ ГЛАВИ) -->
+    <section style="background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 22px 20px; margin-bottom: 28px;">
+      <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; text-align: center; margin-bottom: 8px;">
+        🗺️ ЗМІСТ МОНОГРАФІЇ // ПРАКТИЧНІ ГЛАВИ
+      </div>
+      <div style="text-align: center; margin-bottom: 16px;">
+        <a href="2026_09_Task_0/index.html" style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); text-decoration: none; padding: 5px 14px; border-radius: 20px; border: 1px dashed rgba(139, 148, 158, 0.4); background: rgba(255, 255, 255, 0.02); transition: all 0.2s;" onmouseover="this.style.color='var(--gold)'; this.style.borderColor='var(--gold)';" onmouseout="this.style.color='var(--text-muted)'; this.style.borderColor='rgba(139, 148, 158, 0.4)';">
+          <span>🌱</span> <span>Вступний експеримент: Промпт-дизайн та декомпозиція портрета (Завдання 0) ↗</span>
+        </a>
+      </div>
+
+      <nav class="quick-nav-bar" style="margin-bottom: 0; background: transparent; border: none; padding: 0;">
+        <a href="2026_09_Prakt_1/index.html" class="btn-nav-item btn-nav-active" title="Перейти до Практичної роботи №1">
+          📘 Практична робота №1: Генерація ідеї, кейс Дніпра та міфи
+        </a>
+        <div class="btn-nav-item btn-nav-pending" title="Практична робота №2 (у процесі підготовки)">
+          🔒 Практична робота №2: Джерела та валідація DOI
+        </div>
+        <div class="btn-nav-item btn-nav-pending" title="Практична робота №3 (у процесі підготовки)">
+          🔒 Практична робота №3: Опитування та аналітика
+        </div>
+        <div class="btn-nav-item btn-nav-pending" title="Підсумкова робота (у процесі підготовки)">
+          🔒 Підсумкова робота: Захист дослідження
+        </div>
+      </nav>
+    </section>
+
     <!-- CANVAS CONFETTI FOR LECTURER EASTER EGG -->
     <canvas id="confettiCanvas"></canvas>
 
@@ -1034,6 +1052,29 @@
         paneAnatomy.classList.remove('active-pane');
       }
     }
+
+    // =========================================================================
+    // DATOXSYS 5-CLICK SECRET FLIP (GLOBAL SCOPE)
+    // =========================================================================
+    let secretClickCount = 0;
+    let secretClickTimer = null;
+    window.handleStudentBadgeClick = function() {
+      const card = document.getElementById('studentFlipCard');
+      if (!card) return;
+      if (card.classList.contains('is-flipped')) {
+        card.classList.remove('is-flipped');
+        secretClickCount = 0;
+        return;
+      }
+      secretClickCount++;
+      if (secretClickTimer) clearTimeout(secretClickTimer);
+      if (secretClickCount >= 5) {
+        card.classList.add('is-flipped');
+        secretClickCount = 0;
+      } else {
+        secretClickTimer = setTimeout(() => { secretClickCount = 0; }, 450);
+      }
+    };
 
     function spawnConfetti(x, y) {
       let canvas = document.getElementById('confettiCanvas');

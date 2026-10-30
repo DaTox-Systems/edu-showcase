@@ -128,6 +128,14 @@
       .univ-student-badge { text-align: center; }
     }
 
+    /* EASTER EGG FLIP CARD */
+    .student-flip-scene { perspective: 1000px; cursor: pointer; user-select: none; flex-shrink: 0; }
+    .student-flip-card { width: 220px; height: 62px; position: relative; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.2, 0.85, 0.4, 1.2); }
+    .student-flip-card.is-flipped { transform: rotateY(180deg); }
+    .flip-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 4px; padding: 8px 14px; display: flex; flex-direction: column; justify-content: center; }
+    .flip-front { background: rgba(0, 188, 212, 0.08); border: 1px solid var(--kernel); text-align: right; font-family: var(--font-mono); font-size: 11px; }
+    .flip-back { background: linear-gradient(135deg, #0f172a 0%, #020617 100%); border: 1.5px solid var(--gold); box-shadow: 0 0 16px rgba(212, 175, 55, 0.35); transform: rotateY(180deg); text-align: center; font-family: var(--font-mono); }
+
     /* CONTROLS BAR */
     .action-bar {
       display: flex;
@@ -826,19 +834,36 @@
         </div>
       </div>
 
-      <div class="univ-student-badge">
-        <div style="color: var(--text-muted); font-size: 9px;">ВИКОНАВ:</div>
-        <div style="color: #fff; font-weight: 700; font-size: 11.5px;">студент гр.&nbsp;141-24-2</div>
-        <div style="color: var(--kernel); font-weight: 700; font-size: 12px;">Дідов Платон Андрійович</div>
+      <div class="student-flip-scene" onclick="handleStudentBadgeClick()" title="5 швидких кліків активують системне ядро">
+        <div class="student-flip-card" id="studentFlipCard">
+          <div class="flip-face flip-front">
+            <div style="color: var(--text-muted); font-size: 9px;">ВИКОНАВ:</div>
+            <div style="color: #fff; font-weight: 700; font-size: 11.5px;">студент гр.&nbsp;141-24-2</div>
+            <div style="color: var(--kernel); font-weight: 700; font-size: 12px;">Дідов Платон Андрійович</div>
+          </div>
+          <div class="flip-face flip-back">
+            <div style="color: var(--gold); font-size: 9px; font-weight: 800; letter-spacing: 1px;">⚡ DATOXSYS LAB // ARCHITECT</div>
+            <div style="color: #fff; font-weight: 800; font-size: 11px; margin: 1px 0;">Platon Didov</div>
+            <div style="color: var(--kernel); font-size: 8.5px; letter-spacing: 0.5px;">HUMAN GUIDES // AI BUILDS</div>
+          </div>
+        </div>
       </div>
     </header>
 
-    <!-- ACTION BUTTONS -->
+    <!-- ACTION BUTTONS & NAVIGATION -->
     <div class="action-bar">
-      <button class="btn-action btn-task" onclick="toggleTaskModal(true)">
-        📋 ПЕРЕГЛЯНУТИ ЗАВДАННЯ ВИКЛАДАЧА
-      </button>
-      <div style="display: flex; gap: 10px;">
+      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <a href="../../index.html" class="btn-action" style="border-color:var(--gold); color:var(--gold); text-decoration:none; font-weight:700;" title="Повернутися на Головну сторінку дисципліни">
+          <span>←</span> НА ГОЛОВНУ СТОРІНКУ
+        </a>
+        <a href="../../2026_09_Prakt_1/index.html" class="btn-action" style="border-color:var(--kernel); color:var(--kernel); text-decoration:none; font-weight:700;" title="Перейти до наступної глави: Практична робота №1">
+          ДО ПРАКТИЧНОЇ РОБОТИ №1 ➔
+        </a>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+        <button class="btn-action btn-task" onclick="toggleTaskModal(true)">
+          📋 ПЕРЕГЛЯНУТИ ЗАВДАННЯ ВИКЛАДАЧА
+        </button>
         <button class="btn-action" onclick="window.print()">🖨️ ЗБЕРЕГТИ В PDF / ДРУК</button>
       </div>
     </div>
@@ -1363,6 +1388,29 @@
       const targetX = 20 + (maxFlippedIndex / 8) * totalWidth;
       progressLine.setAttribute('x2', targetX);
     }
+
+    // =========================================================================
+    // DATOXSYS 5-CLICK SECRET FLIP (GLOBAL SCOPE)
+    // =========================================================================
+    let secretClickCount = 0;
+    let secretClickTimer = null;
+    window.handleStudentBadgeClick = function() {
+      const card = document.getElementById('studentFlipCard');
+      if (!card) return;
+      if (card.classList.contains('is-flipped')) {
+        card.classList.remove('is-flipped');
+        secretClickCount = 0;
+        return;
+      }
+      secretClickCount++;
+      if (secretClickTimer) clearTimeout(secretClickTimer);
+      if (secretClickCount >= 5) {
+        card.classList.add('is-flipped');
+        secretClickCount = 0;
+      } else {
+        secretClickTimer = setTimeout(() => { secretClickCount = 0; }, 450);
+      }
+    };
   </script>
 </body>
 </html>
