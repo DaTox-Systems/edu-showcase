@@ -310,6 +310,12 @@ function showStep6Phase(id, btnElem) {
 // =========================================================================
 // 8. STEP 1: COMPARISON TOGGLE (A vs B)
 // =========================================================================
+function getTmplText(id) {
+  const el = document.getElementById(id);
+  if (!el) return '';
+  return (el.content ? el.content.textContent : el.innerHTML).trim();
+}
+
 function switchStep1Mode(modeKey) {
   const btnGeneral = document.getElementById('btnStep1ModeGeneral');
   const btnEngineered = document.getElementById('btnStep1ModeEngineered');
@@ -336,10 +342,10 @@ function switchStep1Mode(modeKey) {
 
     promptNotice.style.borderLeftColor = 'var(--gold)';
     promptNotice.innerHTML = '🔸 <em>Спроба №1: людина запитує узагальнено, не маючи в голові конкретної задачі («що порадиш у сфері технологій?»).</em>';
-    opPromptBox.textContent = 'Я хочу створити проєкт у сфері програмування (чи технологій). Які варіанти ти можеш запропонувати?';
+    opPromptBox.textContent = getTmplText('tmpl_step1_op_gen') || 'Я хочу створити проєкт у сфері програмування (чи технологій). Які варіанти ти можеш запропонувати?';
     aiStatusPill.textContent = '[ОГЛЯДОВИЙ ШУМ]';
     aiStatusPill.style.color = 'var(--gold)';
-    aiResponseBox.textContent = `Ось кілька цікавих і актуальних варіантів проєктів у сфері програмування та технологій...`;
+    aiResponseBox.textContent = getTmplText('tmpl_step1_ai_gen');
 
   } else {
     btnEngineered.style.background = 'linear-gradient(180deg, rgba(0,188,212,0.25) 0%, rgba(0,188,212,0.08) 100%)';
@@ -357,13 +363,14 @@ function switchStep1Mode(modeKey) {
     promptNotice.style.borderLeftColor = 'var(--kernel)';
     promptNotice.innerHTML = '🔹 <em>Спроба №2: формування запиту через конкретний біль (хаос відповідей, амнезія, вигадки фактів).</em>';
     
-    const opTmpl = document.getElementById('tmpl_step1_op_eng');
-    const aiTmpl = document.getElementById('tmpl_step1_ai_eng');
-    if (opTmpl) opPromptBox.textContent = opTmpl.textContent.trim();
+    opPromptBox.textContent = getTmplText('tmpl_step1_op_eng');
     aiStatusPill.textContent = '[ФОКУСНИЙ АНАЛІЗ]';
     aiStatusPill.style.color = '#c084fc';
-    if (aiTmpl) aiResponseBox.textContent = aiTmpl.textContent.trim();
+    aiResponseBox.textContent = getTmplText('tmpl_step1_ai_eng');
   }
+
+  if (opPromptBox) opPromptBox.scrollTop = 0;
+  if (aiResponseBox) aiResponseBox.scrollTop = 0;
 
   if (wrapper) {
     wrapper.style.opacity = '0';
