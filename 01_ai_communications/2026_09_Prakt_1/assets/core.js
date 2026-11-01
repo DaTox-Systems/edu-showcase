@@ -576,7 +576,7 @@ window.handleStudentBadgeClick = function() {
 }
 
 // =========================================================================
-// 13. TACTICAL INSPECTOR LIGHTBOX ENGINE (DELEGATED FAILSAFE)
+// 13. TACTICAL INSPECTOR LIGHTBOX ENGINE (AUTO-INJECT FAILSAFE)
 // =========================================================================
 function closeTacticalLightbox() {
   const modal = document.getElementById('lightboxModal');
@@ -586,11 +586,30 @@ function closeTacticalLightbox() {
   }
 }
 
+function ensureLightboxModal() {
+  let modal = document.getElementById('lightboxModal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'lightboxModal';
+    modal.className = 'lightbox-overlay';
+    modal.onclick = closeTacticalLightbox;
+    modal.innerHTML = `
+      <div class="lightbox-stage" onclick="event.stopPropagation()">
+        <img id="lightboxModalImg" class="lightbox-img" src="" alt="">
+        <div id="lightboxModalCaption" class="lightbox-caption"></div>
+        <div class="lightbox-close-hint">[КЛІКНІТЬ ПОВЗ ЗОБРАЖЕННЯ АБО НАЖМІТЬ ESC ДЛЯ ЗАКРИТТЯ]</div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+  return modal;
+}
+
 document.addEventListener('click', e => {
   const img = e.target.closest('.feature-media-img');
   if (!img) return;
 
-  const modal = document.getElementById('lightboxModal');
+  const modal = ensureLightboxModal();
   const modalImg = document.getElementById('lightboxModalImg');
   const captionElem = document.getElementById('lightboxModalCaption');
 
