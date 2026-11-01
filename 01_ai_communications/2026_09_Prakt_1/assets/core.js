@@ -574,3 +574,38 @@ window.handleStudentBadgeClick = function() {
     secretClickTimer = setTimeout(() => { secretClickCount = 0; }, 450);
   }
 }
+
+// =========================================================================
+// 13. TACTICAL INSPECTOR LIGHTBOX ENGINE (DELEGATED FAILSAFE)
+// =========================================================================
+function closeTacticalLightbox() {
+  const modal = document.getElementById('lightboxModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('click', e => {
+  const img = e.target.closest('.feature-media-img');
+  if (!img) return;
+
+  const modal = document.getElementById('lightboxModal');
+  const modalImg = document.getElementById('lightboxModalImg');
+  const captionElem = document.getElementById('lightboxModalCaption');
+
+  if (modal && modalImg) {
+    modalImg.src = img.src;
+    const parent = img.closest('.feature-media-side') || img.parentElement;
+    const caption = parent ? parent.querySelector('.figure-caption') : null;
+    if (captionElem) {
+      captionElem.textContent = caption ? caption.textContent.trim() : (img.alt || 'Інженерна ілюстрація');
+    }
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+});
+
+window.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeTacticalLightbox();
+});
