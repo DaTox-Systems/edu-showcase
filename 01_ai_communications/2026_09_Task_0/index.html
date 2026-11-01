@@ -853,13 +853,13 @@
     <!-- ACTION BUTTONS & NAVIGATION -->
     <div class="action-bar">
       <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-        <a href="../index.html" class="btn-hub-portal" onclick="goToHub(event)" title="Повернутися на Головну сторінку дисципліни">
-          <span>←</span> НА ГОЛОВНУ СТОРІНКУ
-        </a>
-        <a href="../2026_09_Prakt_1/index.html" class="btn-stage-next" onclick="goToPrakt1(event)" title="Перейти до Практичної роботи №1">
-          ДО ПРАКТИЧНОЇ РОБОТИ №1 ➔
-        </a>
-      </div>
+      <a href="../index.html" class="btn-action" onclick="goToHub(event)" title="Повернутися на Головну сторінку дисципліни">
+        <span>←</span> НА ГОЛОВНУ СТОРІНКУ
+      </a>
+      <a href="../2026_09_Prakt_1/index.html" class="btn-stage-next" onclick="goToPrakt1(event)" title="Перейти до Практичної роботи №1">
+        ДО ПРАКТИЧНОЇ РОБОТИ №1 ➔
+      </a>
+    </div>
       <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
         <button class="btn-action btn-task" onclick="toggleTaskModal(true)">
           📋 ПЕРЕГЛЯНУТИ ЗАВДАННЯ ВИКЛАДАЧА
@@ -1342,6 +1342,32 @@
         window.location.href = '../2026_09_Prakt_1/index.html';
       }
     }
+    function goToHub(e) {
+      if (e) e.preventDefault();
+      if (window.location.hostname.includes('github.io')) {
+        window.location.href = '/edu-showcase/01_ai_communications/index.html';
+        return;
+      }
+      if (window.location.pathname.includes('/work/')) {
+        window.location.href = '../../index.html';
+      } else {
+        window.location.href = '../index.html';
+      }
+    }
+
+    function goToPrakt1(e) {
+      if (e) e.preventDefault();
+      if (window.location.hostname.includes('github.io')) {
+        window.location.href = '/edu-showcase/01_ai_communications/2026_09_Prakt_1/index.html';
+        return;
+      }
+      if (window.location.pathname.includes('/work/')) {
+        window.location.href = '../../2026_09_Prakt_1/index.html';
+      } else {
+        window.location.href = '../2026_09_Prakt_1/index.html';
+      }
+    }
+    
     function toggleTaskModal(show) {
       const modal = document.getElementById('taskModal');
       if (show) modal.classList.add('open');
