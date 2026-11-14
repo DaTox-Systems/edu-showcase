@@ -43,12 +43,10 @@ function focusOnDeckView() {
 
 function goToHub(e) {
   if (e) e.preventDefault();
-  // 1. Якщо ми на живому сайті GitHub Pages: прямий надійний шлях до Хабу
   if (window.location.hostname.includes('github.io')) {
     window.location.href = '/edu-showcase/01_ai_communications/index.html';
     return;
   }
-  // 2. Якщо відкрито локально через file:///
   if (window.location.pathname.includes('/work/')) {
     window.location.href = '../../index.html';
   } else {
@@ -56,6 +54,20 @@ function goToHub(e) {
   }
 }
 window.goToHub = goToHub;
+
+function goToPrakt2(e) {
+  if (e) e.preventDefault();
+  if (window.location.hostname.includes('github.io')) {
+    window.location.href = '/edu-showcase/01_ai_communications/2026_09_01_ai_communications_Prakt_2/index.html';
+    return;
+  }
+  if (window.location.pathname.includes('/work/')) {
+    window.location.href = '../../2026_09_01_ai_communications_Prakt_2/index.html';
+  } else {
+    window.location.href = '../2026_09_01_ai_communications_Prakt_2/index.html';
+  }
+}
+window.goToPrakt2 = goToPrakt2;
 
 // =========================================================================
 // 3. TWO-CARD DECK CONTROLLER (NAVIGATOR <-> WORKSPACE)

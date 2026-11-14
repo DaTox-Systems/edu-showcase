@@ -1,0 +1,472 @@
+{
+  "verified_corpus": [
+    {
+      "id": "paper_01",
+      "cluster": "architecture",
+      "cluster_name": "I. Архітектура симбіозу",
+      "authors": ["Fang C.", "Zhu Y.", "Fang L.", "Long Y.", "Lin H.", "Cong Y.", "Wang S. J."],
+      "authors_short": "Fang C. et al.",
+      "title": "Generative AI-enhanced human-AI collaborative conceptual design: A systematic literature review",
+      "year": 2025,
+      "publication": {
+        "type": "journal",
+        "name": "Design Studies",
+        "publisher": "Elsevier",
+        "volume": "97",
+        "issue": null,
+        "article_number": "101300",
+        "pages": null
+      },
+      "identifiers": {
+        "doi": "10.1016/j.destud.2025.101300",
+        "doi_url": "https://doi.org/10.1016/j.destud.2025.101300",
+        "arxiv": null
+      },
+      "evidence_card": {
+        "research_question": "Як генеративний ШІ трансформує концептуальне інженерне проєктування на етапі ко-креації?",
+        "method": "Систематичний огляд 54 рецензованих робіт за методикою аналізу етапів проєктування.",
+        "evidence": "Співпраця з GenAI каталізує дивергентний пошук, але вимагає чіткого розподілу ролей і діалогових циклів.",
+        "limitation": "Фокус суто на концептуальній стадії, відсутність нормативної відповідальності за креслення.",
+        "relevance": "Теоретичний базис розподілу ролей між інженером та генеративною системою."
+      },
+      "verification": {
+        "status": "VERIFIED",
+        "syntax_valid": true,
+        "registry_found": true,
+        "metadata_match": true,
+        "source_database": "ScienceDirect / Elsevier",
+        "verified_date": "2026-11-09"
+      },
+      "citations": {
+        "dstu_simplified": "Fang C., Zhu Y., Fang L. et al. Generative AI-enhanced human-AI collaborative conceptual design: A systematic literature review. Design Studies. 2025. Vol. 97. Art. 101300. DOI: https://doi.org/10.1016/j.destud.2025.101300.",
+        "dstu_classical": "Fang C. Generative AI-enhanced human-AI collaborative conceptual design: A systematic literature review / C. Fang, Y. Zhu, L. Fang [et al.] // Design Studies. — 2025. — Vol. 97. — Art. 101300. — DOI: https://doi.org/10.1016/j.destud.2025.101300.",
+        "apa_7th": "Fang, C., Zhu, Y., Fang, L., Long, Y., Lin, H., Cong, Y., & Wang, S. J. (2025). Generative AI-enhanced human-AI collaborative conceptual design: A systematic literature review. Design Studies, 97, Article 101300. https://doi.org/10.1016/j.destud.2025.101300"
+      }
+    },
+    {
+      "id": "paper_02",
+      "cluster": "architecture",
+      "cluster_name": "I. Архітектура симбіозу",
+      "authors": ["Singh A.", "Szajnfarber Z."],
+      "authors_short": "Singh A. & Szajnfarber Z.",
+      "title": "Architecting Human-AI Systems for Effective Collaboration and Oversight: Making Sense of Human/AI-in/on/Over/Under/Along-the-Loop",
+      "year": 2026,
+      "publication": {
+        "type": "journal",
+        "name": "Systems Engineering",
+        "publisher": "INCOSE / Wiley",
+        "volume": "29",
+        "issue": "2",
+        "article_number": null,
+        "pages": "337–353"
+      },
+      "identifiers": {
+        "doi": "10.1002/sys.70024",
+        "doi_url": "https://doi.org/10.1002/sys.70024",
+        "arxiv": null
+      },
+      "evidence_card": {
+        "research_question": "Як уникнути архітектурної крихкості людського нагляду в системах зі штучним інтелектом?",
+        "method": "Системно-інженерна деконструкція таксономій взаємодії (in/on/over-the-loop).",
+        "evidence": "Декларації партнерства недостатньо: необхідне формалізоване проектування траєкторій нагляду до розгортання.",
+        "limitation": "Теоретико-архітектурна рамка, що вимагає галузевої операціоналізації.",
+        "relevance": "Основа для побудови шлюзів незнижуваного людського нагляду (Oversight Gating)."
+      },
+      "verification": {
+        "status": "VERIFIED",
+        "syntax_valid": true,
+        "registry_found": true,
+        "metadata_match": true,
+        "source_database": "Wiley Online Library / INCOSE",
+        "verified_date": "2026-11-09"
+      },
+      "citations": {
+        "dstu_simplified": "Singh A., Szajnfarber Z. Architecting Human-AI Systems for Effective Collaboration and Oversight: Making Sense of Human/AI-in/on/Over/Under/Along-the-Loop. Systems Engineering. 2026. Vol. 29, Issue 2. P. 337–353. DOI: https://doi.org/10.1002/sys.70024.",
+        "dstu_classical": "Singh A., Szajnfarber Z. Architecting Human-AI Systems for Effective Collaboration and Oversight: Making Sense of Human/AI-in/on/Over/Under/Along-the-Loop // Systems Engineering. — 2026. — Vol. 29, iss. 2. — P. 337–353. — DOI: https://doi.org/10.1002/sys.70024.",
+        "apa_7th": "Singh, A., & Szajnfarber, Z. (2026). Architecting human-AI systems for effective collaboration and oversight: Making sense of human/AI-in/on/over/under/along-the-loop. Systems Engineering, 29(2), 337–353. https://doi.org/10.1002/sys.70024"
+      }
+    },
+    {
+      "id": "paper_03",
+      "cluster": "context",
+      "cluster_name": "II. Інженерія контексту",
+      "authors": ["Calboreanu E."],
+      "authors_short": "Calboreanu E.",
+      "title": "Context Engineering: A Practitioner Methodology for Structured Human-AI Collaboration",
+      "year": 2026,
+      "publication": {
+        "type": "preprint",
+        "name": "arXiv Computer Science",
+        "publisher": "Cornell University",
+        "volume": null,
+        "issue": "cs.AI / cs.HC",
+        "article_number": "arXiv:2604.04258",
+        "pages": null
+      },
+      "identifiers": {
+        "doi": "10.48550/arXiv.2604.04258",
+        "doi_url": "https://doi.org/10.48550/arXiv.2604.04258",
+        "arxiv": "2604.04258"
+      },
+      "evidence_card": {
+        "research_question": "Як систематична інженерія контексту впливає на ітераційність та якість роботи з LLM?",
+        "method": "Спостережне дослідження 200 взаємодій одного оператора з 4 інструментами ШІ.",
+        "evidence": "Структурований 5-компонентний пакет контексту зменшив середню кількість ітерацій з 3.8 до 2.0.",
+        "limitation": "Дані одного оператора, відсутність рандомізованого контрольного експерименту.",
+        "relevance": "Практичний шаблон пакування контексту (Authority, Exemplar, Constraint, Rubric, Metadata)."
+      },
+      "verification": {
+        "status": "VERIFIED",
+        "syntax_valid": true,
+        "registry_found": true,
+        "metadata_match": true,
+        "source_database": "arXiv.org (05.04.2026)",
+        "verified_date": "2026-11-09"
+      },
+      "citations": {
+        "dstu_simplified": "Calboreanu E. Context Engineering: A Practitioner Methodology for Structured Human-AI Collaboration. arXiv preprint. 2026. arXiv:2604.04258 [cs.AI]. DOI: https://doi.org/10.48550/arXiv.2604.04258.",
+        "dstu_classical": "Calboreanu E. Context Engineering: A Practitioner Methodology for Structured Human-AI Collaboration. — 2026. — arXiv:2604.04258 [cs.AI]. — DOI: https://doi.org/10.48550/arXiv.2604.04258.",
+        "apa_7th": "Calboreanu, E. (2026). Context engineering: A practitioner methodology for structured human-AI collaboration [Preprint]. arXiv. https://doi.org/10.48550/arXiv.2604.04258"
+      }
+    },
+    {
+      "id": "paper_04",
+      "cluster": "architecture",
+      "cluster_name": "I. Архітектура симбіозу",
+      "authors": ["Seini A. B.", "Adam I. O.", "Preko M."],
+      "authors_short": "Seini A. B. et al.",
+      "title": "Human-AI collaboration in information systems research: a systematic literature review and future research directions",
+      "year": 2026,
+      "publication": {
+        "type": "journal",
+        "name": "Human-Intelligent Systems Integration",
+        "publisher": "Springer Nature",
+        "volume": null,
+        "issue": "Advance online publication (18.05.2026)",
+        "article_number": null,
+        "pages": null
+      },
+      "identifiers": {
+        "doi": "10.1007/s42454-026-00100-7",
+        "doi_url": "https://doi.org/10.1007/s42454-026-00100-7",
+        "arxiv": null
+      },
+      "evidence_card": {
+        "research_question": "Який поточний стан і майбутні вектори досліджень людсько-ШІ колаборації в інформаційних системах?",
+        "method": "Систематичний огляд 137 наукових статей за трьома тематичними осями.",
+        "evidence": "Більшість праць вивчають продуктивність; питання довгострокового симбіозу та відповідальності лишаються відкритими.",
+        "limitation": "Відсутність єдиної кількісної метрики оцінки глибини партнерства.",
+        "relevance": "Доказ актуальності створення цілісної методології довготривалого симбіозу."
+      },
+      "verification": {
+        "status": "VERIFIED",
+        "syntax_valid": true,
+        "registry_found": true,
+        "metadata_match": true,
+        "source_database": "SpringerLink (18.05.2026)",
+        "verified_date": "2026-11-09"
+      },
+      "citations": {
+        "dstu_simplified": "Seini A. B., Adam I. O., Preko M. Human-AI collaboration in information systems research: a systematic literature review and future research directions. Human-Intelligent Systems Integration. 2026. DOI: https://doi.org/10.1007/s42454-026-00100-7.",
+        "dstu_classical": "Seini A. B., Adam I. O., Preko M. Human-AI collaboration in information systems research: a systematic literature review and future research directions // Human-Intelligent Systems Integration. — 2026. — DOI: https://doi.org/10.1007/s42454-026-00100-7.",
+        "apa_7th": "Seini, A. B., Adam, I. O., & Preko, M. (2026). Human-AI collaboration in information systems research: A systematic literature review and future research directions. Human-Intelligent Systems Integration. https://doi.org/10.1007/s42454-026-00100-7"
+      }
+    },
+    {
+      "id": "paper_05",
+      "cluster": "context",
+      "cluster_name": "II. Інженерія контексту",
+      "authors": ["Mei L.", "Yao J.", "Ge Y.", "Wang Y.", "Bi B.", "Cai Y.", "Liu J.", "Li M.", "Li Z.-Z.", "Zhang D.", "Zhou C.", "Mao J.", "Xia T.", "Guo J.", "Liu S."],
+      "authors_short": "Mei L. et al.",
+      "title": "A Survey of Context Engineering for Large Language Models",
+      "year": 2025,
+      "publication": {
+        "type": "preprint",
+        "name": "arXiv Artificial Intelligence",
+        "publisher": "Cornell University",
+        "volume": null,
+        "issue": "cs.AI",
+        "article_number": "arXiv:2507.13334",
+        "pages": null
+      },
+      "identifiers": {
+        "doi": "10.48550/arXiv.2507.13334",
+        "doi_url": "https://doi.org/10.48550/arXiv.2507.13334",
+        "arxiv": "2507.13334"
+      },
+      "evidence_card": {
+        "research_question": "Які фундаментальні компоненти та архітектури складають інженерію контексту для LLM?",
+        "method": "Комплексний аналіз та систематизація понад 1400 публікацій.",
+        "evidence": "Контекст-інжиніринг виділено в окрему дисципліну: Retrieval, Generation, Processing, Management.",
+        "limitation": "Широкий бібліографічний огляд без уніфікованого стандарту для інженерних специфікацій.",
+        "relevance": "Таксономія управління контекстним вікном як обчислювальним простором."
+      },
+      "verification": {
+        "status": "VERIFIED",
+        "syntax_valid": true,
+        "registry_found": true,
+        "metadata_match": true,
+        "source_database": "arXiv.org (2025)",
+        "verified_date": "2026-11-09"
+      },
+      "citations": {
+        "dstu_simplified": "Mei L., Yao J., Ge Y. et al. A Survey of Context Engineering for Large Language Models. arXiv preprint. 2025. arXiv:2507.13334 [cs.AI]. URL: https://arxiv.org/abs/2507.13334.",
+        "dstu_classical": "Mei L. A Survey of Context Engineering for Large Language Models / L. Mei, J. Yao, Y. Ge [et al.]. — 2025. — arXiv:2507.13334 [cs.AI]. — URL: https://arxiv.org/abs/2507.13334.",
+        "apa_7th": "Mei, L., Yao, J., Ge, Y., Wang, Y., Bi, B., Cai, Y., Liu, J., Li, M., Li, Z.-Z., Zhang, D., Zhou, C., Mao, J., Xia, T., Guo, J., & Liu, S. (2025). A survey of context engineering for large language models [Preprint]. arXiv. https://arxiv.org/abs/2507.13334"
+      }
+    },
+    {
+      "id": "paper_06",
+      "cluster": "protocols",
+      "cluster_name": "III. Протоколи взаємодії",
+      "authors": ["Sahoo P.", "Singh A. K.", "Saha S.", "Jain V.", "Mondal S.", "Chadha A."],
+      "authors_short": "Sahoo P. et al.",
+      "title": "A Systematic Survey of Prompt Engineering in Large Language Models: Techniques and Applications",
+      "year": 2024,
+      "publication": {
+        "type": "preprint",
+        "name": "arXiv Computer Science",
+        "publisher": "Cornell University",
+        "volume": null,
+        "issue": "cs.CL",
+        "article_number": "arXiv:2402.07927",
+        "pages": null
+      },
+      "identifiers": {
+        "doi": "10.48550/arXiv.2402.07927",
+        "doi_url": "https://doi.org/10.48550/arXiv.2402.07927",
+        "arxiv": "2402.07927"
+      },
+      "evidence_card": {
+        "research_question": "Які сучасні методи промпт-інжинірингу забезпечують керованість поведінки моделей?",
+        "method": "Систематизація методів промптингу від Zero-shot до складних міркувань.",
+        "evidence": "Промпт слугує інтерфейсом задачі, але не гарантує достовірності фактів і розрахунків.",
+        "limitation": "Локальний промптинг вичерпує себе у складних довготривалих задачах без контекстної пам'яті.",
+        "relevance": "Шаблонізація інженерних інструкцій (роль, обмеження, формат виводу)."
+      },
+      "verification": {
+        "status": "VERIFIED",
+        "syntax_valid": true,
+        "registry_found": true,
+        "metadata_match": true,
+        "source_database": "arXiv.org (2024)",
+        "verified_date": "2026-11-09"
+      },
+      "citations": {
+        "dstu_simplified": "Sahoo P., Singh A. K., Saha S. et al. A Systematic Survey of Prompt Engineering in Large Language Models: Techniques and Applications. arXiv preprint. 2024. arXiv:2402.07927 [cs.CL]. URL: https://arxiv.org/abs/2402.07927.",
+        "dstu_classical": "Sahoo P. A Systematic Survey of Prompt Engineering in Large Language Models: Techniques and Applications / P. Sahoo, A. K. Singh, S. Saha [et al.]. — 2024. — arXiv:2402.07927 [cs.CL]. — URL: https://arxiv.org/abs/2402.07927.",
+        "apa_7th": "Sahoo, P., Singh, A. K., Saha, S., Jain, V., Mondal, S., & Chadha, A. (2024). A systematic survey of prompt engineering in large language models: Techniques and applications [Preprint]. arXiv. https://doi.org/10.48550/arXiv.2402.07927"
+      }
+    },
+    {
+      "id": "paper_07",
+      "cluster": "architecture",
+      "cluster_name": "I. Архітектура симбіозу",
+      "authors": ["Pradas Gomez A.", "Kretzschmar M.", "Paetzold-Byhain K.", "Isaksson O."],
+      "authors_short": "Pradas Gomez A. et al.",
+      "title": "A Team of Three: The Role of Generative AI in the Development of Design Automation Systems for Complex Products",
+      "year": 2025,
+      "publication": {
+        "type": "proceedings",
+        "name": "Proceedings of the Design Society",
+        "publisher": "Cambridge University Press",
+        "volume": "5",
+        "issue": "ICED25",
+        "article_number": null,
+        "pages": "309–318"
+      },
+      "identifiers": {
+        "doi": "10.1017/pds.2025.10045",
+        "doi_url": "https://doi.org/10.1017/pds.2025.10045",
+        "arxiv": null
+      },
+      "evidence_card": {
+        "research_question": "Як розподілити відповідальність за проєктування складних виробів між людиною, ШІ та САПР?",
+        "method": "Концептуальне моделювання трикутника відповідальності (Triangle of Design Responsibility).",
+        "evidence": "LLM ефективні як оркестратори та генератори варіантів, але не замінюють інженерне затвердження.",
+        "limitation": "Концептуальна схема без нормативно-юридичного механізму аудиту.",
+        "relevance": "Розмежування генерації рішення від його технічного підтвердження."
+      },
+      "verification": {
+        "status": "VERIFIED",
+        "syntax_valid": true,
+        "registry_found": true,
+        "metadata_match": true,
+        "source_database": "Cambridge University Press / doi.org",
+        "verified_date": "2026-11-09"
+      },
+      "citations": {
+        "dstu_simplified": "Pradas Gomez A., Kretzschmar M. et al. A Team of Three: The Role of Generative AI in the Development of Design Automation Systems for Complex Products. Proceedings of the Design Society. 2025. DOI: https://doi.org/10.1017/pds.2025.10045.",
+        "dstu_classical": "Pradas Gomez A. A Team of Three: The Role of Generative AI in the Development of Design Automation Systems for Complex Products / A. Pradas Gomez, M. Kretzschmar [et al.] // Proceedings of the Design Society. — Cambridge University Press, 2025. — DOI: https://doi.org/10.1017/pds.2025.10045.",
+        "apa_7th": "Pradas Gomez, A., Kretzschmar, M., Paetzold-Byhain, K., & Isaksson, O. (2025). A team of three: The role of generative AI in the development of design automation systems for complex products. Proceedings of the Design Society, 5, 309–318. https://doi.org/10.1017/pds.2025.10045"
+      }
+    },
+    {
+      "id": "paper_08",
+      "cluster": "context",
+      "cluster_name": "II. Інженерія контексту",
+      "authors": ["Liu N. F.", "Lin K.", "Hewitt J.", "Paranjape A.", "Bevilacqua M.", "Petroni F.", "Liang P."],
+      "authors_short": "Liu N. F. et al.",
+      "title": "Lost in the Middle: How Language Models Use Long Contexts",
+      "year": 2024,
+      "publication": {
+        "type": "journal",
+        "name": "Transactions of the Association for Computational Linguistics",
+        "publisher": "MIT Press",
+        "volume": "12",
+        "issue": null,
+        "article_number": null,
+        "pages": "157–173"
+      },
+      "identifiers": {
+        "doi": "10.1162/tacl_a_00638",
+        "doi_url": "https://doi.org/10.1162/tacl_a_00638",
+        "arxiv": "2307.03172"
+      },
+      "evidence_card": {
+        "research_question": "Як позиція інформації у великому контекстному вікні впливає на здатність моделі її вилучати?",
+        "method": "Контрольований емпіричний експеримент із багатодокументного QA та key-value пошуку.",
+        "evidence": "Виявлено U-подібну криву уваги: точність максимальна на краях вікна і різко падає в середині.",
+        "limitation": "Тестування на специфічних синтетичних бенчмарках, що вимагає перевірки на інженерних текстах.",
+        "relevance": "Математичний доказ небезпеки статичного перенасичення контексту технічною документацією."
+      },
+      "verification": {
+        "status": "VERIFIED",
+        "syntax_valid": true,
+        "registry_found": true,
+        "metadata_match": true,
+        "source_database": "MIT Press / TACL (Vol. 12, 2024)",
+        "verified_date": "2026-11-09"
+      },
+      "citations": {
+        "dstu_simplified": "Liu N. F., Lin K., Hewitt J. et al. Lost in the Middle: How Language Models Use Long Contexts. Transactions of the Association for Computational Linguistics. 2024. Vol. 12. P. 157–173. DOI: https://doi.org/10.1162/tacl_a_00638.",
+        "dstu_classical": "Liu N. F. Lost in the Middle: How Language Models Use Long Contexts / N. F. Liu, K. Lin, J. Hewitt [et al.] // Transactions of the Association for Computational Linguistics. — 2024. — Vol. 12. — P. 157–173. — DOI: https://doi.org/10.1162/tacl_a_00638.",
+        "apa_7th": "Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., & Liang, P. (2024). Lost in the middle: How language models use long contexts. Transactions of the Association for Computational Linguistics, 12, 157–173. https://doi.org/10.1162/tacl_a_00638"
+      }
+    },
+    {
+      "id": "paper_09",
+      "cluster": "oversight",
+      "cluster_name": "IV. Відповідальність та нагляд",
+      "authors": ["Dell'Acqua F.", "McFowland E.", "Mollick E. R.", "Lifshitz-Assaf H.", "Kellogg K. C.", "Rajendran S.", "Krayer L.", "Candelon F.", "Lakhani K. R."],
+      "authors_short": "Dell'Acqua F. et al.",
+      "title": "Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of AI on Knowledge Worker Productivity",
+      "year": 2023,
+      "publication": {
+        "type": "working_paper",
+        "name": "Harvard Business School Working Paper",
+        "publisher": "Harvard Business School",
+        "volume": null,
+        "issue": "No. 24-013",
+        "article_number": null,
+        "pages": null
+      },
+      "identifiers": {
+        "doi": "10.2139/ssrn.4573321",
+        "doi_url": "https://doi.org/10.2139/ssrn.4573321",
+        "arxiv": null
+      },
+      "evidence_card": {
+        "research_question": "Як використання GenAI впливає на продуктивність і точність знаннєвих працівників на різних типах завдань?",
+        "method": "Польовий рандомізований експеримент із 758 консультантами Boston Consulting Group (BCG).",
+        "evidence": "У межах фронтиру якість зростає, але за межами — падає на 19% через ефект 'Falling Asleep at the Wheel'.",
+        "limitation": "Експеримент у бізнес-консалтингу, необхідність апробації в інженерних розрахунках.",
+        "relevance": "Емпіричне обґрунтування потреби в протоколах примусової людської пильності."
+      },
+      "verification": {
+        "status": "VERIFIED",
+        "syntax_valid": true,
+        "registry_found": true,
+        "metadata_match": true,
+        "source_database": "SSRN / Harvard Business School",
+        "verified_date": "2026-11-09"
+      },
+      "citations": {
+        "dstu_simplified": "Dell’Acqua F., McFowland E. et al. Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of AI on Knowledge Worker Productivity. Harvard Business School Working Paper 24-013. 2023. DOI: https://doi.org/10.2139/ssrn.4573321.",
+        "dstu_classical": "Dell'Acqua F. Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of AI on Knowledge Worker Productivity / F. Dell'Acqua, E. McFowland [et al.] // Harvard Business School Working Paper. — 2023. — No. 24-013. — DOI: https://doi.org/10.2139/ssrn.4573321.",
+        "apa_7th": "Dell'Acqua, F., McFowland, E., Mollick, E. R., Lifshitz-Assaf, H., Kellogg, K. C., Rajendran, S., Krayer, L., Candelon, F., & Lakhani, K. R. (2023). Navigating the jagged technological frontier: Field experimental evidence of the effects of AI on knowledge worker productivity and quality (Harvard Business School Working Paper No. 24-013). Harvard Business School. https://doi.org/10.2139/ssrn.4573321"
+      }
+    },
+    {
+      "id": "paper_10",
+      "cluster": "protocols",
+      "cluster_name": "III. Протоколи взаємодії",
+      "authors": ["Yao S.", "Zhao J.", "Yu D.", "Du N.", "Shafran I.", "Narasimhan K.", "Cao Y."],
+      "authors_short": "Yao S. et al.",
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "year": 2023,
+      "publication": {
+        "type": "proceedings",
+        "name": "International Conference on Learning Representations",
+        "publisher": "ICLR / OpenReview",
+        "volume": null,
+        "issue": "ICLR 2023",
+        "article_number": null,
+        "pages": null
+      },
+      "identifiers": {
+        "doi": "10.48550/arXiv.2210.03629",
+        "doi_url": "https://doi.org/10.48550/arXiv.2210.03629",
+        "arxiv": "2210.03629"
+      },
+      "evidence_card": {
+        "research_question": "Як поєднати вербальні міркування моделі з виконанням конкретних інструментальних дій?",
+        "method": "Інтерактивний цикл Thought-Action-Observation на інтерактивних бенчмарках (HotpotQA, ALFWorld).",
+        "evidence": "Чергування міркувань і дій підвищує успішність та забезпечує людиночитність траєкторії виводу.",
+        "limitation": "Зосередженість на текстових API без перевірки технічної безпеки інженерних дій.",
+        "relevance": "Базовий протокольний шаблон для організації циклічної інженерної взаємодії."
+      },
+      "verification": {
+        "status": "VERIFIED",
+        "syntax_valid": true,
+        "registry_found": true,
+        "metadata_match": true,
+        "source_database": "ICLR 2023 / arXiv",
+        "verified_date": "2026-11-09"
+      },
+      "citations": {
+        "dstu_simplified": "Yao S., Zhao J., Yu D. et al. ReAct: Synergizing Reasoning and Acting in Language Models. International Conference on Learning Representations (ICLR 2023). 2023. DOI: https://doi.org/10.48550/arXiv.2210.03629.",
+        "dstu_classical": "Yao S. ReAct: Synergizing Reasoning and Acting in Language Models / S. Yao, J. Zhao, D. Yu [et al.] // International Conference on Learning Representations (ICLR 2023). — 2023. — DOI: https://doi.org/10.48550/arXiv.2210.03629.",
+        "apa_7th": "Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., & Cao, Y. (2023). ReAct: Synergizing reasoning and acting in language models. In International Conference on Learning Representations (ICLR 2023). https://doi.org/10.48550/arXiv.2210.03629"
+      }
+    }
+  ],
+  "control_hallucinations": [
+    {
+      "id": "hallucination_01",
+      "model": "xAI Grok 2",
+      "type": "TIMESTAMP_ANOMALY",
+      "title": "Agentic Behavior Engineering / Design-by-Contract",
+      "input_identifier": "arXiv:2611.05454",
+      "syntax_valid": true,
+      "registry_found": false,
+      "status": "REGISTRY_RECORD_NOT_FOUND",
+      "error_code": 404,
+      "analysis": "Препринт із неіснуючої дати майбутнього (листопад 2026 р.). Стохастичний генератор скомбінував знайомий префікс репозиторію з довільним набором цифр."
+    },
+    {
+      "id": "hallucination_02",
+      "model": "ChatGPT-4o / Grok",
+      "type": "SYNTACTIC_FRANKENSTEIN",
+      "title": "Agent-based Workflow Orchestration with FMEA Governance",
+      "input_identifier": "10.1080/09544828.2026.2341598",
+      "syntax_valid": true,
+      "registry_found": false,
+      "status": "REGISTRY_RECORD_NOT_FOUND",
+      "error_code": 404,
+      "analysis": "Реальний префікс видавництва Taylor & Francis (10.1080) та реальний журнал Journal of Engineering Design, але стаття з такою назвою та суфіксом ніколи не реєструвалася в CrossRef."
+    },
+    {
+      "id": "hallucination_03",
+      "model": "ChatGPT-4o",
+      "type": "ENTITY_SUBSTITUTION",
+      "title": "Generative Artificial Intelligence in Power Distribution Engineering",
+      "input_identifier": "10.1109/TPWRS.2024.3312456",
+      "syntax_valid": true,
+      "registry_found": true,
+      "status": "METADATA_MISMATCH",
+      "error_code": 200,
+      "analysis": "Ідентифікатор DOI реально існує в IEEE Xplore, але належить статті з оптимізації реактивної потужності 2021 року іншого авторського колективу. Відбулася стохастична підміна сутності."
+    }
+  ]
+}

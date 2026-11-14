@@ -1,0 +1,922 @@
+<!-- FILE: projects/education/3_course/1_semester/01_ai_communications/2026_09_01_ai_communications_Prakt_2/work/index.html -->
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>📘 ПРАКТИЧНА РОБОТА №2 // Людина і ШІ: мистецтво комунікацій | гр. 141-24-2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/theme.css">
+  <link rel="stylesheet" href="assets/components.css">
+</head>
+<body>
+
+  <!-- Canvas для святкового конфетті викладача -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="container">
+
+    <!-- ======================================================================
+         SECTION_START: SEC_01_UNIV_HEADER (Еталонна академічна шапка НТУ «ДП»)
+         ====================================================================== -->
+    <header class="univ-header">
+      <div class="header-left">
+        <div class="logo-container" title="НТУ «Дніпровська політехніка» // Захопіть мишею для розкрутки">
+          <svg class="nmu-logo-svg" width="140" height="44" viewBox="0 0 220 54" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 140px; height: 44px; flex-shrink: 0;">
+            <rect x="0" y="36" width="14" height="14" rx="2" fill="#009fe3" class="cube-animated"/>
+            <rect x="16" y="36" width="14" height="14" rx="2" fill="#009fe3" class="cube-animated" style="animation-delay: 0.4s;"/>
+            <rect x="32" y="36" width="14" height="14" rx="2" fill="#0080ff" class="cube-animated" style="animation-delay: 0.8s;"/>
+            <rect x="16" y="20" width="14" height="14" rx="2" fill="#009fe3" class="cube-animated" style="animation-delay: 1.2s;"/>
+            <rect x="32" y="20" width="14" height="14" rx="2" fill="#0080ff" class="cube-animated" style="animation-delay: 1.6s;"/>
+            <rect x="32" y="4" width="14" height="14" rx="2" fill="#0080ff" class="cube-animated" style="animation-delay: 2.0s;"/>
+            
+            <text x="56" y="20" fill="#ffffff" font-family="Inter" font-weight="800" font-size="12" letter-spacing="0.5">ДНІПРОВСЬКА</text>
+            <text x="56" y="35" fill="#00bcd4" font-family="Inter" font-weight="700" font-size="10.5" letter-spacing="1">ПОЛІТЕХНІКА</text>
+            <text x="56" y="47" fill="#8b949e" font-family="JetBrains Mono" font-size="8" letter-spacing="1.5">1899</text>
+          </svg>
+        </div>
+
+        <div class="univ-meta-wrap">
+          <div class="univ-ministry">МІНІСТЕРСТВО ОСВІТИ І НАУКИ УКРАЇНИ // НТУ «ДНІПРОВСЬКА ПОЛІТЕХНІКА»</div>
+          <div class="univ-department">ФАКУЛЬТЕТ ІНФОРМАЦІЙНИХ ТЕХНОЛОГІЙ // КАФЕДРА ІТ ТА КОМП'ЮТЕРНОЇ ІНЖЕНЕРІЇ</div>
+          <div class="univ-subject">
+            Дисципліна: Людина і ШІ: мистецтво комунікацій // 
+            <span class="lecturer-badge-wrap">
+              <span class="lecturer-badge" id="lecturerBadge" onclick="triggerLecturerEasterEgg(event)" title="Офіційний профіль викладача">
+                🎓 доцент Соколова Наталя Олегівна ✨
+              </span>
+              <div class="lecturer-popover" id="lecturerPopover">
+                <div style="font-family:var(--font-mono); font-size:10px; color:var(--gold-accent); font-weight:700; margin-bottom:4px;">
+                  ОФІЦІЙНИЙ ПРОФІЛЬ ВИКЛАДАЧА
+                </div>
+                <div style="font-size:11.5px; color:#e2e8f0; line-height:1.45; margin-bottom:8px;">
+                  Соколова Наталя Олегівна — доцент кафедри ІТ та комп'ютерної інженерії, кандидат технічних наук.
+                </div>
+                <a href="https://it.nmu.org.ua/ua/HR_staff/prepods/Sokolova.php" target="_blank" style="color:var(--gold-accent); font-family:var(--font-mono); font-size:10.5px; text-decoration:underline;">
+                  Сторінка викладача ↗
+                </a>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="student-flip-scene" onclick="handleStudentBadgeClick()" title="5 швидких кліків активують системне ядро">
+        <div class="student-flip-card" id="studentFlipCard">
+          <!-- Лицьова сторона -->
+          <div class="flip-face flip-front">
+            <div style="color: var(--text-muted); font-size: 9px;">ВИКОНАВ:</div>
+            <div style="color: #fff; font-weight: 700; font-size: 11.5px;">студент гр.&nbsp;141-24-2</div>
+            <div style="color: var(--kernel-cyan); font-weight: 700; font-size: 12px;">Дідов Платон Андрійович</div>
+          </div>
+          <!-- Зворотна сторона -->
+          <div class="flip-face flip-back">
+            <div style="color: var(--gold-accent); font-size: 9px; font-weight: 800; letter-spacing: 1px;">⚡ DATOXSYS LAB // ARCHITECT</div>
+            <div style="color: #fff; font-weight: 800; font-size: 11px; margin: 1px 0;">Platon Didov</div>
+            <div style="color: var(--kernel-cyan); font-size: 8.5px; letter-spacing: 0.5px;">HUMAN GUIDES // AI BUILDS</div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- SECTION_END: SEC_01_UNIV_HEADER -->
+
+    <!-- ======================================================================
+         SECTION_START: SEC_02_CONTROLS_NAV (Панель навігації та дій)
+         ====================================================================== -->
+    <nav class="controls-bar">
+      <div class="nav-left-group">
+        <a href="../../index.html" class="btn-hub-portal" onclick="goToHub(event)" title="Повернутися на Головну сторінку монографії" style="text-decoration: none;">
+          <span>&larr;</span> НА ГОЛОВНУ СТОРІНКУ
+        </a>
+        <a href="../../2026_09_Prakt_1/index.html" class="btn-action" onclick="goToPrakt1(event)" title="Швидкий перехід до Практичної роботи №1" style="border-color: rgba(0, 188, 212, 0.4); color: var(--kernel); text-decoration: none;">
+          <span>&larr;</span> ДО ПРАКТИЧНОЇ №1
+        </a>
+        <div class="btn-stage-active">
+          📘 ПРАКТИЧНА РОБОТА №2
+        </div>
+      </div>
+
+      <div class="nav-right-group">
+        <button class="btn-action btn-task" onclick="toggleTaskModal(true)">
+          📋 ПРОГРАМА ДОСЛІДЖЕННЯ
+        </button>
+        <button class="btn-action" onclick="window.print()">
+          🖨️ ДРУК / PDF
+        </button>
+      </div>
+    </nav>
+    <!-- SECTION_END: SEC_02_CONTROLS_NAV -->
+
+    <!-- ======================================================================
+         SECTION_START: SEC_04_HERO_TITLE (3. CENTERED HERO BLOCK — ЯК У ГЛАВІ 1)
+         ====================================================================== -->
+    <section class="hero-stage">
+      <div class="hero-subtitle-tag">Практична робота №2 // Людина і ШІ: мистецтво комунікацій</div>
+      <h1 class="hero-title">
+        Аналіз наукових джерел, валідація за DOI та стандартизація<br>бібліографії за 
+        <span class="tooltip-term" data-tooltip="ДСТУ 8302:2015 — чинний національний стандарт України для бібліографічних посилань у наукових працях.">ДСТУ 8302:2015</span> та 
+        <span class="tooltip-term" data-tooltip="APA Style (7th Edition) — провідний міжнародний стандарт цитування Американської психологічної асоціації.">APA 7th Edition</span>
+      </h1>
+    </section>
+    <!-- SECTION_END: SEC_04_HERO_TITLE -->
+
+    <!-- ======================================================================
+         SECTION_START: SEC_05_TABS_SWITCHER (4. ЧИСТА ДОК-ПАНЕЛЬ ВКЛАДОК ЯК У ГЛАВІ 1)
+         ====================================================================== -->
+    <div class="deck-container">
+      <div class="deck-tabs-header">
+        <button class="deck-tab-btn active-tab" id="tabBtn1" onclick="switchTaskTab(1)">
+          🧪 1. БАТЛ ЗАПИТІВ: ІЛЮЗІЯ СОЛІДНОСТІ
+        </button>
+        <button class="deck-tab-btn" id="tabBtn2" onclick="switchTaskTab(2)">
+          🔍 2. ДЕТЕКТОР БРЕХНІ (FAKE DOI)
+        </button>
+        <button class="deck-tab-btn" id="tabBtn3" onclick="switchTaskTab(3)">
+          📚 3. НАУКОВИЙ БАЗИС (10 ДЖЕРЕЛ)
+        </button>
+        <button class="deck-tab-btn" id="tabBtn4" onclick="switchTaskTab(4)">
+          🔬 4. РЕНТГЕН (ДСТУ VS APA)
+        </button>
+        <button class="deck-tab-btn gold-tab" id="tabBtn5" onclick="switchTaskTab(5)">
+          🏆 5. ПРАКТИКУМ ТА ПЕРЕВІРКА
+        </button>
+      </div>
+    <!-- SECTION_END: SEC_05_TABS_SWITCHER -->
+
+    <!-- ======================================================================
+         SECTION_START: SEC_06_PANE1_PROMPTS (Параграф 1: Батл двох запитів)
+         ====================================================================== -->
+    <article id="pane1" class="deck-pane active-pane">
+      <div>
+        <!-- ПРОЛОГ-ХУК ГЛАВИ 2 ЗІ ЗРОЗУМІЛИМИ ОБЛАЧКАМИ -->
+        <div style="background: linear-gradient(180deg, #0e131b 0%, #080b0f 100%); border: 1px solid #1e293b; border-left: 4px solid var(--kernel); border-radius: 6px; padding: 18px 22px; margin-bottom: 22px; box-shadow: 0 4px 16px rgba(0,0,0,0.4);">
+          <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--kernel); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <span>🔬</span> ПРОЛОГ ДОСЛІДЖЕННЯ // РОЗТИН ІЛЮЗІЇ НАУКОВОСТІ
+          </div>
+          <p style="font-size: 14.5px; color: #e2e8f0; line-height: 1.7; text-align: justify; margin: 0;">
+            У Главі 1 ми переконалися, що мовні моделі не мають моделі фізичного простору. Проте часто вважають, що в роботі з науковими текстами вони надійні, адже навчені на величезних бібліотеках. 
+            У цьому дослідженні ми перевіряємо 3 реальні моделі на одному завданні та виявляємо три різні ризики: ефект ехо-камери веб-пошуку, приховану стіну застарілих знань без жодного <span class="tooltip-term" data-tooltip="Digital Object Identifier — персональний цифровий номер статті (як паспорт чи штрихкод товару), за яким її можна миттєво знайти у міжнародному реєстрі.">індексу DOI</span> та змішування валідних статей із кодами 404.
+          </p>
+        </div>
+
+        <h2 class="pane-main-heading">1. ДІАЛОГОВИЙ СПЕКТРОМЕТР // ЗВИЧАЙНІ ПРОТИ «АКАДЕМІЧНИХ» ДЖЕРЕЛ</h2>
+        
+        <p style="font-size: 14.5px; color: #e2e8f0; line-height: 1.7; margin-bottom: 18px; text-align: justify;">
+          <strong>Мета цього кроку:</strong> перевірити, чи достатньо змінити формулювання запиту («аналіз джерел» проти «аналіз <strong>АКАДЕМІЧНИХ</strong> джерел»), щоб перетворити мовну модель на надійного наукового асистента, та з’ясувати, яка модель працює з літературою точніше і чому.
+          Увімкнена <strong>Спектральна лінза</strong> підсвічує всередині повних відповідей типи знайдених посилань (наука, стандарти, веб-блоги, непідтверджені коди), а режим <strong>Спліт А | Б</strong> ставить обидві відповіді поруч для прямого зіставлення:
+        </p>
+
+        <!-- ПАНЕЛЬ УПРАВЛІННЯ ДОСЛІДОМ: ВИБІР ЗАПИТУ, МОДЕЛІ ТА ОПТИКИ -->
+        <div class="spec-toolbar">
+          <div>
+            <div class="spec-group-label">1. РЕЖИМ ВХІДНОГО ЗАПИТУ:</div>
+            <div style="display: flex; gap: 8px; background: #06080c; padding: 4px; border-radius: 6px; border: 1px solid #1a2332;">
+              <button id="btnSpecModeA" class="spec-pill active-naive" onclick="setSpectrometerMode('naive')">● ВАРІАНТ А: ЗВИЧАЙНИЙ ЗАПИТ</button>
+              <button id="btnSpecModeB" class="spec-pill" onclick="setSpectrometerMode('academic')">○ ВАРІАНТ Б: «АКАДЕМІЧНИЙ» ЗАПИТ</button>
+            </div>
+          </div>
+
+          <!-- СЕЛЕКТОР МОДЕЛІ -->
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #fff; margin-bottom: 6px; letter-spacing: 0.5px;">
+              2. ТЕСТОВАНА НЕЙРОМЕРЕЖА:
+            </div>
+            <div style="display: flex; gap: 6px; background: #06080c; padding: 4px; border-radius: 6px; border: 1px solid #1a2332;">
+              <button id="btnModelGrok" class="spec-pill active-model" onclick="setSpectrometerModel('grok')">xAI Grok 2</button>
+              <button id="btnModelGPT" class="spec-pill" onclick="setSpectrometerModel('gpt')">ChatGPT-4o</button>
+              <button id="btnModelGemini" class="spec-pill" onclick="setSpectrometerModel('gemini')">Google Gemini</button>
+            </div>
+          </div>
+
+          <div>
+            <div class="spec-group-label">3. ОПТИКА СПЕКТРОМЕТРА:</div>
+            <div class="spec-pill-group">
+              <button id="btnToggleLens" class="spec-pill active-lens" onclick="toggleSpectrometerLens()">🔬 СПЕКТРАЛЬНА ЛІНЗА: УВІМК</button>
+              <button id="btnToggleSplit" class="spec-pill" onclick="toggleSpectrometerSplit()">▢ РЕЖИМ: ОДИН ЛОГ 100%</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ТЕЛЕМЕТРІЯ ПЕРЕВІРКИ -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px;">
+          <div class="spec-tel-card">
+            <div class="spec-tel-label">ЛЕКСИЧНИЙ ПРОФІЛЬ</div>
+            <div id="telemetry-style" class="spec-tel-val" style="color: #f59e0b;">ЗМІШАНИЙ ВЕБ + ЕХО-КАМЕРА</div>
+            <div class="spec-tel-sub">Характер відібраних моделью джерел</div>
+          </div>
+          <div style="background: #090c10; border: 1px solid #1a2332; border-radius: 6px; padding: 14px;">
+            <div style="font-family: var(--font-mono); font-size: 10.5px; color: var(--text-muted); margin-bottom: 4px;">ПЕРЕВІРКА В РЕЄСТРАХ</div>
+            <div id="telemetry-grounding" style="font-family: var(--font-mono); font-size: 16px; font-weight: 800; color: #f87171;">0% (НЕ ПЕРЕВІРЯЛОСЯ)</div>
+            <div style="font-size: 11px; color: var(--text-dim); margin-top: 4px;">ШІ не звертався до реєстрів видавництв</div>
+          </div>
+          <div class="spec-tel-card">
+            <div class="spec-tel-label">СТАН ІДЕНТИФІКАТОРІВ DOI / arXiv</div>
+            <div id="telemetry-doi" class="spec-tel-val" style="color: #f87171;">МІКСТ: БЛОГИ + arXiv (Є 404)</div>
+            <div class="spec-tel-sub">Наявність та валідність шифрів у відповіді</div>
+          </div>
+        </div>
+
+        <!-- СПЕКТРАЛЬНА ШКАЛА СКЛАДУ ВІДПОВІДІ -->
+        <div class="spectrum-panel">
+          <div class="spectrum-header">
+            <span style="color: #fff; font-weight: 700;">📊 СПЕКТРАЛЬНИЙ РОЗПОДІЛ ДЖЕРЕЛ У ВІДПОВІДІ МОДЕЛІ:</span>
+            <span style="color: var(--text-muted);">Підсвітка маркерів керується тумблером «Спектральна лінза»</span>
+          </div>
+          <div class="spectrum-bar-track">
+            <div id="specSegWeb" class="spec-seg-web" style="width: 45%;"></div>
+            <div id="specSegStd" class="spec-seg-std" style="width: 15%;"></div>
+            <div id="specSegSci" class="spec-seg-sci" style="width: 30%;"></div>
+            <div id="specSegAnom" class="spec-seg-anom" style="width: 10%;"></div>
+          </div>
+          <div id="spectrumLegendText" class="spectrum-legend"></div>
+        </div>
+
+        <!-- КАРТКА ВХІДНОГО ПРОМПТУ З КНОПКОЮ КОПІЮВАННЯ -->
+        <div style="background: #0d121a; border: 1px solid #1e2633; border-left: 3px solid var(--kernel); border-radius: 4px; padding: 12px 16px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--kernel); text-transform: uppercase;">
+              РЕАЛЬНИЙ ЗАПИТ ОПЕРАТОРА (ВХІДНІ ДАНІ):
+            </div>
+            <div id="operatorPromptDisplay" style="font-family: var(--font-mono); font-size: 12.5px; color: #fff; margin-top: 4px;">
+              «Зроби аналіз джерел на тему "Методологія інженерного симбіозу з генеративним ШІ: керування контекстом, протоколи та відповідальність оператора"»
+            </div>
+          </div>
+          <button class="btn-action" style="font-size: 10.5px; padding: 6px 12px;" onclick="copyCurrentPrompt(this)">
+            📋 КОПІЮВАТИ ЗАПИТ
+          </button>
+        </div>
+
+        <!-- ВЕЛИКИЙ ТЕРМІНАЛ ПОВНОГО СИРОГО ВИВОДУ МОДЕЛІ (100% RAW LOG) -->
+        <div id="specMonoContainer" class="spec-terminal">
+          <div class="spec-terminal-bar">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span id="activeModelIcon" style="font-size: 14px;">⚡</span>
+              <span id="activeModelTitle" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: var(--kernel);">
+                РЕАЛЬНИЙ 100% СИРИЙ ВИВІД // xAI Grok 2
+              </span>
+            </div>
+            <span id="spec-status-pill" class="badge badge-red">ПОВЕРХНЕВИЙ РІВЕНЬ (БЛОГИ)</span>
+          </div>
+
+          <div id="fullRawOutputViewport" class="spec-viewport">
+            <!-- Завантажується 100% повний текст з бази через core.js -->
+          </div>
+        </div>
+
+        <!-- СПЛІТ-РЕЖИМ (ВАРІАНТ А ПРОТИ ВАРІАНТА Б ПОРУЧ) -->
+        <div id="specSplitContainer" class="spec-split-grid" style="display: none;">
+          <div class="spec-terminal" style="margin-bottom: 0; border-color: rgba(218,54,51,0.5);">
+            <div class="spec-terminal-bar">
+              <span style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:#f87171;">ВАРІАНТ А // ЗВИЧАЙНИЙ ЗАПИТ</span>
+            </div>
+            <div id="splitNaiveViewport" class="spec-viewport"></div>
+          </div>
+          <div class="spec-terminal" style="margin-bottom: 0; border-color: rgba(0,188,212,0.5);">
+            <div class="spec-terminal-bar">
+              <span style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--kernel);">ВАРІАНТ Б // «АКАДЕМІЧНИЙ» ЗАПИТ</span>
+            </div>
+            <div id="splitAcademicViewport" class="spec-viewport"></div>
+          </div>
+        </div>
+
+        <!-- АНАЛІТИЧНИЙ ВИСНОВОК: ЯК ПРАЦЮЄ ЦЕЙ ФОКУС? -->
+        <div style="background: #090c10; border: 1px solid #1a2332; border-left: 4px solid var(--gold); border-radius: 6px; padding: 18px 20px; margin-bottom: 24px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--gold); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+            <span>📊</span> ПОРІВНЯЛЬНИЙ АНАЛІЗ 3 МОДЕЛЕЙ // ХТО І В ЧОМУ КРАЩИЙ?
+          </div>
+
+          <!-- ЗВЕДЕНА ПОРІВНЯЛЬНА ТАБЛИЦЯ -->
+          <div style="overflow-x: auto; margin-bottom: 18px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 12.5px; color: #cbd5e1; text-align: left;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--border); font-family: var(--font-mono); font-size: 11px;">
+                  <th style="padding: 10px; color: #fff;">Критерій оцінки</th>
+                  <th style="padding: 10px; color: var(--success);">OpenAI ChatGPT-4o</th>
+                  <th style="padding: 10px; color: #c084fc;">xAI Grok 2</th>
+                  <th style="padding: 10px; color: #f59e0b;">Google Gemini</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #1e2633;">
+                  <td style="padding: 10px; font-weight: 700; color: #fff;">Реакція на «АКАДЕМІЧНІ»</td>
+                  <td style="padding: 10px; color: #86efac;">✅ Чітко відділив науку від стандартів і права</td>
+                  <td style="padding: 10px; color: #e9d5ff;">⚠️ Перейшов з веб-блогів на свіжі arXiv та журнали</td>
+                  <td style="padding: 10px; color: #fde68a;">⚠️ Поглибив теорію, але без ідентифікаторів</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #1e2633;">
+                  <td style="padding: 10px; font-weight: 700; color: #fff;">Живий пошук у мережі</td>
+                  <td style="padding: 10px; color: #86efac;">✅ Підтверджений пошук статей 2024–2026 рр.</td>
+                  <td style="padding: 10px; color: #e9d5ff;">⚡ Агресивний пошук по сайтах (навіть сайт автора)</td>
+                  <td style="padding: 10px; color: #fca5a5;">❌ Працював зі старої бази (межа 2024 року)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #1e2633;">
+                  <td style="padding: 10px; font-weight: 700; color: #fff;">Наявність та якість DOI</td>
+                  <td style="padding: 10px; color: #86efac;">✅ Реальні DOI, без фейків у цих запусках</td>
+                  <td style="padding: 10px; color: #fca5a5;">⚠️ Валідні arXiv змішані з кодом 404 (2611.05454)</td>
+                  <td style="padding: 10px; color: #fca5a5;">❌ Жодного DOI чи arXiv (неможливо швидко перевірити)</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; font-weight: 700; color: #fff;">Практичний вердикт</td>
+                  <td style="padding: 10px; color: var(--success); font-weight: 700;">Лідер для добору базового корпусу</td>
+                  <td style="padding: 10px; color: #c084fc; font-weight: 700;">Добрий для пошуку новинок, але потребує жорсткої перевірки</td>
+                  <td style="padding: 10px; color: #f59e0b; font-weight: 700;">Придатна лише як огляд класичних концепцій</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 3 СТРУКТУРОВАНІ КАРТКИ ВИСНОВКУ -->
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="background: #060a08; border: 1px solid rgba(0,230,118,0.3); border-left: 4px solid var(--success); border-radius: 4px; padding: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--success); margin-bottom: 4px;">
+                🏆 1. ХТО ПОКАЗАВ НАЙКРАЩИЙ РЕЗУЛЬТАТ І ЧОМУ? — OPENAI CHATGPT-4O
+              </div>
+              <div style="font-size: 13px; color: #e2e8f0; line-height: 1.6;">
+                Саме зміна запиту на <strong>«АКАДЕМІЧНІ джерела»</strong> найкраще спрацювала у <strong>ChatGPT-4o</strong>. У першому запиті він змішав наукові статті зі стандартами NIST/ISO та специфікацією протоколу MCP. У другому — сам розділив рецензовані журнали (<em>Design Studies, Systems Engineering</em>), класику 1983–2000 рр. та нормативну базу, дав точні DOI й додав матрицю внеску джерел.
+              </div>
+            </div>
+
+            <div style="background: #0b0812; border: 1px solid rgba(168,85,247,0.35); border-left: 4px solid var(--purple); border-radius: 4px; padding: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #c084fc; margin-bottom: 4px;">
+                ⚡ 2. СИЛА ТА ПІДСТУПНІСТЬ ЖИВОГО ПОШУКУ — XAI GROK 2
+              </div>
+              <div style="font-size: 13px; color: #e2e8f0; line-height: 1.6;">
+                Головна відмінність Grok 2 — він активно сканує живі веб-сторінки. Через це у звичайному запиті модель знайшла в інтернеті <strong>наш власний відкритий сайт</strong> і подала його як головне українське джерело (ефект віддзеркалення пошуку), поруч із блогами LinkedIn. В «академічному» запиті Grok 2 підтягнув найсвіжіші препринти 2026 року (наприклад, реальний <code>arXiv:2604.04258</code>), але водночас вставив шифр <code>arXiv:2611.05454</code>, якого не виявилося в реєстрі.
+              </div>
+            </div>
+
+            <div style="background: #100c06; border: 1px solid rgba(212,175,55,0.35); border-left: 4px solid var(--gold); border-radius: 4px; padding: 14px;">
+              <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--gold); margin-bottom: 4px;">
+                ⚠️ 3. СЛІПОТА БЕЗ ПОШУКУ ТА ПІДСУМОК КРОКУ — GOOGLE GEMINI ТА РОЛЬ ЗАПИТУ
+              </div>
+              <div style="font-size: 13px; color: #e2e8f0; line-height: 1.6;">
+                <strong>Google Gemini</strong> добре пояснює фундаментальні концепції (<em>Dell'Acqua, Liu, Yao, Shneiderman</em>), проте без доступу до свіжих індексів застрягла в роботах до 2024 року і не надала <strong>жодного DOI</strong>. <strong>Головний урок кроку:</strong> додавання слова «АКАДЕМІЧНІ» реально очищує список від блогів і підвищує науковий рівень, але не гарантує достовірності — кожен знайдений шифр необхідно проганяти через незалежну перевірку (наступна вкладка).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pane-navigation-footer">
+          <a href="../../index.html" class="btn-step-nav" onclick="goToHub(event)" style="background:#090c10; border:1px solid var(--gold); color:var(--gold); font-weight:700; padding:10px 18px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;" title="Повернутися на Головну сторінку">
+            &laquo; На головну сторінку
+          </a>
+          <button class="btn-action btn-primary" onclick="switchTaskTab(2)" style="font-weight:700; padding:10px 20px;">
+            Перейти до Розділу 2: Детектор аномалій (Fake DOI) &rarr;
+          </button>
+        </div>
+      </div>
+    </article>
+    <!-- SECTION_END: SEC_06_PANE1_PROMPTS -->
+     
+        
+    <!-- ======================================================================
+         SECTION_START: SEC_06_PANE2_SCANNER (Параграф 2: Fake DOI Scanner)
+         ====================================================================== -->
+    <article id="pane2" class="deck-pane">
+      <div>
+        <h2 class="pane-main-heading">2. ДЕТЕКТОР АНОМАЛІЙ // LOCAL-FIRST FAKE DOI SCANNER</h2>
+        <p style="font-size: 14.5px; color: #e2e8f0; line-height: 1.7; margin-bottom: 18px; text-align: justify;">
+          Щоб не вірити ШІ на слово, кожне посилання має пройти сувору триетапну перевірку: <strong>1. Правильність запису номера</strong> &rarr; <strong>2. Чи існує такий номер у світовому реєстрі статей</strong> &rarr; <strong>3. Чи збігаються автори й назва статті в журналі</strong>. Нижче працює тренажер перевірки з реальними результатами нашого тесту та наочними зразками типових вигадок нейромереж:
+        </p>
+
+        <!-- Сканер -->
+        <div class="scanner-chassis">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--kernel);">
+              🔍 ТЕРМІНАЛ ПЕРЕВІРКИ ДЖЕРЕЛ // РЕЄСТРИ DOI ТА ARXIV
+            </span>
+            <span class="badge badge-cyan" title="Працює прямо у вашому браузері без сторонніх серверів і без витоку даних">АВТОНОМНИЙ РЕЖИМ</span>
+          </div>
+
+          <div class="scanner-input-bar">
+            <input type="text" id="doi-input-field" class="scanner-input" placeholder="Введіть номер статті (наприклад: 10.1016/j.destud.2025.101300 або arXiv:2604.04258)...">
+            <button id="btn-run-scan" class="btn-action btn-primary" onclick="executeDoiScan()">
+              🔍 ПЕРЕВІРИТИ НОМЕР
+            </button>
+          </div>
+
+          <!-- Пресети з підказками-хмаринками -->
+          <div style="margin-bottom: 20px;">
+            <div style="font-size: 12px; color: var(--text-dim); margin-bottom: 8px;">Оберіть готовий зразок для перевірки (наведіть мишкою для підказки):</div>
+            <div class="preset-buttons-wrap">
+              <span class="preset-chip tooltip-term" data-tooltip="Зразок справжньої статті: номер дійсно існує у видавництві Elsevier, назва й автори повністю збігаються." onclick="loadDoiPreset('10.1016/j.destud.2025.101300', this)">🟢 Fang et al. (2025) — Справжня стаття</span>
+              <span class="preset-chip tooltip-term" data-tooltip="Справжня наукова стаття у виданні Wiley / інженерного товариства INCOSE за 2026 рік. Усі 3 етапи успішні." onclick="loadDoiPreset('10.1002/sys.70024', this)">🟢 Singh &amp; Szajnfarber (2026) — Справжня стаття</span>
+              <span class="preset-chip tooltip-term" data-tooltip="Реальна помилка з нашого тесту Grok 2: модель видала правдоподібний номер препринта, але в міжнародній базі arXiv його не існує (помилка 404)." onclick="loadDoiPreset('arXiv:2611.05454', this)">🔴 Збій Grok 2: Вигаданий номер (404)</span>
+              <span class="preset-chip tooltip-term" data-tooltip="Типовий фокус ШІ: префікс реального видавництва Taylor & Francis і реального журналу, але саму статтю та її номер нейромережа вигадала з голови." onclick="loadDoiPreset('10.1080/09544828.2026.2341598', this)">🟠 Зразок обману: Синтаксичний Франкенштейн</span>
+              <span class="preset-chip tooltip-term" data-tooltip="Підступний обман: номер дійсно існує в базі IEEE, але належить зовсім іншій старій статті з енергетики, яку ШІ видав за нову тему." onclick="loadDoiPreset('10.1109/TPWRS.2024.3312456', this)">🟠 Зразок обману: Підміна чужої статті</span>
+            </div>
+          </div>
+
+          <!-- 3 етапи перевірки українською мовою -->
+          <div class="inspection-stages-grid">  
+            <div class="stage-card">
+              <div class="stage-name">1. Перевірка формату номера</div>
+              <div id="stage-syntax-status" class="stage-status status-waiting">ОЧІКУВАННЯ</div>
+              <div style="font-size: 11px; color: var(--text-dim); margin-top: 6px;">Чи правильно записано шифр (10.xxxx/... або arXiv)</div>
+            </div>
+            <div class="stage-card">
+              <div class="stage-name">2. Пошук у базі видавництв</div>
+              <div id="stage-registry-status" class="stage-status status-waiting">ОЧІКУВАННЯ</div>
+              <div style="font-size: 11px; color: var(--text-dim); margin-top: 6px;">Чи зареєстровано такий номер взагалі (не 404)</div>
+            </div>
+            <div class="stage-card">
+              <div class="stage-name">3. Звірка назви та авторів</div>
+              <div id="stage-metadata-status" class="stage-status status-waiting">ОЧІКУВАННЯ</div>
+              <div style="font-size: 11px; color: var(--text-dim); margin-top: 6px;">Чи справді це стаття про штучний інтелект, а не про інше</div>
+            </div>
+          </div>
+
+          <!-- Результат -->
+          <div id="scanner-result-box" class="panel-card" style="display: none; border-left: 4px solid var(--text-dim);">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+              <span id="scan-verdict-title" style="font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: #fff;"></span>
+              <span id="scan-verdict-badge" class="badge"></span>
+            </div>
+            <p id="scan-verdict-desc" style="font-size: 13px; color: var(--text); line-height: 1.6; margin: 0;"></p>
+          </div>
+        </div>
+
+        <!-- Пояснення -->
+        <div class="panel-card" style="margin-top: 20px; border-left: 4px solid var(--alert);">
+          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #f87171; margin-bottom: 6px;">МАТЕМАТИЧНА ПРИЧИНА АНОМАЛІЙ // NEXT-TOKEN PREDICTION</div>
+          <p style="font-size: 13.5px; color: #cbd5e1; line-height: 1.65; margin: 0;">
+            Без зовнішніх інструментів мовна модель розраховує лише ймовірність наступного символу <em>P(w<sub>t</sub> | w<sub>1</sub>…w<sub>t-1</sub>)</em>. Оскільки в наукових текстах після назви журналу йде стандартний префікс видавництва (наприклад, <code>10.1080/</code> або <code>arXiv:2611.</code>), алгоритм продовжує рядок правдоподібними цифрами. Навіть із пошуком у мережі модель може пропустити непідтверджений код у загальний список — тому 3-етапна звірка з першоджерелом залишається обов'язком оператора.
+          </p>
+        </div>
+
+        <div class="pane-navigation-footer">
+          <button class="btn-step-nav" onclick="switchTaskTab(1)" style="background:#090c10; border:1px solid var(--gold); color:var(--gold); font-weight:700; padding:10px 18px; cursor:pointer;">
+            &laquo; Назад до Розділу 1: Батл запитів
+          </button>
+          <button class="btn-action btn-primary" onclick="switchTaskTab(3)" style="font-weight:700; padding:10px 20px;">
+            Перейти до Розділу 3: Науковий базис (10 джерел) &rarr;
+          </button>
+        </div>
+      </div>
+    </article>
+    <!-- SECTION_END: SEC_06_PANE2_SCANNER -->
+
+    <!-- ======================================================================
+         SECTION_START: SEC_07_PANE3_EVIDENCE (Параграф 3: Огляд 10 робіт)
+         ====================================================================== -->
+    <article id="pane3" class="deck-pane">
+      <div>
+        <h2 class="pane-main-heading">3. НАУКОВИЙ БАЗИС // ОГЛЯД 10 ВЕРИФІКОВАНИХ ДЖЕРЕЛ (2023–2026)</h2>
+        <p style="font-size: 14.5px; color: #e2e8f0; line-height: 1.7; margin-bottom: 18px; text-align: justify;">
+          Після відсіювання неперевірених згадок було відібрано та вручну підтверджено <strong>10 актуальних робіт 2023–2026 рр.</strong> (Elsevier, Wiley, Springer, Cambridge, MIT Press, arXiv, SSRN, ICLR). Натисніть на будь-яку картку нижче, щоб відкрити її доказове досьє, а далі — готовий теоретичний огляд цих праць і виявлені між ними суперечності.
+        </p>
+
+        <!-- 4 кластери з підказками-хмаринками -->
+        <div class="clusters-grid">
+          
+          <div class="cluster-card">
+            <div class="cluster-title"><span>🏛️</span> I. АРХІТЕКТУРА СИМБІОЗУ</div>
+            <div class="paper-item" onclick="openEvidenceModal('paper_01')">
+              <div class="paper-title">Fang C. et al. (2025) // Design Studies</div>
+              <div class="paper-meta">Модель GECD: спільне <span class="tooltip-term" data-tooltip="Початковий етап створення виробу чи будівлі: вибір принципової схеми, фізичної форми та архітектури до детальних креслень.">концептуальне інженерне проєктування</span> та <span class="tooltip-term" data-tooltip="Мислення 'вшир': генерація великої кількості різноманітних варіантів без передчасної критики.">дивергентний пошук</span>.</div>
+            </div>
+            <div class="paper-item" onclick="openEvidenceModal('paper_02')">
+              <div class="paper-title">Singh A. &amp; Szajnfarber Z. (2026) // Systems Engineering</div>
+              <div class="paper-meta"><span class="tooltip-term" data-tooltip="Розбір на деталі усталених схем і класифікацій, щоб знайти їхні слабкі місця.">Деконструкція таксономій</span> взаємодії: архітектура нагляду (<span class="tooltip-term" data-tooltip="Обов'язкові бар'єри людського контролю: модель не може продовжити роботу, доки інженер особисто не підтвердив попередній крок.">Oversight Gating</span>).</div>
+            </div>
+            <div class="paper-item" onclick="openEvidenceModal('paper_07')">
+              <div class="paper-title">Pradas Gomez A. et al. (2025) // Cambridge Univ. Press</div>
+              <div class="paper-meta">«Команда з трьох»: трикутник відповідальності (Інженер, ШІ, <span class="tooltip-term" data-tooltip="Системи автоматизованого проєктування (AutoCAD, SolidWorks тощо) — точні програми для розрахунків і креслень.">САПР</span>).</div>
+            </div>
+            <div class="paper-item" onclick="openEvidenceModal('paper_04')">
+              <div class="paper-title">Seini A. B. et al. (2026) // Springer Nature</div>
+              <div class="paper-meta">Систематизація 137 робіт: дефіцит єдиної <span class="tooltip-term" data-tooltip="Числові критерії вимірювання успішності та надійності роботи системи.">метрики оцінки</span> глибини партнерства.</div>
+            </div>
+          </div>
+
+          <div class="cluster-card">
+            <div class="cluster-title"><span>🧠</span> II. ІНЖЕНЕРІЯ КОНТЕКСТУ</div>
+            <div class="paper-item" onclick="openEvidenceModal('paper_03')">
+              <div class="paper-title">Calboreanu E. (2026) // arXiv cs.AI</div>
+              <div class="paper-meta">5-компонентний пакет контексту (<span class="tooltip-term" data-tooltip="5-елементний пакет контексту: роль експерта, зразок результату, суворі заборони, шкала оцінки та службові дані.">Authority, Exemplar, Constraint, Rubric, Metadata</span>). Знижує <span class="tooltip-term" data-tooltip="Кількість повторних правок і доопрацювань запиту до отримання правильного результату.">ітераційність</span> у 1.9 раза.</div>
+            </div>
+            <div class="paper-item" onclick="openEvidenceModal('paper_05')">
+              <div class="paper-title">Mei L. et al. (2025) // arXiv cs.AI</div>
+              <div class="paper-meta"><span class="tooltip-term" data-tooltip="Систематична класифікація складних понять за категоріями та рівнями.">Таксономія</span> 1400 праць: 4 цикли (<span class="tooltip-term" data-tooltip="4 цикли інженерії контексту: пошук потрібних фактів, складання запиту, обробка даних моделлю та керування пам'яттю.">Retrieval, Generation, Processing, Management</span>).</div>
+            </div>
+            <div class="paper-item" onclick="openEvidenceModal('paper_08')">
+              <div class="paper-title">Liu N. F. et al. (2024) // MIT Press (TACL)</div>
+              <div class="paper-meta">«Lost in the Middle»: U-подібний спад уваги у багатодокументному <span class="tooltip-term" data-tooltip="Question-Answering: автоматичний пошук точної відповіді на поставлене запитання у великому тексті.">QA</span> та <span class="tooltip-term" data-tooltip="Пошук значення за його ключем (як знайти номер телефону за прізвищем у довіднику).">key-value</span> пошуку.</div>
+            </div>
+          </div>
+
+          <div class="cluster-card">
+            <div class="cluster-title"><span>⚙️</span> III. ПРОТОКОЛИ ВЗАЄМОДІЇ</div>
+            <div class="paper-item" onclick="openEvidenceModal('paper_10')">
+              <div class="paper-title">Yao S. et al. (2023) // ICLR 2023</div>
+              <div class="paper-meta">ReAct: синергія міркування та дії (<span class="tooltip-term" data-tooltip="Цикл ReAct: модель спочатку пише думку (Thought), потім викликає інструмент (Action), а потім читає отриманий результат (Observation).">Thought-Action-Observation</span>) на бенчмарках <span class="tooltip-term" data-tooltip="Складний тест, де для відповіді нейромережі потрібно зв'язати факти з кількох різних статей.">HotpotQA</span> та <span class="tooltip-term" data-tooltip="Інтерактивний симулятор, де ШІ керує віртуальними діями у кімнаті, тестуючи здатність планувати.">ALFWorld</span>.</div>
+            </div>
+            <div class="paper-item" onclick="openEvidenceModal('paper_06')">
+              <div class="paper-title">Sahoo P. et al. (2024) // arXiv cs.CL</div>
+              <div class="paper-meta">Огляд методів від <span class="tooltip-term" data-tooltip="Розв'язання задачі моделлю одразу з першого разу без попередніх прикладів.">Zero-shot</span> до складних міркувань через <span class="tooltip-term" data-tooltip="Програмний міст, через який нейромережа може звертатися до калькулятора, бази даних чи САПР.">API</span>.</div>
+            </div>
+          </div>
+
+          <div class="cluster-card">
+            <div class="cluster-title"><span>⚖️</span> IV. ВІДПОВІДАЛЬНІСТЬ ТА НАГЛЯД</div>
+            <div class="paper-item" onclick="openEvidenceModal('paper_09')">
+              <div class="paper-title">Dell'Acqua F. et al. (2023) // Harvard Business School</div>
+              <div class="paper-meta">Польовий <span class="tooltip-term" data-tooltip="Науковий дослід із випадковим розподілом учасників на групи для виключення упередженості.">рандомізований експеримент</span> на 758 консультантах: падіння якості за межею <span class="tooltip-term" data-tooltip="Межа можливостей технології: завдання всередині межі ШІ робить блискуче, а за межею — критично помиляється.">фронтиру</span> через «<span class="tooltip-term" data-tooltip="Ефект 'засинання за кермом': інженер втрачає пильність і перестає перевіряти цифри, коли бачить гладкі та красиві тексти моделі.">Falling Asleep at the Wheel</span>».</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ТЕОРЕТИЧНИЙ ОГЛЯД 10 РОБІТ (СИНТЕЗ ЗА 3 ОСЯМИ + ВБУДОВАНА SVG-СХЕМА) -->
+        <div class="synthesis-block">
+          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--kernel); letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 8px;">
+            📖 ТЕОРЕТИЧНИЙ ОГЛЯД ЛІТЕРАТУРИ // СИНТЕЗ ТРЬОХ НАПРЯМІВ
+          </div>
+          <p style="font-size: 13.5px; color: #cbd5e1; line-height: 1.65; text-align: justify; margin: 0;">
+            Сукупний аналіз десяти праць фіксує перехід від сприйняття мовних моделей як пасивного генератора тексту до розподілених людино-машинних систем. Водночас зіставлення робіт виявляє три прямі суперечності між обіцянками підходів та експериментально доведеними обмеженнями:
+          </p>
+
+          <div class="synthesis-axis-grid">
+            <div class="axis-card" style="border-top: 3px solid var(--kernel);">
+              <strong style="color: var(--kernel); display: block; margin-bottom: 6px;">1. Архітектура контролю та ролі</strong>
+              Огляди <span class="tooltip-term" data-tooltip="Дослідники Сейні, Адам і Преко (2026): систематизація 137 робіт з людино-ШІ взаємодії в інформаційних системах.">Seini et al.</span> та <span class="tooltip-term" data-tooltip="Дослідники Фанг та ін. (2025): систематичний огляд 54 публікацій щодо використання GenAI у концептуальному дизайні.">Fang et al.</span> показують, що ефективність <span class="tooltip-term" data-tooltip="Generative AI: генеративний штучний інтелект, здатний створювати новий текст, код або схеми.">GenAI</span> <span class="tooltip-term" data-tooltip="Прискорює та підсилює пошук нових рішень.">каталізує</span> пошук на стадії <span class="tooltip-term" data-tooltip="Спільна творчість людини та машини, де обидва учасники пропонують і розвивають варіанти рішень.">ко-креації</span>, але є функцією діалогового циклу, а не потужності моделі. <span class="tooltip-term" data-tooltip="Прадас Гомес та ін. (2025): модель 'Команда з трьох' для розробки складних промислових виробів.">Pradas Gomez et al.</span> формулюють модель «Команди з трьох» (інженер + ШІ + детермінований <span class="tooltip-term" data-tooltip="Системи автоматизованого проєктування (AutoCAD, SolidWorks тощо) — точні програми для розрахунків і креслень.">САПР</span>), тоді як <span class="tooltip-term" data-tooltip="Сінгх та Шайнфарбер (2026): деконструкція схем нагляду в системній інженерії.">Singh &amp; Szajnfarber</span> доводять крихкість нагляду: більшість систем декларують партнерство без чітких точок передачі ініціативи, що вимагає практичної <span class="tooltip-term" data-tooltip="Перетворення абстрактної наукової ідеї на чіткі виробничі інструкції та правила.">операціоналізації</span>.
+            </div>
+            <div class="axis-card" style="border-top: 3px solid var(--gold);">
+              <strong style="color: var(--gold); display: block; margin-bottom: 6px;">2. Контекст проти U-кривої уваги</strong>
+              <span class="tooltip-term" data-tooltip="Мей та ін. (2025): великий огляд 1400 робіт з інженерії контексту для LLM.">Mei et al.</span> і <span class="tooltip-term" data-tooltip="Калборяну (2026): практична методика структурування контексту для співпраці з ШІ.">Calboreanu</span> (<span class="tooltip-term" data-tooltip="Емпіричне спостереження 200 сесій взаємодії інженера з різними моделями ШІ.">200 сесій</span>) обґрунтовують структурування контексту (<span class="tooltip-term" data-tooltip="5-елементний пакет контексту: роль експерта, зразок результату, суворі заборони, шкала оцінки та службові дані.">Authority, Exemplar, Constraint, Rubric, Metadata</span>). Проте <span class="tooltip-term" data-tooltip="Отриманий дослідним шляхом на реальних фактах і практиці, а не з теорії.">емпіричні</span> експерименти <span class="tooltip-term" data-tooltip="Дослідники Нельсон Лю та колеги зі Стенфорду (2024, MIT Press / TACL): першовідкривачі ефекту провалу уваги в середині вікна.">Liu et al.</span> на <span class="tooltip-term" data-tooltip="Стандартизовані тестові завдання для вимірювання реальної точності та швидкості роботи ШІ.">бенчмарках</span> доводять U-подібну криву уваги: точність вилучення фактів падає в середині великого вікна (<em>Lost in the Middle</em>). Безконтрольне насичення контексту веде до непомітних галюцинацій.
+            </div>
+            <div class="axis-card" style="border-top: 3px solid var(--purple);">
+              <strong style="color: #c084fc; display: block; margin-bottom: 6px;">3. Агентні цикли на зубчастому фронтирі</strong>
+              Схема <span class="tooltip-term" data-tooltip="Протокол міркування та дії ReAct: поєднання роздумів моделі з викликом зовнішніх інструментів (Yao et al., 2023).">ReAct (Yao et al.)</span> чергує міркування й дії (<span class="tooltip-term" data-tooltip="Цикл ReAct: модель спочатку пише думку (Thought), потім викликає інструмент (Action), а потім читає отриманий результат (Observation).">Thought-Action-Observation</span>), роблячи вивід прозорим. Але польовий <span class="tooltip-term" data-tooltip="Науковий дослід із випадковим розподілом учасників на групи для виключення упередженості.">рандомізований експеримент</span> <span class="tooltip-term" data-tooltip="Фабриціо Делл'Аква та колеги з Гарвардської школи бізнесу і BCG (2023): дослідження впливу ШІ на 758 консультантів.">Dell'Acqua et al.</span> довів: за межами технологічного <span class="tooltip-term" data-tooltip="Межа можливостей технології: завдання всередині межі ШІ робить блискуче, а за межею — критично помиляється.">фронтиру</span> (<em>Jagged Frontier</em>) красиві відповіді <span class="tooltip-term" data-tooltip="Автономні програми-агенти, які працюють за протоколом ReAct (чергування думок і дій).">ReAct-агентів</span> заколисують увагу інженера («<span class="tooltip-term" data-tooltip="Ефект 'засинання за кермом': інженер втрачає пильність і перестає перевіряти цифри, коли бачить гладкі та красиві тексти моделі.">Falling Asleep at the Wheel</span>»), що дає падіння правильності рішень на 19%.
+            </div>
+          </div>
+
+          <!-- ВЕКТОРНА SVG-ДІАГРАМА: U-ПОДІБНА КРИВА УВАГИ -->
+          <div style="margin-top: 18px; background: #05080e; border: 1px solid #1e2633; border-radius: 6px; padding: 14px;">
+            <div style="font-family: var(--font-mono); font-size: 10.5px; color: var(--gold); font-weight: 700; margin-bottom: 8px; text-align: center;">
+              ВІЗУАЛІЗАЦІЯ ПРОТИРІЧЧЯ (<span class="tooltip-term" data-tooltip="Дослідники Нельсон Лю та колеги зі Стенфорду (2024, MIT Press / TACL): першовідкривачі ефекту провалу уваги в середині вікна.">LIU ET AL.</span>, 2024): ЧОМУ ІНСТРУКЦІЇ В СЕРЕДИНІ ДОВГОГО КОНТЕКСТУ ГУБЛЯТЬСЯ
+            </div>
+            <svg viewBox="0 0 760 175" style="width: 100%; max-width: 760px; height: auto; display: block; margin: 0 auto;" xmlns="http://www.w3.org/2000/svg">
+              <rect x="60" y="18" width="660" height="122" fill="#090c10" stroke="#1e2633" rx="4"/>
+              <rect x="260" y="18" width="260" height="122" fill="rgba(218, 54, 51, 0.08)"/>
+              <line x1="60" y1="45" x2="720" y2="45" stroke="#1e2633" stroke-dasharray="4 4"/>
+              <line x1="60" y1="105" x2="720" y2="105" stroke="#1e2633" stroke-dasharray="4 4"/>
+              <path d="M 85 34 Q 210 42, 300 108 T 390 124 T 480 108 Q 570 42, 695 38" fill="none" stroke="#00bcd4" stroke-width="3.5" stroke-linecap="round"/>
+              <circle cx="85" cy="34" r="5" fill="#00e676"/>
+              <circle cx="390" cy="124" r="6" fill="#da3633"/>
+              <circle cx="695" cy="38" r="5" fill="#00e676"/>
+              <text x="52" y="38" text-anchor="end" fill="#8b949e" font-family="JetBrains Mono" font-size="10">MAX</text>
+              <text x="52" y="128" text-anchor="end" fill="#8b949e" font-family="JetBrains Mono" font-size="10">MIN</text>
+              <text x="115" y="158" text-anchor="middle" fill="#00e676" font-family="JetBrains Mono" font-size="10">ПОЧАТОК КОНТЕКСТУ</text>
+              <text x="390" y="158" text-anchor="middle" fill="#f87171" font-family="JetBrains Mono" font-size="10" font-weight="700">ЗОНА ПРОВАЛУ (LOST IN THE MIDDLE)</text>
+              <text x="665" y="158" text-anchor="middle" fill="#00e676" font-family="JetBrains Mono" font-size="10">КІНЕЦЬ ВІКНА</text>
+              <text x="390" y="96" text-anchor="middle" fill="#fca5a5" font-family="Inter" font-size="11" font-weight="600">Ризик ігнорування обмежень</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 3 наукові лакуни -->
+        <div class="lacuna-panel">
+          <div style="font-family: var(--font-title); font-size: 15px; font-weight: 700; color: var(--gold); margin-bottom: 12px;">
+            🎯 ІДЕНТИФІКОВАНІ ДОСЛІДНИЦЬКІ <span class="tooltip-term" data-tooltip="Лакуна (Research Gap) — невирішена наукова проблема або біла пляма в науці, де наявних методів недостатньо і потрібне власне дослідження.">ЛАКУНИ</span> (RESEARCH GAPS)
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; font-size: 13px;">
+            <div style="background: var(--surface-card); padding: 14px; border-radius: 4px; border: 1px solid var(--border);">
+              <strong style="color: var(--kernel);"><span class="tooltip-term" data-tooltip="Лакуна (Research Gap) — невирішена наукова проблема або біла пляма в науці, де наявних методів недостатньо і потрібне власне дослідження.">Лакуна</span> 1: Архітектурна</strong>
+              <p style="margin-top: 6px; color: var(--text-muted); font-size: 12.5px; line-height: 1.55;">
+                Схеми нагляду (<span class="tooltip-term" data-tooltip="Праці Сінгха і Шайнфарбера (2026) та Сейні і співавт. (2026).">Singh, Seini</span>) переважно є <span class="tooltip-term" data-tooltip="Теоретичні описи та класифікації без конкретних виробничих інструкцій, які можна одразу запустити в цеху чи на будівництві.">описовими таксономіями</span>. Потрібні формалізовані алгоритми передачі ініціативи й контролю між оператором, LLM та детермінованими розрахунковими програмами.
+              </p>
+            </div>
+            <div style="background: var(--surface-card); padding: 14px; border-radius: 4px; border: 1px solid var(--border);">
+              <strong style="color: var(--kernel);"><span class="tooltip-term" data-tooltip="Лакуна (Research Gap) — невирішена наукова проблема або біла пляма в науці, де наявних методів недостатньо і потрібне власне дослідження.">Лакуна</span> 2: Позиційно-контекстна</strong>
+              <p style="margin-top: 6px; color: var(--text-muted); font-size: 12.5px; line-height: 1.55;">
+                Методики <span class="tooltip-term" data-tooltip="Context Engineering: дисципліна точного пакування та подачі інформації в пам'ять моделі (ролі, обмеження, зразки, критерії).">контекст-інжинірингу</span> (Calboreanu, Mei) прагнуть до повноти специфікацій, але стикаються з U-подібним спадом уваги (<span class="tooltip-term" data-tooltip="Дослідження Нельсона Лю зі Стенфорду (2024, MIT Press): втрата фактів у середині довгого контексту.">Liu et al.</span>). Потрібні методи динамічного структурування без перевантаження середини вікна.
+              </p>
+            </div>
+            <div style="background: var(--surface-card); padding: 14px; border-radius: 4px; border: 1px solid var(--border);">
+              <strong style="color: var(--kernel);"><span class="tooltip-term" data-tooltip="Лакуна (Research Gap) — невирішена наукова проблема або біла пляма в науці, де наявних методів недостатньо і потрібне власне дослідження.">Лакуна</span> 3: Верифікаційна</strong>
+              <p style="margin-top: 6px; color: var(--text-muted); font-size: 12.5px; line-height: 1.55;">
+                Зв'язні міркування <span class="tooltip-term" data-tooltip="Автономні програми-агенти, які працюють за протоколом ReAct (чергування думок і дій).">ReAct-агентів</span> (<span class="tooltip-term" data-tooltip="Дослідники Шунью Яо та співавт. (Принстон/Google, 2023): автори протоколу ReAct.">Yao et al.</span>) притупляють пильність оператора за межами <span class="tooltip-term" data-tooltip="Межа можливостей технології: завдання всередині межі ШІ робить блискуче, а за межею — критично помиляється.">фронтиру</span> (<span class="tooltip-term" data-tooltip="Фабриціо Делл'Аква та колеги з Гарвардської школи бізнесу і BCG (2023): дослідження впливу ШІ на 758 консультантів.">Dell'Acqua</span>). Потрібне <span class="tooltip-term" data-tooltip="Доведення ідеї за допомогою реальних вимірювань та лабораторних фактів.">емпіричне обґрунтування</span> протоколів із обов'язковими шлюзами нагляду після їхньої <span class="tooltip-term" data-tooltip="Практичне випробування та перевірка методики в реальних умовах виробництва.">апробації</span>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pane-navigation-footer">
+          <button class="btn-step-nav" onclick="switchTaskTab(2)" style="background:#090c10; border:1px solid var(--gold); color:var(--gold); font-weight:700; padding:10px 18px; cursor:pointer;">
+            &laquo; Назад до Розділу 2: Детектор аномалій
+          </button>
+          <button class="btn-action btn-primary" onclick="switchTaskTab(4)" style="font-weight:700; padding:10px 20px;">
+            Перейти до Розділу 4: Рентген стандартів (ДСТУ vs APA) &rarr;
+          </button>
+        </div>
+      </div>
+    </article>
+    <!-- SECTION_END: SEC_07_PANE3_EVIDENCE -->
+
+    <!-- ======================================================================
+         SECTION_START: SEC_08_PANE4_XRAY (Параграф 4: ДСТУ vs APA)
+         ====================================================================== -->
+    <article id="pane4" class="deck-pane">
+      <div>
+        <h2 class="pane-main-heading">4. СИНТАКСИЧНИЙ РЕНТГЕН // ДСТУ 8302:2015 ПРОТИ APA 7th EDITION</h2>
+
+        <!-- ПРОСТА І ЗРОЗУМІЛА ВВІДНА КАРТКА ЕКСПЕРИМЕНТУ -->
+        <div style="background: linear-gradient(180deg, #0e131b 0%, #080b0f 100%); border: 1px solid #1e293b; border-left: 4px solid var(--gold); border-radius: 6px; padding: 18px 22px; margin-bottom: 20px;">
+          <div style="font-family: var(--font-mono); font-size: 10.5px; font-weight: 800; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px;">
+            🎯 СУТЬ ЕКСПЕРИМЕНТУ: ЩО МИ ПЕРЕВІРЯЄМО І НАВІЩО?
+          </div>
+          <p style="font-size: 14px; color: #e2e8f0; line-height: 1.65; margin-bottom: 10px;">
+            Ми дали моделям 10 відібраних статей і попросили оформити бібліографію за двома стандартами: українським <strong>ДСТУ 8302:2015</strong> та міжнародним <strong>APA 7th Edition</strong>. 
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; font-size: 12.5px; color: #cbd5e1; margin-top: 10px;">
+            <div style="background: #06080b; padding: 10px 12px; border-radius: 4px; border-left: 3px solid var(--kernel);">
+              <strong style="color: var(--kernel);">Що підсвічує Рентген:</strong> Кожна деталь запису (автори, назва, журнал, рік, роздільники) пофарбована у свій колір, щоб миттєво побачити відмінності в пунктуації.
+            </div>
+            <div style="background: #06080b; padding: 10px 12px; border-radius: 4px; border-left: 3px solid var(--success);">
+              <strong style="color: var(--success);">Хто переміг:</strong> <strong>ChatGPT-4o</strong> оформив за сучасним ДСТУ без зайвих скісних рисок, перелічив усіх авторів в APA та єдиний виправив помилку року статті.
+            </div>
+            <div style="background: #06080b; padding: 10px 12px; border-radius: 4px; border-left: 3px solid var(--alert);">
+              <strong style="color: #f87171;">Хто помилився:</strong> <strong>Gemini</strong> використала застарілий ГОСТ 2006 року з громіздкими «//», а разом із <strong>Grok 2</strong> пропустила невірний 2023 рік.
+            </div>
+          </div>
+        </div>
+
+        <!-- Рентген-шасі -->
+        <div class="xray-chassis">
+          
+          <div style="margin-bottom: 14px;">
+            <div class="spec-group-label">1. ЗРАЗОК ДЛЯ РОЗТИНУ:</div>
+            <div class="spec-pill-group">
+              <button id="btnXraySrcFang" class="spec-pill active-academic" onclick="setXraySource('fang')">Джерело №1: Fang et al. (Спрощений ДСТУ vs ГОСТ)</button>
+              <button id="btnXraySrcLiu" class="spec-pill" onclick="setXraySource('liu')">Джерело №8: Liu et al. (Детекція помилки року 2023→2024)</button>
+            </div>
+          </div>
+
+          <div class="xray-legend-bar">
+            <span class="legend-chip chip-author" onclick="highlightXrayZone('author', this)">🟩 АВТОРИ</span>
+            <span class="legend-chip chip-title" onclick="highlightXrayZone('title', this)">🟦 НАЗВА СТАТТІ</span>
+            <span class="legend-chip chip-journal" onclick="highlightXrayZone('journal', this)">🟪 ВИДАННЯ</span>
+            <span class="legend-chip chip-year" onclick="highlightXrayZone('year', this)">🟥 РІК</span>
+            <span class="legend-chip chip-volume" onclick="highlightXrayZone('volume', this)">🟨 ТОМ / СТОР.</span>
+            <span class="legend-chip chip-doi" onclick="highlightXrayZone('doi', this)">🟪 DOI / URL</span>
+            <span class="legend-chip chip-punct" onclick="highlightXrayZone('punct', this)">🟧 РОЗДІЛЬНИКИ (//, —)</span>
+            <span class="legend-chip" style="border-color: var(--border); color: var(--text);" onclick="highlightXrayZone('all', this)">✨ ПІДСВІТИТИ ВСЕ</span>
+          </div>
+
+          <div style="margin-bottom: 14px;">
+            <div class="spec-group-label">2. РЕАЛЬНА ГЕНЕРАЦІЯ МОДЕЛІ ТА СТАНДАРТ:</div>
+            <div class="spec-pill-group">
+              <button id="btnXrayGptDstu" class="spec-pill active-model" onclick="setXrayMode('gpt_dstu')">ChatGPT-4o (ДСТУ)</button>
+              <button id="btnXrayGrokDstu" class="spec-pill" onclick="setXrayMode('grok_dstu')">xAI Grok 2 (ДСТУ)</button>
+              <button id="btnXrayGeminiDstu" class="spec-pill" onclick="setXrayMode('gemini_dstu')">Google Gemini (ГОСТ 2006)</button>
+              <button id="btnXrayGptApa" class="spec-pill" onclick="setXrayMode('gpt_apa')">ChatGPT-4o (APA 7th)</button>
+              <button id="btnXrayGrokApa" class="spec-pill" onclick="setXrayMode('grok_apa')">Grok / Gemini (APA et al.)</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+            <span id="xray-mode-title" style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--kernel);"></span>
+            <span id="xray-mode-badge" class="badge badge-cyan"></span>
+          </div>
+
+          <div id="xray-viewport" class="xray-display-box"></div>
+
+          <div id="xray-explanation-box" style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+            <!-- Пояснення різниці правил -->
+          </div>
+
+        </div>
+
+        <!-- Висновок -->
+        <div class="panel-card" style="margin-top: 20px; border-left: 4px solid var(--gold);">
+          <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--gold); margin-bottom: 6px;">КЛЮЧОВІ ВІДКРИТТЯ АУДИТУ БІБЛІОГРАФІЇ</div>
+          <p style="font-size: 13.5px; color: #cbd5e1; line-height: 1.65; margin: 0;">
+            <strong>1. Спрощена модель ДСТУ 8302:2015 (п. 4.9.1):</strong> Стандарт легітимізує заміну знака «//» крапкою з курсивним виділенням журналу, а знака «.—» — крапкою без дублювання авторів. <strong>ChatGPT-4o та Grok 2</strong> відтворили саме цю сучасну форму, тоді як <strong>Gemini</strong> спрацювала за інерцією старого ГОСТ 7.1:2006.<br>
+            <strong>2. Точність метаданих в APA 7th:</strong> ChatGPT-4o розкрив повний перелік авторів (до 20 осіб, без <code>et al.</code>) і виправив рік публікації <em>Liu et al.</em> (2024 для тома 12 TACL замість 2023 для препринта arXiv), тоді як Grok 2 та Gemini цю розбіжність не помітили.
+          </p>
+        </div>
+
+        <!-- ПОВНИЙ ПЕРЕВІРЕНИЙ СПИСОК 10 ДЖЕРЕЛ -->
+        <div class="synthesis-block" style="margin-top: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px;">
+            <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 800; color: #fff;">📚 ПОВНИЙ ВЕРИФІКОВАНИЙ СПИСОК 10 ДЖЕРЕЛ</span>
+            <div class="spec-pill-group">
+              <button id="btnBibDstu" class="spec-pill active-academic" onclick="switchBibListTab('dstu')">ДСТУ 8302:2015 (п. 4.9.1)</button>
+              <button id="btnBibApa" class="spec-pill" onclick="switchBibListTab('apa')">APA Style (7th Edition)</button>
+            </div>
+          </div>
+
+          <div id="bibListDstu" style="font-family: var(--font-mono); font-size: 12px; line-height: 1.75; color: #cbd5e1;">
+            <p style="font-size: 11.5px; color: var(--kernel); margin-bottom: 10px;">
+              💡 <em>Кожен запис містить пряме гіперпосилання на сторінку статті у світовому реєстрі видавництв:</em>
+            </p>
+            <ol style="padding-left: 20px; margin: 0;">
+              <li>Fang C., Zhu Y., Fang L. et al. Generative AI-enhanced human-AI collaborative conceptual design: A systematic literature review. <em>Design Studies</em>. 2025. Vol. 97. Art. 101300. DOI: <a href="https://doi.org/10.1016/j.destud.2025.101300" target="_blank" style="color:var(--kernel);">https://doi.org/10.1016/j.destud.2025.101300 ↗</a></li>
+              <li>Singh A., Szajnfarber Z. Architecting Human-AI Systems for Effective Collaboration and Oversight: Making Sense of Human/AI-in/on/Over/Under/Along-the-Loop. <em>Systems Engineering</em>. 2026. Vol. 29, Issue 2. P. 337–353. DOI: <a href="https://doi.org/10.1002/sys.70024" target="_blank" style="color:var(--kernel);">https://doi.org/10.1002/sys.70024 ↗</a></li>
+              <li>Calboreanu E. Context Engineering: A Practitioner Methodology for Structured Human-AI Collaboration. <em>arXiv preprint</em>. 2026. arXiv:2604.04258 [cs.AI]. DOI: <a href="https://doi.org/10.48550/arXiv.2604.04258" target="_blank" style="color:var(--kernel);">https://doi.org/10.48550/arXiv.2604.04258 ↗</a></li>
+              <li>Seini A. B., Adam I. O., Preko M. Human-AI collaboration in information systems research: a systematic literature review and future research directions. <em>Human-Intelligent Systems Integration</em>. 2026. DOI: <a href="https://doi.org/10.1007/s42454-026-00100-7" target="_blank" style="color:var(--kernel);">https://doi.org/10.1007/s42454-026-00100-7 ↗</a></li>
+              <li>Mei L., Yao J., Ge Y. et al. A Survey of Context Engineering for Large Language Models. <em>arXiv preprint</em>. 2025. arXiv:2507.13334 [cs.AI]. URL: <a href="https://arxiv.org/abs/2507.13334" target="_blank" style="color:var(--kernel);">https://arxiv.org/abs/2507.13334 ↗</a></li>
+              <li>Sahoo P., Singh A. K., Saha S. et al. A Systematic Survey of Prompt Engineering in Large Language Models: Techniques and Applications. <em>arXiv preprint</em>. 2024. arXiv:2402.07927 [cs.CL]. URL: <a href="https://arxiv.org/abs/2402.07927" target="_blank" style="color:var(--kernel);">https://arxiv.org/abs/2402.07927 ↗</a></li>
+              <li>Pradas Gomez A., Kretzschmar M. et al. A Team of Three: The Role of Generative AI in the Development of Design Automation Systems for Complex Products. <em>Proceedings of the Design Society</em>. 2025. Vol. 5. P. 309–318. DOI: <a href="https://doi.org/10.1017/pds.2025.10045" target="_blank" style="color:var(--kernel);">https://doi.org/10.1017/pds.2025.10045 ↗</a></li>
+              <li>Liu N. F., Lin K., Hewitt J. et al. Lost in the Middle: How Language Models Use Long Contexts. <em>Transactions of the Association for Computational Linguistics</em>. 2024. Vol. 12. P. 157–173. DOI: <a href="https://doi.org/10.1162/tacl_a_00638" target="_blank" style="color:var(--kernel);">https://doi.org/10.1162/tacl_a_00638 ↗</a></li>
+              <li>Dell’Acqua F., McFowland E. et al. Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of AI on Knowledge Worker Productivity and Quality. <em>Harvard Business School Working Paper</em>. 2023. No. 24-013. DOI: <a href="https://doi.org/10.2139/ssrn.4573321" target="_blank" style="color:var(--kernel);">https://doi.org/10.2139/ssrn.4573321 ↗</a></li>
+              <li>Yao S., Zhao J., Yu D. et al. ReAct: Synergizing Reasoning and Acting in Language Models. <em>International Conference on Learning Representations (ICLR 2023)</em>. 2023. DOI: <a href="https://doi.org/10.48550/arXiv.2210.03629" target="_blank" style="color:var(--kernel);">https://doi.org/10.48550/arXiv.2210.03629 ↗</a></li>
+            </ol>
+          </div>
+
+          <div id="bibListApa" style="display: none; font-family: var(--font-mono); font-size: 12px; line-height: 1.75; color: #cbd5e1;">
+            <p style="font-size: 11.5px; color: var(--gold); margin-bottom: 10px;">
+              💡 <em>За міжнародним стандартом APA 7th джерела подаються без номерів за алфавітом прізвища першого автора, з висячим відступом та повним складом авторів (клікабельні посилання):</em>
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div>Calboreanu, E. (2026). Context engineering: A practitioner methodology for structured human-AI collaboration [Preprint]. <em>arXiv</em>. <a href="https://doi.org/10.48550/arXiv.2604.04258" target="_blank" style="color:var(--kernel);">https://doi.org/10.48550/arXiv.2604.04258 ↗</a></div>
+              <div>Dell'Acqua, F., McFowland, E., Mollick, E. R., Lifshitz-Assaf, H., Kellogg, K. C., Rajendran, S., Krayer, L., Candelon, F., &amp; Lakhani, K. R. (2023). <em>Navigating the jagged technological frontier: Field experimental evidence of the effects of AI on knowledge worker productivity and quality</em> (Harvard Business School Working Paper No. 24-013). Harvard Business School. <a href="https://doi.org/10.2139/ssrn.4573321" target="_blank" style="color:var(--kernel);">https://doi.org/10.2139/ssrn.4573321 ↗</a></div>
+              <div>Fang, C., Zhu, Y., Fang, L., Long, Y., Lin, H., Cong, Y., &amp; Wang, S. J. (2025). Generative AI-enhanced human-AI collaborative conceptual design: A systematic literature review. <em>Design Studies</em>, <em>97</em>, Article 101300. <a href="https://doi.org/10.1016/j.destud.2025.101300" target="_blank" style="color:var(--kernel);">https://doi.org/10.1016/j.destud.2025.101300 ↗</a></div>
+              <div>Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., &amp; Liang, P. (2024). Lost in the middle: How language models use long contexts. <em>Transactions of the Association for Computational Linguistics</em>, <em>12</em>, 157–173. <a href="https://doi.org/10.1162/tacl_a_00638" target="_blank" style="color:var(--kernel);">https://doi.org/10.1162/tacl_a_00638 ↗</a></div>
+              <div>Mei, L., Yao, J., Ge, Y., Wang, Y., Bi, B., Cai, Y., Liu, J., Li, M., Li, Z.-Z., Zhang, D., Zhou, C., Mao, J., Xia, T., Guo, J., &amp; Liu, S. (2025). A survey of context engineering for large language models [Preprint]. <em>arXiv</em>. <a href="https://arxiv.org/abs/2507.13334" target="_blank" style="color:var(--kernel);">https://arxiv.org/abs/2507.13334 ↗</a></div>
+              <div>Pradas Gomez, A., Kretzschmar, M., Paetzold-Byhain, K., &amp; Isaksson, O. (2025). A team of three: The role of generative AI in the development of design automation systems for complex products. <em>Proceedings of the Design Society</em>, <em>5</em>, 309–318. <a href="https://doi.org/10.1017/pds.2025.10045" target="_blank" style="color:var(--kernel);">https://doi.org/10.1017/pds.2025.10045 ↗</a></div>
+              <div>Sahoo, P., Singh, A. K., Saha, S., Jain, V., Mondal, S., &amp; Chadha, A. (2024). A systematic survey of prompt engineering in large language models: Techniques and applications [Preprint]. <em>arXiv</em>. <a href="https://doi.org/10.48550/arXiv.2402.07927" target="_blank" style="color:var(--kernel);">https://doi.org/10.48550/arXiv.2402.07927 ↗</a></div>
+              <div>Seini, A. B., Adam, I. O., &amp; Preko, M. (2026). Human-AI collaboration in information systems research: A systematic literature review and future research directions. <em>Human-Intelligent Systems Integration</em>. <a href="https://doi.org/10.1007/s42454-026-00100-7" target="_blank" style="color:var(--kernel);">https://doi.org/10.1007/s42454-026-00100-7 ↗</a></div>
+              <div>Singh, A., &amp; Szajnfarber, Z. (2026). Architecting human-AI systems for effective collaboration and oversight: Making sense of human/AI-in/on/over/under/along-the-loop. <em>Systems Engineering</em>, <em>29</em>(2), 337–353. <a href="https://doi.org/10.1002/sys.70024" target="_blank" style="color:var(--kernel);">https://doi.org/10.1002/sys.70024 ↗</a></div>
+              <div>Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., &amp; Cao, Y. (2023). ReAct: Synergizing reasoning and acting in language models. In <em>International Conference on Learning Representations (ICLR 2023)</em>. <a href="https://doi.org/10.48550/arXiv.2210.03629" target="_blank" style="color:var(--kernel);">https://doi.org/10.48550/arXiv.2210.03629 ↗</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pane-navigation-footer">
+          <button class="btn-step-nav" onclick="switchTaskTab(3)" style="background:#090c10; border:1px solid var(--gold); color:var(--gold); font-weight:700; padding:10px 18px; cursor:pointer;">
+            &laquo; Назад до Розділу 3: Науковий базис
+          </button>
+          <button class="btn-action btn-primary" onclick="switchTaskTab(5)" style="font-weight:700; padding:10px 20px;">
+            Перейти до Розділу 5: Практикум та Артефакт &rarr;
+          </button>
+        </div>
+      </div>
+    </article>
+    <!-- SECTION_END: SEC_08_PANE4_XRAY -->
+
+    <!-- ======================================================================
+         SECTION_START: SEC_09_PANE5_LAB (Параграф 5: Практикум та Пам'ятка)
+         ====================================================================== -->
+    <article id="pane5" class="deck-pane">
+      <div>
+        <h2 class="pane-main-heading" style="color: var(--gold);">5. ПРАКТИКУМ // ЯК ПЕРЕВІРЯТИ ЛІТЕРАТУРУ У ВЛАСНІЙ РОБОТІ</h2>
+        <p style="font-size: 14.5px; color: #e2e8f0; line-height: 1.7; margin-bottom: 20px; text-align: justify;">
+          Коли ви пишете курсову, наукову статтю чи диплом і просите штучний інтелект знайти літературу, <strong>головне правило — ніколи не копіювати посилання наосліп</strong>. Нижче наведено просту покрокову інструкцію, чек-лист для самоперевірки та готовий шаблон, який можна скопіювати у свій проєкт.
+        </p>
+
+        <!-- 3 ЗОЛОТІ ПРАВИЛА ВЕРЕФІКАЦІЇ -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 22px;">
+          <div style="background: #090c10; border: 1px solid #1e2633; border-top: 3px solid var(--kernel); border-radius: 6px; padding: 16px;">
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--kernel); margin-bottom: 6px;">КРОК 1. ЗНАЙДІТЬ НОМЕР DOI</div>
+            <p style="font-size: 13px; color: #cbd5e1; line-height: 1.6; margin: 0;">
+              Якщо модель назвала статтю, але не дала цифрового номера <code>DOI</code> або коду <code>arXiv</code> — вимагайте його прямо: <em>«Надай точний DOI для кожної статті»</em>. Якщо ШІ відмовляється — висока ймовірність, що статті не існує.
+            </p>
+          </div>
+
+          <div style="background: #090c10; border: 1px solid #1e2633; border-top: 3px solid var(--gold); border-radius: 6px; padding: 16px;">
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--gold); margin-bottom: 6px;">КРОК 2. ВІДКРИЙТЕ ПОСИЛАННЯ В БРАУЗЕРІ</div>
+            <p style="font-size: 13px; color: #cbd5e1; line-height: 1.6; margin: 0;">
+              Вставте адресу <code>https://doi.org/[номер]</code> у браузер. Сторінка має відкрити офіційний сайт журналу (Elsevier, Wiley, Springer). Якщо бачите помилку <strong>404 Not Found</strong> — вилучайте це джерело негайно.
+            </p>
+          </div>
+
+          <div style="background: #090c10; border: 1px solid #1e2633; border-top: 3px solid var(--success); border-radius: 6px; padding: 16px;">
+            <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: var(--success); margin-bottom: 6px;">КРОК 3. ЗВІРТЕ РІК ТА АВТОРІВ</div>
+            <p style="font-size: 13px; color: #cbd5e1; line-height: 1.6; margin: 0;">
+              Подивіться на шапку відкритої статті: чи збігаються автори? Чи не переплутав ШІ рік ранньої чернетки з роком офіційного випуску журналу (як у нашому тесті зі статтею 2024 року)?
+            </p>
+          </div>
+        </div>
+
+        <!-- ГОТОВИЙ ПРАКТИЧНИЙ ПРОМПТ ДЛЯ КОПІЮВАННЯ (ВАРІАНТ В) -->
+        <div class="panel-card" style="border: 1.5px solid var(--gold); background: rgba(212, 175, 55, 0.03); margin-bottom: 22px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+            <div>
+              <div class="badge badge-gold" style="margin-bottom: 6px;">ВАРІАНТ В: ІНЖЕНЕРНИЙ КОНТР-ЗАПИТ // ВІДТОРГНЕНИЙ АРТЕФАКТ</div>
+              <div style="font-family: var(--font-title); font-size: 17px; font-weight: 700; color: var(--gold);">
+                Контрактний захист цитування та верифікації (EVIDENCE_REGISTRY.md)
+              </div>
+            </div>
+            <button id="btn-copy-registry" class="btn-action btn-gold" onclick="copyRegistryToClipboard(this)" style="font-weight: 700;">
+              📋 СКОПІЮВАТИ КОНТР-ЗАПИТ ТА РЕГЛАМЕНТ (1 КЛІК)
+            </button>
+          </div>
+          <p style="font-size: 13.5px; color: var(--text); line-height: 1.6; margin-bottom: 10px;">
+            У Розділі 1 ми побачили, що наївний <strong>Запит А</strong> видає випадкові блоги, а <strong>Запит Б («Академічні джерела»)</strong> не захищає від вигаданих кодів 404 (Grok 2) та відсутності DOI (Gemini). Нижче наведено інженерний <strong>Варіант В (Контр-запит)</strong> із нормативного регламенту <code>EVIDENCE_REGISTRY.md</code>. Надішліть його моделі <strong>перед запитом літератури</strong>, щоб заблокувати стохастичні галюцинації:
+          </p>
+          <pre class="contract-pre" style="border-color: var(--border); color: #a5f3fc; font-size: 11.5px; line-height: 1.6;">Дій як прискіпливий академічний бібліограф. Мені потрібен список наукових джерел на тему: [ВКАЖІТЬ ТЕМУ].
+
+СУВОРІ ДИСЦИПЛІНАРНІ ОБМЕЖЕННЯ:
+1. ЗАБОРОНА ВИГАДУВАННЯ: Якщо ти не маєш точних даних про реальну публікацію — ЗАБОРОНЕНО синтезувати схожі назви чи випадкові номери DOI. Краще надай менше джерел, але 100% реальних.
+2. ОБОВ'ЯЗКОВИЙ ІНДЕКС DOI: Для кожної статті обов'язково вкажи дійсний номер DOI у форматі повного посилання https://doi.org/...
+3. АКТУАЛЬНІСТЬ: Роботи мають бути опубліковані в рецензованих наукових виданнях за останні 5 років (2021–2026 рр.).
+4. СТАНДАРТ ОФОРМЛЕННЯ: Оформи кожне джерело за ДСТУ 8302:2015 (сучасна спрощена модель: без знаків // та .—, назва журналу курсивом) або за APA 7th (наведи повний список авторів без et al.).
+5. ЗВІРКА МЕТАДАНИХ: Переконайся, що вказаний рік публікації відповідає випуску журналу, а не чернетці препринта.</pre>
+        </div>
+
+        <!-- ІНТЕРАКТИВНИЙ ТРЕНАЖЕР: ЧЕК-ЛИСТ ТА ЕКСПРЕС-ПЕРЕВІРКА РЯДКА -->
+        <div class="checklist-lab-grid" style="margin-bottom: 24px;">
+          <div class="panel-card" style="background: #090c10;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+              <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 800; color: var(--kernel);">📋 ЧЕК-ЛИСТ ПЕРЕД ЗДАЧЕЮ РОБОТИ</span>
+              <span id="opChecklistScore" class="badge badge-gold">0/5 ПЕРЕВІРЕНО</span>
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
+              Поставте галочки, щоб переконатися, що ваш список літератури готовий до здачі:
+            </p>
+            <label class="check-row"><input type="checkbox" class="op-check-input" onchange="updateChecklistProgress()"><span>1. Я особисто відкрив кожне посилання DOI/arXiv у браузері, і там немає помилки 404.</span></label>
+            <label class="check-row"><input type="checkbox" class="op-check-input" onchange="updateChecklistProgress()"><span>2. Назви статей та прізвища авторів на сайті журналу збігаються з текстом моєї роботи.</span></label>
+            <label class="check-row"><input type="checkbox" class="op-check-input" onchange="updateChecklistProgress()"><span>3. Рік журналу не переплутано з роком чернетки (як Liu et al. — 2024, а не 2023).</span></label>
+            <label class="check-row"><input type="checkbox" class="op-check-input" onchange="updateChecklistProgress()"><span>4. Обрано один єдиний стиль оформлення (чистий ДСТУ 8302:2015 або APA 7th).</span></label>
+            <label class="check-row" style="margin-bottom: 0;"><input type="checkbox" class="op-check-input" onchange="updateChecklistProgress()"><span>5. У списку немає випадкових публікацій із соцмереж чи неперевірених форумів.</span></label>
+          </div>
+
+          <div class="panel-card" style="background: #090c10;">
+            <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 800; color: var(--gold); margin-bottom: 10px;">
+              🧪 ЕКСПРЕС-ПЕРЕВІРКА БІБЛІОГРАФІЧНОГО ОПИСУ
+            </div>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">
+              Вставте рядок опису, який згенерувала нейромережа, щоб дізнатися, за яким стандартом він написаний:
+            </p>
+            <textarea id="quickLintInput" rows="4" class="scanner-input" style="width: 100%; resize: vertical; font-size: 12px; margin-bottom: 10px;" placeholder="Вставте опис книги або статті, наприклад:
+Fang C., Zhu Y. Generative AI-enhanced... Design Studies. 2025. DOI: https://doi.org/10.1016/j.destud.2025.101300"></textarea>
+            <button class="btn-action btn-primary" onclick="runQuickCitationLint()" style="margin-bottom: 10px;">⚡ РОЗПІЗНАТИ СТАНДАРТ І ПОМИЛКИ</button>
+            <div id="quickLintOutput" style="font-family: var(--font-mono); font-size: 11.5px; color: #cbd5e1; background: #05080e; border: 1px solid #1e2633; border-radius: 4px; padding: 10px; min-height: 48px;">
+              <span style="color: var(--text-muted);">Результат аналізу з'явиться тут після натискання кнопки.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ПІДВАЛ НАВІГАЦІЇ (ЧИСТИЙ ЕТАЛОН ЯК У ТАСКУ 1) -->
+        <div class="pane-navigation-footer" style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border);">
+          <button class="btn-step-nav" style="background:#090c10; border-color:var(--gold); color:var(--gold); font-weight:700; padding:10px 18px;" onclick="switchTaskTab(4)">
+            &laquo; Назад до Розділу 4: Рентген стандартів
+          </button>
+          <a href="../../index.html" class="btn-hub-portal" onclick="goToHub(event)" style="padding:10px 20px; font-size:12px;" title="Повернутися до Змісту монографії на Головній сторінці">
+            <span>&larr;</span> НА ГОЛОВНУ СТОРІНКУ ДИСЦИПЛІНИ
+          </a>
+        </div>
+      </div>
+    </article>
+    <!-- SECTION_END: SEC_09_PANE5_LAB -->
+  </div><!-- /.deck-container -->
+
+    <!-- ======================================================================
+         SECTION_START: SEC_10_MODALS_FOOTER (Модальні вікна та підвал)
+         ====================================================================== -->
+    <footer>
+      Національний технічний університет «Дніпровська політехніка» // Інститут електроенергетики<br>
+      Кафедра інформаційних технологій та комп'ютерної інженерії // гр. 141-24-2 // Дідов Платон Андрійович // 2026
+    </footer>
+      </div><!-- /.container -->
+
+  <!-- МОДАЛЬНЕ ВІКНО ПРОГРАМИ ДОСЛІДЖЕННЯ (ЄДИНИЙ СТИЛЬ ТАСКА 1) -->
+  <div class="modal-overlay" id="taskModal" onclick="toggleTaskModal(false)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="toggleTaskModal(false)">✕</button>
+      <div style="font-family: var(--font-mono); font-size: 10px; color: var(--gold); font-weight: 700; margin-bottom: 6px; letter-spacing: 1px;">
+        ЗАВДАННЯ КАФЕДРИ // MICROSOFT TEAMS:
+      </div>
+      <h3 style="font-family: var(--font-title); font-size: 15px; margin-bottom: 14px; color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+        Практична робота №2: Аналіз наукових джерел, валідація за DOI та стандартизація цитування
+      </h3>
+
+      <div style="font-size: 12px; color: #cbd5e1; line-height: 1.65; margin-bottom: 12px; background: #0d1017; padding: 12px; border-radius: 4px; border-left: 3px solid var(--kernel);">
+        <strong style="color: var(--kernel);">Частина 1 (Пошук джерел та перевірка фактів):</strong><br>
+        1. За обраною темою дослідження виконати за допомогою ГНМ аналіз публікацій за двома запитами: «Зроби аналіз джерел...» та «Зроби аналіз АКАДЕМІЧНИХ джерел...».<br>
+        2. Валідувати отримані джерела (дійсний індекс DOI для статей або вихідні дані видавництва для книжок) та залишити лише підтверджені публікації.
+      </div>
+
+      <div style="font-size: 12px; color: #cbd5e1; line-height: 1.65; background: #0d1017; padding: 12px; border-radius: 4px; border-left: 3px solid var(--gold);">
+        <strong style="color: var(--gold);">Частина 2 (References, огляд та стандарти оформлення):</strong><br>
+        1. Переглянути списки використаної літератури (References) валідованих джерел та відібрати 10 актуальних робіт не старіших за 5 років (2021–2026 рр.), підтвердивши їхнє існування.<br>
+        2. Надати ці посилання моделі та виконати запити: академічний огляд-опис для теоретичного розділу, оформлення за ДСТУ 8302:2015 та оформлення у стилі APA (7th edition).<br>
+        3. Провести експертну перевірку коректності оформлення за нормативами ДСТУ 8302:2015 і міжнародного стандарту.
+      </div>
+    </div>
+  </div>
+
+    <!-- МОДАЛЬНЕ ВІКНО EVIDENCE CARD (КАРТКА ДЖЕРЕЛА) -->
+  <div class="modal-overlay" id="evidenceModal" onclick="closeEvidenceModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeEvidenceModal()">✕</button>
+      <div style="font-family: var(--font-mono); font-size: 10px; color: var(--kernel); font-weight: 700; margin-bottom: 6px; letter-spacing: 1px;">
+        ДОКАЗОВЕ ДОСЬЄ ПУБЛІКАЦІЇ // VERIFIED CORPUS:
+      </div>
+      <h3 id="modal-card-title" style="font-family: var(--font-title); color: #fff; margin: 0 0 14px 0; font-size: 15px; border-bottom: 1px solid var(--border); padding-bottom: 8px;"></h3>
+      <div id="modal-card-body" style="font-size: 13px; line-height: 1.6; color: var(--text);"></div>
+    </div>
+  </div>
+
+    <!-- SECTION_END: SEC_10_MODALS_FOOTER -->
+
+  <!-- Підключення автономної бази та єдиного ядра скриптів -->
+  <script src="assets/data.js"></script>
+  <script src="assets/core.js"></script>
+</body>
+</html>

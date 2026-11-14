@@ -1,0 +1,409 @@
+/* CHAPTER 2 COMPONENTS: DIGITAL FORENSICS & ACADEMIC X-RAY */ {}
+
+/* ==========================================================================
+   1. ПАРАГРАФ 1: ДІАЛОГОВИЙ СПЕКТРОМЕТР + СПЕКТРАЛЬНА ЛІНЗА
+   ========================================================================== */
+.spec-toolbar {
+  background: linear-gradient(180deg, #131923 0%, #0a0d14 100%);
+  border: 1.5px solid #2a3649;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.spec-group-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.spec-pill-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  background: #06080c;
+  padding: 4px;
+  border-radius: 6px;
+  border: 1px solid #1a2332;
+}
+
+.spec-pill {
+  background: transparent;
+  border: 1.5px solid #222d3d;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  padding: 7px 13px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.spec-pill:hover { border-color: #475569; color: #e2e8f0; }
+.spec-pill.active-naive {
+  background: linear-gradient(180deg, rgba(218,54,51,0.25) 0%, rgba(218,54,51,0.08) 100%);
+  border-color: var(--alert);
+  color: #fff;
+}
+.spec-pill.active-academic {
+  background: linear-gradient(180deg, rgba(0,188,212,0.25) 0%, rgba(0,188,212,0.08) 100%);
+  border-color: var(--kernel);
+  color: #fff;
+}
+.spec-pill.active-model {
+  background: rgba(168,85,247,0.22);
+  border-color: var(--purple);
+  color: #fff;
+}
+.spec-pill.active-lens {
+  background: rgba(212,175,55,0.2);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.spec-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+@media (max-width: 850px) { .spec-telemetry-grid { grid-template-columns: 1fr; } }
+
+.spec-tel-card {
+  background: #090c10;
+  border: 1px solid #1a2332;
+  border-radius: 6px;
+  padding: 14px;
+}
+.spec-tel-label { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-bottom: 4px; }
+.spec-tel-val { font-family: var(--font-mono); font-size: 15px; font-weight: 800; }
+.spec-tel-sub { font-size: 11.5px; color: var(--text-dim); margin-top: 4px; }
+
+/* Spectral bar */
+.spectrum-panel {
+  background: #090c10;
+  border: 1px solid #1e2633;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+.spectrum-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+}
+.spectrum-bar-track {
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  background: #05080e;
+  border: 1px solid #1e2633;
+}
+.spec-seg-web { background: #f59e0b; transition: width 0.35s ease; }
+.spec-seg-std { background: #a855f7; transition: width 0.35s ease; }
+.spec-seg-sci { background: #00bcd4; transition: width 0.35s ease; }
+.spec-seg-anom { background: #da3633; transition: width 0.35s ease; }
+
+.spectrum-legend {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.spec-terminal {
+  background: #06080b;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.85);
+}
+.spec-terminal-bar {
+  background: #0e131b;
+  border-bottom: 1px solid #1e2633;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.spec-viewport {
+  padding: 16px 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.7;
+  color: #cbd5e1;
+  max-height: 460px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: #05080e;
+}
+.spec-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+@media (max-width: 900px) { .spec-split-grid { grid-template-columns: 1fr; } }
+
+/* Spectral lens highlight tokens */
+.lens-sci { background: rgba(0, 188, 212, 0.22); color: #67e8f9; border-bottom: 1px solid var(--kernel); padding: 0 3px; border-radius: 2px; }
+.lens-web { background: rgba(245, 158, 11, 0.2); color: #fcd34d; border-bottom: 1px solid #f59e0b; padding: 0 3px; border-radius: 2px; }
+.lens-std { background: rgba(168, 85, 247, 0.22); color: #e9d5ff; border-bottom: 1px solid var(--purple); padding: 0 3px; border-radius: 2px; }
+.lens-anom { background: rgba(218, 54, 51, 0.3); color: #fca5a5; border-bottom: 1px solid var(--alert); padding: 0 3px; border-radius: 2px; font-weight: 700; }
+
+/* ==========================================================================
+   2. ПАРАГРАФ 2: FAKE DOI SCANNER (LOCAL-FIRST)
+   ========================================================================== */
+.scanner-chassis {
+  background: #090c10;
+  border: 1px solid var(--border-bright);
+  border-radius: 6px;
+  padding: 22px;
+  margin: 18px 0;
+}
+.scanner-input-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.scanner-input {
+  flex: 1;
+  background: var(--void);
+  border: 1px solid var(--border);
+  color: var(--kernel);
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  padding: 11px 14px;
+  border-radius: 4px;
+  outline: none;
+}
+.scanner-input:focus {
+  border-color: var(--kernel);
+  box-shadow: 0 0 8px rgba(0, 188, 212, 0.25);
+}
+
+.preset-buttons-wrap {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.preset-chip {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.preset-chip:hover { border-color: var(--kernel); color: #fff; }
+.preset-chip.active-preset { border-color: var(--gold); color: var(--gold); background: var(--gold-glow); }
+
+.inspection-stages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+@media (max-width: 768px) {
+  .inspection-stages-grid { grid-template-columns: 1fr; }
+  .scanner-input-bar { flex-direction: column; }
+}
+.stage-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px;
+  text-align: center;
+}
+.stage-name { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; }
+.stage-status { font-family: var(--font-mono); font-weight: 800; font-size: 13px; }
+.status-waiting { color: var(--text-dim); }
+.status-scanning { color: var(--gold); }
+.status-success { color: var(--success); }
+.status-warn { color: #f59e0b; }
+.status-failed { color: #f87171; }
+
+/* ==========================================================================
+   3. ПАРАГРАФ 3: 10 ДЖЕРЕЛ, EVIDENCE CARDS ТА ТЕОРЕТИЧНИЙ СИНТЕЗ
+   ========================================================================== */
+.clusters-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin: 20px 0;
+}
+@media (max-width: 850px) { .clusters-grid { grid-template-columns: 1fr; } }
+
+.cluster-card {
+  background: #090c10;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px;
+}
+.cluster-title {
+  font-family: var(--font-mono);
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.paper-item {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 11px 13px;
+  margin-bottom: 9px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.paper-item:last-child { margin-bottom: 0; }
+.paper-item:hover { border-color: var(--kernel); transform: translateX(3px); }
+.paper-title { font-size: 13px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+.paper-meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+
+.synthesis-block {
+  background: #090c10;
+  border: 1px solid #1e2633;
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 22px;
+}
+.synthesis-axis-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+@media (max-width: 900px) { .synthesis-axis-grid { grid-template-columns: 1fr; } }
+
+.axis-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px;
+  font-size: 12.5px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.lacuna-panel {
+  background: rgba(212, 175, 55, 0.04);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* ==========================================================================
+   4. ПАРАГРАФ 4: СИНТАКСИЧНИЙ РЕНТГЕН (ДСТУ VS APA)
+   ========================================================================== */
+.xray-chassis {
+  background: #090c10;
+  border: 1px solid var(--border-bright);
+  border-radius: 6px;
+  padding: 22px;
+  margin: 18px 0;
+}
+.xray-legend-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.legend-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  user-select: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.legend-chip:hover { transform: translateY(-1px); }
+.legend-chip.active-zone { box-shadow: 0 0 10px currentColor; }
+
+.chip-author { background: rgba(0, 230, 118, 0.14); border-color: #00e676; color: #00e676; }
+.chip-title { background: rgba(0, 188, 212, 0.14); border-color: #00bcd4; color: #00bcd4; }
+.chip-journal { background: rgba(244, 114, 182, 0.14); border-color: #f472b6; color: #f472b6; }
+.chip-year { background: rgba(248, 113, 113, 0.14); border-color: #f87171; color: #f87171; }
+.chip-volume { background: rgba(250, 204, 21, 0.14); border-color: #facc15; color: #facc15; }
+.chip-doi { background: rgba(192, 132, 252, 0.14); border-color: #c084fc; color: #c084fc; }
+.chip-punct { background: rgba(251, 146, 60, 0.14); border-color: #fb923c; color: #fb923c; }
+
+.xray-display-box {
+  background: var(--void);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.highlight-author { background: rgba(0, 230, 118, 0.25); border-bottom: 2px solid #00e676; padding: 1px 2px; border-radius: 2px; }
+.highlight-title { background: rgba(0, 188, 212, 0.25); border-bottom: 2px solid #00bcd4; padding: 1px 2px; border-radius: 2px; }
+.highlight-journal { background: rgba(244, 114, 182, 0.25); border-bottom: 2px solid #f472b6; padding: 1px 2px; border-radius: 2px; }
+.highlight-year { background: rgba(248, 113, 113, 0.25); border-bottom: 2px solid #f87171; padding: 1px 2px; border-radius: 2px; }
+.highlight-volume { background: rgba(250, 204, 21, 0.25); border-bottom: 2px solid #facc15; padding: 1px 2px; border-radius: 2px; }
+.highlight-doi { background: rgba(192, 132, 252, 0.25); border-bottom: 2px solid #c084fc; padding: 1px 2px; border-radius: 2px; }
+.highlight-punct { background: rgba(251, 146, 60, 0.3); border-bottom: 2px solid #fb923c; padding: 1px 4px; border-radius: 2px; font-weight: 800; }
+
+/* ==========================================================================
+   5. ПАРАГРАФ 5: ОПЕРАТОРСЬКИЙ ЧЕК-ЛИСТ ТА ЕКСПРЕС-ПЕРЕВІРКА
+   ========================================================================== */
+.checklist-lab-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 20px;
+}
+@media (max-width: 850px) { .checklist-lab-grid { grid-template-columns: 1fr; } }
+
+.check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #06080b;
+  border: 1px solid #1e2633;
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-size: 12.5px;
+  color: #cbd5e1;
+}
+.check-row input { margin-top: 3px; accent-color: var(--kernel); cursor: pointer; }
+.check-row.checked { border-color: var(--success); color: #fff; }
