@@ -1,0 +1,2333 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Біоенергетична когенерація: Технології та обладнання | Інженерна монографія</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --void: #0a0c10;
+      --surface: #11141a;
+      --surface-card: #151a22;
+      --surface-hover: #1c222c;
+      --border: #222a36;
+      --border-focus: #00bcd4;
+
+      /* ACADEMIC COLOR DNA */
+      --cyan: #00bcd4;
+      --cyan-glow: rgba(0, 188, 212, 0.15);
+      --gold: #d4af37;
+      --gold-glow: rgba(212, 175, 55, 0.15);
+      --green: #00e676;
+      --green-glow: rgba(0, 230, 118, 0.15);
+      --purple: #a855f7;
+      --purple-glow: rgba(168, 85, 247, 0.15);
+      --alert: #da3633;
+      --alert-glow: rgba(218, 54, 51, 0.18);
+
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --font-main: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-title: 'Cinzel', serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      max-width: 100% !important;
+      overflow-x: hidden !important;
+      background-color: var(--void);
+      color: var(--text);
+      font-family: var(--font-main);
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    body {
+      padding: 18px 14px 40px;
+    }
+
+    .container {
+      max-width: 1260px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* READING PROGRESS BAR */
+    .reading-progress-track {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--surface);
+      z-index: 9999;
+    }
+
+    .reading-progress-fill {
+      height: 100%;
+      width: 11.11%;
+      background: linear-gradient(90deg, var(--cyan), var(--gold), var(--green));
+      transition: width 0.3s ease;
+    }
+
+    /* UNIVERSITY ACADEMIC HEADER */
+    .univ-header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 24px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 950px) {
+      .univ-header { flex-direction: column; align-items: stretch; text-align: center; }
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    @media (max-width: 950px) {
+      .header-left { flex-direction: column; }
+    }
+
+    .nmu-logo-svg {
+      width: 135px;
+      height: 42px;
+      flex-shrink: 0;
+    }
+
+    .univ-meta-wrap { line-height: 1.45; }
+    .univ-ministry {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: var(--text-muted);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .univ-department {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #fff;
+      margin: 2px 0;
+      letter-spacing: 0.3px;
+    }
+    .univ-subject {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cyan);
+    }
+
+    .univ-student-badge {
+      background: rgba(0, 188, 212, 0.06);
+      border: 1px solid rgba(0, 188, 212, 0.3);
+      border-radius: 6px;
+      padding: 9px 16px;
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 950px) {
+      .univ-student-badge { text-align: center; }
+    }
+
+    /* TOP ACTION BAR */
+    .top-actions-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .action-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-pill:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      background: var(--cyan-glow);
+    }
+
+    .btn-pill.active {
+      border-color: var(--cyan);
+      color: #fff;
+      background: rgba(0, 188, 212, 0.12);
+    }
+
+    .btn-pill.accent-gold {
+      border-color: rgba(212, 175, 55, 0.4);
+      color: var(--gold);
+    }
+    .btn-pill.accent-gold:hover {
+      border-color: var(--gold);
+      background: var(--gold-glow);
+      color: #fff;
+    }
+
+    /* HERO BANNER */
+    .hero-banner {
+      background: linear-gradient(180deg, rgba(21, 26, 34, 0.85) 0%, rgba(17, 20, 26, 0.7) 100%);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px 24px;
+      text-align: center;
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), var(--gold), transparent);
+    }
+
+    .hero-pretitle {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--cyan);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: 27px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.35;
+      max-width: 980px;
+      margin: 0 auto 12px;
+      letter-spacing: 0.5px;
+      text-wrap: balance;
+    }
+
+    /* КАНОНІЧНІ ОБЛАКА-ПІДКАЗКИ СТАНДАРТУ ЛІШІ */
+    .glossary-term {
+      color: var(--cyan);
+      border-bottom: 1.5px dashed var(--cyan);
+      cursor: help;
+      position: relative;
+      display: inline;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .glossary-term:hover {
+      color: #fff;
+    }
+
+    /* ВСПЛЫВАЮЩЕЕ ОБЛАКО С ТЕКСТОМ */
+    .glossary-term::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: #0d121a;
+      color: #e6edf3;
+      font-family: var(--font-main);
+      font-size: 11.5px;
+      font-weight: 400;
+      line-height: 1.5;
+      padding: 9px 13px;
+      border-radius: 6px;
+      border: 1px solid var(--cyan);
+      width: max-content;
+      max-width: 300px;
+      min-width: 190px;
+      z-index: 99999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.2s;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85), 0 0 16px rgba(0, 188, 212, 0.25);
+      text-align: left;
+      pointer-events: none;
+      white-space: normal;
+    }
+
+    /* СТРЕЛОЧКА-НОЖКА ОБЛАКА */
+    .glossary-term::before {
+      content: "";
+      position: absolute;
+      bottom: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      border-width: 6px 6px 0 6px;
+      border-style: solid;
+      border-color: var(--cyan) transparent transparent transparent;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+      z-index: 100000;
+      pointer-events: none;
+    }
+
+    /* ПОКАЗ ОБЛАКА ПРИ НАВЕДЕНИИ */
+    .glossary-term:hover::after,
+    .glossary-term:hover::before {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: 20px; }
+    }
+
+    .hero-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* CHAPTER NAVIGATION (TABLE OF CONTENTS GRID) */
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+
+    @media (max-width: 1100px) {
+      .toc-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    }
+    @media (max-width: 650px) {
+      .toc-grid { grid-template-columns: 1fr; }
+    }
+
+    .toc-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 8px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .toc-btn .toc-num {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: var(--text-muted);
+      font-weight: 700;
+    }
+
+    .toc-btn .toc-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: #cbd5e1;
+      line-height: 1.3;
+    }
+
+    .toc-btn:hover {
+      border-color: var(--cyan);
+      transform: translateY(-2px);
+    }
+
+    .toc-btn.active {
+      border-color: var(--cyan);
+      background: var(--cyan-glow);
+    }
+    .toc-btn.active .toc-num { color: var(--cyan); }
+    .toc-btn.active .toc-title { color: #fff; }
+
+    /* CHAPTER CONTENT CONTAINER */
+    .chapter-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 30px 28px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+      min-height: 580px;
+    }
+
+    .chapter-article {
+      display: none;
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+
+    .chapter-article.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chapter-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .chapter-meta-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .chapter-heading {
+      font-family: var(--font-title);
+      font-size: 22px;
+      color: #fff;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
+    }
+
+    .chapter-seq-badge {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--cyan);
+      font-weight: 700;
+      opacity: 0.8;
+      background: rgba(0, 188, 212, 0.08);
+      border: 1px solid rgba(0, 188, 212, 0.3);
+      padding: 4px 10px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    /* MONOGRAPH SPLIT LAYOUT */
+    .mono-split {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 950px) {
+      .mono-split { grid-template-columns: 1fr; }
+    }
+
+    .mono-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .media-canvas {
+      width: 100%;
+      height: 380px;
+      background: #0d1017;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .media-canvas:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 8px 24px rgba(0, 188, 212, 0.15);
+    }
+
+    .media-fallback {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px 20px;
+      color: var(--text-muted);
+      background: radial-gradient(circle at center, #151a22 0%, #0d1017 100%);
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    .media-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 2;
+      transition: transform 0.3s ease;
+      background: #0d1017;
+    }
+
+    .media-canvas:hover .media-img { transform: scale(1.02); }
+
+    .media-fallback-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+      opacity: 0.85;
+    }
+
+    .media-fallback-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .media-fallback-sub {
+      font-size: 11px;
+      color: #94a3b8;
+      max-width: 280px;
+      line-height: 1.45;
+    }
+
+    .media-hint {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* ИНТЕРАКТИВНЫЙ ХИМИЧЕСКИЙ РЕНТГЕН (РАЗДЕЛ 04) */
+    .xray-steps-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .xray-btn {
+      background: #090c10;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 8px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .xray-btn:hover {
+      border-color: var(--alert);
+      color: #fff;
+    }
+
+    .xray-btn.active {
+      background: var(--alert-glow);
+      border-color: var(--alert);
+      color: #fca5a5;
+    }
+
+    .xray-stage-box {
+      background: #090c10;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--alert);
+      border-radius: 4px;
+      padding: 10px 14px;
+    }
+
+    /* ЭКСПЛИКАЦИЯ КАРТИНКИ */
+    .media-explication {
+      background: #090c10;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 11px;
+    }
+
+    .exp-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #cbd5e1;
+    }
+
+    .exp-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .exp-dot.cyan { background: var(--cyan); box-shadow: 0 0 8px var(--cyan); }
+    .exp-dot.gold { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+    .exp-dot.white { background: #fff; box-shadow: 0 0 6px #fff; }
+
+    /* ПОДПИСЬ ВНУТРИ ЛАЙТБОКСА */
+    .lightbox-caption {
+      position: absolute;
+      bottom: 24px;
+      background: rgba(13, 18, 26, 0.9);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--cyan);
+      color: #e2e8f0;
+      padding: 10px 18px;
+      border-radius: 6px;
+      max-width: 800px;
+      width: 90%;
+      font-size: 12px;
+      line-height: 1.5;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      pointer-events: auto;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2col { grid-template-columns: 1fr; }
+    }
+
+    /* MONOGRAPH NARRATIVE PROSE */
+    .mono-narrative {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .prose-lead {
+      font-size: 14px;
+      color: #e2e8f0;
+      line-height: 1.7;
+      border-left: 3px solid var(--cyan);
+      padding-left: 14px;
+      background: rgba(0, 188, 212, 0.03);
+      padding-top: 6px;
+      padding-bottom: 6px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .prose-p {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+
+    .prose-p strong {
+      color: #fff;
+    }
+
+    .highlight-box {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 18px;
+    }
+
+    .highlight-box.gold { border-left: 3px solid var(--gold); }
+    .highlight-box.green { border-left: 3px solid var(--green); }
+    .highlight-box.purple { border-left: 3px solid var(--purple); }
+    .highlight-box.alert { border-left: 3px solid var(--alert); background: rgba(218, 54, 51, 0.04); }
+
+    .highlight-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    /* TABLE FORMATTING */
+    .table-container {
+      width: 100%;
+      overflow: visible;
+      margin: 8px 0;
+    }
+
+    @media (max-width: 850px) {
+      .table-container { overflow-x: auto; }
+    }
+
+    .bio-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px;
+    }
+
+    .bio-table th, .bio-table td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    .bio-table th {
+      background: #0d1017;
+      color: var(--cyan);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+
+    .bio-table tr:hover { background: rgba(0, 188, 212, 0.03); }
+
+    .tag-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .tag-cyan { background: rgba(0, 188, 212, 0.15); color: var(--cyan); border: 1px solid var(--cyan); }
+    .tag-gold { background: rgba(212, 175, 55, 0.15); color: var(--gold); border: 1px solid var(--gold); }
+    .tag-green { background: rgba(0, 230, 118, 0.15); color: var(--green); border: 1px solid var(--green); }
+
+    /* SIMULATOR STYLES */
+    .calc-wrap {
+      background: #0d1017;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px;
+    }
+
+    .calc-inputs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .calc-inputs-grid { grid-template-columns: 1fr; }
+    }
+
+    .calc-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .calc-lbl {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .calc-ctrl {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 7px 10px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .calc-ctrl:focus {
+      outline: none;
+      border-color: var(--cyan);
+    }
+
+    .calc-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 950px) {
+      .calc-metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 550px) {
+      .calc-metrics-grid { grid-template-columns: 1fr; }
+    }
+
+    .metric-card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 10px 12px;
+    }
+
+    .metric-card-lbl {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .metric-card-val {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 2px;
+    }
+
+    .metric-card-sub { font-size: 10.5px; color: #94a3b8; }
+
+    .guardrail-card {
+      display: none;
+      background: var(--alert-glow);
+      border: 1px solid var(--alert);
+      border-radius: 4px;
+      padding: 12px 16px;
+      margin-top: 14px;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .guardrail-card.active {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* HIDDEN SPEAKER REHEARSAL DRAWER (OFF-CANVAS FOR STUDENT ONLY) */
+    .speaker-drawer {
+      display: none;
+      background: #0d1117;
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-top: 18px;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .speaker-drawer.open { display: block; }
+
+    .speaker-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      border-bottom: 1px dashed var(--border);
+      padding-bottom: 6px;
+    }
+
+    .speaker-drawer-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .speaker-drawer-text {
+      font-size: 12.5px;
+      line-height: 1.65;
+      color: #e2e8f0;
+      background: rgba(212, 175, 55, 0.04);
+      padding: 10px 14px;
+      border-radius: 4px;
+      border-left: 3px solid var(--gold);
+    }
+
+    /* MODAL WINDOWS */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1500;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      max-width: 820px;
+      width: 100%;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.85);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .modal-close-btn:hover { color: #fff; }
+
+    .faq-panel {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .faq-panel-head {
+      padding: 12px 14px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cyan);
+      background: #0d1017;
+      transition: background 0.2s;
+    }
+    .faq-panel-head:hover { background: var(--cyan-glow); }
+    .faq-panel-body {
+      display: none;
+      padding: 14px;
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.6;
+      border-top: 1px dashed var(--border);
+    }
+    .faq-panel-body.open { display: block; }
+    .faq-formula {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--gold);
+      background: #090c10;
+      padding: 8px 10px;
+      border-radius: 4px;
+      margin: 8px 0;
+    }
+
+    /* LIGHTBOX */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+      cursor: zoom-out;
+    }
+    .lightbox-modal.open { display: flex; }
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90vh;
+      border: 1px solid var(--cyan);
+      border-radius: 6px;
+      object-fit: contain;
+    }
+
+    footer {
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-muted);
+      margin-top: 32px;
+    }
+
+    /* PRINT RULES */
+    @page { size: A4 landscape; margin: 5mm 8mm; }
+    @media print {
+      * { animation: none !important; transition: none !important; }
+      html, body { background: #fff !important; color: #000 !important; font-size: 9.5px !important; padding: 0 !important; }
+      .top-actions-bar, .toc-grid, .modal-overlay, .lightbox-modal, footer, .media-hint, .calc-inputs-grid, #calcBoxBiogas, .guardrail-card, .speaker-drawer {
+        display: none !important;
+      }
+      .univ-header { border: 1px solid #94a3b8 !important; background: #f8fafc !important; color: #0f172a !important; padding: 4px 10px !important; margin-bottom: 6px !important; }
+      .nmu-logo-svg { width: 90px !important; height: 26px !important; }
+      .chapter-container { padding: 0 !important; border: none !important; box-shadow: none !important; }
+      .chapter-article { display: block !important; border: 1px solid #cbd5e1 !important; background: #fff !important; color: #0f172a !important; padding: 8px 12px !important; margin: 0 0 10px 0 !important; page-break-before: always !important; }
+      .chapter-article:first-of-type { page-break-before: avoid !important; }
+      .mono-split { grid-template-columns: 260px 1fr !important; gap: 12px !important; }
+      .media-canvas { height: 190px !important; border: 1px solid #cbd5e1 !important; background: #f1f5f9 !important; }
+      .highlight-box, .metric-card, .calc-wrap { background: #f8fafc !important; border-color: #cbd5e1 !important; color: #0f172a !important; }
+      .chapter-heading, .metric-card-val, h1, h2, h3 { color: #0f172a !important; }
+      .prose-p, .prose-lead { color: #1e293b !important; }
+      .bio-table th { background: #e2e8f0 !important; color: #0f172a !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- READING PROGRESS TRACK -->
+  <div class="reading-progress-track">
+    <div class="reading-progress-fill" id="readingBar"></div>
+  </div>
+
+  <div class="container">
+
+    <!-- ACADEMIC UNIVERSITY HEADER -->
+    <header class="univ-header">
+      <div class="header-left">
+        <svg class="nmu-logo-svg" viewBox="0 0 220 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="36" width="14" height="14" rx="2" fill="#009fe3"/>
+          <rect x="16" y="36" width="14" height="14" rx="2" fill="#009fe3"/>
+          <rect x="32" y="36" width="14" height="14" rx="2" fill="#0080ff"/>
+          <rect x="16" y="20" width="14" height="14" rx="2" fill="#009fe3"/>
+          <rect x="32" y="20" width="14" height="14" rx="2" fill="#0080ff"/>
+          <rect x="32" y="4" width="14" height="14" rx="2" fill="#0080ff"/>
+          <text x="56" y="20" fill="#ffffff" font-family="Inter" font-weight="800" font-size="12" letter-spacing="0.5">ДНІПРОВСЬКА</text>
+          <text x="56" y="35" fill="#00bcd4" font-family="Inter" font-weight="700" font-size="10.5" letter-spacing="1">ПОЛІТЕХНІКА</text>
+          <text x="56" y="47" fill="#8b949e" font-family="JetBrains Mono" font-size="8" letter-spacing="1.5">1899</text>
+        </svg>
+
+        <div class="univ-meta-wrap">
+          <div class="univ-ministry">МІНІСТЕРСТВО ОСВІТИ І НАУКИ УКРАЇНИ // НТУ «ДНІПРОВСЬКА ПОЛІТЕХНІКА»</div>
+          <div class="univ-department">ІНСТИТУТ ЕЛЕКТРОЕНЕРГЕТИКИ // КАФЕДРА ТЕПЛОВОГО ІНЖИНІРИНГУ</div>
+          <div class="univ-subject">Дисципліна: Біоенергетика: процеси, технології, інновації // доцент Чемеринський М.С.</div>
+        </div>
+      </div>
+
+      <div class="univ-student-badge">
+        <div style="color: var(--text-muted); font-size: 9px; text-transform:uppercase;">Виконав:</div>
+        <div style="color: #fff; font-weight: 700; font-size: 11.5px;">студент гр.&nbsp;141-24-2</div>
+        <div style="color: var(--cyan); font-weight: 700; font-size: 12px;">Дідов Платон Андрійович</div>
+      </div>
+    </header>
+
+    <!-- TOP ACTION & NAVIGATION BAR -->
+    <div class="top-actions-bar">
+      <div class="action-group">
+        <span class="btn-pill active">■ БІОЕНЕРГЕТИКА // НАУКОВА МОНОГРАФІЯ №2</span>
+      </div>
+
+      <div class="action-group">
+        <button class="btn-pill accent-gold" onclick="toggleSpeakerDrawer()">🎙️ КОНСПЕКТ ДОПОВІДАЧА</button>
+        <button class="btn-pill" onclick="toggleFaqModal(true)">📚 ПОГЛИБЛЕНІ ПИТАННЯ [Q]</button>
+        <button class="btn-pill" onclick="toggleTaskModal(true)">📋 ТЗ ВИКЛАДАЧА</button>
+        <button class="btn-pill" onclick="window.print()">🖨️ ДРУК / PDF</button>
+      </div>
+    </div>
+
+    <!-- HERO SHOWCASE BANNER -->
+    <section class="hero-banner">
+      <div class="hero-pretitle">НАУКОВО-ТЕХНІЧНЕ ДОСЛІДЖЕННЯ // ТЕМА 4</div>
+      <h1 class="hero-title">
+        Технології та обладнання для виробництва<br>тепла і електричної енергії з біомаси
+      </h1>
+      <p class="hero-subtitle">
+        Інженерна монографія про термодинаміку комбінованого циклу (<span class="glossary-term" data-tooltip="Combined Heat and Power (CHP) — одночасна генерація тепла та електрики з одного джерела палива із загальним ККД до 85–90%.">CHP</span>), конструкції топок циркулюючого киплячого шару (<span class="glossary-term" data-tooltip="Circulating Fluidized Bed (CFB) — спалювання у зваженому вихорі розжареного піску, що забезпечує низькі викиди та вигорання до 99%.">CFB</span>), переваги органічного циклу (<span class="glossary-term" data-tooltip="Organic Rankine Cycle (ORC) — замкнений цикл на важких силоксанах/фреонах замість води для високого ККД на малому масштабі (1–5 МВт).">ORC</span>), матеріалознавчий бар'єр хлоридної корозії (<strong>450 °C</strong>) та українські реалії енергетичної трансформації.
+      </p>
+    </section>
+
+    <!-- TABLE OF CONTENTS (9 BOOK CHAPTERS) -->
+    <nav class="toc-grid" id="tocNav">
+      <button class="toc-btn active" onclick="goToChapter(0, this)">
+        <span class="toc-num">ПРОЛОГ</span>
+        <span class="toc-title">Енергетичний виклик</span>
+      </button>
+      <button class="toc-btn" onclick="goToChapter(1, this)">
+        <span class="toc-num">РОЗДІЛ 01</span>
+        <span class="toc-title">Хімія агросировини</span>
+      </button>
+      <button class="toc-btn" onclick="goToChapter(2, this)">
+        <span class="toc-num">РОЗДІЛ 02</span>
+        <span class="toc-title">Анатомія вогню (CFB)</span>
+      </button>
+      <button class="toc-btn" onclick="goToChapter(3, this)">
+        <span class="toc-num">РОЗДІЛ 03</span>
+        <span class="toc-title">ORC vs Водяна пара</span>
+      </button>
+      <button class="toc-btn" onclick="goToChapter(4, this)">
+        <span class="toc-num">РОЗДІЛ 04</span>
+        <span class="toc-title">Хлоридний тупик 450°C</span>
+      </button>
+      <button class="toc-btn" onclick="goToChapter(5, this)">
+        <span class="toc-num">РОЗДІЛ 05</span>
+        <span class="toc-title">Агробіогаз та ГТС</span>
+      </button>
+      <button class="toc-btn" onclick="goToChapter(6, this)">
+        <span class="toc-num">РОЗДІЛ 06</span>
+        <span class="toc-title">Українські флагмани</span>
+      </button>
+      <button class="toc-btn" onclick="goToChapter(7, this)">
+        <span class="toc-num">РОЗДІЛ 07</span>
+        <span class="toc-title">Інженерний стенд</span>
+      </button>
+      <button class="toc-btn" onclick="goToChapter(8, this)">
+        <span class="toc-num">РОЗДІЛ 08</span>
+        <span class="toc-title">Епілог: Microgrids</span>
+      </button>
+    </nav>
+
+    <!-- HIDDEN REHEARSAL DRAWER FOR STUDENT (COLLAPSIBLE) -->
+    <div class="speaker-drawer" id="speakerDrawer">
+      <div class="speaker-drawer-header">
+        <span class="speaker-drawer-tag">🎙️ СТУДЕНТСЬКИЙ КОНСПЕКТ ДОПОВІДАЧА ДО ПОТОЧНОЇ ГЛАВИ:</span>
+        <button class="btn-pill" style="padding:2px 8px; font-size:10px;" onclick="toggleSpeakerDrawer()">ЗАКРИТИ</button>
+      </div>
+      <div class="speaker-drawer-text" id="speakerText">
+        Завантаження виступу...
+      </div>
+    </div>
+
+    <!-- MAIN MONOGRAPH CHAPTER CONTAINER -->
+    <main class="chapter-container">
+
+      <!-- CHAPTER 0: PROLOGUE -->
+      <article class="chapter-article active" data-chap="0">
+        <div class="chapter-header">
+          <div>
+            <div class="chapter-meta-tag">ВСТУП // ЕНЕРГЕТИЧНИЙ ВИКЛИК</div>
+            <h2 class="chapter-heading">ПРОЛОГ. Біомаса як єдина диспетчеризована ВДЕ в ОЕС України</h2>
+          </div>
+          <div class="chapter-seq-badge">ВСТУПНИЙ РОЗДІЛ</div>
+        </div>
+
+        <div class="mono-split">
+          <div class="mono-visual">
+            <div class="media-canvas" onclick="openLightbox('assets/01_grid_chp.png', 'Рис. 0.1. Концепція біокогенераційного енерговузла (Microgrid): цілодобове покриття дефіциту вечірнього піку ОЕС при згасанні сонячної генерації та паралельний відпуск тепла на місто.')">
+              <img src="assets/01_grid_chp.png" class="media-img" alt="ОЕС України" onerror="this.style.display='none';">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">⚡</div>
+                <div class="media-fallback-title">01_grid_chp.png</div>
+                <div class="media-fallback-sub">Балансування енергосистеми та розподілена біокогенерація</div>
+              </div>
+            </div>
+            
+            <!-- АКАДЕМІЧНА ЕКСПЛІКАЦІЯ СХЕМИ -->
+            <div class="media-explication">
+              <div class="exp-item">
+                <span class="exp-dot cyan"></span>
+                <span><strong>Блакитні лінії:</strong> видача електроенергії в ОЕС у вечірній пік (19:00).</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot gold"></span>
+                <span><strong>Золоті труби:</strong> централізований відпуск тепла в житлові масиви.</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot white"></span>
+                <span><strong>Бункери та турбозал:</strong> запас палива для гарантованої бази 24/7.</span>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для розгортання на повний екран</div>
+          </div>
+
+          <div class="mono-narrative">
+            <p class="prose-lead">
+              Енергетична система України (<span class="glossary-term" data-tooltip="Об'єднана енергетична система України — єдиний технологічний комплекс електростанцій, магістральних підстанцій та електромереж, керований НЕК 'Укренерго'.">ОЕС</span>) зазнала критичних руйнувань традиційної вугільної генерації. Головний виклик для енергосистеми — гострий дефіцит <span class="glossary-term" data-tooltip="Маневрова потужність — здатність енергоблоків швидко (за 15–30 хвилин) підняти або скинути генерацію, щоб компенсувати ранкові та вечірні піки споживання електроенергії в країні.">маневрової</span> та <span class="glossary-term" data-tooltip="Напівпікова потужність — генерація, яка несе навантаження у денний робочий час (з 8:00 до 22:00) та планово розвантажується у нічний провал споживання.">напівпікової</span> генерації (понад <strong>4–5 ГВт</strong>). У той час як сонце і вітер працюють ривками, біопаливо виступає <strong>єдиним видом <span class="glossary-term" data-tooltip="Диспетчеризована ВДЕ — джерело відновлюваної енергії, видачею потужності якого керує диспетчер за прямим графіком навантаження.">диспетчеризованої ВДЕ</span> із 100% гарантованою <span class="glossary-term" data-tooltip="Диспетчеризація — централізоване управління балансом між виробництвом і споживанням електрики в режимі реального часу з підтримкою стандартної частоти 50.0 Гц.">диспетчеризацією</span></strong>.
+            </p>
+
+            <!-- НАОЧНЕ ПОРІВНЯННЯ ДОБОВИХ ГРАФІКІВ ГЕНЕРАЦІЇ -->
+            <div class="grid-2col">
+              <div class="highlight-box" style="border-left-color: var(--gold);">
+                <div class="highlight-title" style="color: var(--gold);">
+                  <span class="glossary-term" data-tooltip="Вітрові електростанції — промислові установки генерації на кінетичній енергії вітру.">ВЕС</span> та <span class="glossary-term" data-tooltip="Сонячні електростанції — фотоелектричні станції перетворення випромінювання.">СЕС</span>: <span class="glossary-term" data-tooltip="Стохастичний графік — непередбачувана хвилеподібна генерація відновлюваних станцій, зумовлена погодою, хмарами та штилем, яка не збігається з потребами населення.">Стохастичний графік</span>
+                </div>
+                
+                <p style="font-size:12px; color:#cbd5e1; line-height:1.55; margin-bottom:8px;">
+                  Генерація залежить виключно від погоди. У головний вечірній пік навантаження країни (18:00–22:00), коли населення вмикає прилади, сонце сідає і вироблення СЕС падає строго до <strong>0 МВт</strong>.
+                </p>
+                <div style="font-size:11px; color:#94a3b8; border-top:1px dashed var(--border); padding-top:6px;">
+                  • <span class="glossary-term" data-tooltip="Коефіцієнт використання встановленої потужності (КВВП) — показник фактичної віддачі станції за рік. Для СЕС він становить лише 12–18% (1100–1600 годин роботи на рік із 8760).">КВВП</span>: лише <strong>12–22 %</strong>.<br>
+                  • Вимагають гігантських витрат на дорогі акумуляторні станції <span class="glossary-term" data-tooltip="Battery Energy Storage System (BESS) — дорогі промислові літій-іонні акумуляторні накопичувачі для компенсації провалів сонячної генерації.">BESS</span>.
+                </div>
+              </div>
+
+              <div class="highlight-box" style="border-left-color: var(--cyan);">
+                <div class="highlight-title" style="color: var(--cyan);">
+                  <span class="glossary-term" data-tooltip="Біокогенерація — комбіноване виробництво електрики та корисного тепла на ТЕЦ при спалюванні твердої біомаси чи біогазу.">Біокогенерація</span>: Базовий гарантований графік
+                </div>
+
+                <p style="font-size:12px; color:#cbd5e1; line-height:1.55; margin-bottom:8px;">
+                  Станція працює за прямою рівною лінією цілодобово. Паливо зі складу подається в топку безперервно, гарантовано утримуючи локальну енергосистему міста в темряву, штиль і 20-градусний мороз.
+                </p>
+                <div style="font-size:11px; color:#94a3b8; border-top:1px dashed var(--border); padding-top:6px;">
+                  • <span class="glossary-term" data-tooltip="КВВП 80–90% означає, що біо-ТЕС стабільно видає повну номінальну потужність понад 7200–7800 годин на рік, зупиняючись лише на 2 тижні планового сервісу.">КВВП</span>: рекордні <strong>80–90 %</strong> (понад 7 500 год/рік).<br>
+                  • Забезпечує пряму когенерацію <span class="glossary-term" data-tooltip="Combined Heat and Power (CHP) — одночасна генерація тепла та електрики в єдиному термодинамічному циклі з сумарним ККД до 85–90%.">CHP</span> без потреби в акумуляторах.
+                </div>
+              </div>
+            </div>
+
+            <!-- СТРАТЕГІЧНИЙ РЕЗЕРВ -->
+            <div class="highlight-box purple">
+              <div class="highlight-title">Стратегічний резерв агропромислового комплексу України</div>
+              <p class="prose-p" style="margin:0; font-size:12px;">
+                Щорічний доступний залишок біомаси перевищує <strong>35 млн т.у.п.</strong> Застосування технологій когенерації <span class="glossary-term" data-tooltip="Combined Heat and Power — технологія комбінованого виробництва тепла та електрики.">CHP</span> на базі топок циркулюючого киплячого шару (<span class="glossary-term" data-tooltip="Circulating Fluidized Bed (CFB) — спалювання у зваженому вихорі гарячого піску (850 °C) з циклоном повернення для високого ККД до 99%.">CFB</span>) та органічного циклу Ренкіна (<span class="glossary-term" data-tooltip="Organic Rankine Cycle (ORC) — замкнений цикл на термомаслі та важких силоксанах для високої ефективності генерації при 1–5 МВт.">ORC</span>) формує потенціал заміщення понад <strong>20 млрд м³ імпортного газу</strong> на рік зі зниженням собівартості муніципального тепла на <strong>55–65%</strong>.
+              </p>
+            </div>
+          </div>  
+        </div>
+      </article>
+
+      <!-- CHAPTER 1: FUEL CHEMISTRY -->
+      <article class="chapter-article" data-chap="1">
+        <div class="chapter-header">
+          <div>
+            <div class="chapter-meta-tag">РОЗДІЛ 01 // ПАЛИВНИЙ БАЗИС</div>
+            <h2 class="chapter-heading">Сировина, яка «вбиває» метал. Фізико-хімія агробіомаси</h2>
+          </div>
+          <div class="chapter-seq-badge">РОЗДІЛ 01 / 08</div>
+        </div>
+
+        <div class="mono-split">
+          <div class="mono-visual">
+            <div class="media-canvas" onclick="openLightbox('assets/01_agro_chemistry.png', 'Рис. 1.1. Шлакування топки при спалюванні агросировини: утворення легкоплавкого силікатного розплаву (рідкого скла) на колосникових решітках.')">
+              <img src="assets/01_agro_chemistry.png" class="media-img" alt="Шлакування агропалива" onerror="this.style.display='none';">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">🌾</div>
+                <div class="media-fallback-title">01_agro_chemistry.png</div>
+                <div class="media-fallback-sub">Мінеральний баласт агропалива та плавлення силікатного шлаку</div>
+              </div>
+            </div>
+
+            <div class="media-explication">
+              <div class="exp-item">
+                <span class="exp-dot white"></span>
+                <span><strong>Верхній бункер і факел:</strong> інтенсивне горіння летких газів соломи.</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot cyan"></span>
+                <span><strong>Блакитні голограми:</strong> хімізм реакцій калію (K<sub>2</sub>O) і кремнезему (SiO<sub>2</sub>).</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot gold"></span>
+                <span><strong>Бурштиновий розплав на трубах:</strong> застигле рідке скло, що забиває решітку.</span>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для розгортання на повний екран</div>
+          </div>
+
+          <div class="mono-narrative">
+            <p class="prose-lead">
+              Найпоширеніша помилка при проєктуванні котелень — ставлення до аграрної біомаси як до «дешевої заміни деревини». Якщо чиста деревина має мінімальну <span class="glossary-term" data-tooltip="Зольність на суху масу (Ad) — відсоток негорючого мінерального залишку після повного спалювання палива. Для якісних деревних гранул ENplus A1 це ≤ 0.7%.">зольність (A<sup>d</sup> &lt; 0.7%)</span>, то солома чи лушпиння несуть у собі агресивний <span class="glossary-term" data-tooltip="Мінеральний баласт — негорючі сполуки (пісок, калій, натрій, кальцій, хлор), які не дають тепла, але зношують метал і утворюють шлак.">мінеральний баласт</span>, здатний зруйнувати стандартний котел за кілька місяців.
+            </p>
+
+            <p class="prose-p">
+              Під час росту злакові культури діють як губка: разом із мінеральними добривами стебла накопичують <span class="glossary-term" data-tooltip="Лужні метали (Калій K, Натрій Na) — активні елементи, які різко знижують температуру плавлення золи під час спалювання палива.">лужні метали</span> та хлор. У золі соломи концентрація оксиду калію (K<sub>2</sub>O) сягає <strong>20–25%</strong>, а хлору (Cl) — до <strong>0.8%</strong>. При нагріванні в топці калій вступає в реакцію з природним <span class="glossary-term" data-tooltip="Діоксид кремнію (SiO₂) — основа піску та жорстких стебел злаків. Без лугів не плавиться до 1700 °C, але з калієм миттєво утворює скло.">кремнеземом (SiO<sub>2</sub>)</span>, формуючи низькотемпературні <span class="glossary-term" data-tooltip="Силікати рідкого скла — в’язкий легкоплавкий розплав (K₂O·nSiO₂), який налипає на сталеві решітки та труби у вигляді твердої склоподібної кірки.">силікати рідкого скла</span>.
+            </p>
+
+            <!-- ПОРІВНЯЛЬНА МАТРИЦЯ ПАЛИВ -->
+            <div class="table-container" style="margin:2px 0;">
+              <table class="bio-table">
+                <thead>
+                  <tr>
+                    <th>Вид твердої біомаси</th>
+                    <th>Зольність (A<sup>d</sup>)</th>
+                    <th>Плавлення золи (T<sub>пл</sub>)</th>
+                    <th>Поведінка у звичайній топці</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Деревина (тріска / пелети)</strong></td>
+                    <td>0.5 – 1.2 %</td>
+                    <td><span class="tag-badge tag-green">&gt; 1250 °C</span></td>
+                    <td>Сухий сипучий попіл, стабільне горіння.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Лушпиння соняшника</strong></td>
+                    <td>2.5 – 3.5 %</td>
+                    <td><span class="tag-badge tag-gold">~ 1050 °C</span></td>
+                    <td>Помірний ризик, потребує механізованого видалення золи.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Солома зернових</strong></td>
+                    <td>5.0 – 8.0 %</td>
+                    <td><span class="tag-badge" style="color:var(--alert); border-color:var(--alert); background:var(--alert-glow);">750 – 850 °C</span></td>
+                    <td>Критичне <span class="glossary-term" data-tooltip="Шлакування — розплавлення золи в рідкий склоподібний моноліт, який перекриває подачу повітря на горіння.">шлакування</span>, залиття топки склом!</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="highlight-box alert">
+              <div class="highlight-title">Термодинамічна пастка та вихід до інженерного рішення</div>
+              <p class="prose-p" style="margin:0; font-size:12px;">
+                Коли зола соломи плавиться вже при 800 °C, вона намертво спікає <span class="glossary-term" data-tooltip="Колосники — металева решітка внизу топки, на якій горить тверде паливо та крізь щілини якої подається повітря для горіння.">колосники</span> та забиває канали <span class="glossary-term" data-tooltip="Конвективний газохід — зона котла, де гарячі димові гази обтікають пучки труб, віддаючи тепло воді перед димовою трубою.">конвективного газоходу</span>. Але Україна щорічно виробляє понад 30 млн тонн соломи та 4 млн тонн лушпиння. Як інженери навчилися спалювати це «незручне» паливо без зупинки котла? Відповідь криється у конструкціях топок наступного розділу.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CHAPTER 2: COMBUSTION BOILERS -->
+      <article class="chapter-article" data-chap="2">
+        <div class="chapter-header">
+          <div>
+            <div class="chapter-meta-tag">РОЗДІЛ 02 // ТОПКОВЕ ОБЛАДНАННЯ</div>
+            <h2 class="chapter-heading">Анатомія вогню. Колосникові решітки проти киплячого шару (<span class="glossary-term" data-tooltip="Circulating Fluidized Bed (CFB) — топка з циркулюючим киплячим шаром розжареного кварцового піску, який виноситься потоком повітря на всю висоту камери та повертається через сепараційний циклон.">CFB</span>)</h2>
+          </div>
+          <div class="chapter-seq-badge">РОЗДІЛ 02 / 08</div>
+        </div>
+
+        <div class="mono-split">
+          <div class="mono-visual">
+            <div class="media-canvas" onclick="openLightbox('assets/02_grate_vs_cfb.png', 'Рис. 2.1. Порівняння конструкцій біомасових топок: рухома водоохолоджувана колосникова решітка (ліворуч) проти вихрового циркулюючого киплячого шару CFB із сепараційним циклоном (праворуч).')">
+              <img src="assets/02_grate_vs_cfb.png" class="media-img" alt="Топки котлів CFB та решітки" style="display:none;" onload="this.style.display='block';" onerror="this.style.display='none';">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">🔥</div>
+                <div class="media-fallback-title">02_grate_vs_cfb.png</div>
+                <div class="media-fallback-sub">Порівняння похило-перетинної решітки та вихрового котла CFB</div>
+              </div>
+            </div>
+
+            <div class="media-explication">
+              <div class="exp-item">
+                <span class="exp-dot cyan"></span>
+                <span><strong>Ліва топка (Решітка):</strong> блакитні труби водяного охолодження під рухомим шаром тріски.</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot gold"></span>
+                <span><strong>Права топка (Вихор CFB):</strong> киплячий пісок при 850 °C (без плавлення золи).</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot white"></span>
+                <span><strong>Правий циліндр (Циклон):</strong> відцентрове відділення піску та повернення в цикл.</span>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для розгортання на повний екран</div>
+          </div>
+
+          <div class="mono-narrative">
+            <p class="prose-lead">
+              Щоб спалити біомасу з високим виходом <span class="glossary-term" data-tooltip="Леткі речовини (Vdaf) — горючі гази (CO, H₂, CH₄, смоли), які виділяються з біомаси при нагріванні ще до спалювання твердого вуглецю. У деревини та соломи їх частка сягає 75–82%.">летких речовин</span> (понад 75%) та високою вологістю, уникаючи залиття топки рідким склом, теплоенергетика застосовує дві технологічні архітектури: <span class="glossary-term" data-tooltip="Механічне перемішування — примусове поштовхове пересування палива гідравлічними колосниками для постійного руйнування зольної кірки та доступу повітря.">механічне перемішування</span> та <span class="glossary-term" data-tooltip="Аеродинамічне зваження — утримання шару палива і гарячого піску у завислому стані висхідним потоком дуттьового повітря знизу топки.">аеродинамічне зваження</span>.
+            </p>
+
+            <p class="prose-p">
+              У комунальному секторі (1–25 МВт) домінують <span class="glossary-term" data-tooltip="Похило-перетинні колосникові решітки — рухомі сходинки зі жароміцної сталі з гідроприводом, які механічно штовхають шар палива, ламаючи зольну кірку.">похило-перетинні колосникові решітки</span>. Гідравлічні приводи постійно перетрушують шар, не даючи золі спектися в моноліт, поки паливо послідовно проходить сушіння, <span class="glossary-term" data-tooltip="Дегазація (піроліз) — термічний розклад органіки при 300–500 °C з виділенням основної маси горючих летких газів.">дегазацію</span> та допал. Внутрішнє водяне охолодження колосників захищає метал від перегріву і дозволяє спалювати сиру лісову тріску вологістю до <strong>55%</strong>.
+            </p>
+
+            <p class="prose-p">
+              Коли теплова потужність блоку перевищує 25–30 МВт, інженери переходять на <span class="glossary-term" data-tooltip="Псевдозріджений киплячий шар — стан, коли потік повітря знизу піднімає шар розжареного кварцового піску, перетворюючи його на киплячу суміш для рівномірного теплообміну.">псевдозріджений киплячий шар</span> (технології <span class="glossary-term" data-tooltip="Bubbling Fluidized Bed (BFB) — стаціонарний (пухирчастий) киплячий шар при помірній швидкості повітря (1.5–2.5 м/с) із чітким рівнем піску.">BFB</span> та <span class="glossary-term" data-tooltip="Circulating Fluidized Bed (CFB) — циркулюючий киплячий шар зі швидкістю газів до 6 м/с, де пісок заповнює всю висоту топки і повертається через циклон.">CFB</span>). Висока питома теплоємність піску утримує температуру у всьому об'ємі строго на рівні <strong>800–850 °C</strong>: шлак не встигає розплавитися, а викиди термічних <span class="glossary-term" data-tooltip="Оксиди азоту (NOx) — токсичні сполуки, що утворюються з азоту повітря при температурах факела понад 1100–1200 °C. Низька температура киплячого шару (850 °C) блокує їх появу.">оксидів азоту (NO<sub>x</sub>)</span> мінімізуються. У системі CFB <span class="glossary-term" data-tooltip="Виносний циклон — високотемпературний відцентровий сепаратор на виході з топки, що відокремлює твердий пісок від димових газів та повертає його в цикл.">виносний циклон</span> вловлює 99.5% піску і повертає його в цикл.
+            </p>
+
+            <div class="table-container" style="margin:2px 0;">
+              <table class="bio-table">
+                <thead>
+                  <tr>
+                    <th>Тип топкового агрегату</th>
+                    <th>Діапазон потужності</th>
+                    <th>Вимоги до фракції та вологості</th>
+                    <th>Ключова перевага / Обмеження</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Похило-перетинна решітка</strong></td>
+                    <td><span class="tag-badge tag-green">1 – 25 МВт<sub>тепл</sub></span></td>
+                    <td>Тріска, кора до 100 мм; W<sup>r</sup> до 55%</td>
+                    <td>Низький <span class="glossary-term" data-tooltip="CAPEX (Capital Expenditure) — початкові капітальні витрати на закупівлю обладнання, монтаж та пусконалагодження енергоблока.">CAPEX</span>, всеїдність, але ризик локального шлакування при Т &gt; 1000 °C.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Стаціонарний шар (BFB)</strong></td>
+                    <td><span class="tag-badge tag-cyan">10 – 35 МВт<sub>тепл</sub></span></td>
+                    <td>Щепа, лушпиння &lt; 50 мм; W<sup>r</sup> 15–50%</td>
+                    <td>Високий ККД на вологому паливі, чутливість до каміння у сировині.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Циркулюючий шар (CFB)</strong></td>
+                    <td><span class="tag-badge tag-gold">25 – 150+ МВт<sub>тепл</sub></span></td>
+                    <td>Подрібнене паливо &lt; 30 мм; мультипаливо</td>
+                    <td>Мінімальні викиди NO<sub>x</sub> та 99% вигорання, але високі капіталовкладення.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="highlight-box gold">
+              <div class="highlight-title">Наступний рубіж: як отримати електрику з цього тепла?</div>
+              <p class="prose-p" style="margin:0; font-size:12px;">
+                Сучасна топка перетворила складне агропаливо на стабільне тепло (850 °C) без шлакування. Але якщо котельня в місті чи агропідприємстві має потужність лише 5–15 МВт тепла, спроба поставити класичну парову турбіну обернеться провалом ККД. Чому вода програє кремнійорганіці на малому масштабі — розкрито у Розділі 03.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CHAPTER 3: RANKINE VS ORC -->
+      <article class="chapter-article" data-chap="3">
+        <div class="chapter-header">
+          <div>
+            <div class="chapter-meta-tag">РОЗДІЛ 03 // ТЕРМОДИНАМІЧНА РОЗВИЛКА</div>
+            <h2 class="chapter-heading">Термодинамічна розвилка. Чому водяна пара програє на малих потужностях</h2>
+          </div>
+          <div class="chapter-seq-badge">РОЗДІЛ 03 / 08</div>
+        </div>
+
+        <div class="mono-split">
+          <div class="mono-visual">
+            <div class="media-canvas" onclick="openLightbox('assets/03_orc_cycle.png', 'Рис. 3.1. Двоконтурна схема модуля ORC: нагрів термомасла в котлі (золотий контур) передається через випарник на компактну турбіну сухого розширення (блакитний контур).')">
+              <img src="assets/03_orc_cycle.png" class="media-img" alt="Двоконтурний модуль ORC" style="display:none;" onload="this.style.display='block';" onerror="this.style.display='none';">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">⚙️</div>
+                <div class="media-fallback-title">03_orc_cycle.png</div>
+                <div class="media-fallback-sub">Термомасляний контур та турбіна органічного циклу Ренкіна (ORC)</div>
+              </div>
+            </div>
+
+            <div class="media-explication">
+              <div class="exp-item">
+                <span class="exp-dot gold"></span>
+                <span><strong>Лівий контур (золоті труби):</strong> термомасло 310 °C нагріває випарник.</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot cyan"></span>
+                <span><strong>Турбіна та генератор:</strong> сухе розширення парів кремнійорганіки (0% крапель).</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot white"></span>
+                <span><strong>Нижні пластинчасті блоки:</strong> рекуператор та конденсатор віддачі тепла в місто.</span>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для розгортання на повний екран</div>
+          </div>
+
+          <div class="mono-narrative">
+            <p class="prose-lead">
+              Коли у 2018 році в Кам’янці-Подільському запускали першу в Україні біо-ТЕС, інженери свідомо відмовилися від класичної парової турбіни. При тепловій потужності котлів у 15 МВт водяна пара дала б електричний ККД нижче 15% і вимагала б цілодобового штату машиністів високого тиску.
+            </p>
+
+            <p class="prose-p">
+              Термодинаміка водяної пари обмежує малі масштаби: значний <span class="glossary-term" data-tooltip="Питомий об'єм (м³/кг) — об'єм, який займає 1 кг робочого тіла. У вакуумі (0.05 бар) 1 кг водяної пари розширюється до 28 м³, що ускладнює конструкцію малих турбін.">питомий об'єм</span> пари у вакуумі вимагає мініатюрних лопаток на вході турбіни, де <span class="glossary-term" data-tooltip="Перетоки крізь зазори — втрати пари, яка просочується між нерухомим корпусом та кінцями обертових лопаток. На малих турбінах ці втрати 'з'їдають' до 20–30% потужності.">перетоки крізь зазори</span> знижують внутрішній ККД до критично низького рівня. Додатково розширення водяної пари заходить у <span class="glossary-term" data-tooltip="Зона вологої пари (під кривою насичення), де утворюються мікрокраплі води. На великих швидкостях вони б'ють по сталі, викликаючи ерозію лопаток.">зону конденсації</span>, спричиняючи крапельну ерозію металу.
+            </p>
+
+            <p class="prose-p">
+              Оптимальним рішенням для сегмента 0.2–5 МВт<sub>ел</sub> став органічний цикл Ренкіна (<span class="glossary-term" data-tooltip="Organic Rankine Cycle (ORC) — термодинамічний цикл, де замість води застосовують високомолекулярні органічні рідини з низькою температурою кипіння.">ORC</span>) на <span class="glossary-term" data-tooltip="Кремнійорганічні рідини (силоксани, наприклад MDM або OMTS) — термостійкі синтетичні робочі тіла з високою молекулярною масою, що забезпечують сухе розширення в турбіні.">кремнійорганіці</span>. Важкі пари <span class="glossary-term" data-tooltip="Силоксани — клас кремнійорганічних полімерів, які не замерзають, не викликають корозії сталі та зберігають стабільність при нагріві до 300 °C.">силоксанів</span> мають позитивний нахил <span class="glossary-term" data-tooltip="Лінія на T-s діаграмі, що розділяє рідину та пару. У силоксанів нахил dT/ds > 0, тому при розширенні пара не конденсується, а залишається перегрітою.">кривої насичення</span>: відбувається процес <span class="glossary-term" data-tooltip="Сухе розширення — розширення газу в турбіні без випадіння жодної краплі конденсату, що гарантує ресурс лопаток понад 20 років.">«сухого» розширення</span> без вологи та ерозії. Котел гріє безпечне <span class="glossary-term" data-tooltip="Термомасло — мінеральний або синтетичний масляний теплоносій, який циркулює в котлі при температурі до 310 °C за атмосферного тиску (без ризику парового вибуху).">термомасло</span> при атмосферному тиску, дозволивши Кам’янцю-Подільському отримувати <strong>1.6–1.8 МВт</strong> електрики в автоматичному режимі.
+            </p>
+
+            <div class="table-container" style="margin:2px 0;">
+              <table class="bio-table">
+                <thead>
+                  <tr>
+                    <th>Критерій (сегмент 1–5 МВт<sub>ел</sub>)</th>
+                    <th>Класичний водяний Ренкін</th>
+                    <th>Органічний цикл (ORC)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Робочий тиск у котлі</strong></td>
+                    <td>Високий (40–60 бар)</td>
+                    <td><span class="tag-badge tag-green">Атмосферний (~1–3 бар, термомасло)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Вологість у вихлопі турбіни</strong></td>
+                    <td>10–14% вологи (ризик ерозії)</td>
+                    <td><span class="tag-badge tag-cyan">0% («сухе» розширення)</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Внутрішній ККД турбіни</strong></td>
+                    <td>60–65% (втрати в зазорах)</td>
+                    <td><strong>85–88%</strong> (висока молекулярна маса)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Персонал та нагляд</strong></td>
+                    <td>Цілодобовий штат машиністів</td>
+                    <td>Повна автоматизація без чергового 24/7</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="highlight-box gold">
+              <div class="highlight-title">Металургійний бар'єр для великих парових станцій</div>
+              <p class="prose-p" style="margin:0; font-size:12px;">
+                Коли ж потужність ТЕЦ перевищує 15–20 МВт<sub>ел</sub>, повертається класична парова турбіна. Щоб підняти її ККД, інженери прагнуть нагріти пару якомога сильніше (як на вугільних станціях — до 540 °C). Але в біокотлах стрілка термометра намертво зупиняється на 450 °C. Чому? Розкриваємо фізику хлоридного тупика у Розділі 04.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CHAPTER 4: CHLORIDE CORROSION 450 C -->
+      <article class="chapter-article" data-chap="4">
+        <div class="chapter-header">
+          <div>
+            <div class="chapter-meta-tag">РОЗДІЛ 04 // МАТЕРІАЛОЗНАВЧИЙ БАР'ЄР</div>
+            <h2 class="chapter-heading">Хлоридний тупик 450 °C. Металознавче обмеження, а не термодинамічне</h2>
+          </div>
+          <div class="chapter-seq-badge">РОЗДІЛ 04 / 08</div>
+        </div>
+
+        <div class="mono-split">
+          <div class="mono-visual">
+            <div class="media-canvas" onclick="openLightbox('assets/04_chloride_corrosion.png', 'Рис. 4.1. Розріз труби пароперегрівача біокотла: відкладення солей KCl на зовнішній стінці, виразкова хлоридна корозія металу та потік перегрітої пари всередині (420–450 °C).')">
+              <img src="assets/04_chloride_corrosion.png" class="media-img" alt="Хлоридна корозія труби" style="display:none;" onload="this.style.display='block';" onerror="this.style.display='none';">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">⚠️</div>
+                <div class="media-fallback-title">04_chloride_corrosion.png</div>
+                <div class="media-fallback-sub">Високотемпературна корозія пароперегрівача при спалюванні агросировини</div>
+              </div>
+            </div>
+
+            <div class="media-explication">
+              <div class="exp-item">
+                <span class="exp-dot gold"></span>
+                <span><strong>Зовнішня кірка:</strong> відкладення летких солей хлориду калію (KCl).</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot" style="background:var(--alert); box-shadow:0 0 8px var(--alert);"></span>
+                <span><strong>Червоні каверни:</strong> зона активного хлорного руйнування сталі.</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot cyan"></span>
+                <span><strong>Внутрішній канал:</strong> перегріта водяна пара (обмеження 420–450 °C).</span>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для розгортання на повний екран</div>
+          </div>
+
+          <div class="mono-narrative">
+            <p class="prose-lead">
+              У класичних вугільних котлах пара нагрівається до 540–560 °C для максимізації ККД. У біомасових котлах спроба підняти температуру вище 450 °C руйнує метал за один сезон. Солома та лушпиння соняшника містять калій і хлор у концентраціях, агресивних для труб <span class="glossary-term" data-tooltip="Пароперегрівач — трубний теплообмінник у найгарячішій зоні котла, де насичена пара догрівається до 420–450 °C перед подачею на турбіну.">пароперегрівача</span>.
+            </p>
+
+            <p class="prose-p">
+              Під час згоряння агропалива утворюється газоподібний <span class="glossary-term" data-tooltip="Хлорид калію (KCl) — легкоплавка сіль, яка випаровується у факелі при 850 °C і осідає твердими кристалами на відносно холодніших трубах пароперегрівача.">хлорид калію (KCl)</span>. Коли температура стінки труби перевищує 450 °C, запускається автокаталітичний процес <span class="glossary-term" data-tooltip="Активне окислення — хімічний механізм, при якому газоподібний хлор проникає під захисний шар металу та циклічно перетворює сталь на пухку іржу.">активного окислення</span>.
+            </p>
+
+            <!-- ИНТЕРАКТИВНЫЙ ХИМИЧЕСКИЙ РЕНТГЕН РЕАКЦИЙ -->
+            <div>
+              <div style="font-family:var(--font-mono); font-size:10px; color:var(--alert); font-weight:700; margin-bottom:6px; letter-spacing:0.6px;">
+                🔬 ХІМІЧНИЙ РЕНТГЕН КОРОЗІЇ (ОБЕРІТЬ СТАДІЮ ПРОЦЕСУ):
+              </div>
+              <div class="xray-steps-bar">
+                <button class="xray-btn active" onclick="setCorrosionStep(1, this)">1. Конденсація KCl</button>
+                <button class="xray-btn" onclick="setCorrosionStep(2, this)">2. Утворення FeCl₂</button>
+                <button class="xray-btn" onclick="setCorrosionStep(3, this)">3. Замкнений цикл Cl₂</button>
+              </div>
+              <div class="xray-stage-box">
+                <div style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--gold); margin-bottom:4px;" id="xrayFormula">
+                  2KCl + SO<sub>2</sub> + O<sub>2</sub> ➔ K<sub>2</sub>SO<sub>4</sub> + Cl<sub>2</sub>↑
+                </div>
+                <div style="font-size:11.5px; color:#cbd5e1; line-height:1.5;" id="xrayDesc">
+                  Пари хлориду калію осідають на сталевій трубі та вступають у реакцію з оксидами сірки димових газів, вивільняючи вільний молекулярний хлор безпосередньо біля поверхні металу.
+                </div>
+              </div>
+            </div>
+
+            <div class="highlight-box alert">
+              <div class="highlight-title">Інженерне обмеження: Параметри пари 420–450 °C / 40–50 бар</div>
+              <p class="prose-p" style="margin:0; font-size:12px;">
+                За температури вище 450 °C звичайна <span class="glossary-term" data-tooltip="Легована сталь (напр. 12Х1МФ або P91) — стандартний жароміцний матеріал котельних труб, стійкий до 550 °C у чистому середовищі, але вразливий до хлору.">легована сталь</span> втрачає до <strong>2–5 мм товщини стінки на рік</strong>. Тому на біомасі температуру пари тримають не вище 450 °C. Підняти її вище можливо лише при наплавленні труби суперсплавом <span class="glossary-term" data-tooltip="Inconel 625 — жароміцний корозійностійкий сплав на базі нікелю (58%), хрому (21%) та молібдену. Збільшує вартість котельного агрегату на 60–80%.">Inconel 625</span> або додаванні дорогих сульфатних присадок.
+              </p>
+            </div>
+
+            <div class="highlight-box green" style="padding:10px 14px;">
+              <div class="highlight-title" style="color:var(--green);">Чи існує технологія без шлаку та корозії котлів?</div>
+              <p class="prose-p" style="margin:0; font-size:11.5px;">
+                Якщо агробіомаса волога або агресивна для спалювання в металевих топках, її переробляють зовсім інакше — не вогнем, а мікробіологічним бродінням. Як отримати чистий газ для ГТС без жодної топки, розкрито у Розділі 05.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CHAPTER 5: BIOGAS & BIOMETHANE -->
+      <article class="chapter-article" data-chap="5">
+        <div class="chapter-header">
+          <div>
+            <div class="chapter-meta-tag">РОЗДІЛ 05 // АЛЬТЕРНАТИВНИЙ МАРШРУТ</div>
+            <h2 class="chapter-heading">Агропромисловий метан. Від посліду до біометану в магістральній ГТС</h2>
+          </div>
+          <div class="chapter-seq-badge">РОЗДІЛ 05 / 08</div>
+        </div>
+
+        <div class="mono-split">
+          <div class="mono-visual">
+            <div class="media-canvas" onclick="openLightbox('assets/05_biogas_cstr.png', 'Рис. 5.1. Біогазовий комплекс: анаеробний метантенк CSTR із купольним газгольдером (ліворуч), когенераційна установка ГПУ та мембранні колони очищення біометану для подачі в ГТС (праворуч).')">
+              <img src="assets/05_biogas_cstr.png" class="media-img" alt="Біогазовий комплекс CSTR" style="display:none;" onload="this.style.display='block';" onerror="this.style.display='none';">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">🧪</div>
+                <div class="media-fallback-title">05_biogas_cstr.png</div>
+                <div class="media-fallback-sub">Метантенки CSTR, когенерація на ГПУ та мембранне збагачення до біометану</div>
+              </div>
+            </div>
+
+            <div class="media-explication">
+              <div class="exp-item">
+                <span class="exp-dot gold"></span>
+                <span><strong>Anaerobic digester (CSTR) / Dual-membrane:</strong> метантенк із підігрівом субстрату (40 °C) та купольним газгольдером.</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot cyan"></span>
+                <span><strong>Gas Piston CHP engine:</strong> когенераційна газопоршнева установка (ККД<sub>ел</sub> 40–42%).</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot" style="background:var(--green); box-shadow:0 0 8px var(--green);"></span>
+                <span><strong>Membrane separators ➔ Gas grid valve:</strong> відсікання CO<sub>2</sub> та подача біометану (97.5% CH<sub>4</sub>) у ГТС.</span>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для розгортання на повний екран</div>
+          </div>
+
+          <div class="mono-narrative">
+            <p class="prose-lead">
+              Агробіогаз — це технологічна відповідь на проблему вологих відходів тваринництва і харчової промисловості (вологістю 85–92%), які неможливо спалити в топках. Процес базується на анаеробному бродінні <span class="glossary-term" data-tooltip="Субстрат — суміш органічної сировини (курячий послід, гній ВРХ, буряковий жом, кукурудзяний силос), підготовлена для завантаження в реактор.">субстрату</span> без доступу кисню в герметичних <span class="glossary-term" data-tooltip="Метантенк (CSTR) — вертикальний циліндричний біореактор безперервного перемішування з підігрівом і купольним газгольдером, де бактерії без доступу повітря розкладають органіку з виділенням біогазу.">метантенках (реакторах CSTR)</span> при <span class="glossary-term" data-tooltip="Мезофільний температурний режим (38–42 °C) — оптимальний діапазон для стабільної роботи метаногенних бактерій із мінімальним витрачанням тепла на обігрів.">мезофільному режимі</span> (38–42 °C).
+            </p>
+
+            <p class="prose-p">
+              Сирий біогаз із купола реактора містить 55–65% метану (CH<sub>4</sub>), 35–45% вуглекислого газу (CO<sub>2</sub>) та домішки корозійно активного <span class="glossary-term" data-tooltip="Сірководень (H₂S) — токсична домішка (до 2000–5000 ppm) у біогазі. При спалюванні перетворюється на сірчану кислоту, яка руйнує циліндри двигунів та труби.">сірководню (H<sub>2</sub>S)</span>. Після очищення від сірки газ спалюють у газопоршневих установках (<span class="glossary-term" data-tooltip="ГПУ (Газопоршнева когенераційна установка, напр. Jenbacher, Caterpillar) — двигун внутрішнього згоряння, що крутить електрогенератор (ККД 40–42%), а тепло вихлопу віддає на підігрів метантенка.">ГПУ</span>), отримуючи електрику й тепло, а переброджений залишок перетворюється на <span class="glossary-term" data-tooltip="Дигестат — знезаражений залишок бродіння без патогенів і запаху, багатий на доступний азот і фосфор. Повністю замінює дорогі мінеральні добрива на полях.">дигестат</span> — цінне органічне добриво.
+            </p>
+
+            <div class="table-container" style="margin:2px 0;">
+              <table class="bio-table">
+                <thead>
+                  <tr>
+                    <th>Напрямок використання біогазу</th>
+                    <th>Ключове обладнання</th>
+                    <th>Кінцевий продукт та ККД</th>
+                    <th>Інфраструктурна умова</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Когенерація на місці (CHP)</strong></td>
+                    <td>Двигуни ГПУ (Jenbacher)</td>
+                    <td>Електрика (<span class="tag-badge tag-cyan">ККД 40–42%</span>) + тепло</td>
+                    <td>Потребує вільних потужностей електропідстанцій (ЛЕП).</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Збагачення до біометану</strong></td>
+                    <td>Вугільні фільтри + мембрани</td>
+                    <td>Газ <span class="tag-badge tag-green">CH<sub>4</sub> ≥ 97.5%</span> (експорт)</td>
+                    <td>Врізка в <span class="glossary-term" data-tooltip="Газотранспортна система (ГТС) — магістральні газопроводи та підземні сховища газу України, здатні приймати біометан напряму без будівництва нових ЛЕП.">ГТС</span> або заправка транспорту (Bio-CNG).</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="highlight-box green">
+              <div class="highlight-title">Технологічний вектор 2024–2026: Мембранне збагачення</div>
+              <p class="prose-p" style="margin:0; font-size:12px;">
+                Ключовим трендом в Україні став перехід до <span class="glossary-term" data-tooltip="Мембранне очищення (апгрейдинг) — розділення газів під тиском 16 бар через полімерні капіляри: дрібні молекули CO₂ виходять назовні, а більші молекули CH₄ залишаються в потоці.">мембранного очищення</span> до <span class="glossary-term" data-tooltip="Біометан — повний хімічний аналог природного газу з теплотою згоряння > 34 МДж/м³, сертифікований за стандартом ДСТУ EN 16723-1 для закачування в трубу ГТС.">біометану</span>. Полімерні мембрани під тиском 16 бар відсікають баластний CO<sub>2</sub>. Отриманий газ закачують напряму в магістральні газопроводи України. Які конкретно заводи вже втілили ці технології в Україні? Дивимося у Розділі 06.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CHAPTER 6: UKRAINIAN FLAGSHIPS -->
+      <article class="chapter-article" data-chap="6">
+        <div class="chapter-header">
+          <div>
+            <div class="chapter-meta-tag">РОЗДІЛ 06 // ПРОМИСЛОВИЙ ФРОНТИР</div>
+            <h2 class="chapter-heading">Українські флагмани. Що реально працює в енергетиці 2024–2026 років</h2>
+          </div>
+          <div class="chapter-seq-badge">РОЗДІЛ 06 / 08</div>
+        </div>
+
+        <div class="mono-split">
+          <div class="mono-visual">
+            <div class="media-canvas" onclick="openLightbox('assets/06_ua_plants_map.png', 'Рис. 6.1. Географія ключових біоенергетичних вузлів України: Кам’янець-Подільський та Теофіполь (Хмельниччина), комплекс МХП у Ладижині (Вінниччина) та тепловий кластер у Славутичі (північ).')">
+              <img src="assets/06_ua_plants_map.png" class="media-img" alt="Карта об'єктів біоенергетики України" style="display:none; object-fit:contain; padding:6px;" onload="this.style.display='block';" onerror="this.style.display='none';">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">🗺️</div>
+                <div class="media-fallback-title">06_ua_plants_map.png</div>
+                <div class="media-fallback-sub">Географія та параметри діючих біоенергетичних станцій України</div>
+              </div>
+            </div>
+
+            <div class="media-explication">
+              <div class="exp-item">
+                <span class="exp-dot cyan"></span>
+                <span><strong>Західний центр (Хмельниччина):</strong> ORC-ТЕС Кам’янця-Подільського та біометан Теофіполя.</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot" style="background:var(--green); box-shadow:0 0 8px var(--green);"></span>
+                <span><strong>Вінниччина (Ладижин):</strong> біогазовий комплекс МХП (12 МВт<sub>ел</sub> на посліді).</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot gold"></span>
+                <span><strong>Північ (Славутич):</strong> діюча муніципальна котельня на трісці (10.5 МВт<sub>тепл</sub>).</span>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для розгортання на повний екран</div>
+          </div>
+
+          <div class="mono-narrative">
+            <p class="prose-lead">
+              В Україні сформовано діючий промисловий сектор біогенерації, адаптований під специфіку місцевої аграрної та лісової сировини. Наведені чотири об'єкти репрезентують усі ключові технологічні класи сучасної теплоенергетики.
+            </p>
+
+            <div class="table-container" style="margin:2px 0;">
+              <table class="bio-table">
+                <thead>
+                  <tr>
+                    <th>Енергетичний об'єкт</th>
+                    <th>Потужність (ел. / тепл.)</th>
+                    <th>Паливо (вологість)</th>
+                    <th>Інженерний контекст та режим роботи</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Кам'янець-Подільська ТЕС</strong><br><small style="color:var(--cyan);">Режим: <span class="glossary-term" data-tooltip="Heat-led (теплофікаційний режим) — робота станції підлаштовується під графік теплового попиту міста: максимум потужності взимку, коли тепломережа забирає все тепло.">Heat-led</span></small></td>
+                    <td><span class="tag-badge tag-cyan">~1.6–1.8 МВт<sub>ел</sub></span><br>15 МВт<sub>тепл</sub></td>
+                    <td>Солома, кукурудза, тріска (W<sup>r</sup> 15–45%)</td>
+                    <td>Котли на термомаслі + модуль <span class="glossary-term" data-tooltip="Turboden ORC — сертифікований італійський турбогенератор органічного циклу Ренкіна (потужність 1.6–1.8 МВт), що працює без постійного чергового машиніста.">ORC Turboden</span>. Перша в країні муніципальна біо-ТЕС для міського опалення.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>МХП «Біоенергопродукт» (Ладижин)</strong><br><small style="color:var(--green);">Режим: <span class="glossary-term" data-tooltip="Power-led (електрогенеруючий режим) — пріоритет максимального та безперервного виробітку електроенергії (база 24/7) незалежно від сезонного попиту на опалення.">Power-led</span></small></td>
+                    <td><span class="tag-badge tag-green">12.0 МВт<sub>ел</sub></span><br>(ціль 24 МВт<sub>ел</sub>)</td>
+                    <td>Курячий послід + силос (W<sup>r</sup> ~85%)</td>
+                    <td>Реактори <span class="glossary-term" data-tooltip="CSTR (Continuous Stirred-Tank Reactor) — вертикальні анаеробні ферментери з безперервним перемішуванням та підігрівом субстрату.">CSTR</span> + <span class="glossary-term" data-tooltip="ГПУ — газопоршневі когенераційні установки (двигуни Jenbacher), які перетворюють біогаз на електроенергію з ККД 40–42%.">ГПУ</span>. Найбільший у Європі комплекс на пташиному посліді; віддає технологічне тепло птахофабриці та <span class="glossary-term" data-tooltip="Дигестат — знезаражений залишок з метантенка, багатий на азот і фосфор; високоефективне органічне біодобриво без неприємного запаху.">дигестат</span> на поля.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Теофіпольська БЕС</strong><br><small style="color:var(--green);">Режим: <span class="glossary-term" data-tooltip="Power-led + ГТС — гібридна схема, яка дозволяє гнучко балансувати між генерацією електроенергії в ГПУ та подачею чистого біометану безпосередньо у газову мережу.">Power-led + ГТС</span></small></td>
+                    <td><span class="tag-badge tag-green">~15.6 МВт<sub>ел</sub></span><br>+ тепло теплиць</td>
+                    <td>Буряковий жом, <span class="glossary-term" data-tooltip="Гній ВРХ — відходи великої рогатої худоби, які є стабільною основою для анаеробного бродіння завдяки багатій природній мікрофлорі.">гній ВРХ</span>, силос</td>
+                    <td><span class="glossary-term" data-tooltip="Агрокластер — інтегроване виробниче об'єднання цукрового заводу, тваринницьких ферм, теплиць та біогазової станції з замкненим циклом без відходів.">Агрокластер</span>, який першим в Україні реалізував пряме підключення лінії <span class="glossary-term" data-tooltip="Мембранний біометан — біогаз, очищений через полімерні порожнистоволоконні мембрани від CO₂ та сірки до чистоти метану ≥ 97.5%.">мембранного біометану</span> до магістральної <span class="glossary-term" data-tooltip="ГТС — газотранспортна система України, куди біометан подається під тиском після доведення концентрації CH₄ до ≥ 97.5%.">ГТС</span>.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Славутицька ТЕС (Кластер)</strong><br><small style="color:var(--gold);">Режим: <span class="glossary-term" data-tooltip="Heat-led — муніципальна котельня працює строго за температурним графіком тепломережі міста Славутич.">Heat-led</span></small></td>
+                    <td><span class="tag-badge tag-gold">10.5 МВт<sub>тепл</sub> (діюча)</span><br><small style="color:var(--text-muted);">(12.5 МВт<sub>ел</sub> проєкт)</small></td>
+                    <td>Деревна тріска лісгоспів (W<sup>r</sup> 35–50%)</td>
+                    <td>Діюча <span class="glossary-term" data-tooltip="Водогрійна котельня — котел на похило-перетинній решітці, що гріє безпосередньо мережну воду для опалення без парової турбіни.">водогрійна котельня</span>, що покриває ~40% тепла міста. Будівництво електричної турбіни є цільовим етапом розвитку.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="highlight-box purple">
+              <div class="highlight-title">Системна відмінність: Heat-led проти Power-led</div>
+              <p class="prose-p" style="margin:0; font-size:12px;">
+                Муніципальні біо-ТЕС працюють за графіком <span class="glossary-term" data-tooltip="Heat-led (теплофікаційний режим) — режим роботи ТЕЦ, при якому виробіток електрики прив'язаний до потреби міста в гарячій воді та опаленні (пік взимку).">Heat-led</span>: їхня рентабельність визначається повною утилізацією скидного тепла у зимовий період. <span class="glossary-term" data-tooltip="Агрокомплекс МХП (Вінниччина) — біоенергетичний комплекс біля м. Ладижин (перша черга 12 МВт_ел, ціль 24 МВт_ел), що переробляє сотні тонн посліду на добу.">Агрокомплекси МХП</span> та <span class="glossary-term" data-tooltip="Теофіпольська БЕС (Хмельниччина) — станція потужністю 15.6 МВт_ел на базі цукрового заводу, піонер прямої подачі біометану в ГТС України.">Теофіполя</span> функціонують у цілорічному базовому режимі <span class="glossary-term" data-tooltip="Power-led (електрогенеруючий режим) — робота станції за стабільним графіком максимальної генерації електроенергії або біометану незалежно від пори року.">Power-led</span> завдяки стабільному потоку відходів виробництва. Як математично порахувати реальний вихід енергії для такого об'єкта — перевіримо на живому стенді у Розділі 07.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CHAPTER 7: INTERACTIVE SIMULATOR -->
+      <article class="chapter-article" data-chap="7">
+        <div class="chapter-header">
+          <div>
+            <div class="chapter-meta-tag">РОЗДІЛ 07 // ІНЖЕНЕРНИЙ СТЕНД</div>
+            <h2 class="chapter-heading">Інженерний стенд. Живий симулятор балансів когенерації</h2>
+          </div>
+          <div class="chapter-seq-badge">РОЗДІЛ 07 / 08</div>
+        </div>
+
+        <div class="mono-split">
+          <div class="mono-visual">
+            <div class="media-canvas" onclick="openLightbox('assets/07_chp_control.png', 'Рис. 7.1. Цифровий двійник когенераційного енергоблока: телеметрія теплових балансів, електричного ККД та моніторинг безпечних параметрів пари.')">
+              <img src="assets/07_chp_control.png" class="media-img" alt="Пульт керування ТЕЦ" style="display:none;" onload="this.style.display='block';" onerror="this.style.display='none';">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">🎛️</div>
+                <div class="media-fallback-title">07_chp_control.png</div>
+                <div class="media-fallback-sub">Автоматизований стенд розрахунку когенераційного балансу</div>
+              </div>
+            </div>
+
+            <div class="media-explication">
+              <div class="exp-item">
+                <span class="exp-dot cyan"></span>
+                <span><strong>Блакитна голограма:</strong> цифровий двійник когенераційного котла й турбіни.</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot gold"></span>
+                <span><strong>Золоті діаграми:</strong> баланс теплової потужності та ККД циклу.</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot" style="background:var(--green); box-shadow:0 0 8px var(--green);"></span>
+                <span><strong>Зелені осцилограми:</strong> моніторинг заміщення природного газу в часі.</span>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для розгортання на повний екран</div>
+          </div>
+
+          <div class="mono-narrative">
+            <p class="prose-lead">
+              Для практичної верифікації <span class="glossary-term" data-tooltip="Матеріальний та тепловий баланс — точний розрахунок збереження маси та енергії: уся введена з паливом енергія переходить у корисну електрику, тепло і неминучі втрати котла.">матеріальних та теплових потоків</span> створено двоконтурний симулятор. Модель базується на рівняннях <span class="glossary-term" data-tooltip="Перший закон термодинаміки — закон збереження енергії, який визначає граничну суму електричної та теплової потужності станції.">першого закону термодинаміки</span> та реальних характеристиках українських видів біопалива.
+            </p>
+
+            <div style="display:flex; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
+              <button class="btn-pill active" id="btnModeSolid" onclick="switchSimulatorMode('solid')">🪵 ТВЕРДА БІОМАСА (КОТЕЛ + ORC / ПАРА)</button>
+              <button class="btn-pill" id="btnModeBiogas" onclick="switchSimulatorMode('biogas')">🐄 АГРОБІОГАЗ (МЕТАНТЕНК + ГПУ)</button>
+            </div>
+
+            <!-- SIMULATOR 1: SOLID BIOMASS -->
+            <div class="calc-wrap" id="simBoxSolid">
+              <div class="calc-inputs-grid">
+                <div class="calc-group">
+                  <label class="calc-lbl">Вид біопалива:</label>
+                  <select class="calc-ctrl" id="simSolidFuel" onchange="calcSolidCHP()">
+                    <option value="wood" selected>Деревна тріска (Qᵢʳ = 10.5 МДж/кг, W=45%)</option>
+                    <option value="pellet">Деревні гранули A1 (Qᵢʳ = 17.5 МДж/кг, W=8%)</option>
+                    <option value="straw">Солома зернових (Qᵢʳ = 14.2 МДж/кг, W=15%)</option>
+                    <option value="husk">Лушпиння соняшника (Qᵢʳ = 16.8 МДж/кг, W=10%)</option>
+                  </select>
+                </div>
+                <div class="calc-group">
+                  <label class="calc-lbl">Витрата палива B (т/год):</label>
+                  <input type="number" class="calc-ctrl" id="simSolidFlow" value="3.5" step="0.5" min="0.5" oninput="calcSolidCHP()">
+                </div>
+                <div class="calc-group">
+                  <label class="calc-lbl">Технологічний цикл:</label>
+                  <select class="calc-ctrl" id="simSolidCycle" onchange="calcSolidCHP()">
+                    <option value="orc" selected>ORC-модуль (ККД ел. 19%, Термомасло)</option>
+                    <option value="steam">Парова турбіна (ККД ел. 24%, Ренкін)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="calc-metrics-grid">
+                <div class="metric-card" style="border-left:3px solid var(--gold);">
+                  <div class="metric-card-lbl">Теплота палива (Q<sub>пал</sub>)</div>
+                  <div class="metric-card-val" id="resSolidQfuel">10.21 МВт</div>
+                  <div class="metric-card-sub" id="resSolidLhv">Q<sub>i</sub><sup>r</sup> = 10.5 МДж/кг</div>
+                </div>
+                <div class="metric-card" style="border-left:3px solid var(--cyan);">
+                  <div class="metric-card-lbl">Електропотужність (P<sub>ел</sub>)</div>
+                  <div class="metric-card-val" id="resSolidPel" style="color:var(--cyan);">1.94 МВт<sub>ел</sub></div>
+                  <div class="metric-card-sub" id="resSolidEtaEl">η<sub>ел</sub> = 19.0% | η<sub>CHP</sub> = 88%</div>
+                </div>
+                <div class="metric-card" style="border-left:3px solid var(--green);">
+                  <div class="metric-card-lbl">Корисне тепло (Q<sub>тепл</sub>)</div>
+                  <div class="metric-card-val" id="resSolidQth" style="color:var(--green);">7.04 МВт<sub>тепл</sub></div>
+                  <div class="metric-card-sub" id="resSolidGcal">6.05 Гкал/год у мережу</div>
+                </div>
+                <div class="metric-card" style="border-left:3px solid #fff;">
+                  <div class="metric-card-lbl">Заміщення газу / год</div>
+                  <div class="metric-card-val" id="resSolidGasSaved">671 м³/год</div>
+                  <div class="metric-card-sub" id="resSolidGasDay">~16.1 тис. м³/добу</div>
+                </div>
+              </div>
+
+              <!-- PHYSICAL GUARDRAIL ALERT -->
+              <div class="guardrail-card" id="corrosionWarning">
+                <div style="font-size:26px;">⚠️</div>
+                <div style="font-size:11.5px; color:#fca5a5; line-height:1.5;">
+                  <strong>АВАРІЙНЕ ЗАСТЕРЕЖЕННЯ (ХЛОРИДНА КОРОЗІЯ ПАРОПЕРЕГРІВАЧА):</strong><br>
+                  Обрано парову турбіну на агробіомасі (солома/лушпиння). Робота з перегрівом пари вище <strong>450 °C</strong> спричиняє автокаталітичне руйнування металу через відкладення розплавів хлориду калію (KCl)! Рекомендовано обмежити параметри пари до 420 °C або перейти на термомасляний ORC-контур.
+                </div>
+              </div>
+            </div>
+
+            <!-- SIMULATOR 2: BIOGAS -->
+            <div class="calc-wrap" id="simBoxBiogas" style="display:none;">
+              <div class="calc-inputs-grid">
+                <div class="calc-group">
+                  <label class="calc-lbl">Вид біосубстрату:</label>
+                  <select class="calc-ctrl" id="simBioSubstrate" onchange="calcBiogasCHP()">
+                    <option value="manure" selected>Гній ВРХ + силос (Вихід 110 м³/т)</option>
+                    <option value="poultry">Курячий послід МХП (Вихід 140 м³/т)</option>
+                    <option value="pulp">Буряковий жом (Вихід 85 м³/т)</option>
+                  </select>
+                </div>
+                <div class="calc-group">
+                  <label class="calc-lbl">Завантаження (т/добу):</label>
+                  <input type="number" class="calc-ctrl" id="simBioTons" value="250" step="10" min="10" oninput="calcBiogasCHP()">
+                </div>
+                <div class="calc-group">
+                  <label class="calc-lbl">Вміст метану (CH<sub>4</sub>):</label>
+                  <select class="calc-ctrl" id="simBioCh4" onchange="calcBiogasCHP()">
+                    <option value="0.55">55% CH₄ (стандарт)</option>
+                    <option value="0.60" selected>60% CH₄ (високий)</option>
+                    <option value="0.65">65% CH₄ (збагачений)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="calc-metrics-grid">
+                <div class="metric-card" style="border-left:3px solid var(--green);">
+                  <div class="metric-card-lbl">Вихід біогазу / добу</div>
+                  <div class="metric-card-val" id="resBioGasVol" style="color:var(--green);">27 500 м³</div>
+                  <div class="metric-card-sub" id="resBioGasHour">~1 146 м³/год</div>
+                </div>
+                <div class="metric-card" style="border-left:3px solid var(--cyan);">
+                  <div class="metric-card-lbl">Потужність ГПУ (P<sub>ел</sub>)</div>
+                  <div class="metric-card-val" id="resBioPel" style="color:var(--cyan);">2.84 МВт<sub>ел</sub></div>
+                  <div class="metric-card-sub">η<sub>ел</sub> ГПУ = 41.5%</div>
+                </div>
+                <div class="metric-card" style="border-left:3px solid var(--gold);">
+                  <div class="metric-card-lbl">Тепло когенерації (Q<sub>тепл</sub>)</div>
+                  <div class="metric-card-val" id="resBioQth" style="color:var(--gold);">2.87 МВт<sub>тепл</sub></div>
+                  <div class="metric-card-sub" id="resBioGcal">2.47 Гкал/год (підігрів)</div>
+                </div>
+                <div class="metric-card" style="border-left:3px solid var(--purple);">
+                  <div class="metric-card-lbl">Товарний біометан</div>
+                  <div class="metric-card-val" id="resBioMethane" style="color:var(--purple);">705 м³/год</div>
+                  <div class="metric-card-sub">97.5% CH<sub>4</sub> у ГТС</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ПРОЗРАЧНА МАТЕМАТИЧНА МОДЕЛЬ -->
+            <div class="highlight-box" style="padding:10px 14px; border-left-color:var(--gold);">
+              <div class="highlight-title" style="color:var(--gold); margin-bottom:4px;">Розрахунковий базис математичної моделі</div>
+              <div style="font-family:var(--font-mono); font-size:11px; color:#cbd5e1; line-height:1.6;">
+                • <span class="glossary-term" data-tooltip="Підведена теплова потужність палива (МВт) визначається добутком масової витрати B (кг/с) на нижчу теплоту згоряння Qᵢʳ.">Q<sub>пал</sub></span> = B · Q<sub>i</sub><sup>r</sup> / 3.6 &nbsp;|&nbsp;
+                • P<sub>ел</sub> = Q<sub>пал</sub> · <span class="glossary-term" data-tooltip="Електричний ККД силового модуля: 19% для ORC-установки на термомаслі, 24% для парової турбіни, 41.5% для газопоршневої ГПУ.">η<sub>ел</sub></span> &nbsp;|&nbsp;
+                • Q<sub>тепл</sub> = Q<sub>пал</sub> · η<sub>кот</sub> · (1 − η<sub>ел</sub> / η<sub>кот</sub>) &nbsp;|&nbsp;
+                • <span class="glossary-term" data-tooltip="Сумарний коефіцієнт використання тепла палива в когенераційному циклі (η_CHP) для сучасних установок сягає 84–88%.">η<sub>CHP</sub></span> = (P<sub>ел</sub> + Q<sub>тепл</sub>) / Q<sub>пал</sub>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CHAPTER 8: EPILOGUE & MICROGRIDS -->
+      <article class="chapter-article" data-chap="8">
+        <div class="chapter-header">
+          <div>
+            <div class="chapter-meta-tag">РОЗДІЛ 08 // ЕПІЛОГ ТА ВІЗІЯ</div>
+            <h2 class="chapter-heading">Епілог. Децентралізація, Microgrids та системний ефект заміщення 8 млрд м³ газу</h2>
+          </div>
+          <div class="chapter-seq-badge">РОЗДІЛ 08 / 08</div>
+        </div>
+
+        <div class="mono-split">
+          <div class="mono-visual">
+            <div class="media-canvas" onclick="openLightbox('assets/08_vision_microgrid.png', 'Рис. 8.1. Модель децентралізованого енергетичного кластера (Microgrid): автономне електро- та теплопостачання міської критичної інфраструктури на базі місцевої біомаси.')">
+              <img src="assets/08_vision_microgrid.png" class="media-img" alt="Модель Smart Microgrid" style="display:none;" onload="this.style.display='block';" onerror="this.style.display='none';">
+              <div class="media-fallback">
+                <div class="media-fallback-icon">🇺🇦</div>
+                <div class="media-fallback-title">08_vision_microgrid.png</div>
+                <div class="media-fallback-sub">Енергетичні кластери Smart Microgrids на базі відновлюваної біомаси</div>
+              </div>
+            </div>
+
+            <div class="media-explication">
+              <div class="exp-item">
+                <span class="exp-dot cyan"></span>
+                <span><strong>Блакитні кільця:</strong> локальна електромережа живлення лікарні та водоканалу.</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot gold"></span>
+                <span><strong>Золоті магістралі:</strong> теплопостачання житлових кварталів від біо-ТЕЦ.</span>
+              </div>
+              <div class="exp-item">
+                <span class="exp-dot" style="background:var(--green); box-shadow:0 0 8px var(--green);"></span>
+                <span><strong>Зелена дуга:</strong> замкнений вуглецевий баланс фотосинтезу та генерації.</span>
+              </div>
+            </div>
+            <div class="media-hint">🔍 Натисніть для розгортання на повний екран</div>
+          </div>
+
+          <div class="mono-narrative">
+            <p class="prose-lead">
+              Відновлення енергетичної системи України потребує переходу від уразливих централізованих блоків радянського типу до <span class="glossary-term" data-tooltip="Розподілена когенерація — мережа середніх і малих ТЕЦ (1–15 МВт), розташованих безпосередньо біля споживачів та джерел палива, що знижує втрати в мережах і вразливість від ударів.">розподіленої когенерації</span>, здатної нести базове навантаження в автономному режимі.
+            </p>
+
+            <div class="highlight-box">
+              <div class="highlight-title">Системні ефекти впровадження біогенерації в Україні</div>
+              <ul style="padding-left:18px; margin:0; font-size:12.5px; color:#cbd5e1; line-height:1.65;">
+                <li><strong>Енергетична живучість (<span class="glossary-term" data-tooltip="Microgrids (мікромережі) — автономні локальні енерговузли, здатні від'єднуватися від загальної мережі під час блекауту та утримувати власну частоту 50 Гц для живлення лікарень і теплопунктів.">Microgrids</span>):</strong> локальна біо-ТЕС потужністю 3–5 МВт<sub>ел</sub> здатна утримувати теплопостачання та водоканал 50-тисячного міста при повному знеструмленні магістральних ЛЕП.</li>
+                <li><strong>Декарбонізація та директива <span class="glossary-term" data-tooltip="RED II (Renewable Energy Directive II) — ключова директива ЄС щодо відновлюваної енергії, яка встановлює критерії скорочення викидів парникових газів для експорту зеленого біометану.">RED II</span>:</strong> перехід на біомасу знижує <span class="glossary-term" data-tooltip="Вуглецевий слід — сукупний обсяг викидів парникових газів (CO₂-екв) за повний життєвий цикл виробництва енергії: від заготівлі сировини до спалювання.">вуглецевий слід</span> на 85–92%, відкриваючи ринок експорту українського <span class="glossary-term" data-tooltip="Біометан — збагачений до CH₄ ≥ 97.5% біогаз, придатний до прямого закачування у газопроводи ЄС через українську ГТС.">біометану</span> до країн ЄС.</li>
+                <li><strong>Макроекономічний баланс:</strong> заміщення 8–10 млрд м³ імпортного газу щороку залишає фінансові ресурси в межах українського агросектору та машинобудування.</li>
+              </ul>
+            </div>
+
+            <div class="grid-2col">
+              <div class="highlight-box gold" style="padding:10px 14px;">
+                <div class="highlight-title" style="color:var(--gold);">Технологічний підсумок</div>
+                <p class="prose-p" style="margin:0; font-size:11.5px;">
+                  Цикл <strong>ORC</strong> на термомаслі домінує в діапазоні 0.2–5 МВт<sub>ел</sub>, тоді як велика генерація спирається на топки <strong>CFB</strong> з лімітом перегріву пари <strong>420–450 °C</strong> через хлоридну корозію.
+                </p>
+              </div>
+              <div class="highlight-box green" style="padding:10px 14px;">
+                <div class="highlight-title" style="color:var(--green);">Практична реалізація</div>
+                <p class="prose-p" style="margin:0; font-size:11.5px;">
+                  Досвід Кам’янця-Подільського, Ладижина, Теофіполя та Славутича підтвердив технічну зрілість біо-ТЕС та біометанових кластерів в умовах України.
+                </p>
+              </div>
+            </div>
+
+            <p class="prose-p" style="margin-top:2px;">
+              Проведений термодинамічний і технологічний аналіз підтверджує, що біоенергетична когенерація та виробництво біометану формують технологічно обґрунтований каркас стійкості сучасної енергосистеми України.
+            </p>
+          </div>
+        </div>
+      </article>
+
+    </main>
+
+    <footer>
+      НТУ «Дніпровська політехніка» // Інститут електроенергетики // Кафедра теплового інжинірингу // гр. 141-24-2 // 2026
+    </footer>
+
+  </div>
+
+  <!-- LIGHTBOX MODAL З АНОТАЦІЄЮ -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+    <img src="" id="lightboxImg" class="lightbox-img" alt="Збільшений графічний рендер">
+    <div class="lightbox-caption" id="lightboxCap" onclick="event.stopPropagation()">
+      <strong>Рис. 0.1.</strong> Концепція біокогенераційного енерговузла.
+    </div>
+  </div>
+
+  <!-- MODAL: ORIGINAL TEACHER BRIEF -->
+  <div class="modal-overlay" id="taskModal" onclick="toggleTaskModal(false)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="toggleTaskModal(false)">✕</button>
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gold); font-weight: 700; margin-bottom: 6px;">ВИХІДНІ ВИМОГИ ВИКЛАДАЧА:</div>
+      <h3 style="font-family: var(--font-title); font-size: 16px; margin-bottom: 12px; color: #fff;">Доповідь 9.11.2026 (перенесено на 16.11.2026) // Дисципліна «Біоенергетика»</h3>
+      
+      <div style="font-size: 12.5px; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px; background:#0d1017; padding:12px; border-radius:4px; border-left:3px solid var(--gold);">
+        <strong>Зробіть доповідь (презентацію) на 5–10 хвилин.</strong><br>
+        <strong>Тематика:</strong><br>
+        4. Технології та обладнання для виробництва тепла і електричної енергії з біомаси.<br>
+        4.1 Виробництво теплової і електричної енергії з біомаси.<br>
+        4.2 Класифікація технологій і характеристики обладнання.<br>
+        4.3 Приклади впровадження в Україні.
+      </div>
+
+      <div style="font-size: 12px; color: #94a3b8; line-height: 1.5;">
+        <strong>Академічна монографічна структура кафедри теплового інжинірингу:</strong><br>
+        1. 9 структурованих глав книги: від термодинамічних бар'єрів до промислових флагманів України.<br>
+        2. Фізичне обґрунтування масштабування технологій: цикл ORC на кремнійорганіці проти водяного Ренкіна.<br>
+        3. Хімізм хлоридної корозії пароперегрівачів з температурним порогом 450 °C.<br>
+        4. Реальні промислові показники Кам'янець-Подільської ТЕС, МХП Ладижин, Теофіполя та Славутича.<br>
+        5. Інженерний стенд-симулятор когенерації з автоматичним контролем небезпечних температурних режимів.
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DEEP TECHNICAL FAQS -->
+  <div class="modal-overlay" id="faqModal" onclick="toggleFaqModal(false)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="toggleFaqModal(false)">✕</button>
+      
+      <div style="font-family: var(--font-mono); font-size: 11px; color: var(--gold); font-weight: 700; margin-bottom: 6px;">
+        ДОДАТКОВІ ФАХОВІ ПИТАННЯ // КАФЕДРА ТЕПЛОВОГО ІНЖИНІРИНГУ
+      </div>
+      <h3 style="font-family: var(--font-title); font-size: 16px; margin-bottom: 14px; color: #fff;">
+        Поглиблений теплоенергетичний аналіз когенераційного обладнання
+      </h3>
+
+      <div class="faq-panel">
+        <div class="faq-panel-head" onclick="toggleFaq(this)">
+          <span>1. Чому в біомасових парових котлах температура пари обмежена 420–450 °C?</span>
+          <span>▼</span>
+        </div>
+        <div class="faq-panel-body">
+          <p>В агробіомасі міститься висока частка сполук Калію та Хлору. При згорянні утворюється леткий хлорид калію (KCl), який конденсується на трубах пароперегрівача:</p>
+          <div class="faq-formula">
+            2KCl + SO<sub>2</sub> + O<sub>2</sub> ➔ K<sub>2</sub>SO<sub>4</sub> + Cl<sub>2</sub>↑<br>
+            Fe + Cl<sub>2</sub> ➔ FeCl<sub>2</sub> (леткий при Т &gt; 450 °C)<br>
+            4FeCl<sub>2</sub> + 3O<sub>2</sub> ➔ 2Fe<sub>2</sub>O<sub>3</sub> + 4Cl<sub>2</sub>↑
+          </div>
+          <p>При температурі стінки понад 450 °C виникає явище <strong>активного окислення</strong>, коли вивільнений вільний Хлор повторно руйнує сталь труби в автокаталітичному циклі зі швидкістю до 2–5 мм на рік. Тому робоча точка пари вибирається не вище 420–450 °C.</p>
+        </div>
+      </div>
+
+      <div class="faq-panel">
+        <div class="faq-panel-head" onclick="toggleFaq(this)">
+          <span>2. У чому перевага циклу ORC над водяною парою при малих потужностях (1–5 МВт)?</span>
+          <span>▼</span>
+        </div>
+        <div class="faq-panel-body">
+          <p>Водяна пара при малих витратах має значний питомий об'єм у вакуумі (до 28 м³/кг), що призводить до падіння ККД малої турбіни нижче 15% та ерозії лопаток вологим паром. У циклі <strong>ORC</strong> важкі силоксани киплять за низьких температур і розширюються абсолютно «всуху» без утворення крапель, забезпечуючи ізоентропійний ККД турбіни 85–88% при безпечному нагріві термомаслом.</p>
+        </div>
+      </div>
+
+      <div class="faq-panel">
+        <div class="faq-panel-head" onclick="toggleFaq(this)">
+          <span>3. У чому різниця між топками киплячого шару BFB та CFB?</span>
+          <span>▼</span>
+        </div>
+        <div class="faq-panel-body">
+          <p>У <strong>стаціонарному киплячому шарі (BFB)</strong> швидкість дуття становить 1.5–2.5 м/с, пісок вирує в нижній частині топки з чітким дзеркалом шару (для котлів 10–25 МВт). У <strong>циркулюючому киплячому шарі (CFB)</strong> швидкість сягає 5–7 м/с — пісок виноситься в увесь об'єм топки, вловлюється гарячими циклонами і повертається в корінь топки, забезпечуючи 99% вигорання низькосортного палива у блоках понад 30–50 МВт.</p>
+        </div>
+      </div>
+
+      <div class="faq-panel">
+        <div class="faq-panel-head" onclick="toggleFaq(this)">
+          <span>4. Як сирий біогаз очищується до біометану для закачування в ГТС?</span>
+          <span>▼</span>
+        </div>
+        <div class="faq-panel-body">
+          <p>Сирий біогаз містить 40% баластного CO<sub>2</sub> та агресивний сірководень H<sub>2</sub>S. Після вугільної десульфуризації газ компримується до 16 бар і подається на полімерні порожнистоволоконні мембрани. Молекули CO<sub>2</sub> проникають крізь капіляри і скидаються, а на виході утримується товарний біометан (CH<sub>4</sub> ≥ 97.5%), який повністю відповідає кодексу ГТС України.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 9 CHAPTERS ENGINE
+    const totalChapters = 9;
+    let activeChap = 0;
+
+    // STUDENT REHEARSAL SPEECHES (COLLAPSIBLE, ONLY VISIBLE WHEN CLICKED)
+    const chapterSpeeches = {
+      0: "У представленій науково-технічній доповіді розглянуто технології та обладнання когенерації на відновлюваній біомасі. В умовах дефіциту базової потужності в ОЕС України біомаса є єдиним відновлюваним джерелом із гарантованим диспетчеризованим графіком навантаження. Заміщення природного газу дозволяє здешевити гігакалорію більш ніж удвічі та формувати автономні Microgrids навколо муніципальних котелень.",
+      1: "Головним інженерним бар'єром агробіомаси є її хімічний склад. На відміну від деревини, солома та стебла кукурудзи містять високі концентрації Калію та Хлору. Вступаючи в реакцію з кремнеземом золи, калій знижує температуру її плавлення до критичних 800–850 °C, що загрожує катастрофічним шлакуванням колосників і конвективних поверхонь котла.",
+      2: "Пряме спалювання біомаси реалізується за двома напрямками. У діапазоні до 25 МВт стандартом є похило-перетинні колосникові решітки з водяним охолодженням, які стійко спалюють сиру тріску вологістю до 55%. Для масштабних промислових блоків від 25 МВт застосовують котли циркулюючого киплячого шару CFB, де горіння в піщаному вихорі гарантує повне вигорання палива та дотримання екологічних нормативів викидів NOₓ.",
+      3: "При виборі термодинамічного циклу для малої розподіленої генерації до 5 МВт класична водяна пара є неефективною: внутрішній ККД малої турбіни падає нижче 15%, а волога пара викликає ерозію лопаток. Тому європейським стандартом є Органічний цикл Ренкіна (ORC) на важких силоксанах. Він забезпечує абсолютно «сухе» розширення та високий ізоентропійний ККД при нагріві термомаслом без високого тиску.",
+      4: "Найбільш небезпечним процесом у біокотлах є високотемпературна хлоридна корозія. Присутній в агропаливі хлорид калію KCl при температурі стінки труби понад 450 °C запускає автокаталітичний цикл активного окислення заліза пароподібним хлором. Стінка труби пароперегрівача стоншується на 2–5 мм на рік. Тому робоча точка пари на біомасі строго обмежена 420–450 °C.",
+      5: "Агропромисловий біогазовий сектор демонструє рекордну ефективність у метантенках CSTR. Біогаз із вмістом метану 60% спалюється у газопоршневих когенераційних агрегатах з електричним ККД понад 41%. Сучасним флагманським напрямом є мембранне збагачення біогазу до біометану чистотою понад 97.5%, що дозволяє подавати зелений газ безпосередньо в газотранспортну систему України.",
+      6: "Український досвід підтверджено реальними об'єктами: Кам'янець-Подільська ТЕС першою довела ефективність термомасляного модуля ORC Turboden на 1.8 МВт електрики; Ладижинський комплекс МХП на 12 МВт є найбільшим у Європі на курячому посліді; Теофіполь першим підключив біометановий шлюз до газових мереж, а у Славутичі діюча котельня на трісці потужністю 10.5 МВт забезпечує 40% теплопостачання міста.",
+      7: "Для практичних розрахунків створено інженерний симулятор. При спалюванні 3.5 т/год тріски установка видає близько 1.94 МВт електрики та 6.7 МВт тепла, заміщуючи майже 800 кубометрів газу щогодини. Модель містить фізичне застереження: спроба підняти температуру вище 450 °C на соломі блокується аварійним попередженням про хлоридну корозію. Другий режим демонструє вихід біометану для агрокомплексів.",
+      8: "Підсумовуючи, біоенергетична когенерація є безальтернативним фундаментом повоєнної децентралізації України. Будівництво станцій на біомасі формує автономні енергоострови Microgrids для міст, скорочує вуглецевий слід за європейськими стандартами та відкриває резерв заміщення до 8–10 млрд кубометрів імпортного газу на рік, залишаючи ресурси всередині країни. Доповідь завершено. Дякую за увагу!"
+    };
+
+    function goToChapter(idx, btn) {
+      activeChap = idx;
+
+      // Update TOC buttons
+      document.querySelectorAll('.toc-btn').forEach((b, i) => {
+        b.classList.toggle('active', i === idx);
+      });
+
+      // Update visible articles
+      document.querySelectorAll('.chapter-article').forEach(a => {
+        a.classList.remove('active');
+      });
+      const target = document.querySelector(`.chapter-article[data-chap="${idx}"]`);
+      if (target) target.classList.add('active');
+
+      // Update reading progress bar
+      const pct = ((idx + 1) / totalChapters) * 100;
+      document.getElementById('readingBar').style.width = pct + '%';
+
+      // Update speech content if drawer is open
+      document.getElementById('speakerText').textContent = chapterSpeeches[idx] || "Виступ відсутній.";
+    }
+
+    function toggleSpeakerDrawer() {
+      const drawer = document.getElementById('speakerDrawer');
+      drawer.classList.toggle('open');
+      document.getElementById('speakerText').textContent = chapterSpeeches[activeChap] || "Виступ відсутній.";
+    }
+
+    function toggleTaskModal(show) {
+      document.getElementById('taskModal').classList.toggle('open', show);
+    }
+
+    function toggleFaqModal(show) {
+      document.getElementById('faqModal').classList.toggle('open', show);
+    }
+
+    function toggleFaq(head) {
+      const body = head.nextElementSibling;
+      const arrow = head.querySelector('span:last-child');
+      body.classList.toggle('open');
+      arrow.textContent = body.classList.contains('open') ? '▲' : '▼';
+    }
+
+    // LIGHTBOX
+    function handleImgError(img) {
+      img.style.display = 'none';
+      const fb = img.nextElementSibling;
+      if (fb) fb.style.display = 'flex';
+    }
+
+    function openLightbox(src, captionText) {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImg');
+      const cap = document.getElementById('lightboxCap');
+      img.src = src;
+      if (cap && captionText) {
+        cap.textContent = captionText;
+        cap.style.display = 'block';
+      } else if (cap) {
+        cap.style.display = 'none';
+      }
+      img.onerror = () => {
+        alert("Зображення за шляхом " + src + " буде відображено після розміщення у папці assets/.");
+        modal.classList.remove('open');
+      };
+      img.onload = () => { modal.classList.add('open'); };
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.remove('open');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+        toggleTaskModal(false);
+        toggleFaqModal(false);
+      }
+    });
+
+    // SIMULATOR LOGIC
+    const solidData = {
+      wood: { lhv: 10.5, clRisk: false },
+      pellet: { lhv: 17.5, clRisk: false },
+      straw: { lhv: 14.2, clRisk: true },
+      husk: { lhv: 16.8, clRisk: true }
+    };
+
+    const bioData = {
+      manure: { yield: 110 },
+      poultry: { yield: 140 },
+      pulp: { yield: 85 }
+    };
+
+    function switchSimulatorMode(mode) {
+      const boxS = document.getElementById('simBoxSolid');
+      const boxB = document.getElementById('simBoxBiogas');
+      const btnS = document.getElementById('btnModeSolid');
+      const btnB = document.getElementById('btnModeBiogas');
+
+      if (mode === 'solid') {
+        boxS.style.display = 'block';
+        boxB.style.display = 'none';
+        btnS.classList.add('active');
+        btnB.classList.remove('active');
+        calcSolidCHP();
+      } else {
+        boxS.style.display = 'none';
+        boxB.style.display = 'block';
+        btnB.classList.add('active');
+        btnS.classList.remove('active');
+        calcBiogasCHP();
+      }
+    }
+
+    function calcSolidCHP() {
+      const fuelKey = document.getElementById('simSolidFuel').value;
+      const flow = parseFloat(document.getElementById('simSolidFlow').value) || 1.0;
+      const cycle = document.getElementById('simSolidCycle').value;
+
+      const f = solidData[fuelKey];
+      const qFuelMw = (flow * 1000 * f.lhv) / 3600;
+
+      let etaEl = (cycle === 'orc') ? 0.19 : 0.24;
+      let etaBoiler = 0.88;
+
+      const pElMw = qFuelMw * etaEl;
+      const qThMw = qFuelMw * etaBoiler * (1 - etaEl / etaBoiler);
+      const gcalHour = qThMw * 0.8598; // 1 МВт = 0.8598 Гкал/год
+      const gasSavedM3h = (qThMw * 3600 * 0.90) / 34.0;
+      const gasSavedDayK = (gasSavedM3h * 24) / 1000;
+
+      document.getElementById('resSolidQfuel').textContent = qFuelMw.toFixed(2) + " МВт";
+      document.getElementById('resSolidLhv').innerHTML = `Q<sub>i</sub><sup>r</sup> = ${f.lhv} МДж/кг`;
+
+      document.getElementById('resSolidPel').innerHTML = pElMw.toFixed(2) + " МВт<sub>ел</sub>";
+      document.getElementById('resSolidEtaEl').innerHTML = `η<sub>ел</sub> = ${(etaEl * 100).toFixed(1)}% | η<sub>CHP</sub> = ${(etaBoiler * 100).toFixed(0)}%`;
+
+      document.getElementById('resSolidQth').innerHTML = qThMw.toFixed(2) + " МВт<sub>тепл</sub>";
+      document.getElementById('resSolidGcal').textContent = `${gcalHour.toFixed(2)} Гкал/год у мережу`;
+
+      document.getElementById('resSolidGasSaved').textContent = Math.round(gasSavedM3h).toLocaleString('uk-UA') + " м³/год";
+      document.getElementById('resSolidGasDay').textContent = `~${gasSavedDayK.toFixed(1)} тис. м³/добу`;
+
+      const alertBox = document.getElementById('corrosionWarning');
+      if (f.clRisk && cycle === 'steam') {
+        alertBox.classList.add('active');
+      } else {
+        alertBox.classList.remove('active');
+      }
+    }
+
+    function calcBiogasCHP() {
+      const subKey = document.getElementById('simBioSubstrate').value;
+      const tons = parseFloat(document.getElementById('simBioTons').value) || 100;
+      const ch4 = parseFloat(document.getElementById('simBioCh4').value) || 0.60;
+
+      const s = bioData[subKey];
+      const m3Day = tons * s.yield;
+      const m3Hour = m3Day / 24;
+
+      const lhv = 35.8 * ch4;
+      const qFuelMw = (m3Hour * lhv) / 3600;
+
+      const etaElGpu = 0.415;
+      const etaThGpu = 0.420;
+
+      const pElMw = qFuelMw * etaElGpu;
+      const qThMw = qFuelMw * etaThGpu;
+      const gcalHour = qThMw * 0.8598;
+      const biomethaneFlow = (m3Hour * ch4) / 0.975;
+
+      document.getElementById('resBioGasVol').textContent = Math.round(m3Day).toLocaleString('uk-UA') + " м³";
+      document.getElementById('resBioGasHour').textContent = `~${Math.round(m3Hour)} м³/год`;
+
+      document.getElementById('resBioPel').innerHTML = pElMw.toFixed(2) + " МВт<sub>ел</sub>";
+      document.getElementById('resBioQth').innerHTML = qThMw.toFixed(2) + " МВт<sub>тепл</sub>";
+      document.getElementById('resBioGcal').textContent = `${gcalHour.toFixed(2)} Гкал/год (підігрів)`;
+      document.getElementById('resBioMethane').textContent = Math.round(biomethaneFlow).toLocaleString('uk-UA') + " м³/год";
+    }
+
+    // CORROSION X-RAY INTERACTIVE (CHAPTER 4)
+    const xrayStepsData = {
+      1: {
+        formula: "2KCl + SO<sub>2</sub> + O<sub>2</sub> ➔ K<sub>2</sub>SO<sub>4</sub> + Cl<sub>2</sub>↑",
+        desc: "Пари хлориду калію осідають на сталевій трубі та реагують із газами, вивільняючи вільний молекулярний хлор безпосередньо біля поверхні металу."
+      },
+      2: {
+        formula: "Fe + Cl<sub>2</sub> ➔ FeCl<sub>2</sub>↑ (сублімація при T > 450 °C)",
+        desc: "Хлор проникає крізь захисну оксидну плівку і перетворює тверде залізо стінки на леткий газоподібний дихлорид заліза (FeCl₂), який випаровується з металу назовні."
+      },
+      3: {
+        formula: "4FeCl<sub>2</sub> + 3O<sub>2</sub> ➔ 2Fe<sub>2</sub>O<sub>3</sub> (іржа) + 4Cl<sub>2</sub>↑",
+        desc: "На зовнішній межі труби FeCl₂ окислюється киснем, перетворюючись на крихку пухку іржу, а звільнений хлор повертається назад вглиб металу руйнувати наступні атоми заліза."
+      }
+    };
+
+    function setCorrosionStep(step, btn) {
+      document.querySelectorAll('.xray-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const data = xrayStepsData[step];
+      if (data) {
+        document.getElementById('xrayFormula').innerHTML = data.formula;
+        document.getElementById('xrayDesc').textContent = data.desc;
+      }
+    }
+
+    // INITIALIZATION
+    goToChapter(0, document.querySelector('.toc-btn'));
+    calcSolidCHP();
+    calcBiogasCHP();
+  </script>
+</body>
+</html>
