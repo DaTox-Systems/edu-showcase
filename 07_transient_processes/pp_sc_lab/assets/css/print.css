@@ -1,0 +1,55 @@
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 20mm 15mm 20mm 30mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: "Times New Roman", serif !important;
+    font-size: 12pt !important;
+  }
+
+  .app-shell,
+  .modal-backdrop,
+  .toast-container {
+    display: none !important;
+  }
+
+  /* Export-01: Print strictly from CalcResult-rendered protocol container */
+  .print-only-container {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .protocol-doc {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-width: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .protocol-doc h2,
+  .protocol-doc h3 {
+    color: #000000 !important;
+    border-color: #000000 !important;
+    page-break-after: avoid;
+  }
+
+  .proto-step {
+    background: #ffffff !important;
+    border: 1px solid #cccccc !important;
+    border-left: 3px solid #000000 !important;
+    page-break-inside: avoid;
+  }
+
+  .data-table th,
+  .data-table td {
+    border: 1px solid #000000 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+}

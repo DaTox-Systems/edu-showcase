@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>PP-SCLab // НТУ «ДП» — Верифікатор розрахунків струмів КЗ</title>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/print.css">
+
+  <script defer src="assets/js/data/variants.js"></script>
+  <script defer src="assets/js/data/help_content.js"></script>
+  <script defer src="assets/js/core/complex.js"></script>
+  <script defer src="assets/js/core/number_parser.js"></script>
+  <script defer src="assets/js/core/validation.js"></script>
+  <script defer src="assets/js/core/store.js"></script>
+  <script defer src="assets/js/engine/physical/generator.js"></script>
+  <script defer src="assets/js/engine/physical/transformer.js"></script>
+  <script defer src="assets/js/engine/physical/line.js"></script>
+  <script defer src="assets/js/engine/reduction/exact_pu.js"></script>
+  <script defer src="assets/js/engine/reduction/approx_pu.js"></script>
+  <script defer src="assets/js/engine/reduction/exact_named.js"></script>
+  <script defer src="assets/js/engine/reduction/approx_named.js"></script>
+  <script defer src="assets/js/engine/sequences.js"></script>
+  <script defer src="assets/js/engine/faults.js"></script>
+  <script defer src="assets/js/engine/checks.js"></script>
+  <script defer src="assets/js/engine/calculate.js"></script>
+  <script defer src="assets/js/render/svg_symbols.js"></script>
+  <script defer src="assets/js/render/svg_network.js"></script>
+  <script defer src="assets/js/render/svg_sequences.js"></script>
+  <script defer src="assets/js/render/svg_fault.js"></script>
+  <script defer src="assets/js/render/protocol_builder.js"></script>
+  <script defer src="assets/js/render/comparison.js"></script>
+  <script defer src="assets/js/render/export.js"></script>
+  <script defer src="assets/js/ui/toast.js"></script>
+  <script defer src="assets/js/ui/header_toolbar.js"></script>
+  <script defer src="assets/js/ui/panel_left.js"></script>
+  <script defer src="assets/js/ui/panel_center.js"></script>
+  <script defer src="assets/js/ui/panel_right.js"></script>
+  <script defer src="assets/js/ui/modal_help.js"></script>
+  <script defer src="assets/js/ui/modal_task.js"></script>
+  <script defer src="assets/js/ui/main.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header id="app-header" class="app-header"></header>
+    <div id="app-toolbar" class="app-toolbar"></div>
+    <main class="workspace-grid">
+      <aside id="panel-left" class="panel-left"></aside>
+      <section class="panel-center">
+        <div id="context-banner" class="context-banner"></div>
+        <div id="center-viewport" class="center-viewport"></div>
+        <div id="center-tabs" class="center-tabs"></div>
+      </section>
+      <aside id="panel-right" class="panel-right"></aside>
+    </main>
+  </div>
+
+  <div id="modal-help-backdrop" class="modal-backdrop hidden"></div>
+  <div id="modal-task-backdrop" class="modal-backdrop hidden"></div>
+  <div id="toast-container" class="toast-container"></div>
+  <div id="print-protocol-root" class="print-only-container"></div>
+  <input id="json-file-input" type="file" accept=".json,application/json" style="display:none">
+</body>
+</html>
