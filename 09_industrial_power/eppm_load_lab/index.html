@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>EPPM-LoadLab // НТУ «ДП» — Інтерактивний дидактичний стенд</title>
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+
+  <script defer src="assets/js/data/dbn_matrix.js"></script>
+  <script defer src="assets/js/data/variants_data.js"></script>
+  <script defer src="assets/js/core/spline.js"></script>
+  <script defer src="assets/js/core/integrator.js"></script>
+  <script defer src="assets/js/core/store.js"></script>
+  <script defer src="assets/js/render/svg_city_view.js"></script>
+  <script defer src="assets/js/render/svg_load_chart.js"></script>
+  <script defer src="assets/js/render/svg_sum_chart.js"></script>
+  <script defer src="assets/js/ui/toolbar.js"></script>
+  <script defer src="assets/js/ui/main.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Top Academic Header & Mode Toolbar -->
+    <header id="app-toolbar" class="app-header">
+      <div class="brand-row">
+        <div class="brand-identity">
+          <div class="brand-crest" aria-hidden="true">НТУ «ДП»</div>
+          <div class="brand-titles">
+            <h1 class="brand-title">EPPM-LoadLab // Моделювання добових графіків навантаження</h1>
+            <p class="brand-subtitle">Кафедра електроенергетики · ДБН В.2.5-23:2025 · Навчальний стенд</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button type="button" id="btn-sources-modal" class="btn btn-secondary">Методика та першоджерела</button>
+          <button type="button" id="btn-presentation-mode" class="btn btn-projector" aria-pressed="false">Режим проектора</button>
+        </div>
+      </div>
+
+      <div class="control-strip">
+        <div class="mode-switcher" role="group" aria-label="Режим роботи стенду">
+          <button type="button" class="mode-btn is-active" data-mode="benchmark">1. Приклад за замовченням (Вар. №7)</button>
+          <button type="button" class="mode-btn" data-mode="variants">2. Варіанти (1–30)</button>
+          <button type="button" class="mode-btn" data-mode="sandbox">3. Пісочниця (Sandbox)</button>
+        </div>
+
+        <div class="variant-controls">
+          <label for="select-variant" class="control-label">Варіант:</label>
+          <select id="select-variant" class="control-select" aria-label="Вибір варіанта"></select>
+          <button type="button" id="btn-reset-sandbox" class="btn btn-ghost">Скинути зміни</button>
+        </div>
+
+        <div id="scenario-status-badge" class="status-pill status-benchmark">Приклад за замовченням (Вар. №7)</div>
+      </div>
+
+      <nav class="screen-tabs" role="tablist" aria-label="Розділи стенду">
+        <button type="button" class="tab-btn is-active" role="tab" data-screen="1" aria-selected="true">
+          1. Частина 1: Графік будинку
+        </button>
+        <button type="button" class="tab-btn" role="tab" data-screen="2" aria-selected="false">
+          2. Частина 2: Сумарний графік ТП
+        </button>
+        <button type="button" class="tab-btn" role="tab" data-screen="3" aria-selected="false">
+          3. Нормативний розрахунок (ДБН)
+        </button>
+        <button type="button" class="tab-btn" role="tab" data-screen="4" aria-selected="false">
+          4. Методика, порівняння та звіт
+        </button>
+      </nav>
+    </header>
+
+    <!-- Dynamic Alerts & Academic Provenance Notices -->
+    <div id="alert-banner" class="alert-banner is-hidden" role="status"></div>
+    <div id="error-banner" class="error-banner is-hidden" role="alert"></div>
+
+    <!-- Main 4-Screen Workspace -->
+    <main class="app-main">
+      <!-- SCREEN 1: Part 1 Individual Residential Load Curve -->
+      <section id="screen-1" class="screen-panel is-active" data-screen-panel="1">
+        <div class="screen-header">
+          <div>
+            <h2>Частина 1. Дослідження добового графіка житлового будинку</h2>
+            <p class="screen-lead">Взаємозв'язок миттєвої потужності P [кВт] та добової енергії W [кВт·год], сходинкова, трапецієподібна та сплайн-моделі.</p>
+          </div>
+          <div class="layer-toggles" role="group" aria-label="Шари графіка">
+            <label class="toggle-chip"><input type="checkbox" data-layer="step" checked /> Сходинки АСКОЕ</label>
+            <label class="toggle-chip"><input type="checkbox" data-layer="trapezoid" checked /> Площа W<sub>а</sub> (трапеції)</label>
+            <label class="toggle-chip"><input type="checkbox" data-layer="spline" checked /> Кубічний сплайн</label>
+            <label class="toggle-chip"><input type="checkbox" data-layer="p30Window" checked /> Вікно P<sub>30,max</sub></label>
+          </div>
+        </div>
+
+        <div id="kpi-part1" class="kpi-grid"></div>
+
+        <div class="workspace-split">
+          <div class="card chart-card">
+            <div class="card-header">
+              <h3>Добовий графік навантаження будинку P<sub>б</sub>(t) = P<sub>з.б.</sub>(t) + P<sub>ж.</sub>(t)</h3>
+              <span class="badge badge-model">Модельний графік</span>
+            </div>
+            <div id="chart-part1-host" class="svg-host"></div>
+          </div>
+
+          <aside class="card side-panel">
+            <div class="card-header">
+              <h3>Таблиця 1.1 — Погодинні дані АСКОЕ</h3>
+              <span id="part1-edit-hint" class="badge badge-neutral">Тільки перегляд</span>
+            </div>
+            <div id="table-part1-host" class="table-scroll"></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: Part 2 Substation 0.4 kV Bus & Interactive Time Cursor -->
+      <section id="screen-2" class="screen-panel" data-screen-panel="2">
+        <div class="screen-header">
+          <div>
+            <h2>Частина 2. Динаміка навантаження на шинах НН 0,4 кВ ТП</h2>
+            <p class="screen-lead">Явище незбіжності максимумів споживачів, векторний розрахунок повної потужності S<sub>Σ</sub>(t) та завантаження трансформатора.</p>
+          </div>
+          <div class="substation-quick-controls">
+            <label class="inline-control">
+              <span>S<sub>ном.Т</sub>:</span>
+              <select id="select-transformer-kva" class="control-select">
+                <option value="160">160 кВА</option>
+                <option value="250">250 кВА</option>
+                <option value="400" selected>400 кВА</option>
+                <option value="630">630 кВА</option>
+                <option value="1000">1000 кВА</option>
+              </select>
+            </label>
+            <label class="inline-control">
+              <span>Пресет cos φ:</span>
+              <select id="select-cosphi-preset" class="control-select">
+                <option value="educational_unified">Навчальне спрощення (0,95)</option>
+                <option value="dbn_no_ac">Табл. 6.5 ДБН (без конд.)</option>
+                <option value="dbn_with_ac">Табл. 6.5 ДБН (з конд.)</option>
+                <option value="custom">Користувацький (Sandbox)</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div id="kpi-part2" class="kpi-grid"></div>
+
+        <div class="card mnemonic-card">
+          <div class="card-header">
+            <h3>Жива мнемосхема ТП 10/0,4 кВ (зріз на годину t = <span id="cursor-hour-label">20:00</span>)</h3>
+            <div class="time-cursor-control">
+              <label for="slider-hour">Часовий курсор t:</label>
+              <input type="range" id="slider-hour" min="0" max="24" step="1" value="20" />
+              <span id="slider-hour-value" class="hour-readout">20:00</span>
+            </div>
+          </div>
+          <div id="city-view-host" class="svg-host svg-host-compact"></div>
+        </div>
+
+        <div class="workspace-split">
+          <div class="card chart-card">
+            <div class="card-header">
+              <h3>Суміщення добових графіків споживачів та сумарна крива P<sub>Σ</sub>(t)</h3>
+              <span class="badge badge-model">Незбіжність піків</span>
+            </div>
+            <div id="chart-sum-host" class="svg-host"></div>
+          </div>
+
+          <aside class="card side-panel">
+            <div class="card-header">
+              <h3>Споживачі на шинах ТП</h3>
+              <button type="button" id="btn-add-consumer" class="btn btn-small btn-primary">+ Додати</button>
+            </div>
+            <div id="consumers-editor-host" class="consumers-list"></div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SCREEN 3: Normative DBN V.2.5-23:2025 Matrix & Isolation -->
+      <section id="screen-3" class="screen-panel" data-screen-panel="3">
+        <div class="screen-header">
+          <div>
+            <h2>Нормативний розрахунок: ДБН В.2.5-23:2025 (п. 6.2.16, Табл. 6.17)</h2>
+            <p class="screen-lead">Суворе розмежування підтверджених нормативних коефіцієнтів, умовних навчальних аналогій та об'єктів поза сферою ДБН.</p>
+          </div>
+        </div>
+
+        <div id="dbn-summary-host" class="dbn-summary-grid"></div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3>Інтерактивна Таблиця 6.17 ДБН В.2.5-23:2025 — Коефіцієнти участі в максимумі навантаження</h3>
+            <div class="legend-inline">
+              <span class="badge badge-verified">Підтверджено ДБН</span>
+              <span class="badge badge-conditional">Умовна аналогія</span>
+              <span class="badge badge-unavailable">Поза ДБН</span>
+            </div>
+          </div>
+          <div id="dbn-matrix-host" class="table-scroll"></div>
+        </div>
+      </section>
+
+      <!-- SCREEN 4: Methodology Comparison, Golden Reference & Report Export -->
+      <section id="screen-4" class="screen-panel" data-screen-panel="4">
+        <div class="screen-header">
+          <div>
+            <h2>Методика, порівняльний аналіз та академічний звіт</h2>
+            <p class="screen-lead">Зіставлення способів розрахунку ТП, аналіз розбіжностей, контрольний еталон методичних рекомендацій та експорт результатів.</p>
+          </div>
+          <div class="report-actions">
+            <button type="button" id="btn-export-json" class="btn btn-secondary">Експорт JSON</button>
+            <button type="button" id="btn-print-report" class="btn btn-primary">Друк / PDF-звіт</button>
+          </div>
+        </div>
+
+        <div id="comparison-host" class="comparison-grid"></div>
+        <div id="golden-reference-host" class="card"></div>
+        <div id="methodology-notes-host" class="card"></div>
+      </section>
+    </main>
+
+    <!-- Academic Print Sheet (Hidden on screen, formatted for A4 print) -->
+    <section id="print-report-sheet" class="print-only"></section>
+
+    <!-- Sources & Methodology Modal -->
+    <div id="sources-modal" class="modal-backdrop is-hidden" role="dialog" aria-modal="true" aria-labelledby="sources-modal-title">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3 id="sources-modal-title">Методика, наукові першоджерела та реквізити</h3>
+          <button type="button" id="btn-close-modal" class="btn btn-ghost" aria-label="Закрити">&times;</button>
+        </div>
+        <div id="sources-modal-body" class="modal-body"></div>
+      </div>
+    </div>
+
+    <footer class="app-footer">
+      <span>EPPM-LoadLab · Навчальний дидактичний стенд (не є сертифікованим ПЗ промислового проєктування)</span>
+      <span id="footer-academic-ref">Кафедра електроенергетики НТУ «Дніпровська політехніка»</span>
+    </footer>
+  </div>
+</body>
+</html>
