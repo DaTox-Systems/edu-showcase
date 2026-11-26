@@ -58,8 +58,36 @@ window.EPPMLoadLab.Render = window.EPPMLoadLab.Render || {};
     var plotW = W - padL - padR;
     var plotH = H - padT - padB;
 
+    var samples = 240;
+    var trapEnabled = Boolean(state.layers && state.layers.arithmeticTrap);
+    var arithSum = part2.peaks.arithmeticSum;
+    var trapSyncSamples = null;
+    var trapSyncMax = 0;
+
+    if (trapEnabled && objects.length > 0) {
+      trapSyncSamples = [];
+      for (var ts = 0; ts <= samples; ts++) {
+        var tBase = (ts / samples) * 24.0;
+        var valSync = 0.0;
+        for (var oiTrap = 0; oiTrap < objects.length; oiTrap++) {
+          var objTrap = objects[oiTrap];
+          var objPeakHr = (objTrap.metrics && typeof objTrap.metrics.tMaxHour === "number")
+            ? objTrap.metrics.tMaxHour
+            : graphic.tSumMaxHour;
+          var shiftH = graphic.tSumMaxHour - objPeakHr;
+          var uShifted = tBase - shiftH;
+          while (uShifted < 0) uShifted += 24.0;
+          while (uShifted > 24.0) uShifted -= 24.0;
+          valSync += objTrap.metrics.splineInstance.interpolate(uShifted);
+        }
+        if (valSync > trapSyncMax) trapSyncMax = valSync;
+        trapSyncSamples.push({ t: tBase, v: valSync });
+      }
+    }
+
     var dbnLineVal = dbn.pDbnWithAssumptions !== null ? dbn.pDbnWithAssumptions : 0;
-    var maxPeak = Math.max(graphic.pSumMaxHourly, graphic.pSumMax30min, dbnLineVal, 10);
+    var trapLineVal = (trapEnabled && typeof arithSum === "number") ? Math.max(arithSum, trapSyncMax) : 0;
+    var maxPeak = Math.max(graphic.pSumMaxHourly, graphic.pSumMax30min, dbnLineVal, trapLineVal, 10);
     var yMax = niceCeiling(maxPeak * 1.12);
 
     function xAt(t) {
@@ -93,7 +121,19 @@ window.EPPMLoadLab.Render = window.EPPMLoadLab.Render || {};
     svg.appendChild(el("text", { x: padL - 46, y: padT - 10, fill: "#0f172a", "font-size": 12, "font-weight": "bold" }, "P, кВт"));
     svg.appendChild(el("text", { x: W - padR, y: padT + plotH + 36, "text-anchor": "end", fill: "#0f172a", "font-size": 12, "font-weight": "bold" }, "t, год доби"));
 
-    // 2. DBN Reference Line (honest label reflecting coverageStatus)
+    // 2. Arithmetic Peak Sum Warning Line (Rendered ONLY when educational trap layer is toggled)
+    if (trapEnabled && typeof arithSum === "number" && arithSum > 0) {
+      var arithY = yAt(arithSum);
+      svg.appendChild(el("line", {
+        x1: padL, y1: arithY, x2: W - padR, y2: arithY,
+        stroke: "#dc2626", "stroke-width": 1.8, "stroke-dasharray": "5,3"
+      }));
+      svg.appendChild(el("text", {
+        x: padL + 8, y: arithY - 6, fill: "#b91c1c", "font-size": 11.5, "font-weight": "bold"
+      }, "⚠ Умовна сума піків: " + fmt(arithSum) + " кВт (пунктир — при штучному збігу о " + graphic.tSumMaxHour + ":00; +" + fmt(part2.comparison.diversitySavingKw) + " кВт)"));
+    }
+
+    // 2.1. DBN Reference Line (honest label reflecting coverageStatus)
     if (dbn.pDbnWithAssumptions !== null) {
       var dbnY = yAt(dbn.pDbnWithAssumptions);
       var dbnLabel = (dbn.coverageStatus === "complete")
@@ -119,7 +159,6 @@ window.EPPMLoadLab.Render = window.EPPMLoadLab.Render || {};
     svg.appendChild(el("text", { x: cursorX, y: padT + 17, "text-anchor": "middle", fill: "#ffffff", "font-size": 11, "font-weight": "bold" }, hr + ":00"));
 
     // 4. Individual Consumer Splines (No time shifting)
-    var samples = 240;
     for (var cIdx = 0; cIdx < objects.length; cIdx++) {
       var obj = objects[cIdx];
       var color = PALETTE[cIdx % PALETTE.length];
@@ -143,8 +182,6 @@ window.EPPMLoadLab.Render = window.EPPMLoadLab.Render || {};
 
     // 5. Total Substation Curve P_sum(t)
     var sumPts = [];
-    // Plot through 25 nodes smoothly using the 25-point spline if available or polyline across objects' splines
-    var sumSpline = (state.results.part2 && objects.length > 0) ? null : null;
     for (var sSum = 0; sSum <= samples; sSum++) {
       var tSum = (sSum / samples) * 24.0;
       var valSumT = 0.0;
@@ -157,6 +194,33 @@ window.EPPMLoadLab.Render = window.EPPMLoadLab.Render || {};
       points: sumPts.join(" "), fill: "none", stroke: "#047857",
       "stroke-width": "var(--svg-stroke-main, 3.2px)", "stroke-linejoin": "round"
     }));
+
+    // 5.1. Synchronized-Peaks Trap Curve (Only when trap layer is active)
+    if (trapEnabled && trapSyncSamples && trapSyncSamples.length > 0) {
+      var trapPts = [];
+      for (var tp = 0; tp < trapSyncSamples.length; tp++) {
+        trapPts.push(xAt(trapSyncSamples[tp].t).toFixed(1) + "," + yAt(trapSyncSamples[tp].v).toFixed(1));
+      }
+      svg.appendChild(el("polyline", {
+        points: trapPts.join(" "), fill: "none", stroke: "#dc2626",
+        "stroke-width": "var(--svg-stroke-sub, 2.2px)", "stroke-dasharray": "6,4", "stroke-linejoin": "round"
+      }));
+
+      var peakX = xAt(graphic.tSumMaxHour);
+      var realPeakY = yAt(graphic.pSumMaxHourly);
+      var trapPeakY = yAt(arithSum);
+      svg.appendChild(el("line", {
+        x1: peakX, y1: realPeakY, x2: peakX, y2: trapPeakY,
+        stroke: "#dc2626", "stroke-width": 2.2
+      }));
+      svg.appendChild(el("circle", {
+        cx: peakX, cy: trapPeakY, r: 5.5,
+        fill: "#dc2626", stroke: "#ffffff", "stroke-width": 2
+      }));
+      svg.appendChild(el("text", {
+        x: peakX + 8, y: (realPeakY + trapPeakY) / 2 + 4, fill: "#b91c1c", "font-size": 11.5, "font-weight": "bold"
+      }, "+" + fmt(part2.comparison.diversitySavingKw) + " кВт"));
+    }
 
     // Peak marker & cursor marker on Sum curve
     svg.appendChild(el("circle", {

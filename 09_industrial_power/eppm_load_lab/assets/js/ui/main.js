@@ -63,6 +63,8 @@ window.EPPMLoadLab.UI = window.EPPMLoadLab.UI || {};
     var cityViewHost = document.getElementById("city-view-host");
     var chartSumHost = document.getElementById("chart-sum-host");
     var consumersEditorHost = document.getElementById("consumers-editor-host");
+    var toggleTrapBtn = document.getElementById("btn-toggle-trap");
+    var trapExplainerHost = document.getElementById("arithmetic-trap-explainer");
     var transformerSelect = document.getElementById("select-transformer-kva");
     var cosPhiSelect = document.getElementById("select-cosphi-preset");
     var hourSlider = document.getElementById("slider-hour");
@@ -118,6 +120,12 @@ window.EPPMLoadLab.UI = window.EPPMLoadLab.UI || {};
       addConsumerBtn.addEventListener("click", function () {
         addFormVisible = !addFormVisible;
         renderConsumersEditor(store.getState());
+      });
+    }
+
+    if (toggleTrapBtn) {
+      toggleTrapBtn.addEventListener("click", function () {
+        store.dispatch({ type: "TOGGLE_LAYER", layer: "arithmeticTrap" });
       });
     }
 
@@ -487,6 +495,81 @@ window.EPPMLoadLab.UI = window.EPPMLoadLab.UI || {};
         }
       });
       renderConsumersEditor(state);
+
+      var trapActive = Boolean(state.layers && state.layers.arithmeticTrap);
+      if (toggleTrapBtn) {
+        toggleTrapBtn.setAttribute("aria-pressed", trapActive ? "true" : "false");
+        toggleTrapBtn.style.background = trapActive ? "#fef3c7" : "";
+        toggleTrapBtn.textContent = trapActive
+          ? "✕ Приховати пастку додавання піків"
+          : "⚠ Обережно: пастка додавання піків";
+      }
+
+      if (trapExplainerHost) {
+        trapExplainerHost.classList.toggle("is-hidden", !trapActive);
+        clearEl(trapExplainerHost);
+        if (trapActive) {
+          var arithSum = part2.peaks.arithmeticSum;
+          var graphMax = part2.methodGraphic.pSumMaxHourly;
+          var tSumMax = part2.methodGraphic.tSumMaxHour;
+          var savingKw = part2.comparison.diversitySavingKw;
+          var savingPct = part2.comparison.diversitySavingPercent;
+
+          trapExplainerHost.appendChild(el(
+            "strong",
+            "",
+            "Чому просте додавання максимумів (" + fmt(arithSum) + " кВт) є помилковим для проєктування ТП"
+          ));
+
+          trapExplainerHost.appendChild(el(
+            "p",
+            "",
+            "Величина " + fmt(arithSum) + " кВт відповідає умовному режиму, за якого кожне приєднання на шинах 0,4 кВ досягає 100 % свого піка одночасно. Через різні добові профілі роботи споживачів їхні максимуми рознесені в часі, тому реальне сумарне навантаження становить " + fmt(graphMax) + " кВт (о " + tSumMax + ":00), що менше на " + fmt(savingKw) + " кВт (" + fmt(savingPct) + " %)."
+          ));
+
+          var largestObj = part2.evaluatedObjects[0];
+          for (var eo1 = 1; eo1 < part2.evaluatedObjects.length; eo1++) {
+            if (part2.evaluatedObjects[eo1].peakPowerKw > largestObj.peakPowerKw) {
+              largestObj = part2.evaluatedObjects[eo1];
+            }
+          }
+
+          var shiftedObj = null;
+          var maxDropAtPeak = 0;
+          for (var eo2 = 0; eo2 < part2.evaluatedObjects.length; eo2++) {
+            var cand = part2.evaluatedObjects[eo2];
+            if (cand.id === largestObj.id) continue;
+            var dropKw = cand.peakPowerKw - cand.curve[tSumMax];
+            if (dropKw > 1e-6 && dropKw > maxDropAtPeak) {
+              maxDropAtPeak = dropKw;
+              shiftedObj = cand;
+            }
+          }
+
+          if (shiftedObj && largestObj && shiftedObj.id !== largestObj.id) {
+            var tShifted = shiftedObj.metrics.tMaxHour;
+            var pctShiftedAtSum = shiftedObj.peakPowerKw > 0 ? (shiftedObj.curve[tSumMax] / shiftedObj.peakPowerKw) * 100 : 0;
+            var pctLargestAtShifted = largestObj.peakPowerKw > 0 ? (largestObj.curve[tShifted] / largestObj.peakPowerKw) * 100 : 0;
+            trapExplainerHost.appendChild(el(
+              "p",
+              "",
+              "Ілюстрація за поточним сценарієм: о " + tShifted + ":00 «" + shiftedObj.name + "» має власний пік (" + fmt(shiftedObj.peakPowerKw) + " кВт, 100 %), тоді як «" + largestObj.name + "» працює лише на " + fmt(pctLargestAtShifted, 0) + " % (" + fmt(largestObj.curve[tShifted]) + " кВт). Водночас у годину загального максимуму ТП (" + tSumMax + ":00) «" + shiftedObj.name + "» створює навантаження " + fmt(shiftedObj.curve[tSumMax]) + " кВт (" + fmt(pctShiftedAtSum, 0) + " %)."
+            ));
+          } else {
+            trapExplainerHost.appendChild(el(
+              "p",
+              "",
+              "У поточному наборі споживачів години максимумів збігаються (" + tSumMax + ":00), тому ефект незбіжності піків відсутній."
+            ));
+          }
+
+          trapExplainerHost.appendChild(el(
+            "p",
+            "kpi-sub",
+            "Вибір трансформатора та кабелів за завищеною сумою " + fmt(arithSum) + " кВт призводить до зайвого резерву потужності, тому застосовують нормативний розрахунок за ДБН В.2.5-23:2025 або погодинне сумування."
+          ));
+        }
+      }
     }
 
     // Screen 3 Renderer: DBN Normative Matrix & Strict Isolation

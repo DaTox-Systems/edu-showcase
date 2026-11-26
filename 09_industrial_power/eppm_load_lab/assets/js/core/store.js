@@ -171,7 +171,8 @@ window.EPPMLoadLab.Core = window.EPPMLoadLab.Core || {};
         step: true,
         trapezoid: true,
         spline: true,
-        p30Window: true
+        p30Window: true,
+        arithmeticTrap: false
       },
       variantId: BENCHMARK_VARIANT_ID,
       variantProvenance: null,
